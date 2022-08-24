@@ -16,6 +16,11 @@ class MainController extends Controller
         return view('public.accueil');
     }
 
+    public function menuPage()
+    {
+        return view('public.menu');
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
