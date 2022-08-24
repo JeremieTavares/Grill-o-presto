@@ -19,3 +19,6 @@ use App\Http\Controllers\MainController;
 });
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
+
+Route::get('/faq', [MainController::class, 'indexFaq'])->name('faq');
+

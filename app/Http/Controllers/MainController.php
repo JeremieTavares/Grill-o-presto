@@ -16,6 +16,11 @@ class MainController extends Controller
         return view('public.accueil');
     }
 
+    public function indexFaq()
+    {
+        return view('public.faq');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
