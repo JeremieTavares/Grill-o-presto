@@ -19,3 +19,4 @@ use App\Http\Controllers\MainController;
 });
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
+Route::get('/panier', [MainController::class, 'panier'])->name('commande');
