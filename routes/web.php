@@ -19,5 +19,5 @@ use App\Http\Controllers\MainController;
 });
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
-Route::get('/confirmationCommande', [MainController::class, 'commandeSucces'])->name('commandeConfirmation');
+Route::get('/confirm', [MainController::class, 'commandeSucces'])->name('confirm');
 
