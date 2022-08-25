@@ -22,8 +22,9 @@ class MainController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function panier()
-    {
-        return view('public.panier');
+    {    
+        $repasPanier = Repas::where('dansPanier', true)->get();
+        return view('public.panier', ['repas' => $repasPanier]);
     }
 
 
