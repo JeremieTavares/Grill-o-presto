@@ -19,3 +19,4 @@ use App\Http\Controllers\MainController;
 });
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
+Route::get('/ticket', [MainController::class, 'ticketCreate'])->name('ticket');

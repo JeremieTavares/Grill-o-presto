@@ -16,6 +16,16 @@ class MainController extends Controller
         return view('public.accueil');
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ticketCreate()
+    {
+        return view('public.ticket');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
