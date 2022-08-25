@@ -18,6 +18,9 @@ class MainController extends Controller
 
     public function menuPage()
     {
+        $repasRegulier = Repas::where('regulier', true)->get();
+        $repasVegan = Repas::where('vegan', true)->get();
+        $repasGluten = Repas::where('gluten', true)->get();
         return view('public.menu');
     }
     
