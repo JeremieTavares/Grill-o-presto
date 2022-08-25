@@ -1,5 +1,7 @@
 <?php
 
+use Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 
@@ -19,3 +21,5 @@ use App\Http\Controllers\MainController;
 });
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
+
+Auth::routes();
