@@ -1,3 +1,13 @@
-$primary: pink;
-$btn-padding-x: 4em;
-$btn-padding-y: 0.5em;
+$primary: #B40500;
+$secondary: #0F0F0F;
+$btn-font-size: 1.2rem;
+$btn-padding-x: 1.5em;
+$btn-padding-y: 0.3em;
+
+$grid-breakpoints: (
+  sm: 0px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);

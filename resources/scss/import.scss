@@ -1,5 +1,10 @@
+@import 'components/navbar';
+@import 'components/card';
 @import 'bootstrap-custom';
 @import 'style';
+@import 'home';
+
+
 
 @import './bootstrap/scss/bootstrap'; // Cela import : . cela signifie va dans le dossier node_modules et ensuite dans bootstrap..
 

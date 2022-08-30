@@ -12,4 +12,4 @@
     @vite(['resources/scss/import.scss',  'resources/js/app.js'])
 
   </head>
-  <body>
+  <body class="">

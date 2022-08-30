@@ -1,0 +1,56 @@
+/* ACCUEIL */
+
+
+
+.wave_top_section {
+    position: relative;
+
+    .over_wave_top {
+        padding: 2rem 5%;
+    
+        div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+    
+            h1 {
+                color: white;
+                font-weight: 700;
+                line-height: 3.5rem;
+            }
+
+            p {
+                font-size: 1.3rem;
+                font-family: 'Montserrat', sans-serif;
+                color: white;
+    
+            }
+        }
+    }
+
+
+    .saladeImg {
+        position: absolute;
+        width: 40%;
+        bottom: -10%;
+        left: 55%;
+    }
+
+    .waveTop {
+        transform: translateY(-1px);
+    }
+
+}
+
+.home_grid_card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5%;
+
+}
+
+
+
+
+
+
+

@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('history_meals', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable(false);
-            $table->json('ingredients');
+            $table->json('ingredients')->nullable(true);
             $table->boolean('vegetarian')->default(false);
             $table->boolean('gluten_free')->default(false);
             $table->integer('spicy')->default(0);
             $table->foreignId('menu_id')->constrained()->cascadeOnDelete()->nullable(false);
             $table->string('image_path')->nullable(false);
+            $table->boolean('is_on_home_page')->default(false);
             $table->timestamps();
         });
     }
