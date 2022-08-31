@@ -8,7 +8,7 @@
     .over_wave_top {
         padding: 2rem 5%;
     
-        div {
+        &>div  {
             display: grid;
             grid-template-columns: 1fr 1fr;
     
