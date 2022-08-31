@@ -1,11 +1,11 @@
 @extends('public.template.base')
 
 @section('content')
-    <div class="blocHeader">
+    <div class="container d-flex justify-content-center">
         <h1>Le plat sélectionné</h1>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-1 g-4">
+    <div class="row row-cols-1 row-cols-md-1 g-4 container d-flex justify-content-center p-4">
         <div class="col">
             <div class="card">
                 <img src="..." class="card-img-top" alt="...">
@@ -19,24 +19,33 @@
     </div>
 
     <div>
-        <p>Plât:</p>
-        <p>Menu:</p>
-        <p>Description du plat:</p>
+        <p class="container d-flex justify-content-left">Plât:</p>
+        <p class="container d-flex justify-content-left">Menu:</p>
+        <p class="container d-flex justify-content-left">Description du plat:</p>
     </div>
 
     <hr>
-    <h2>Allergènes</h2>
+    <div class="container d-flex justify-content-left">
+        <h3>Allergènes (para) (para)</h3>
+    </div>
 
     <hr>
-    <h2>Choisir la portion</h2>
-    <a href="">1 personne</a>
-    <a href="">2 personne</a>
-    <a href="">Familliale (4)</a>
+    <div class="container d-flex justify-content-left">
+        <h3>Choisir la portion</h3>
+    </div>
+
+    <div class="container">
+        <a href="">1 personne</a>
+        <a href="">2 personne</a>
+        <a href="">Familliale (4)</a>
+    </div>
 
     <hr>
-    <p>Prix:</p>
+    <div class="container">
+        <p>Prix: (para)</p>
+    </div>
 
-    <hr>
-
-    <a href="" class="btn btn-primary">Envoyer la commande</a>
+    <div class="container d-flex justify-content-center">
+        <a href="" class="btn btn-primary">Envoyer la commande</a>
+    </div>
 @endsection
