@@ -18,4 +18,4 @@ use App\Http\Controllers\MainController;
 
 // Route::get('/', [MainController::class, 'homePage'])->name('accueil');
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');

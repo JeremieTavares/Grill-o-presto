@@ -14,4 +14,8 @@ class Menu extends Model
         return $this->hasMany(HistoryMeal::class);
     }
 
+    public function menu_type() {
+        return $this->belongsTo(MenuType::class);
+    }
+
 }

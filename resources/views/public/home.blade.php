@@ -23,15 +23,14 @@
         <h2 class="text-center mb-5">NOS FAVORIS DE LA SEMAINE  </h2>
         <div class="home_grid_card">
             
-                @for ($i = 0; $i < 4; $i++)
+                @foreach ($meals as $meal)
+                    <div class="meal_card">
+                        <img src="{{ $meal->image_path }}" alt="repas_image">
+                        <p>{{ $meal->name }}</p>
+                        <p>{{ $meal->menu->menu_type->type }}</p>
+                    </div>
+                @endforeach
 
-                <div class="meal_card">
-                    <img src="./image/meal.jpg" alt="repas_image">
-                    <p>Nom</p>
-                    <p>Type menu</p>
-                </div>
-
-            @endfor
             </div>
         </div>
     </section>

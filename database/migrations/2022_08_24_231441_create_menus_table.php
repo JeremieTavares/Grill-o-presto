@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('menuType_id');
+            $table->unsignedBigInteger('menu_type_id');
             $table->date('start_date')->nullable(false);
             $table->date('end_date')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('menuType_id')->references('id')->on('menu_types');
+            $table->foreign('menu_type_id')->references('id')->on('menu_types');
         });
     }
 
