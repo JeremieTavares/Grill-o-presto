@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HistoryMeal;
+use App\Models\Meal;
 use App\Models\Menu;
 use App\Models\MenuType;
+use App\Models\HistoryMeal;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +13,6 @@ class HomeController extends Controller
     public function index() {
 
         
-
         $meals = HistoryMeal::where('is_on_home_page', 1)->with('menu.menu_type')->whereHas('menu', function($query) {
             $date = date('Y-m-d');
             
@@ -22,7 +22,6 @@ class HomeController extends Controller
 
         
         return view('./public/home', ['meals' => $meals]);
-
 
     }
 }

@@ -2,13 +2,15 @@
 
 @section('content')
 
-<main>
+<main class="test">
     <section class="wave_top_section w-100">
         <div class="over_wave_top bg-primary">
             <div>
                 <div class="d-flex flex-column me-5">
                     <h1>GRILL-O-<br />PRESTO</h1>
-                    <a href="#" class="btn btn-secondary home_btn ">Nos menus</a>
+                      <div>
+                            <a href="#" class="btn btn-secondary">Nos menus</a>
+                     </div>
                 </div>
                 <p class="ms-5">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour tous, végétariens et sans glutens.</p>
             </div>
