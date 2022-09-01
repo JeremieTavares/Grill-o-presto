@@ -20,4 +20,5 @@ use App\Http\Controllers\MainController;
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
 Route::get('/confirm', [MainController::class, 'commandeSucces'])->name('confirm');
+Route::get('/denied', [MainController::class, 'commandeFailure'])->name('denied');
 
