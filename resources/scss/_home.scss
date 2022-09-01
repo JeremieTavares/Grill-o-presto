@@ -1,56 +1,167 @@
 /* ACCUEIL */
 
+.home {
 
+    .wave_top_section {
+        width: 100vw;
+        position: relative;
 
-.wave_top_section {
-    position: relative;
+        .over_wave_top {
+            padding: 0 5%;
+            padding-top: 2rem;
 
-    .over_wave_top {
-        padding: 2rem 5%;
-    
-        &>div  {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-    
-            h1 {
-                color: white;
-                font-weight: 700;
-                line-height: 3.5rem;
-            }
+            &>div {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
 
-            p {
-                font-size: 1.3rem;
-                font-family: 'Montserrat', sans-serif;
-                color: white;
-    
+                h1 {
+                    width: 50%;
+                    color: white;
+                    font-weight: 700;
+                    line-height: 3.5rem;
+                }
+
+                p {
+                    width: 50%;
+                    font-size: 1.3rem;
+                    font-family: 'Montserrat', sans-serif;
+                    color: white;
+
+                }
+
             }
         }
-    }
 
 
-    .saladeImg {
-        position: absolute;
-        width: 40%;
-        bottom: -10%;
-        left: 55%;
+        .saladeImg {
+            position: absolute;
+            width: 50%;
+            bottom: 0;
+            right: 2%;
+        }
+
+        .waveTop {
+            transform: translateY(-1px);
+        }
+
     }
 
-    .waveTop {
-        transform: translateY(-1px);
+    
+
+    .home_grid_card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5%;
+
     }
+
+    
+    .engage {
+        display: none;
+    }
+
+    .wave_middle_section {
+
+        position: relative;
+
+        .chef_img {
+            z-index: 1;
+            position: absolute;
+            top: -2rem;
+            right: 0;
+            max-width: 65rem;
+            width: 60vw;
+        }
+
+        .salade2_img {
+            z-index: 1;
+            max-width: 40rem;
+            width: 40vw;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .svg_top_wave {
+            z-index: -1;
+            transform: translateY(1px);
+        }
+
+        .svg_bottom_wave {
+            z-index: -1;
+            transform: translateY(-1px);
+        }
+
+        &>div {
+            
+            padding-top: 5vw;
+            padding-right: 10%;
+
+            p {
+                font-size: 3vw;
+                width: 60%;
+            }
+        }
+
+    }
+
 
 }
 
-.home_grid_card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5%;
+@media (min-width: 768px) {
+    .home {
+        .wave_top_section {
+            h1 {
+                font-size: 4rem;
+            }
+    
+            &>div {
+                padding-left: 5rem;
+            }
+        }
+
+        .card_section {
+            order: 2;
+        }
+    
+        .engage {
+            padding: 0 5%;
+            display: block;
+
+            i {
+                font-size: 5rem;
+            }
+
+            
+
+            .engage_container {
+                gap: 6rem;
+
+                &>div {
+                    width: 30%;
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+
+                .fa-carrot {
+                    color: #F05A2C;
+                }
+
+                .fa-truck-fast {
+                    color: black;
+                }
+
+                .fa-hand-holding-dollar {
+                    color: #3C814F;
+                }
+
+            }
+        }
+
+    }
+    
 
 }
-
-
-
-
-
-
-
