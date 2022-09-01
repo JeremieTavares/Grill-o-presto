@@ -9,9 +9,9 @@
         <img src="{{URL ('images/deniedLogo.png')}}" class="img-fluid" alt="Image de X pas confirm">
     </div>
     <div>
-        <p class="container d-flex justify-content-center">N# de commande:(para)</p>
-        <p class="container d-flex justify-content-center">Prix: (para)</p>
-        <p class="container d-flex justify-content-center">Client: (para)</p>
+        <p class="container d-flex justify-content-center">N# de commande:{{-- {{ $order->orderNumber}} --}}</p>
+        <p class="container d-flex justify-content-center">Prix: {{-- {{ $order->orderPrice}} --}}</p>
+        <p class="container d-flex justify-content-center">Client: {{-- {{ $order->orderClient}} --}}</p>
         <p class="container d-flex justify-content-center">Raison: (para)</p>
     </div>
     <div class="refused container d-flex justify-content-center p-2">
