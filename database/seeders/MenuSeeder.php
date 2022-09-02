@@ -23,13 +23,13 @@ class MenuSeeder extends Seeder
 
         for($i = 1; $i < 4; $i++) {
             Menu::create([
-                'menuType_id' => $i,
+                'menu_type_id' => $i,
                 'start_date' => date("Y-m-d"),
                 'end_date' => date("Y-m-d", strtotime(date("Y-m-d"). ' + 7 days'))
             ]);
 
             Menu::create([
-                'menuType_id' => $i,
+                'menu_type_id' => $i,
                 'start_date' => date("Y-m-d", strtotime(date("Y-m-d"). ' - 20 days')),
                 'end_date' => date("Y-m-d", strtotime(date("Y-m-d"). ' - 13 days'))
             ]);
