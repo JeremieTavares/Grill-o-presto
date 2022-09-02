@@ -99,11 +99,71 @@
             padding-right: 10%;
 
             p {
-                font-size: 3vw;
+                font-size: 2.5vw;
                 width: 60%;
             }
         }
 
+    }
+
+    .ship_range_section {
+        background-color: $pink;
+        padding: 4rem 0;
+        margin-top: 10rem;
+        position: relative;
+
+        h2 {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        label {
+            font-size: 1.2rem;
+        }
+
+        input {
+            height: 2.5rem;
+            border-radius: 15px;
+            border: none;
+            box-shadow: none ;
+        }
+
+        img {
+            width: 40vw;
+            position: absolute;
+            top: -10rem;
+            right: -1rem;
+        }
+
+    }
+
+    .offer_section {
+
+        padding: 4rem;
+        padding-top: 10rem;
+
+        h2 {
+            font-size: 3vw;
+        }
+
+        ul {
+            font-size: 2vw;
+
+            li {
+                list-style: none;
+            }
+        }
+
+        img {
+            width: 100%;
+            max-width: 40rem;
+        }
+
+        a {
+            border-radius: 20px;
+            font-size: 2vw;
+            padding: 0.5em 1em;
+        }
     }
 
 
@@ -112,6 +172,7 @@
 @media (min-width: 768px) {
     .home {
         .wave_top_section {
+            order: 1;
             h1 {
                 font-size: 4rem;
             }
@@ -121,13 +182,26 @@
             }
         }
 
+        .wave_middle_section {
+            order: 3;
+        }
+
         .card_section {
-            order: 2;
+            order: 4;
+        }
+
+        .ship_range_section {
+            order: 5;
+        }
+
+        .offer_section {
+            order: 6;
         }
     
         .engage {
             padding: 0 5%;
             display: block;
+            order: 2;
 
             i {
                 font-size: 5rem;
@@ -159,6 +233,42 @@
                 }
 
             }
+        }
+
+        .ship_range_section {
+
+            padding-left: 20%;
+
+            &>div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1rem;
+
+                h2 {
+                    text-align: start;
+                }
+
+                h3 {
+                    font-size: 1.3rem;
+                }
+
+                
+
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    width: 75%;
+                }
+                
+
+            }
+
+            img {
+                position: initial;
+            }
+
         }
 
     }

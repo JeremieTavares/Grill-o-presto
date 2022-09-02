@@ -69,6 +69,35 @@
             </div>
             <svg class="svg_bottom_wave" id="svg" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,400 C 0,400 0,200 0,200 C 77.46753692889041,225.98007557540365 154.93507385778082,251.96015115080726 215,244 C 275.0649261422192,236.03984884919274 317.7272414977671,194.13947097217454 388,198 C 458.2727585022329,201.86052902782546 556.1559601511509,251.4819649604947 637,236 C 717.8440398488491,220.5180350395053 781.6489178976296,139.93266918584675 837,142 C 892.3510821023704,144.06733081415325 939.2483682583304,228.78735829611819 1008,239 C 1076.7516317416696,249.21264170388181 1167.3576090690485,184.9178976296805 1243,166 C 1318.6423909309515,147.0821023703195 1379.3211954654757,173.54105118515974 1440,200 C 1440,200 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#b40500" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path></svg>
         </section>
+        <section class="ship_range_section d-flex flex-column flex-md-row align-items-center justify-content-center">
+            <div class="w-50">
+                <h2>Service de livraison sans frais dans un rayon de 50km.</h2>
+                <h3>Êtes-vous admissibles ?</h3>
+                <form class="d-flex flex-column" action="">
+                    <label class="mb-2 w-100" for="adress">Votre adresse</label>
+                    <input class="input w-100" type="text" name="adress" id="adress">
+                    <button type="submit" class="btn btn-primary w-75 mt-4">Rechercher</button>
+                </form>
+            </div>
+            <img class="ms-5" src="./image/girl_looking.png" alt="">
+
+        </section>
+        <section class="offer_section">
+            <div class="d-flex">
+                <div class="me-5 w-50">
+                    <img src="./image/girl_choosing.png" alt="">
+                </div>
+                <div class="w-50">
+                    <h2 class="mb-3">Nous offrons 3 types de menu complet differant chaque semaine</h2>
+                    <ul class="p-0">
+                        <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
+                        <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
+                        <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <a class="btn btn-primary mt-5" href="">Voir tous les menus</a>
+        </section>
 
     </main>
 @endsection
