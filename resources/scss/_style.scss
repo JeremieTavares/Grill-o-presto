@@ -9,7 +9,12 @@ $pink: #FFD1D1;
 
 h2 {
     font-family: 'Inter', sans-serif;
-    font-size: 3rem;
+    font-size: 2rem;
+}
+
+h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
 }
 
 body {
@@ -21,5 +26,17 @@ body {
 main {
     width: 100%;
     max-width: 1920px;
+}
+
+@media (min-width: 768px) {
+    h2 {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.5rem;
+    }
+    
+    h3 {
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+    }
 }
 
