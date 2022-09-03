@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoryMeal;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -18,10 +19,15 @@ class MainController extends Controller
 
     public function menuPage()
     {
-        $repasRegulier = Repas::where('regulier', true)->get();
-        $repasVegan = Repas::where('vegan', true)->get();
-        $repasGluten = Repas::where('gluten', true)->get();
-        return view('public.menu');
+        $meals = [
+            "classic" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Classique')->get(),
+            "vegan" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Végétarien')->get(),
+            "gluten_free" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Sans Gluten')->get()
+        ];
+
+
+
+        return view('public.menu', ['meals' => $meals]);
     }
     
     /**

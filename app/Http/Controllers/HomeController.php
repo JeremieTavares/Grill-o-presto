@@ -20,6 +20,7 @@ class HomeController extends Controller
                               whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->
                               take(4)->
                               get();
+
     
         return view('./public/home', ['meals' => $meals]);
 
