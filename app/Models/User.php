@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    const USER_ROLE_CLIENT = 'USER';
+    const USER_ROLE_CLIENT = 1;
     const ADMIN_ROLE_1 = 2;
     const ADMIN_ROLE_2 = 3;
     const ADMIN_ROLE_3 = 4;
@@ -23,9 +23,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'info_user_id',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -46,4 +47,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function infoUser()
+    {
+        return $this->hasOne(Info_user::class, 'info_user_id');
+    }
 }

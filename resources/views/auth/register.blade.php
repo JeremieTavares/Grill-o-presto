@@ -22,11 +22,6 @@
                         required autocomplete="nom" autofocus />
                 </div>
 
-                <div class="col-md-6">
-                    <label for="tel" class="form-label">Numéro de téléphone</label>
-                    <input type="tel" name="tel" id="tel" class="form-control" value="{{ old('tel') }}"
-                        required autocomplete="tel" autofocus>
-                </div>
 
                 <div class="col-md-6">
                     <label for="rue" class="form-label">Rue</label>
@@ -34,10 +29,17 @@
                         required autocomplete="rue" autofocus>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <label for="noPorte" class="form-label">No de porte</label>
                     <input type="text" name="noPorte" id="noPorte" class="form-control" value="{{ old('noPorte') }}"
                         required autocomplete="noPorte" autofocus>
+                </div>
+
+
+                <div class="col-md-3">
+                    <label for="zip-code" class="form-label">Code-Postal:</label>
+                    <input type="text" name="zip-code" id="zip-code" class="form-control" value="{{ old('zip-code') }}"
+                        required autocomplete="ville" autofocus>
                 </div>
 
                 <div class="col-md-6">
@@ -45,6 +47,14 @@
                     <input type="text" name="ville" id="ville" class="form-control" value="{{ old('ville') }}"
                         required autocomplete="ville" autofocus>
                 </div>
+
+
+                <div class="col-md-6">
+                    <label for="tel" class="form-label">Numéro de téléphone</label>
+                    <input type="tel" name="tel" id="tel" class="form-control" value="{{ old('tel') }}"
+                        required autocomplete="tel" autofocus>
+                </div>
+
 
                 <div class="col-md-6">
                     <label for="email" class="form-label">Adresse courriel</label>

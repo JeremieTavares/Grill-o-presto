@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('info_user_id')->nullable();
-            $table->foreign('info_user_id')->references('id')->on('infos_users');
+            $table->foreign('info_user_id')->references('id')->on('info_users')->cascadeOnDelete();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at');
             $table->string('password');
-            $table->string('password_verified_at');
+            $table->string('password_verified_at')->nullable();
             $table->foreignId('role_id')->constrained();
             $table->rememberToken();
             $table->timestamps();
