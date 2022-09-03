@@ -7,41 +7,50 @@
             <h2>Laissez-nous vous guider pour créer un compte.<br />Cela ne prendra qu'une petite minute.</h2>
         </div>
 
-        <form action="#">
+        <form action="{{ route('register') }}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-md-6">
                     <label for="prenom" class="form-label">Prénom</label>
-                    <input type="text" name="prenom" id="prenom" class="form-control">
+                    <input type="text" name="prenom" id="prenom" class="form-control" value="{{ old('prenom') }}"
+                        required autocomplete="prenom" autofocus>
                 </div>
 
                 <div class="col-md-6">
                     <label for="nom" class="form-label">Nom</label>
-                    <input type="text" name="nom" id="nom" class="form-control" />
+                    <input type="text" name="nom" id="nom" class="form-control" value="{{ old('nom') }}"
+                        required autocomplete="nom" autofocus />
                 </div>
 
                 <div class="col-md-6">
                     <label for="tel" class="form-label">Numéro de téléphone</label>
-                    <input type="tel" name="tel" id="tel" class="form-control">
+                    <input type="tel" name="tel" id="tel" class="form-control" value="{{ old('tel') }}"
+                        required autocomplete="tel" autofocus>
                 </div>
 
                 <div class="col-md-6">
                     <label for="rue" class="form-label">Rue</label>
-                    <input type="text" name="rue" id="rue" class="form-control">
+                    <input type="text" name="rue" id="rue" class="form-control" value="{{ old('rue') }}"
+                        required autocomplete="rue" autofocus>
                 </div>
 
                 <div class="col-md-6">
                     <label for="noPorte" class="form-label">No de porte</label>
-                    <input type="text" name="noPorte" id="noPorte" class="form-control">
+                    <input type="text" name="noPorte" id="noPorte" class="form-control" value="{{ old('noPorte') }}"
+                        required autocomplete="noPorte" autofocus>
                 </div>
 
                 <div class="col-md-6">
                     <label for="ville" class="form-label">Ville</label>
-                    <input type="text" name="ville" id="ville" class="form-control">
+                    <input type="text" name="ville" id="ville" class="form-control" value="{{ old('ville') }}"
+                        required autocomplete="ville" autofocus>
                 </div>
 
                 <div class="col-md-6">
                     <label for="email" class="form-label">Adresse courriel</label>
-                    <input type="email" name="email" id="email" class="form-control">
+                    <input type="email" name="email" id="email"
+                        class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required
+                        autocomplete="email" autofocus>
                 </div>
 
                 <div class="col-md-6">
