@@ -1,6 +1,20 @@
+<<<<<<< Updated upstream
 1662161695-1501-1479574460,1662161695.1041,GET,/,"App\Http\Controllers\HomeController@index",200,110.77189445496,request
 1662161868-0901-228827562,1662161868.0302,GET,/,"App\Http\Controllers\HomeController@index",200,141.51406288147,request
 1662161882-8565-1594266129,1662161882.8094,GET,/,"App\Http\Controllers\HomeController@index",200,118.04699897766,request
 1662161884-3644-2112187145,1662161884.3161,GET,/,"App\Http\Controllers\HomeController@index",200,115.63801765442,request
 1662161985-7508-1722864613,1662161985.7005,GET,/,"App\Http\Controllers\MainController@homePage",200,110.81409454346,request
 1662161985-8700-412091546,1662161985.8157,GET,/,"App\Http\Controllers\MainController@homePage",200,114.16292190552,request
+=======
+1662155483-0049-1081236341,1662155482.9495,GET,/,"App\Http\Controllers\HomeController@index",500,430.84692955017,request
+1662155500-9746-514585433,1662155500.9181,GET,/,"App\Http\Controllers\HomeController@index",200,137.87794113159,request
+1662155577-7611-1674246398,1662155577.7155,GET,/,"App\Http\Controllers\HomeController@index",200,126.14989280701,request
+1662155614-0906-21972207,1662155614.0436,GET,/,"App\Http\Controllers\HomeController@index",200,129.00495529175,request
+1662158068-7493-2015421495,1662158068.6886,GET,/,"App\Http\Controllers\HomeController@index",200,146.08097076416,request
+1662158619-6402-1378156176,1662158619.5742,GET,/,"App\Http\Controllers\HomeController@index",200,168.37596893311,request
+1662158676-5083-1864315282,1662158676.4646,GET,/,"App\Http\Controllers\HomeController@index",200,108.14189910889,request
+1662158855-3921-60948548,1662158855.3349,GET,/,"App\Http\Controllers\HomeController@index",200,139.73498344421,request
+1662159330-2429-1112943293,1662159330.1981,GET,/,"App\Http\Controllers\MainController@homePage",200,94.846963882446,request
+1662159330-3458-715299469,1662159330.2965,GET,/,"App\Http\Controllers\MainController@homePage",200,102.3371219635,request
+1662160045-0241-1633838192,1662160044.967,GET,/,"App\Http\Controllers\MainController@homePage",200,123.615026474,request
+>>>>>>> Stashed changes
