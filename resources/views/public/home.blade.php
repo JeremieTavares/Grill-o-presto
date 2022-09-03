@@ -4,8 +4,8 @@
     <main class="home d-flex flex-column">
         <section class="wave_top_section w-100">
             <div class="over_wave_top bg-primary">
-                <div class="flex-md-column justify-content-between">
-                    <h1 class="mb-5">GRILL-O-<br />PRESTO</h1>
+                <div class="flex-md-column justify-content-between w-100">
+                    <h1 class="mb-5">GRILL-O-PRESTO</h1>
 
                     <p class="mb-5">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour
                         tous, végétariens et sans glutens.</p>
@@ -93,11 +93,10 @@
                         <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
                         <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
                         <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
-                        <a class="btn btn-primary mt-5 d-md-none" href="">Voir tous les menus</a>
+                        <a class="btn btn-primary mt-5" href="">Voir tous les menus</a>
                     </ul>
                 </div>
             </div>
-            <a class="btn btn-primary d-none d-md-inline-block mt-5" href="">Voir tous les menus</a>
         </section>
 
     </main>

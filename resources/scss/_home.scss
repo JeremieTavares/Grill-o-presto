@@ -6,9 +6,15 @@
         width: 100vw;
         position: relative;
 
+
+
         .over_wave_top {
             padding: 0 5%;
             padding-top: 2rem;
+
+         h1 {
+                font-size: 3rem;
+            }    
 
             &>div {
                 display: flex;
@@ -16,14 +22,12 @@
                 flex-wrap: wrap;
 
                 h1 {
-                    width: 50%;
                     color: white;
                     font-weight: 700;
-                    line-height: 3.5rem;
                 }
 
                 p {
-                    width: 50%;
+                    width: 100%;
                     font-size: 1.3rem;
                     font-family: 'Montserrat', sans-serif;
                     color: white;
@@ -158,10 +162,6 @@
         //     width: 60%;
         // }
 
-        h2 {
-            font-size: 4vw;
-        }
-
         ul {
             font-size: 3vw;
 
@@ -171,7 +171,7 @@
         }
 
         a {
-            font-size: 3vw;
+            width: 20rem;
         }
 
         img {
