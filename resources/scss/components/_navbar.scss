@@ -1,0 +1,26 @@
+
+.navbar {
+    width: 100%;
+    max-width: 1920px !important;
+    
+    .pink {
+        background-color: #FF6551 !important;
+        color: white;
+    }
+}
+
+@media (max-width: 992px) { 
+    .navbar ul {
+        padding: 0 !important;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .nav_cart {
+        margin: 0 !important;
+    }
+    .header_nav_item {
+        color: black !important;
+        margin: 0 !important;
+    }
+ }
