@@ -20,15 +20,7 @@ class HomeController extends Controller
                               whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->
                               take(4)->
                               get();
-        
-        // $meals = HistoryMeal::where('is_on_home_page', 1)->with('menu.menu_type')->whereHas('menu', function($query) {
-        //     $date = date('Y-m-d');
-            
-        //     $query->where([['start_date', '<', $date], ['end_date', '>', $date]]);
-
-        // })->take(4)->get();
-
-        
+    
         return view('./public/home', ['meals' => $meals]);
 
     }
