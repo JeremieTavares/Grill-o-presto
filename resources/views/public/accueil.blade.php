@@ -3,7 +3,7 @@
 @section('content')
 
 <h1>Bienvenue sur la vue du projet</h1>
-
+ <?= Auth::user() ?>
 
  <form action="{{ route('logout') }}" method="POST">
     @csrf
