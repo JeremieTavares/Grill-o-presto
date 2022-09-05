@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('rue');
             $table->string('no_porte');
+            $table->string('appartement')->nullable();
             $table->string('code_postal');
             $table->string('ville');
             $table->timestamps();
