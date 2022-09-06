@@ -13,7 +13,7 @@
             padding-top: 2rem;
 
          h1 {
-                font-size: 3rem;
+                font-size: 4rem;
             }    
 
             &>div {
@@ -41,6 +41,7 @@
         .saladeImg {
             position: absolute;
             width: 50%;
+            max-width: 675px;
             bottom: 0;
             right: 2%;
         }
@@ -72,7 +73,7 @@
         .chef_img {
             z-index: 1;
             position: absolute;
-            top: -2rem;
+            top: -2.9rem;
             right: 0;
             max-width: 65rem;
             width: 60vw;
@@ -99,11 +100,11 @@
 
         &>div {
             
-            padding-top: 5vw;
-            padding-right: 10%;
+            padding-top: 2rem;
+            padding-right: 5%;
 
             p {
-                font-size: 2.5vw;
+                font-size: 2rem;
                 width: 60%;
             }
         }
@@ -187,8 +188,8 @@
     .home {
         .wave_top_section {
             order: 1;
-            h1 {
-                font-size: 4rem;
+            h1.main-title {
+                font-size: 6rem;
             }
     
             &>div {
