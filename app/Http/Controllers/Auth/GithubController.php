@@ -13,6 +13,13 @@ use Laravel\Socialite\Facades\Socialite;
 class GithubController extends Controller
 {
 
+    public function returnViewToCompleteRegisteration($user) {
+        
+        $userInfos = User::where('id', $user)->get();
+        return view ('auth.oAuthRegister', ['userInfos' => $userInfos]);
+    }
+
+
     public function auth()
     {
         return Socialite::driver('github')->redirect();
@@ -39,6 +46,7 @@ class GithubController extends Controller
         if($user->info_user_id > 0)
             return redirect()->route('accueil');
         else
-            return redirect()->route('finish.registeration', ['user' => $user]);
+            return redirect()->route('github.finish.registeration', ['user' => $user]);
+
     }
 }

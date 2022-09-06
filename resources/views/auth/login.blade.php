@@ -29,7 +29,7 @@
                         class="form-control @error('email') is-invalid @enderror" required
                         autocomplete="current-password" />
 
-                    @error('email')
+                    @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -59,10 +59,10 @@
 
         <div class="logo d-flex justify-content-center mt-4 gap-3">
             <div class="logo__faceboo rounded p-3 shadow-sm">
-                <a href="{{ route('github.auth') }}"><img src="{{ asset('img/facebook-logo.png') }}" alt="Logo Facebook" /></a>
+                <a href="{{ route('github.auth') }}"><img src="{{ asset('img\github.png') }}" alt="Logo Github" /></a>
             </div>
             <div class="logo__google rounded p-3 shadow-sm">
-                <a href="{{ route('google.auth') }}"><img src="{{ asset('img/google-logo.png') }}" alt="Logo Facebook" /></a>
+                <a href="{{ route('google.auth') }}"><img src="{{ asset('img\google-logo.png') }}" alt="Logo Facebook" /></a>
             </div>
         </div>
 

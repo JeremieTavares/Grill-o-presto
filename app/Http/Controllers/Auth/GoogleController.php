@@ -13,6 +13,13 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
+
+    public function returnViewToCompleteRegisteration($user) {
+        
+        $userInfos = User::where('id', $user)->get();
+        return view ('auth.oAuthRegister', ['userInfos' => $userInfos]);
+    }
+
     public function auth()
     {
         return Socialite::driver('google')->redirect();
@@ -34,9 +41,9 @@ class GoogleController extends Controller
 
         Auth::login($user);
 
-        if($user->info_user_id > 0)
+        if ($user->info_user_id > 0)
             return redirect()->route('accueil');
         else
-            return redirect()->route('finish.registeration', ['user' => $user]);
+            return redirect()->route('google.finish.registeration', ['user' => $user]);
     }
 }

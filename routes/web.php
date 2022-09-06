@@ -19,20 +19,28 @@ use App\Http\Controllers\Auth\RegisterController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
-/* Route::get('/', function () {
-    return view('welcome');
-});
  */
+
 Auth::routes();
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
-Route::get('/auth/github', [GithubController::class, 'auth'])->name('github.auth');
-Route::get('/auth/github/redirect', [GithubController::class, 'redirect'])->name('github.redirect');
-Route::get('/auth/google', [GoogleController::class, 'auth'])->name('google.auth');
-Route::get('/auth/google/redirect', [GoogleController::class, 'redirect'])->name('google.redirect');
-Route::get('/finish_registeration/{user}', function ($user) { 
-    $userinfos = User::where('id', $user)->get();
-    return view('auth.oAuthRegister', compact('userinfos')); })->name('finish.registeration');
-Route::post('oAuth/register/', [oAuthController::class, 'updateOAuthUser'])->name('oAuth.register');
+Route::get('/home', [MainController::class, 'homePage'])->name('home');
+Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 
+
+Route::controller(GoogleController::class)->name('google.')->group(function () {
+    Route::get('/auth/google', 'auth')->name('auth');
+    Route::get('/auth/google/redirect', 'redirect')->name('redirect');
+    Route::get('google/finish_registeration/{user}', 'returnViewToCompleteRegisteration')->middleware('auth')->name('finish.registeration');
+});
+
+
+Route::controller(GithubController::class)->name('github.')->group(function () {
+    Route::get('/auth/github', 'auth')->name('auth');
+    Route::get('/auth/github/redirect', 'redirect')->name('redirect');
+    Route::get('github/finish_registeration/{user}', 'returnViewToCompleteRegisteration')->middleware('auth')->name('finish.registeration');
+});
+
+
+Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->group(function () {
+    Route::post('register/', 'updateOAuthUser')->name('register');
+});

@@ -16,7 +16,7 @@
                         class="form-control @error('prenom') is-invalid @enderror" value="{{ old('prenom') }}" required
                         autocomplete="prenom" autofocus>
                     @error('prenom')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -26,7 +26,7 @@
                         class="form-control @error('nom') is-invalid @enderror" value="{{ old('nom') }}" required
                         autocomplete="nom" autofocus />
                     @error('nom')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -98,7 +98,7 @@
                 <div class="col-md-6">
                     <label for="email" class="form-label d-none">Adresse courriel*</label>
                     <input type="email" name="email" id="email" 
-                        class="form-control d-none  @error('email') is-invalid @enderror" value="{{ $userinfos[0]["email"] }}" required
+                        class="form-control d-none  @error('email') is-invalid @enderror" value="{{ $userInfos[0]["email"] }}" required
                         autocomplete="email" autofocus>
                     @error('email')
                         <div class="text-danger">{{ $message }}</div>
@@ -109,7 +109,7 @@
                     <label for="email_confirmation" class="form-label d-none">Confirmer adresse courriel*</label>
                     <input type="email" name="email_confirmation" id="email_confirmation"
                         class="form-control d-none @error('email_confirmation') is-invalid @enderror"
-                        value="{{ $userinfos[0]["email"] }}">
+                        value="{{ $userInfos[0]["email"] }}">
                     @error('email_confirmation')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -117,7 +117,7 @@
 
                 <div class="col-md-6">
                     <label for="password" class="form-label d-none">Mot de passe*</label>
-                    <input type="password" name="password" id="password" value="{{ $userinfos[0]["password"] }}"
+                    <input type="password" name="password" id="password" value="{{ $userInfos[0]["password"] }}"
                         class="form-control d-none @error('password') is-invalid @enderror"
                         placeholder="Entrer le mot de passe" />
                     @error('password')
@@ -127,7 +127,7 @@
 
                 <div class="col-md-6">
                     <label for="password_confirmation" class="form-label d-none">Confirmer le mot de passe*</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" value="{{ $userinfos[0]["password"] }}"
+                    <input type="password" name="password_confirmation" id="password_confirmation" value="{{ $userInfos[0]["password"] }}"
                         class="form-control d-none @error('password_confirmation') is-invalid @enderror"
                         placeholder="Confirmer le mot de passe" />
                     @error('password_confirmation')
