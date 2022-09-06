@@ -1,0 +1,43 @@
+$pink: #FFD1D1;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    max-width: 1920px;
+}
+
+@media (min-width: 768px) {
+    h2 {
+        font-family: 'Inter', sans-serif;
+        font-size: 2.5rem;
+    }
+    
+    h3 {
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+    }
+}
+
