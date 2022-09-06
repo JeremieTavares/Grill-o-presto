@@ -26,8 +26,19 @@
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
                     <a href="" class="text-secondary"><i
                             class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart"></i></a>
-                    <a class="btn pink">Connexion</a>
-                    <a class="btn btn-secondary">Inscription <i class="fa fa-arrow-right"></i></a>
+                            <?php if(Auth::user()){ ?>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-secondary">Deconnexion</button>
+                                </form>
+                                <?php } else {
+                                    ?>
+                                    <a class="btn pink" href="{{ route('login') }}">Connexion</a>
+                                    <a class="btn btn-secondary" href="{{ route('register') }}">Inscription <i class="fa fa-arrow-right"></i></a>
+                                    <?php
+                                }?>
+                    
+                    
                 </div>
 
             </div>
