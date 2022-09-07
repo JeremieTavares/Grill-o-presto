@@ -1,13 +1,13 @@
 <nav class="navbar bg-primary navbar-expand-lg px-5 py-3">
     <div class="container-fluid navbar_div">
-        <a class="navbar-brand" href="#"><img width="80" src="./image/logo_white_no_bg.png" alt="logo"></a>
+        <a class="navbar-brand" href="{{ route('home') }}"><img width="80" src="./image/logo_white_no_bg.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Navigation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">

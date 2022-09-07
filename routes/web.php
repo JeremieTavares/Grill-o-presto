@@ -24,7 +24,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 Auth::routes();
-Route::get('/', [HomeController::class, 'index'])->name('accueil');
+// Route::get('/', [HomeController::class, 'index'])->name('accueil');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 
