@@ -5,10 +5,10 @@
     <div class="confirmed">
         <div>
             <h2 class="container d-flex justify-content-center"> Merci {{-- {{ $order->orderClient}} --}}</h2>
-            <h2 class="container d-flex justify-content-center">D'avoir commander!</h2>
+            <h2 class="container d-flex justify-content-center">D'avoir commandé!</h2>
         </div>
         <div class="container d-flex justify-content-center">
-            <img src="{{URL ('images/confirmLogo.png')}}" class="confirmImg" alt="Image de ok confirm">
+            <img src="{{URL ('images/confirmLogo.png')}}" class="confirmImg p-4" alt="Image de ok confirm">
         </div>
         <div>
             <p  class="container d-flex justify-content-center">N# de commande:{{-- {{ $order->orderNumber}} --}}</p>

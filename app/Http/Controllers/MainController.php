@@ -6,16 +6,7 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function homePage()
-    {
-        return view('public.accueil');
-    }
-
+    
     /**
      * Display a listing of the resource.
      *
