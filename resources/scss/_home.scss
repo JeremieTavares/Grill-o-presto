@@ -104,6 +104,7 @@
             padding-right: 5%;
 
             p {
+                padding-top: 2rem;
                 font-size: 2rem;
                 width: 60%;
             }
@@ -117,7 +118,7 @@
         position: relative;
 
         &>div {
-            padding: 4rem 6rem;
+            padding: 4rem 2rem;
         }
 
         h2 {
@@ -145,8 +146,8 @@
         img {
             width: 40vw;
             position: absolute;
-            top: -10rem;
-            right: -1rem;
+            top: -4rem;
+            right: 0rem;
         }
 
     }
@@ -154,14 +155,6 @@
     .offer_section {
 
         padding: 4rem 2rem;
-
-        // .img_container {
-        //     width: 40%;
-        // }
-
-        // .text_container {
-        //     width: 60%;
-        // }
 
         ul {
             font-size: 3vw;
@@ -172,12 +165,12 @@
         }
 
         a {
-            width: 20rem;
+            width: 100%;
         }
 
         img {
             width: 100%;
-            max-width: 40rem;
+            max-width: 35rem;
         }
     }
 

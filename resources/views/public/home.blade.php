@@ -76,7 +76,7 @@
                 <form class="d-flex flex-column" action="">
                     <label class="mb-2 w-100" for="adress">Votre adresse</label>
                     <input class="input w-100" type="text" name="adress" id="adress">
-                    <button type="submit" class="btn btn-primary w-100 mt-4">Rechercher</button>
+                    <button type="submit" class="btn btn-primary w-100 mt-4 btn-rounded">Rechercher</button>
                 </form>
             </div>
             <img class="ms-5" src="./image/girl_looking.png" alt="">
@@ -93,7 +93,7 @@
                         <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
                         <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
                         <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
-                        <a class="btn btn-primary mt-5" href="">Voir tous les menus</a>
+                        <a class="btn btn-primary btn-rounded mt-5" href="">Nos menus</a>
                     </ul>
                 </div>
             </div>

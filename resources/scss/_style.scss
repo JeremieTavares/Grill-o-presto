@@ -41,6 +41,26 @@ main {
     }
 }
 
+footer {
+    background-color: #1f1f1f;
+
+    h3 {
+        font-weight: 300;
+    }
+}
+
 .logo img {
-    width: 32px !important;
+    width: 32px;
+}
+
+@mixin border-radius($arrondissement) {
+	-moz-border-radius: $arrondissement;
+	-webkit-border-radius: $arrondissement;
+	-ms-border-radius: $arrondissement;
+	border-radius: arrondissement;
+}
+
+.btn-rounded {
+    @include border-radius(20px);
+    padding: 8px 0px;
 }
