@@ -135,3 +135,12 @@
 1662433788-2785-2132061818,1662433788.2328,GET,/,"App\Http\Controllers\HomeController@index",200,116.87183380127,request
 1662433859-4786-899304161,1662433859.421,GET,/,"App\Http\Controllers\HomeController@index",200,143.33605766296,request
 1662433868-7076-119372419,1662433868.6628,GET,/,"App\Http\Controllers\HomeController@index",200,114.75920677185,request
+1662509392-9659-531156776,1662509392.8807,GET,/,"App\Http\Controllers\HomeController@index",200,1888.3759975433,request
+1662509402-6084-1104807809,1662509402.5607,GET,/login,"App\Http\Controllers\Auth\LoginController@showLoginForm",200,250.10895729065,request
+1662509410-0366-550618673,1662509409.9867,GET,/auth/github,"App\Http\Controllers\Auth\GithubController@auth",302,181.63394927979,request
+1662509417-8466-536193628,1662509417.7955,GET,/,"App\Http\Controllers\HomeController@index",200,126.14011764526,request
+1662509428-1350-441810520,1662509428.0883,GET,/,"App\Http\Controllers\HomeController@index",200,115.37098884583,request
+1662509430-3072-1100327534,1662509430.2608,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,242.89512634277,request
+1662509432-6213-928458122,1662509432.5755,GET,/auth/github,"App\Http\Controllers\Auth\GithubController@auth",302,94.622135162354,request
+1662509433-0772-1325674663,1662509433.0328,GET,/auth/github/redirect?code=a75202f9f6fad4a93165&state=r9KZrlgujt1eCrDxQr5uBPkwOk81nlXgVL0Suw2t,"App\Http\Controllers\Auth\GithubController@redirect",302,1300.3160953522,request
+1662509434-4149-1810345484,1662509434.3551,GET,/github/finish_registeration/121,"App\Http\Controllers\Auth\GithubController@returnViewToCompleteRegisteration",200,343.47605705261,request
