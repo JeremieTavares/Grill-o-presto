@@ -1,7 +1,7 @@
 @extends('public.template.base')
 
 @section('content')
-    <div class="container p-4 w-75">
+    <div class="container p-4">
         <div class="message mb-5">
             <h1 class="display-3 fw-bold">Bienvenue,</h1>
             <h2>Heureux de vous revoir !</h2>
@@ -46,7 +46,7 @@
             @endif
 
             <div>
-                <button type="submit" class="btn btn-primary w-50">
+                <button type="submit" class="btn btn-primary w-50 mt-4" id="btn-login">
                     {{ __('Se connecter') }}
                 </button>
             </div>

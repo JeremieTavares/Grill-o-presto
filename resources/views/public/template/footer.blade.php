@@ -12,7 +12,7 @@
                         </p>
                     </div>
 
-                    <div  class="col-md-8 col-12">
+                    <div  class="col-md-5  col-12">
                         <div class="form-outline mb-4">
                             <input type="email" id="email_footer" class="form-control" placeholder="Courriel" />
                         </div>

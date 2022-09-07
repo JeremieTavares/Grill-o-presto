@@ -16,7 +16,7 @@ class GithubController extends Controller
     public function returnViewToCompleteRegisteration($user) {
         
         $userInfos = User::where('id', $user)->get();
-        return view ('auth.oAuthRegister', ['userInfos' => $userInfos]);
+        return view('auth.oAuthRegister', ['userInfos' => $userInfos]);
     }
 
 

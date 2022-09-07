@@ -1,6 +1,7 @@
 <nav class="navbar bg-primary navbar-expand-lg px-md-5 px-sm-2 py-3">
     <div class="container-fluid navbar_div">
-        <a class="navbar-brand" href="{{ route('home') }}"><img width="80" src="./image/logo_white_no_bg.png" alt="logo"></a>
+        <a class="navbar-brand" href="{{ route('home') }}"><img width="80"
+                src="{{ asset('image/logo_white_no_bg.png') }}" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -27,18 +28,23 @@
                     <a href="" class="text-secondary"><i
                             class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart"></i></a>
                             <?php if(Auth::user()){ ?>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-secondary">Deconnexion</button>
-                                </form>
-                                <?php } else {
+                    <a href="" class="text-secondary"><i
+                            class="fa-solid fa-user fs-5 me-3 color-primary nav_cart"></i></a>
+                            <?php } ?>
+                    <?php if(Auth::user()){ ?>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-secondary">Deconnexion</button>
+                    </form>
+                    <?php } else {
                                     ?>
-                                    <a class="btn pink" href="{{ route('login') }}">Connexion</a>
-                                    <a class="btn btn-secondary" href="{{ route('register') }}">Inscription <i class="fa fa-arrow-right"></i></a>
-                                    <?php
+                    <a class="btn pink" href="{{ route('login') }}">Connexion</a>
+                    <a class="btn btn-secondary" href="{{ route('register') }}">Inscription <i
+                            class="fa fa-arrow-right"></i></a>
+                    <?php
                                 }?>
-                    
-                    
+
+
                 </div>
 
             </div>

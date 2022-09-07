@@ -1,10 +1,11 @@
 @extends('public.template.base')
 
 @section('content')
-    <div class="container p-4 w-75">
+<main>
+    <div class="container p-4">
         <div class="message mb-5">
             <h1 class="display-3 fw-bold">Me créer un compte</h1>
-            <h2>Laissez-nous vous guider pour créer un compte.<br />Cela ne prendra qu'une petite minute.</h2>
+            <h2 class="h2_register">Laissez-nous vous guider pour créer un compte.<br />Cela ne prendra qu'une petite minute.</h2>
         </div>
 
         <form action="{{ route('register') }}" method="POST">
@@ -135,7 +136,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3 mb-5">S'enregistrer</button>
+            <button type="submit" class="btn btn-primary mt-5 mb-5">S'enregistrer</button>
         </form>
 
         <div class="d-flex w-75 m-auto mt-4 align-items-center">
@@ -156,4 +157,5 @@
             <p>Déjà un membre ? <a href="{{ route('login') }}" class="link-primary">Me connecter</a></p>
         </div>
     </div>
+</main>
 @endsection

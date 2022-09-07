@@ -1,5 +1,7 @@
 /* ACCUEIL */
 
+// MOBILE VIEW
+
 .home {
 
     .wave_top_section {
@@ -177,6 +179,13 @@
 
 }
 
+#btn-login {
+    width: 100% !important;
+}
+
+
+// DESKTOP VIEW
+
 @media (min-width: 768px) {
     .home {
         .wave_top_section {
@@ -297,6 +306,9 @@
         }
 
     }
-    
+    #btn-login, #submit_oAuth_register{
+        max-width: 15rem !important;
+    }
+
 
 }
