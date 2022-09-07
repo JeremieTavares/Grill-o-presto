@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary navbar-expand-lg px-5 py-3">
+<nav class="navbar bg-primary navbar-expand-lg px-md-5 px-sm-2 py-3">
     <div class="container-fluid navbar_div">
         <a class="navbar-brand" href="{{ route('home') }}"><img width="80" src="./image/logo_white_no_bg.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
