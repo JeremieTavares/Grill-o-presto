@@ -1,51 +1,68 @@
 @extends('public.template.base')
 
 @section('content')
-    <div class="container d-flex justify-content-center">
-        <h1>Le plat sélectionné</h1>
-    </div>
+    <main class="plat">
+        <div class="container d-flex justify-content-center">
+            <h1>Le plat sélectionné{{-- {{ $meal->mealName}} --}}</h1>
+        </div>
 
-    <div class="row row-cols-1 row-cols-md-1 g-4 container d-flex justify-content-center p-4">
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
+        <div class="d-flex justify-content-center p-5">
+            <div class="card mb-3">
+                <img src="{{URL ('images/meatDish.jpg')}}" class="card-img-top" alt="image de viande"> 
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.</p>
+                    <h2 class="card-title display-6">Parametre nom{{-- {{ $meal->mealNumber}} --}}</h2>
+                    <p class="card-text">Parametre categorie{{-- {{ $meal->mealDescription}} --}}</p>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="container">
+            <div class="d-flex justify-content-left p-4 pl-5 align-items-center">
+                <h3 class="m-0">Plât:</h3>
+                <p class="m-0">Saumon Roti( Faux plat) {{-- {{ $meal->mealName} --}}</p>
+            </div>
+            <div class="d-flex justify-content-left p-4 align-items-center">
+                <h3 class="m-0">Menu:</h3>
+                <p class="m-0">Vegetarien (faux Menu){{-- {{ $meal->mealMenu}} --}}</p>
+            </div>
+            <div class="d-flex justify-content-left p-4 align-items-center">
+                <h4>Description du plat:{{-- {{ $meal->mealMenu}} --}}</h4>
+            </div>
+        </div>
+      
 
-    <div>
-        <p class="container d-flex justify-content-left">Plât:</p>
-        <p class="container d-flex justify-content-left">Menu:</p>
-        <p class="container d-flex justify-content-left">Description du plat:</p>
-    </div>
 
-    <hr>
-    <div class="container d-flex justify-content-left">
-        <h3>Allergènes (para) (para)</h3>
-    </div>
+        <div class="container pt-5 pb-5">
+            <div class="d-flex justify-content-center p-1">
+                <h3>Allergènes</h3>
+            </div>
+           <div class="d-flex justify-content-center">
+            <a href="#" class="p-2"><img src="{{URL ('images/milkAllergen.png')}}" alt="du lait"></a>
+            <a href="#" class="p-2"><img src="{{URL ('images/wheatAllergen.png')}}" alt="du ble"></a>
+           </div>
+            
+        </div>
 
-    <hr>
-    <div class="container d-flex justify-content-left">
-        <h3>Choisir la portion</h3>
-    </div>
 
-    <div class="container">
-        <a href="">1 personne</a>
-        <a href="">2 personne</a>
-        <a href="">Familliale (4)</a>
-    </div>
+        <div class="container d-flex justify-content-center">
+            <h3>Choisir la portion</h3>
+        </div>
 
-    <hr>
-    <div class="container">
-        <p>Prix: (para)</p>
-    </div>
+        <div class="container d-flex justify-content-center">
+            <a href="" class="btn btn-primary border-0  m-1">1 personne</a>
+            <a href="" class="btn btn-primary border-0 m-1">2 personnes</a>
+            <a href="" class="btn btn-primary border-0  m-1">4 Familliale</a>    
+        </div>
 
-    <div class="container d-flex justify-content-center">
-        <a href="" class="btn btn-primary">Envoyer la commande</a>
-    </div>
+        <hr class="breakLine">
+        <div class="container d-flex justify-content-center p-5">
+            <h2>Prix du repas:</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h3>55${{-- {{ $meal->mealPrice}} --}}</h3>
+        </div>
+
+        <div class="container d-flex justify-content-center p-5">
+            <a href="" class="btn btn-primary">Ajouter au panier</a>
+        </div>
+    </main>
 @endsection
