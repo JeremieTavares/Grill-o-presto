@@ -26,7 +26,6 @@ class OAuthRequest extends FormRequest
     public function rules()
     {   
         return [
-            [
                 'prenom' => 'required|regex:/^[A-zÀ-ú -]{2,30}$/',
                 'nom' => ['required', 'regex:/^[A-zÀ-ú -]{2,50}$/'],
                 'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
@@ -40,7 +39,6 @@ class OAuthRequest extends FormRequest
                 'ville' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
                 'rue' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
                 'role_id' => ['integer', 'gt:0', 'exists:App\Models\Role,role']
-            ]
         ];
     }
 

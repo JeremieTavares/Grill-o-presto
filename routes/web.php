@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;

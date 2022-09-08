@@ -42,7 +42,7 @@ class GoogleController extends Controller
         Auth::login($user);
 
         if ($user->info_user_id > 0)
-            return redirect()->route('accueil');
+            return redirect()->route('home');
         else
             return redirect()->route('google.finish.registeration', ['user' => $user]);
     }
