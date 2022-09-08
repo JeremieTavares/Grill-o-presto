@@ -1,6 +1,5 @@
 $pink: #FFD1D1;
 
-
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +10,23 @@ h1 {
     font-family: 'Inter', sans-serif;
     font-size: 3rem;
     font-weight: 700;
+#btn-login, #submit_oAuth_register{
+    max-width: 15rem !important;
+}
+
+.fa-cart-shopping {
+    font-size: 25px !important;
+}
+
+.fa-user {
+    font-size: 25px !important;
+}
+
+@mixin border-radius($arrondissement) {
+	-moz-border-radius: $arrondissement;
+	-webkit-border-radius: $arrondissement;
+	-ms-border-radius: $arrondissement;
+	border-radius: arrondissement;
 }
 
 h2 {
@@ -18,6 +34,16 @@ h2 {
     font-size: 2rem;
     font-weight: 700;
 }
+
+.h2_register {
+    font-size: 16px;
+}
+
+.h2_oauth_register{
+    font-size: 16px;
+}
+
+
 
 h3 {
     font-family: 'Inter', sans-serif;
@@ -35,6 +61,26 @@ main {
     max-width: 1920px;
 }
 
+footer {
+    background-color: #1f1f1f;
+
+    h3 {
+        font-weight: 300;
+    }
+}
+
+.logo img {
+    width: 32px;
+}
+
+
+.btn-rounded {
+    @include border-radius(20px);
+    padding: 8px 0px;
+}
+
+
+
 @media (min-width: 768px) {
     h2 {
         font-family: 'Inter', sans-serif;
@@ -45,5 +91,17 @@ main {
         font-family: 'Inter', sans-serif;
         font-size: 2rem;
     }
+
+    .container {
+        width: 75%;
+    }
+
+    .h2_oauth_register{
+        font-size: 2rem;
+    }
+    
+    
 }
+
+
 

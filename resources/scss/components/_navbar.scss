@@ -1,8 +1,10 @@
 
 .navbar {
     width: 100%;
+
+    .navbar_div {
     max-width: 1920px !important;
-    
+    }
     .pink {
         background-color: #FF6551 !important;
         color: white;
@@ -12,7 +14,7 @@
 @media (max-width: 992px) { 
     .navbar ul {
         padding: 0 !important;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         margin-bottom: 2rem;
     }
 
@@ -23,4 +25,13 @@
         color: black !important;
         margin: 0 !important;
     }
+ }
+
+
+ @media (max-width: 768px){
+    nav {
+       img {
+        width: 65px
+       }
+    } 
  }

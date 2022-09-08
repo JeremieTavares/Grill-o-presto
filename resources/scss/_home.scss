@@ -1,5 +1,7 @@
 /* ACCUEIL */
 
+// MOBILE VIEW
+
 .home {
 
     .wave_top_section {
@@ -13,7 +15,7 @@
             padding-top: 2rem;
 
          h1 {
-                font-size: 3rem;
+                font-size: 4rem;
             }    
 
             &>div {
@@ -41,6 +43,7 @@
         .saladeImg {
             position: absolute;
             width: 50%;
+            max-width: 675px;
             bottom: 0;
             right: 2%;
         }
@@ -72,7 +75,7 @@
         .chef_img {
             z-index: 1;
             position: absolute;
-            top: -2rem;
+            top: -2.9rem;
             right: 0;
             max-width: 65rem;
             width: 60vw;
@@ -99,11 +102,12 @@
 
         &>div {
             
-            padding-top: 5vw;
-            padding-right: 10%;
+            padding-top: 2rem;
+            padding-right: 5%;
 
             p {
-                font-size: 2.5vw;
+                padding-top: 2rem;
+                font-size: 2rem;
                 width: 60%;
             }
         }
@@ -116,7 +120,7 @@
         position: relative;
 
         &>div {
-            padding: 4rem 6rem;
+            padding: 4rem 2rem;
         }
 
         h2 {
@@ -144,8 +148,8 @@
         img {
             width: 40vw;
             position: absolute;
-            top: -10rem;
-            right: -1rem;
+            top: -4rem;
+            right: 0rem;
         }
 
     }
@@ -153,14 +157,6 @@
     .offer_section {
 
         padding: 4rem 2rem;
-
-        // .img_container {
-        //     width: 40%;
-        // }
-
-        // .text_container {
-        //     width: 60%;
-        // }
 
         ul {
             font-size: 3vw;
@@ -171,24 +167,31 @@
         }
 
         a {
-            width: 20rem;
+            width: 100%;
         }
 
         img {
             width: 100%;
-            max-width: 40rem;
+            max-width: 35rem;
         }
     }
 
 
 }
 
+#btn-login {
+    width: 100% !important;
+}
+
+
+// DESKTOP VIEW
+
 @media (min-width: 768px) {
     .home {
         .wave_top_section {
             order: 1;
-            h1 {
-                font-size: 4rem;
+            h1.main-title {
+                font-size: 6rem;
             }
     
             &>div {
@@ -303,6 +306,9 @@
         }
 
     }
-    
+    #btn-login, #submit_oAuth_register{
+        max-width: 15rem !important;
+    }
+
 
 }

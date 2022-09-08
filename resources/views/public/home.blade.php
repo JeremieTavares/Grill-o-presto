@@ -5,7 +5,7 @@
         <section class="wave_top_section w-100">
             <div class="over_wave_top bg-primary">
                 <div class="flex-md-column justify-content-between w-100">
-                    <h1 class="mb-5">GRILL-O-PRESTO</h1>
+                    <h1 class="mb-5 main-title">GRILL-O-PRESTO</h1>
 
                     <p class="mb-5">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour
                         tous, végétariens et sans glutens.</p>
@@ -76,7 +76,7 @@
                 <form class="d-flex flex-column" action="">
                     <label class="mb-2 w-100" for="adress">Votre adresse</label>
                     <input class="input w-100" type="text" name="adress" id="adress">
-                    <button type="submit" class="btn btn-primary w-100 mt-4">Rechercher</button>
+                    <button type="submit" class="btn btn-primary w-100 mt-4 btn-rounded">Rechercher</button>
                 </form>
             </div>
             <img class="ms-5" src="./image/girl_looking.png" alt="">
@@ -93,7 +93,7 @@
                         <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
                         <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
                         <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
-                        <a class="btn btn-primary mt-5" href="">Voir tous les menus</a>
+                        <a class="btn btn-primary btn-rounded mt-5" href="">Nos menus</a>
                     </ul>
                 </div>
             </div>
