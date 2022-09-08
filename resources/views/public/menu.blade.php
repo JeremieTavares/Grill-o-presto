@@ -6,16 +6,16 @@
         <div class="blocHeader">
             <h1 class="text-center">Sélectionnez un menu</h1>
 
-            <nav class="nav_container m-auto">
+            <nav class="nav_container m-auto mt-5">
                 <ul class="d-flex justify-content-between align-items-center">
-                    <li class="bg-primary d-flex align-items-center justify-content-center"><a class="text-white" href="">Tout les plats</a></li>
-                    <li class="bg-primary d-flex align-items-center justify-content-center"><a class="text-white" href="">Standard</a></li>
-                    <li class="bg-primary d-flex align-items-center justify-content-center"><a class="text-white" href="">Végétarien</a></li>
-                    <li class="bg-primary d-flex align-items-center justify-content-center"><a class="text-white" href="">Sans Gluten</a></li>
+                    <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white {{$menu == 'all' ? 'nav_selected' : ''}}" href="{{route('menu', ['menu' => 'all'])}}">Tout les plats</a></li>
+                    <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white {{$menu == 'classic' ? 'nav_selected' : ''}}" href="{{route('menu', ['menu' => 'classic'])}}">Standard</a></li>
+                    <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white {{$menu == 'vegetarian' ? 'nav_selected' : ''}}" href="{{route('menu', ['menu' => 'vegetarian'])}}">Végétarien</a></li>
+                    <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white {{$menu == 'gluten-free' ? 'nav_selected' : ''}}" href="{{route('menu', ['menu' => 'gluten-free'])}}">Sans Gluten</a></li>
                 </ul>
-            </nav>
+            </nav> 
 
-            <div>
+            {{-- <div>
                 <h2>Rechercher un plat</h2>
             </div>
 
@@ -25,54 +25,65 @@
                         placeholder="Entrez le nom d'un plat">
                     <a href="" class="btn btn-primary">Rechercher</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <section class="menu_section">
-            <h2>Nos Favoris de la semaine</h2>
-            <div class="card_container">
-                @foreach ($favMeals as $meal)
-                    <div class="meal_card">
-                        <img src="{{ $meal->image_path }}" alt="repas_image">
-                        <p>{{ $meal->name }}</p>
-                        <p>{{ $meal->menu->menu_type->type }}</p>
-                    </div>
-                @endforeach
-            </div>
+            @if ($menu == 'all')
+                <h2>Nos Favoris de la semaine</h2>
+                <div class="card_container">
+                    @foreach ($favMeals as $meal)
+                        <div class="meal_card">
+                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <p>{{ $meal->name }}</p>
+                            <p>{{ $meal->menu->menu_type->type }}</p>
+                        </div>
+                    @endforeach
+                </div>
 
-            <hr>
-
-            <h2>Not plats réguliers</h2>
-            <div class="card_container">
-                @foreach ($meals['classic'] as $meal)
-                    <div class="meal_card">
-                        <img src="{{ $meal->image_path }}" alt="repas_image">
-                        <p>{{ $meal->name }}</p>
-                        <p>{{ $meal->menu->menu_type->type }}</p>
-                    </div>
-                @endforeach
-            </div>
-            <hr>
-            <h2>Not plats Végétariens</h2>
-            <div class="card_container">
-                @foreach ($meals['vegan'] as $meal)
-                    <div class="meal_card">
-                        <img src="{{ $meal->image_path }}" alt="repas_image">
-                        <p>{{ $meal->name }}</p>
-                        <p>{{ $meal->menu->menu_type->type }}</p>
-                    </div>
-                @endforeach
-            </div>
-            <hr>
-            <h2>Not plats sans-gluten</h2>
-            <div class="card_container">
-                @foreach ($meals['gluten_free'] as $meal)
-                    <div class="meal_card">
-                        <img src="{{ $meal->image_path }}" alt="repas_image">
-                        <p>{{ $meal->name }}</p>
-                        <p>{{ $meal->menu->menu_type->type }}</p>
-                    </div>
-                @endforeach
-            </div>
+                <hr>
+            @endif
+        
+            @if ($menu == 'all' || $menu == 'classic')
+                <h2>Not plats réguliers</h2>
+                <div class="card_container">
+                    @foreach ($meals['classic'] as $meal)
+                        <div class="meal_card">
+                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <p>{{ $meal->name }}</p>
+                            <p>{{ $meal->menu->menu_type->type }}</p>
+                        </div>
+                    @endforeach
+                </div>
+                <hr>
+            @endif
+            
+            @if ($menu == 'all' || $menu == 'vegetarian')
+                <h2>Not plats Végétariens</h2>
+                <div class="card_container">
+                    @foreach ($meals['vegan'] as $meal)
+                        <div class="meal_card">
+                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <p>{{ $meal->name }}</p>
+                            <p>{{ $meal->menu->menu_type->type }}</p>
+                        </div>
+                    @endforeach
+                </div>
+                <hr>
+            @endif
+            
+            @if ($menu == 'all' || $menu == 'gluten-free')
+                <h2>Not plats sans-gluten</h2>
+                <div class="card_container">
+                    @foreach ($meals['gluten_free'] as $meal)
+                        <div class="meal_card">
+                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <p>{{ $meal->name }}</p>
+                            <p>{{ $meal->menu->menu_type->type }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            
         </section>
     </main>
 @endsection

@@ -21,7 +21,7 @@ use App\Http\Controllers\MainController;
 });
  */
 Route::get('/', [MainController::class, 'homePage'])->name('accueil');
-Route::get('/menu', [MainController::class, 'menuPage'])->name('menu');
+Route::get('/menu/{menu?}', [MainController::class, 'menuPage'])->name('menu');
 
 
 // Route::get('/', [MainController::class, 'homePage'])->name('accueil');
