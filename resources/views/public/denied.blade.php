@@ -15,7 +15,7 @@
                 <p class="container d-flex justify-content-center">Client: {{-- {{ $order->orderClient}} --}}</p>
                 <p class="container d-flex justify-content-center">Raison: (para)</p>
             </div>
-            <div class="refused container d-flex justify-content-center p-2">
+            <div class="refused container d-flex justify-content-center p-2 gap-3">
                 <a href="" class="btn btn-primary p-1">Réessayer</a>
                 <a href="" class="btn btn-primary p-1">Support client</a>
             </div>
