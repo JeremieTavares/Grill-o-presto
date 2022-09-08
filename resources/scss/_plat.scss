@@ -1,16 +1,23 @@
 .plat {
 
-    .div_plat h3 p{
-        margin: 0px !important;
+    max-width: 750px;
+
+    p {
+        font-size: 1.2rem;
     }
 
     --bs-btn-padding-x:0 !important;
 
-    .card mb-3 {
-        max-width: 30%;
+
+    .allergenImg {
+        max-width: 35px;
     }
 
-    .breakLine {
-        max-width: 50%;
+    .cardRepas {
+        max-width: 750px !important;
     }
+}
+
+.banner{
+    background-color:$pink;
 }
