@@ -1,6 +1,7 @@
 @extends('public.template.base')
 
 @section('content')
+<main class="faq">
     <div class="container p-4">
         <h1 class="d-flex justify-content-center">FAQ</h1>
     </div>
@@ -99,7 +100,7 @@
                         Avez-vous de la viande halal ?
                     </button>
                 </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
@@ -120,22 +121,7 @@
     <hr>
 
     <div class="container">
-        <style>
-            .map-container {
-                overflow: hidden;
-                padding-bottom: 56.25%;
-                position: relative;
-                height: 0;
-            }
-
-            .map-container iframe {
-                left: 0;
-                top: 0;
-                height: 100%;
-                width: 100%;
-                position: absolute;
-            }
-        </style>
+        
         <h2 class="d-flex justify-content-center p-5">Notre adresse</h2>
 
         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
@@ -146,9 +132,17 @@
     </div>
 
     <hr>
-    <div class="container p-2">
+    <div class="container">
         <h2 class="d-flex justify-content-center pb-4">Nous Joindre</h2>
-        <p class="d-flex justify-content-center p-2">Telephone <a href="">819-843-8321</a></p>
-        <p class="d-flex justify-content-center">Ticket <a href="" class="btn btn-primary">Envoyer un Ticket</a></p>
+        <h4 class="d-flex justify-content-center">Téléphone</h4>
+        <div class="d-flex justify-content-center p-1">
+            <a href="">819-843-8321</a>
+        </div>
+        <div class="d-flex justify-content-center p-4">
+            <a href="" class="btn btn-primary">Envoyer un Ticket</a>
+        </div>
+       
     </div>
+</main>
+   
 @endsection
