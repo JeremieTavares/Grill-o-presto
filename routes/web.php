@@ -36,6 +36,7 @@ Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 
 
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
+
 Route::controller(GoogleController::class)->name('google.')->group(function () {
     Route::get('/auth/google', 'auth')->name('auth');
     Route::get('/auth/google/redirect', 'redirect')->name('redirect');
