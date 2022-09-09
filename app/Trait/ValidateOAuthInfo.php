@@ -3,11 +3,12 @@
 namespace App\Trait;
 
 
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth as AuthFoundation;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth as AuthFoundation;
 
 trait ValidateOAuthInfo
 {
@@ -114,26 +115,33 @@ trait ValidateOAuthInfo
         return $request->only($this->username(), 'password');
     }
 
-    /**
-     * Send the response after the user was authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
+/**
+ * Send the response after the user was authenticated.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+ */
+protected function sendLoginResponse(Request $request)
+{
+    $request->session()->regenerate();
 
-        $this->clearLoginAttempts($request);
+    $this->clearLoginAttempts($request);
 
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect()->intended($this->redirectPath());
+    if ($response = $this->authenticated($request, $this->guard()->user())) {
+        return $response;
     }
+
+    $userinfos = User::where('email', $request['email'])->get();
+    if($request->wantsJson()){
+      return new JsonResponse([], 204);
+    } elseif($userinfos[0]->info_user_id <= 0){
+        return redirect()->route('finish.registeration', ['user' => $userinfos[0]->id]);
+    } else {
+      return redirect()->intended($this->redirectPath());
+    }
+
+}
+
 
     /**
      * The user has been authenticated.
