@@ -23,20 +23,19 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-
+Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
-
-
-
 Route::get('/plat', [MainController::class, 'platSelectionne'])->name('plat');
 
 
-Auth::routes();
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/faq', [MainController::class, 'indexFaq'])->name('faq');
+
+
+
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
-
-
 Route::controller(GoogleController::class)->name('google.')->group(function () {
     Route::get('/auth/google', 'auth')->name('auth');
     Route::get('/auth/google/redirect', 'redirect')->name('redirect');
