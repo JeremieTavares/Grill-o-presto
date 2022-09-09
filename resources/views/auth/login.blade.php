@@ -1,7 +1,8 @@
 @extends('public.template.base')
+@section('banner-title', 'Client existant')
 
 @section('content')
-    <div class="container p-4">
+    <div class="container p-4 my-5">
         <div class="message mb-5">
             <h1 class="display-3 fw-bold">Bienvenue,</h1>
             <h2>Heureux de vous revoir !</h2>
@@ -46,7 +47,7 @@
             @endif
 
             <div>
-                <button type="submit" class="btn btn-primary w-50 mt-4" id="btn-login">
+                <button type="submit" class="btn btn-primary w-50 mt-4 px-5 btn-rounded" id="btn-login">
                     {{ __('Se connecter') }}
                 </button>
             </div>

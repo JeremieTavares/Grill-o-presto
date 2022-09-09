@@ -1,6 +1,6 @@
 @extends('public.template.base')
-@section('banner-title', 'FAQ')
 
+@section('banner-title', 'FAQ')
 @section('content')
 <main class="faq">
     
@@ -20,7 +20,7 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <p>Nous offront effectivement les produits sans gluten pour les gens triste qui déteste la vie</p>
+                        <p>Nous offront effectivement les produits sans gluten</p>
                     </div>
                 </div>
             </div>
@@ -112,11 +112,11 @@
     </div>
 
 
-    <hr>
+    <hr class="w-25 mt-5 mb-3 m-auto">
 
     <div class="container">
         
-        <h2 class="d-flex justify-content-center p-5">Notre adresse</h2>
+        <h2 class="d-flex justify-content-center p-4">Notre adresse</h2>
 
         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
             <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
@@ -125,15 +125,15 @@
 
     </div>
 
-    <hr>
+    <hr class="w-25 my-5 m-auto">
     <div class="container">
         <h2 class="d-flex justify-content-center pb-4">Nous Joindre</h2>
         <h4 class="d-flex justify-content-center">Téléphone</h4>
         <div class="d-flex justify-content-center p-1">
             <a href="">819-843-8321</a>
         </div>
-        <div class="d-flex justify-content-center p-4">
-            <a href="" class="btn btn-primary">Envoyer un Ticket</a>
+        <div class="d-flex justify-content-center p-4 mb-5">
+            <a href="" class="btn btn-primary px-5 btn-rounded">Envoyer un Ticket</a>
         </div>
        
     </div>
