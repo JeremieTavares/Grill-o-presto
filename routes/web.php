@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -23,8 +24,11 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 
+
+Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Auth::routes();
-// Route::get('/', [HomeController::class, 'index'])->name('accueil');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 

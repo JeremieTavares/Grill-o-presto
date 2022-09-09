@@ -6,6 +6,12 @@ $pink: #FFD1D1;
     box-sizing: border-box;
 }
 
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
 #btn-login, #submit_oAuth_register{
     max-width: 15rem !important;
 }
