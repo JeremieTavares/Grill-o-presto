@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $userClient->id = 1;
         $userClient->info_user_id = 1;
         $userClient->email = 'client@hotmail.com';
-        $userClient->password = Hash::make('client');
+        $userClient->password = Hash::make('clientclient');
         $userClient->role_id = 1;
 
 
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         
         $userAdmin->id = 2;
         $userAdmin->email = 'admin@hotmail.com';
-        $userAdmin->password = Hash::make('admin');
+        $userAdmin->password = Hash::make('adminadmin');
         $userAdmin->role_id = 2;
 
 

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('state_tickets', function (Blueprint $table) {
+        Schema::create('ticket_states', function (Blueprint $table) {
             $table->id();
             $table->string('state');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('state_tickets');
+        Schema::dropIfExists('ticket_states');
     }
 };
