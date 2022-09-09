@@ -14,14 +14,14 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-5 align-items-center ul_nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white text-sm-secondary text-lg-white header_nav_item text-align-center"
-                            aria-current="page" href="#">Accueil</a>
+                        <a class="nav-link text-white text-sm-secondary text-lg-white header_nav_item text-align-center fs-5"
+                            aria-current="page" href="/">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white header_nav_item" href="#">Menu</a>
+                        <a class="nav-link text-white header_nav_item fs-5" href="#">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white header_nav_item" href="{{route('faq')}}">Support</a>
+                        <a class="nav-link text-white header_nav_item fs-5" href="{{route('faq')}}">Support</a>
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
@@ -38,8 +38,8 @@
                     </form>
                     <?php } else {
                                     ?>
-                    <a class="btn pink" href="{{ route('login') }}">Connexion</a>
-                    <a class="btn btn-secondary" href="{{ route('register') }}">Inscription <i
+                    <a class="btn pink fs-4" href="{{ route('login') }}">Connexion</a>
+                    <a class="btn btn-secondary fs-4" href="{{ route('register') }}">Inscription <i
                             class="fa fa-arrow-right"></i></a>
                     <?php
                                 }?>

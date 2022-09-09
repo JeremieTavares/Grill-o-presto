@@ -1,5 +1,5 @@
 @extends('public.template.base')
-
+@section('banner-title', 'Nouveau Client')
 @section('content')
 <main>
     <div class="container p-4">
@@ -136,7 +136,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-5 mb-5">S'enregistrer</button>
+            <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-rounded">S'enregistrer</button>
         </form>
 
         <div class="d-flex w-75 m-auto mt-4 align-items-center">
