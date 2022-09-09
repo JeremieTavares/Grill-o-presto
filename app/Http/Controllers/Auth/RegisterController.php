@@ -63,7 +63,7 @@ class RegisterController extends Controller
             'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\Info_user,telephone'],
             'zip-code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
             'noPorte' => ['integer', 'gt:0', 'required'],
-            'appartement' => ['integer', 'gt:0'],
+            'appartement' => ['integer', 'nullable', 'gt:0'],
             'ville' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
             'rue' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
             'role_id' => ['integer', 'gt:0', 'exists:App\Models\Role,role']

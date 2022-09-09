@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -30,10 +31,11 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 
-
 Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 
 
+Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware('auth')->name('user.edit.info');
+Route::patch('user/account/update/{id}', [UserController::class, 'update'])->middleware('auth')->name('user.update.info');
 
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 Route::controller(GoogleController::class)->name('google.')->group(function () {

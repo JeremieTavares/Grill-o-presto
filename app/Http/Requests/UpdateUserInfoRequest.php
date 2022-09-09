@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OAuthRequest extends FormRequest
+class UpdateUserInfoRequest extends FormRequest
 {
 
       
@@ -32,7 +32,6 @@ class OAuthRequest extends FormRequest
                 'email_confirmation' => ['required', 'string', 'email', 'max:255'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'password_confirmation' => ['required', 'string', 'min:8'],
-                'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\Info_user,telephone'],
                 'zip_code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
                 'noPorte' => ['integer', 'gt:0', 'required'],
                 'appartement' => ['integer', 'nullable', 'gte:0'],
@@ -62,9 +61,6 @@ class OAuthRequest extends FormRequest
             'password_confirmation.string' => 'La confirmation du mot de passe doit etre une chaine de caracteres',
             'password_confirmation.min' => 'La confirmation du mot de passe doit etre d\'une longueur de 8 carateres minimum',
             'password_confirmation.confirmed' => 'La confirmation du confirmation de password doit correspondre',
-            'tel.regex' => 'Le format doit etre (888-888-8888)',
-            'tel.required' => 'Le numéro de téléphone est requis',
-            'tel.unique' => 'Ce numéro est invalide ou existe déja',
             'zip_code.regex' => 'Format (A1B-2C3) ou (A1B 2C3) seulement',
             'noPorte.integer' => 'Seuelement les chiffres sont accepté',
             'noPorte.gt' => 'Valeur de 0 ou supérieur seulement',

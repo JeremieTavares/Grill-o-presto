@@ -55,8 +55,8 @@
                 <div class="col-md-2">
                     <label for="appartement" class="form-label">Appartement</label>
                     <input type="text" name="appartement" id="appartement"
-                        class="form-control @error('appartement') is-invalid @enderror" value="{{ old('noPorte') }}"
-                        required autocomplete="appartement" autofocus>
+                        class="form-control @error('appartement') is-invalid @enderror" value="{{ old('appartement') }}"
+                        autocomplete="appartement" autofocus>
                     @error('appartement')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -64,8 +64,8 @@
 
 
                 <div class="col-md-2">
-                    <label for="zip-code" class="form-label">Code-Postal*</label>
-                    <input type="text" name="zip-code" id="zip-code"
+                    <label for="zip_code" class="form-label">Code-Postal*</label>
+                    <input type="text" name="zip_code" id="zip_code"
                         class="form-control @error('zip-code') is-invalid @enderror" value="{{ old('zip-code') }}" required
                         autocomplete="zip-code" autofocus>
                     @error('zip-code')

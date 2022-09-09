@@ -28,7 +28,7 @@
                     <a href="" class="text-secondary"><i
                             class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart"></i></a>
                     <?php if(Auth::user()){ ?>
-                    <a href="" class="text-secondary"><i
+                    <a href="{{ route('user.edit.info', Auth::user()->id) }}" class="text-secondary"><i
                             class="fa-solid fa-user fs-5 me-3 color-primary nav_cart"></i></a>
                     <?php } ?>
                     <?php if(Auth::user()){ ?>
