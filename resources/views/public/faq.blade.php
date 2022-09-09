@@ -1,6 +1,6 @@
 @extends('public.template.base')
-@section('banner-title', 'FAQ')
 
+@section('banner-title', 'FAQ')
 @section('content')
 <main class="faq">
     
@@ -20,7 +20,7 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <p>Nous offront effectivement les produits sans gluten pour les gens triste qui déteste la vie</p>
+                        <p>Nous offront effectivement les produits sans gluten</p>
                     </div>
                 </div>
             </div>
