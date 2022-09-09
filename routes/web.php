@@ -25,7 +25,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 
-Route::get('/menu/{menu?}', [MenuController::class, 'menuPage'])->name('menu');
+Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
