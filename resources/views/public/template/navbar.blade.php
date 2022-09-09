@@ -1,8 +1,8 @@
-<nav class="navbar bg-primary navbar-expand-lg px-md-5 px-sm-2 py-3">
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg px-md-5 px-sm-2 py-3">
     <div class="container-fluid navbar_div">
         <a class="navbar-brand" href="{{ route('home') }}"><img width="80"
                 src="{{ asset('image/logo_white_no_bg.png') }}" alt="logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
