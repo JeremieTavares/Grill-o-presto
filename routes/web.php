@@ -27,6 +27,10 @@ Auth::routes();
 // Route::get('/', [HomeController::class, 'index'])->name('accueil');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
+Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
+
+
+Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 
 
 Route::controller(GoogleController::class)->name('google.')->group(function () {
