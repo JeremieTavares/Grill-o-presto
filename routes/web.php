@@ -28,10 +28,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
-Route::get('/plat', [MainController::class, 'platSelectionne'])->name('plat');
+Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 
 
-Route::get('/faq', [MainController::class, 'indexFaq'])->name('faq');
+Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 
 
 

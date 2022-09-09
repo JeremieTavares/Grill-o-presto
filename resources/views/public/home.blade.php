@@ -1,6 +1,6 @@
-@extends('public.template.base')
+@include('public.template.head')
+@include('public.template.navbar')
 
-@section('content')
     <main class="home d-flex flex-column">
         <section class="wave_top_section w-100">
             <div class="over_wave_top bg-primary">
@@ -98,6 +98,6 @@
                 </div>
             </div>
         </section>
-
     </main>
-@endsection
+    
+@include('public.template.footer')
