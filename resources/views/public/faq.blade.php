@@ -1,15 +1,9 @@
 @extends('public.template.base')
+@section('banner-title', 'FAQ')
 
 @section('content')
 <main class="faq">
-    <div class="container p-4">
-        <h1 class="d-flex justify-content-center">FAQ</h1>
-    </div>
-
-    <div class="">
-
-    </div>
-
+    
     <div class="container d-flex justify-content-center p-4 ">
         <h2>Foire aux questions</h2>
     </div>
