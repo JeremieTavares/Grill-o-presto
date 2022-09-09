@@ -5,8 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ticket_type extends Model
+class TicketState extends Model
 {
+
+    protected $fillable = [
+        'state'
+    ];
     use HasFactory;
 
     public function tickets()

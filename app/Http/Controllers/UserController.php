@@ -67,7 +67,7 @@ class UserController extends Controller
 
         $userInfo = User::with('info_user')->where('id', $authUserId)->get();
 
-        return view('user.user-info', ['user' => $userInfo]);
+        return view('user.user-infos', ['user' => $userInfo]);
     }
 
     /**

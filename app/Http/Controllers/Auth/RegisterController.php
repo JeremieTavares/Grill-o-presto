@@ -40,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest');
+        $this->middleware('guest');
         // **** A REMETTRE ***
         // CECI EMPECHAIT DALLER SUR REGISTER SI ON EST LOG
     }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,26 @@ Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 
 
-Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware('auth')->name('user.edit.info');
-Route::patch('user/account/update/{id}', [UserController::class, 'update'])->middleware('auth')->name('user.update.info');
 
+// ==========================================================================================================================================================
+// ****METTRE EN RESOURCES PLUS TARD****
+// USER ACCOUNT
+Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware('auth')->name('user.edit.info');
+Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware('auth')->name('user.update.info');
+// ==========================================================================================================================================================
+
+
+
+
+// ==========================================================================================================================================================
+// TICKETS
+Route::get('user/{id}/account/tickets', [TicketController::class, 'index'])->middleware('auth')->name('user.tickets.index');
+// ==========================================================================================================================================================
+
+
+
+// ==========================================================================================================================================================
+// AUTH, REGISTER, OAUTH
 Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 Route::controller(GoogleController::class)->name('google.')->group(function () {
     Route::get('/auth/google', 'auth')->name('auth');
@@ -55,5 +73,5 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
-
+// ==========================================================================================================================================================
 

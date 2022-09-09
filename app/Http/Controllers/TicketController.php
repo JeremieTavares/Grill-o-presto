@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -11,9 +14,18 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+
+
+        $authUserId = Auth::user()->id;
+
+        $allTicketsForLoggedUser = Ticket::where('user_id', $authUserId)->get();
+
+        dd($allTicketsForLoggedUser);
+        // $userInfo = User::with('info_user')->where('id', $authUserId)->get();
+
+        // return view('user.user-infos', ['user' => $userInfo]);
     }
 
     public function indexFaq()
