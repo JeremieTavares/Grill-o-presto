@@ -30,4 +30,12 @@ class MenuController extends Controller
 
         return view('public.menu', ['meals' => $meals, 'favMeals' => $favMeals, 'menu' => $menu]);
     }
+
+    public function single($meal_id) {
+        $meal = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->find($meal_id);
+
+        $meal->ingredients = json_decode($meal->ingredients);
+
+        return view('./public/singleMeal', ['meal' => $meal]);
+    }
 }
