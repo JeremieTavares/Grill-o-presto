@@ -38,5 +38,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function platSelectionne()
+    {
+        /*  $plats = Repas::where('selectionne', true)->get();
+
+      return view('public.plat', ['plat sélectionné' => $plats]); */
+        return view('public.plat');
+    }
+
+    public function indexFaq()
+    {
+        return view('public.faq');
+    }
 
 }

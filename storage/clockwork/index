@@ -471,3 +471,9 @@
 1662566794-9042-957445281,1662566794.8535,GET,/home,"App\Http\Controllers\HomeController@index",200,129.92000579834,request
 1662566810-3716-818213711,1662566810.3084,GET,/home,"App\Http\Controllers\HomeController@index",200,154.35385704041,request
 1662566825-9777-608996139,1662566825.9269,GET,/home,"App\Http\Controllers\HomeController@index",200,129.65178489685,request
+1662730178-7718-983625856,1662730178.1827,GET,/,,404,914.23511505127,request
+1662730220-8756-1424437951,1662730220.3552,GET,/faq,"App\Http\Controllers\HomeController@indexFaq",500,1507.3258876801,request
+1662730320-4137-1707032388,1662730319.8792,GET,/faq,"App\Http\Controllers\HomeController@indexFaq",200,894.05703544617,request
+1662730342-2423-2085953818,1662730341.47,GET,/home,"App\Http\Controllers\HomeController@index",200,1395.5519199371,request
+1662730349-8056-1889125672,1662730349.0517,GET,/plat,"App\Http\Controllers\HomeController@platSelectionne",200,1274.0161418915,request
+1662730383-9521-209763326,1662730383.4406,GET,/register,"App\Http\Controllers\Auth\RegisterController@showRegistrationForm",200,1294.0211296082,request

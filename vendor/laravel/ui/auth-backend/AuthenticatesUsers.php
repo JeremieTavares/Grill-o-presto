@@ -2,9 +2,8 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -97,20 +96,6 @@ trait AuthenticatesUsers
      */
     protected function credentials(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
-        ], [
-            'email.required' => 'Votre email est requis',
-            'email.string' => 'Votre email doit etre une chaine de caracteres',
-            'email.email' => 'Votre email doit etre du format email standard',
-            'email.max' => 'Votre email doit etre d\'une longueur de 255 carateres maximum',
-            'password.required' => 'Votre mot de passe est requis',
-            'password.string' => 'Votre mot de passe doit etre une chaine de caracteres',
-            'password.min' => 'Votre mot de passe doit etre d\'une longueur de 8 caracteres minimum'
-        ]
-    );
-
         return $request->only($this->username(), 'password');
     }
 
@@ -130,15 +115,9 @@ trait AuthenticatesUsers
             return $response;
         }
 
-        $userinfos = User::where('email', $request['email'])->get();
-        if($request->wantsJson()){
-          return new JsonResponse([], 204);
-        } elseif($userinfos[0]->info_user_id <= 0){
-            return redirect()->route('finish.registeration', ['user' => $userinfos[0]->id]);
-        } else {
-          return redirect()->intended($this->redirectPath());
-        }
-
+        return $request->wantsJson()
+                    ? new JsonResponse([], 204)
+                    : redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -150,7 +129,7 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-
+        //
     }
 
     /**
@@ -164,7 +143,7 @@ trait AuthenticatesUsers
     protected function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->username() => [trans('auth.noMatch')],
+            $this->username() => [trans('auth.failed')],
         ]);
     }
 
@@ -198,7 +177,7 @@ trait AuthenticatesUsers
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/home');
+            : redirect('/');
     }
 
     /**
@@ -209,7 +188,7 @@ trait AuthenticatesUsers
      */
     protected function loggedOut(Request $request)
     {
-        return to_route('home');
+        //
     }
 
     /**
