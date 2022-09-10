@@ -49,6 +49,7 @@ Route::patch('user/account/informations/update/{id}', [UserController::class, 'u
 // ==========================================================================================================================================================
 // TICKETS
 Route::get('user/{id}/account/tickets', [TicketController::class, 'index'])->middleware('auth')->name('user.tickets.index');
+Route::get('user/{id}/tickets/create', [TicketController::class, 'create'])->middleware('auth')->name('user.tickets.create');
 // ==========================================================================================================================================================
 
 

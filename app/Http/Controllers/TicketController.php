@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Ticket;
-use App\Models\User;
+use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,23 +15,26 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(int $id)
     {
+        $authUserId = (int) Auth::user()->id;
 
+        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId)->get();
 
-        $authUserId = Auth::user()->id;
+        $ticketArray = (array) [];
+        for ($i = 0; $i < count((array) $allTicketsForLoggedUser); $i++) {
+            $allTicketsForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allTicketsForLoggedUser[$i]->created_at));
+            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);
 
-        $allTicketsForLoggedUser = Ticket::where('user_id', $authUserId)->get();
+            array_push($ticketArray,  $allTicketsForLoggedUser[$i],  $allTicketsForLoggedUser[$i]);
+        }
 
-        dd($allTicketsForLoggedUser);
-        // $userInfo = User::with('info_user')->where('id', $authUserId)->get();
-
-        // return view('user.user-infos', ['user' => $userInfo]);
+        return (object) view('user.user-tickets', ['ticketsArray' => (array) $ticketArray]);
     }
 
     public function indexFaq()
     {
-        return view('public.faq');
+        return (object) view('public.faq');
     }
 
     /**
@@ -40,7 +44,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+
+        $typeTickets = (object) TicketType::all('type');
+        return (object) view('user.user-tickets-create', ['ticketTypes' => (array) $typeTickets]);
     }
 
     /**

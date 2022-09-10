@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\TicketType;
+use App\Models\TicketState;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ticket extends Model
 {
+    use HasFactory;
 
     protected $fillable = [
         'ticket_number',
@@ -15,7 +19,11 @@ class Ticket extends Model
         'user_id'
     ];
 
-    use HasFactory;
+
+    public function scopeGetAllTicketInfosAndRelations($query, $authUserId)
+    {
+        return $query->with('ticket_type', 'ticket_state')->where('user_id', $authUserId);
+    }
 
     public function messages()
     {
@@ -24,7 +32,7 @@ class Ticket extends Model
 
     public function ticket_type()
     {
-        return $this->belongsTo(TickeType::class);
+        return $this->belongsTo(TicketType::class);
     }
 
 

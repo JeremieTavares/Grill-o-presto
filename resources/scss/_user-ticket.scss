@@ -1,0 +1,22 @@
+body {
+    min-height: 100vh;
+}
+
+.flex-wrapper {
+    display: flex;
+    min-height: 52%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-striped {
+    td {
+        padding: 8px;
+        background-color: rgb(240, 240, 240);
+    }
+}
+
+.mw-600px {
+    max-width: 600px;
+    margin: auto;
+}
