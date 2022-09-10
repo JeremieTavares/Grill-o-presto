@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\TicketType;
+use App\Models\TicketState;
 use Illuminate\Http\Request;
+use App\Http\Requests\TicketRequest;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
@@ -22,14 +25,14 @@ class TicketController extends Controller
         $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId)->get();
 
         $ticketArray = (array) [];
-        for ($i = 0; $i < count((array) $allTicketsForLoggedUser); $i++) {
+        
+        for ($i = 0; $i < count($allTicketsForLoggedUser); $i++) {
             $allTicketsForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allTicketsForLoggedUser[$i]->created_at));
-            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);
-
-            array_push($ticketArray,  $allTicketsForLoggedUser[$i],  $allTicketsForLoggedUser[$i]);
+            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);    
+            array_push($ticketArray,  $allTicketsForLoggedUser[$i]);
         }
 
-        return (object) view('user.user-tickets', ['ticketsArray' => (array) $ticketArray]);
+        return (object) view('user.user-tickets', ['ticketsArray' => (object) $ticketArray]);
     }
 
     public function indexFaq()
@@ -44,9 +47,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-
-        $typeTickets = (object) TicketType::all('type');
-        return (object) view('user.user-tickets-create', ['ticketTypes' => (array) $typeTickets]);
+        $typeTickets = (object) TicketType::all('id', 'type');
+        return (object) view('user.user-tickets-create', ['ticketTypes' => (object) $typeTickets]);
     }
 
     /**
@@ -55,10 +57,35 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TicketRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        if ((bool) Auth::check()) {
+            $authUserId = (int) Auth::user()->id;
+            $user = (object) User::where('id', (int) $authUserId)->get('email');
+        }
+
+        $ticketNumber = mt_rand(10000, 2147483647);
+        $ticketTypeOpen = (object) TicketState::where('state', 'Ouvert')->get();
+
+
+        $newTicket = Ticket::create([
+            'ticket_number' => (int) $ticketNumber,
+            'ticket_type_id' => (int) $request->ticket_type_id,
+            'ticket_state_id' => (int) $ticketTypeOpen[0]->id,
+            'user_id' => Auth::check() ? $authUserId : NULL,
+            'email' => Auth::check() ? $request->email : NULL,
+            'description' => $request->description
+        ]);
+
+        return back()->with('SuccessTicket', 'Votre ticket a bien été envoyé');
+
+        // dd($request);
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -68,7 +95,10 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = (object) Message::GetAllMessagesFromATicket($id)->get();
+    
+        dd($ticket);
+
     }
 
     /**

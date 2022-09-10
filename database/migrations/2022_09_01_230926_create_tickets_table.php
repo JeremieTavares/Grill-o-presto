@@ -19,10 +19,12 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->integer('ticket_number');
+            $table->string('order_number')->nullable();
             $table->foreignIdFor(TicketType::class)->constrained();
             $table->foreignIdFor(TicketState::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->nullable();
             $table->text('description');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

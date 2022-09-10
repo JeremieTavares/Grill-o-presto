@@ -133,7 +133,7 @@
             <a href="">819-843-8321</a>
         </div>
         <div class="d-flex justify-content-center p-4 mb-5">
-            <a href="" class="btn btn-primary px-5 btn-rounded">Envoyer un Ticket</a>
+            <a href="{{ route('user.tickets.create')}}" class="btn btn-primary btn-rounded px-5">Envoyer un Ticket</a>
         </div>
        
     </div>

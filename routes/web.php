@@ -48,8 +48,10 @@ Route::patch('user/account/informations/update/{id}', [UserController::class, 'u
 
 // ==========================================================================================================================================================
 // TICKETS
-Route::get('user/{id}/account/tickets', [TicketController::class, 'index'])->middleware('auth')->name('user.tickets.index');
-Route::get('user/{id}/tickets/create', [TicketController::class, 'create'])->middleware('auth')->name('user.tickets.create');
+Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->middleware('auth')->name('user.tickets.index');
+Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
+Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->name('user.tickets.store');
+Route::get('user/tickets/show/{id?}', [TicketController::class, 'show'])->middleware('auth')->name('user.tickets.show');
 // ==========================================================================================================================================================
 
 

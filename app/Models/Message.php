@@ -17,6 +17,12 @@ class Message extends Model
         'ticket_id'
     ];
 
+
+    public function scopeGetAllMessagesFromATicket($query, $id)
+    {
+        return (object) $query->with('user', 'ticket')->where('ticket_id', (int) $id);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

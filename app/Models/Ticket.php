@@ -15,6 +15,7 @@ class Ticket extends Model
     protected $fillable = [
         'ticket_number',
         'ticket_type_id',
+        'ticket_state_id',
         'description',
         'user_id'
     ];
@@ -22,7 +23,7 @@ class Ticket extends Model
 
     public function scopeGetAllTicketInfosAndRelations($query, $authUserId)
     {
-        return $query->with('ticket_type', 'ticket_state')->where('user_id', $authUserId);
+        return (object) $query->with((array)'ticket_type', (array)'ticket_state')->where('user_id', (int) $authUserId);
     }
 
     public function messages()
