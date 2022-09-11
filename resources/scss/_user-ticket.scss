@@ -16,7 +16,59 @@ body {
     }
 }
 
-.mw-600px {
-    max-width: 600px;
-    margin: auto;
+.div-head-comments {
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+.span-date-msg{
+    font-size: 10px;
+    color: rgb(145, 145, 145);
+}
+
+.p-comments {
+    margin-bottom: 1px;
+}
+
+.admin-bubble{
+    background-color: rgb(235, 235, 235);
+}
+
+.user-bubble{
+    background-color: rgb(255, 230, 230);
+}
+
+.close-ticket {
+    width: 21px;
+    height: 21px;
+}
+
+#divMsg {
+    height: 550px !important;
+}
+
+
+
+@media (min-width: 768px) {
+// cant use %.. @extend in @media queries
+    .msg{
+        max-width: 65%;
+    }
+
+    #btnCloseTicket {
+        max-width: 40%;
+    }
+    
+    #btnSubmitMessage {
+        max-width: 40%;
+    }
+
+    .btn-scale-press:hover {
+        transform: scale(0.99);
+    }
+
+    #divMsg {
+        height: 750px !important;
+    }
+  
 }

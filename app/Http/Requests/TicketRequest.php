@@ -27,7 +27,7 @@ class TicketRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255'],
             'order_number' => ['required', 'integer', 'gt:0', 'digits_between:1,12'],
             'ticket_type_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\TicketType,id'],
-            'description' => ['required', 'regex:/^[A-zÀ-ú -\'@$#0-9]{20,400}$/']
+            'description' => ['required', 'regex:/^[A-zÀ-ú -\'@$,#0-9]{50,400}$/']
         ];
     }
 
@@ -43,12 +43,12 @@ class TicketRequest extends FormRequest
             'order_number.integer' => 'Votre numéro de commande doit seulement contenir des chiffre',
             'order_number.gt' => 'Votre numéro de commande doit etre supérieur a zéro',
             'order_number.digits_between' => 'Votre numéro de commande doit contenir maximum 12 chiffres',
-            'ticket_type_id.required' => '1',
-            'ticket_type_id.integer' => '2',
-            'ticket_type_id.gt' => '3',
-            'ticket_type_id.exists' => '4',
+            'ticket_type_id.required' => 'Le type de ticket est requis',
+            'ticket_type_id.integer' => 'Le type de ticket doit etre un entier',
+            'ticket_type_id.gt' => 'Le type de ticket doit etre un entier supérieur a 0',
+            'ticket_type_id.exists' => 'Le type de ticket est invalide',
             'description.required' => 'Votre description est requise',
-            'description.regex' => 'Votre description peut seulement contenir des: - @ # $ \' des chiffres et des lettres et un longueur minimum de 20 caracteres et maximum 400',
+            'description.regex' => 'Votre description peut seulement contenir des: , - @ # $ \' des chiffres et des lettres et un longueur minimum de 50 caracteres et maximum 400',
         ];
     }
 }

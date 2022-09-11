@@ -2,7 +2,7 @@
 @section('banner-title', 'Informations supplémentaires')
 
 @section('content')
-<main>
+<main class="m-auto">
     <div class="container p-4">
         <div class="message mb-5">
             <h1 class="display-3 fw-bold">Me créer un compte</h1>

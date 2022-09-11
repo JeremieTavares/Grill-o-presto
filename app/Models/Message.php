@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Message extends Model
 {
+    
     use HasFactory;
 
     protected $fillable = [
@@ -20,7 +21,7 @@ class Message extends Model
 
     public function scopeGetAllMessagesFromATicket($query, $id)
     {
-        return (object) $query->with('user', 'ticket')->where('ticket_id', (int) $id);
+        return (object) $query->with('user', 'user.info_user', 'ticket')->where('ticket_id', (int) $id);
     }
 
     public function user()

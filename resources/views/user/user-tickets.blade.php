@@ -33,7 +33,7 @@
             <hr class="w-25 text-primary my-5">
         <div class="text-center mb-5">
             <h2>Envoyer un nouveau Ticket</h2>
-            <a href="{{ route('user.tickets.create', $ticket->user_id) }}" class="btn btn-primary btn-rounded px-5">Nouveau ticket</a>
+            <a href="{{ route('user.tickets.create', $ticket->user_id) }}" class="btn btn-primary btn-rounded btn-scale-press px-5">Nouveau ticket</a>
         </div>
        
 

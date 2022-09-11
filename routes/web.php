@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TicketController;
 
 /*
@@ -52,7 +53,16 @@ Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->mi
 Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
 Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->name('user.tickets.store');
 Route::get('user/tickets/show/{id?}', [TicketController::class, 'show'])->middleware('auth')->name('user.tickets.show');
+Route::patch('user/tickets/close/{id?}', [TicketController::class, 'update'])->middleware('auth')->name('user.tickets.patch');
 // ==========================================================================================================================================================
+
+
+
+// ==========================================================================================================================================================
+// MESSAGES / SINGLE ACTION CONTROLLER (INVOKE)
+Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware('auth')->name('user.tickets.message.submit');
+
+
 
 
 

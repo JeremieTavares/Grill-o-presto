@@ -25,10 +25,10 @@ class TicketController extends Controller
         $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId)->get();
 
         $ticketArray = (array) [];
-        
+
         for ($i = 0; $i < count($allTicketsForLoggedUser); $i++) {
             $allTicketsForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allTicketsForLoggedUser[$i]->created_at));
-            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);    
+            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);
             array_push($ticketArray,  $allTicketsForLoggedUser[$i]);
         }
 
@@ -74,14 +74,12 @@ class TicketController extends Controller
             'ticket_number' => (int) $ticketNumber,
             'ticket_type_id' => (int) $request->ticket_type_id,
             'ticket_state_id' => (int) $ticketTypeOpen[0]->id,
-            'user_id' => Auth::check() ? $authUserId : NULL,
-            'email' => Auth::check() ? $request->email : NULL,
+            'user_id' => Auth::check() ? (int)$authUserId : NULL,
+            'email' => Auth::check() ? (string) $request->email : NULL,
             'description' => $request->description
         ]);
 
         return back()->with('SuccessTicket', 'Votre ticket a bien été envoyé');
-
-        // dd($request);
     }
 
 
@@ -93,12 +91,11 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        $ticket = (object) Message::GetAllMessagesFromATicket($id)->get();
-    
-        dd($ticket);
+        $ticketMessages = (object) Message::GetAllMessagesFromATicket($id)->get();
 
+        return (object) view('user.user-tickets-show', ['ticketMessages' => (object) $ticketMessages]);
     }
 
     /**
@@ -121,7 +118,22 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $authUserId = (int) Auth::user()->id;
+        $admin = User::where('id', $authUserId)->get('role_id');
+        $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->get('id', 'ticket_state_id','user_id');
+
+        $d = new TicketState();
+        $d->getAllTicketState();
+        dd($d);
+
+        if (
+            $ticket[0]->user_id == 33 ||
+            (int) $admin[0]->role_id === (int)User::ADMIN_ROLE_1 ||
+            (int) $admin[0]->role_id === (int)User::ADMIN_ROLE_2 ||
+            (int) $admin[0]->role_id === (int)User::ADMIN_ROLE_3){
+            
+            } else
+            return back()->with('noPermission', 'Vous n\'avez pas la permission pour cela');
     }
 
     /**

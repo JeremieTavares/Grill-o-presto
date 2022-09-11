@@ -18,7 +18,7 @@
                         <div>
                             <a href="#" class="btn btn-secondary mt-sm-5">Nos menus</a>
                         </div> --}}
-                        <a href="#" class="btn btn-secondary">Nos menus</a>
+                        <a href="#" class="btn btn-secondary btn-scale-press">Nos menus</a>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 <form class="d-flex flex-column" action="">
                     <label class="mb-2 w-100" for="adress">Votre adresse</label>
                     <input class="input w-100" type="text" name="adress" id="adress">
-                    <button type="submit" class="btn btn-primary w-100 mt-4 btn-rounded">Rechercher</button>
+                    <button type="submit" class="btn btn-primary w-100 mt-4 btn-rounded btn-scale-press">Rechercher</button>
                 </form>
             </div>
             <img class="ms-5" src="./image/girl_looking.png" alt="">
@@ -97,9 +97,9 @@
                 <div class="text_container w-50">
                     <h2 class="mb-3">Nous offrons 3 types de menu complet differant chaque semaine</h2>
                     <ul class="p-0">
-                        <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
-                        <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
-                        <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary"></i></li>
+                        <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
+                        <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
+                        <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
                         <a class="btn btn-primary btn-rounded mt-5" href="">Nos menus</a>
                     </ul>
                 </div>

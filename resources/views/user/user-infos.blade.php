@@ -160,7 +160,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-rounded">S'enregistrer</button>
+                <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">S'enregistrer</button>
             </form>
 
         </div>
