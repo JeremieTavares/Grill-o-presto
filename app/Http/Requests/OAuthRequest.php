@@ -32,7 +32,7 @@ class OAuthRequest extends FormRequest
                 'email_confirmation' => ['required', 'string', 'email', 'max:255'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'password_confirmation' => ['required', 'string', 'min:8'],
-                'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\Info_user,telephone'],
+                'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\InfoUser,telephone'],
                 'zip_code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
                 'noPorte' => ['integer', 'gt:0', 'required'],
                 'appartement' => ['integer', 'nullable', 'gte:0'],

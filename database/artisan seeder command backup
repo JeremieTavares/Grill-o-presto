@@ -7,7 +7,7 @@ php artisan db:seed InfoUserSeeder
 php artisan db:seed UserSeeder
 
 
-php artisan db:seed TicketStateSeeder
+php artisan db:seed TicketStatusSeeder
 php artisan db:seed TicketTypeSeeder 
 php artisan db:seed TicketSeeder
 

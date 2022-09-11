@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
         $userAdmin = new User();
         
         $userAdmin->id = 2;
+        $userAdmin->info_user_id = 2;
         $userAdmin->email = 'admin@hotmail.com';
         $userAdmin->password = Hash::make('adminadmin');
         $userAdmin->role_id = 2;

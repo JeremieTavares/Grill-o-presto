@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Info_user;
+
+use App\Models\InfoUser;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,11 +17,11 @@ class InfoUserSeeder extends Seeder
      */
     public function run()
     {
-        $userClientInfo = new Info_user();
+        $userClientInfo = new InfoUser();
 
         $userClientInfo->id = 1;
         $userClientInfo->prenom = 'Benoit';
-        $userClientInfo->nom = 'bigBrain';
+        $userClientInfo->nom = 'On-Rails';
         $userClientInfo->telephone = '819-992-2299';
         $userClientInfo->rue = 'Du Cégep';
         $userClientInfo->no_porte = '475';
@@ -28,5 +29,19 @@ class InfoUserSeeder extends Seeder
         $userClientInfo->ville = 'Sherbrooke';
         
         $userClientInfo->save();
+
+
+        $adminInfo = new InfoUser();
+
+        $adminInfo->id = 2;
+        $adminInfo->prenom = 'Johnny';
+        $adminInfo->nom = 'Crying';
+        $adminInfo->telephone = '819-992-2299';
+        $adminInfo->rue = 'Du Cégep';
+        $adminInfo->no_porte = '475';
+        $adminInfo->code_postal = 'A1B-2C3';
+        $adminInfo->ville = 'Sherbrooke';
+        
+        $adminInfo->save();
     }
 }

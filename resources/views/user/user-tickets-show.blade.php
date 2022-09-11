@@ -62,7 +62,7 @@
                                     <div>
                                         <span class="span-date-msg ms-2">{{ $response->created_at }}</span>
                                         <span class="span-date-msg">-</span>
-                                        <span class="span-date-msg">{{ $response->user->info_user->prenom }}</span>
+                                        <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
                                     </div>
                                 </div>
                             @endif
@@ -70,7 +70,7 @@
                     </div>
                 </div>
 
-                <?php (int) $state = (int) $ticketMessages[0]->ticket->ticket_state_id; 
+                <?php (int) $state = (int) $ticketMessages[0]->ticket->ticket_status_id; 
                 ?>
                 @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
                     <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
@@ -105,7 +105,7 @@
 
 
          
-            @if ($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved)
+            @if($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved)
                 <div class="my-4 div-useless"></div>
             @endif
 

@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Message;
 use App\Models\TicketType;
-use App\Models\TicketState;
+use App\Models\TicketStatus;
 use Illuminate\Http\Request;
 use App\Trait\RolesAvailable;
 use App\Http\Requests\TicketRequest;
@@ -28,15 +28,15 @@ class TicketController extends Controller
 
         $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId)->get();
 
-        $ticketArray = (array) [];
+        $ticketArray = [];
 
         for ($i = 0; $i < count($allTicketsForLoggedUser); $i++) {
             $allTicketsForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allTicketsForLoggedUser[$i]->created_at));
             $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);
             array_push($ticketArray,  $allTicketsForLoggedUser[$i]);
         }
-
-        return (object) view('user.user-tickets', ['ticketsArray' => (object) $ticketArray]);
+        // dd($ticketArray[0]->id);
+        return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);
     }
 
     public function indexFaq()
@@ -71,13 +71,13 @@ class TicketController extends Controller
         }
 
         $ticketNumber = mt_rand(10000, 2147483647);
-        $ticketTypeOpen = (object) TicketState::where('state', 'Ouvert')->get();
+        $ticketTypeOpen = (object) TicketStatus::where('status', 'Ouvert')->get();
 
 
         $newTicket = Ticket::create([
             'ticket_number' => (int) $ticketNumber,
             'ticket_type_id' => (int) $request->ticket_type_id,
-            'ticket_state_id' => (int) $ticketTypeOpen[0]->id,
+            'ticket_status_id' => (int) $ticketTypeOpen[0]->id,
             'user_id' => Auth::check() ? (int)$authUserId : NULL,
             'email' => Auth::check() ? (string) $request->email : NULL,
             'description' => $request->description
@@ -97,11 +97,11 @@ class TicketController extends Controller
      */
     public function show(int $id)
     {
-        $states = (object) new TicketState();
-        $opened = (int) $states->get_opened_state();
-        $closed = (int) $states->get_closed_state();
-        $expired = (int) $states->get_expired_state();
-        $not_resolved = (int) $states->get_not_resolved_state();
+        $states = (object) new TicketStatus();
+        $opened = (int) $states->get_opened_status();
+        $closed = (int) $states->get_closed_status();
+        $expired = (int) $states->get_expired_status();
+        $not_resolved = (int) $states->get_not_resolved_status();
         $ticketMessages = (object) Message::GetAllMessagesFromATicket($id)->get();
         // dd($ticketMessages);
         return (object) view('user.user-tickets-show',
@@ -109,6 +109,7 @@ class TicketController extends Controller
                               'ticket_closed' => (int) $closed, 
                               'ticket_expired' => (int) $expired,
                               'ticket_not_resolved' => (int) $not_resolved]);
+                          
     }
 
     /**
@@ -136,11 +137,11 @@ class TicketController extends Controller
         $userTemplate = new Role;
 
         $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->get();
-        $states = (object) new TicketState();
-        $opened = (int) $states->get_opened_state();
-        $closed = (int) $states->get_closed_state();
-        $expired = (int) $states->get_expired_state();
-        $not_resolved = (int) $states->get_not_resolved_state();
+        $states = (object) new TicketStatus();
+        $opened = (int) $states->get_opened_status();
+        $closed = (int) $states->get_closed_status();
+        $expired = (int) $states->get_expired_status();
+        $not_resolved = (int) $states->get_not_resolved_status();
 
 
         if (
@@ -149,7 +150,7 @@ class TicketController extends Controller
             (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_2() ||
             (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_3()
         ) {
-            $ticket[0]->ticket_state_id = $closed;
+            $ticket[0]->ticket_status_id = $closed;
             $ticket[0]->save();
             return back()->with('ticketClosed', "Votre ticket #" . $ticket[0]->ticket_number . " est fermé");
         } else

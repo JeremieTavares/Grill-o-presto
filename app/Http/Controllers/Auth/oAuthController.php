@@ -34,7 +34,7 @@ class oAuthController extends Controller
             'telephone' => $request['tel'],
             'rue' => $request['rue'],
             'no_porte' => $request['noPorte'],
-            'code_postal' => $request['zip-code'],
+            'code_postal' => $request['zip_code'],
             'ville' => $request['ville']
         ]);
 

@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         $authUserId = (int) Auth::user()->id;
 
-        $userInfo = User::with('info_user')->where('id', $authUserId)->get();
+        $userInfo = User::with('infoUser')->where('id', $authUserId)->get();
 
         return view('user.user-infos', ['user' => $userInfo]);
     }
@@ -89,7 +89,7 @@ class UserController extends Controller
                 $request,
 
                 [
-                    'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\Info_user,telephone'],
+                    'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\InfoUser,telephone'],
                 ],
                 [
                     'tel.regex' => 'Le format doit etre (888-888-8888)',

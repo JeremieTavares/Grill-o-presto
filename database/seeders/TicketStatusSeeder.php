@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\TicketState;
+
+use App\Models\TicketStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class TicketStateSeeder extends Seeder
+class TicketStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +16,11 @@ class TicketStateSeeder extends Seeder
      */
     public function run()
     {     
-        $stateArray = ['Ouvert', 'Fermé', 'Expiré', 'Non-résolu'];
+        $statusArray = ['Ouvert', 'Fermé', 'Expiré', 'Non-résolu'];
 
-        foreach($stateArray as $state){
-            TicketState::create([
-                'state' => $state
+        foreach($statusArray as $status){
+            TicketStatus::create([
+                'status' => $status
             ]);
         }
     }

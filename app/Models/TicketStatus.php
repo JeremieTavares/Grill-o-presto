@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use App\Models\Ticket;
-use App\Trait\TicketStateAvailable;
+
+use App\Trait\TicketStatusAvailable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class TicketState extends Model
+class TicketStatus extends Model
 {
-    use TicketStateAvailable;
+    use TicketStatusAvailable;
     
     protected $fillable = [
-        'state'
+        'status'
     ];
 
 

@@ -18,7 +18,7 @@ class TicketSeeder extends Seeder
         Ticket::create([
             'ticket_number' => '432651',
             'ticket_type_id' => 2,
-            'ticket_state_id' => 1,
+            'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\TicketType;
-use App\Models\TicketState;
+use App\Models\TicketStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,7 +15,7 @@ class Ticket extends Model
     protected $fillable = [
         'ticket_number',
         'ticket_type_id',
-        'ticket_state_id',
+        'ticket_status_id',
         'description',
         'user_id'
     ];
@@ -23,7 +23,7 @@ class Ticket extends Model
 
     public function scopeGetAllTicketInfosAndRelations($query, $authUserId)
     {
-        return (object) $query->with((array)'ticket_type', (array)'ticket_state')->where('user_id', (int) $authUserId);
+        return (object) $query->with((array)'ticket_type', (array)'ticket_status')->where('user_id', (int) $authUserId);
     }
 
     public function messages()
@@ -37,9 +37,9 @@ class Ticket extends Model
     }
 
 
-    public function ticket_state()
+    public function ticket_status()
     {
-        return $this->belongsTo(TicketState::class);
+        return $this->belongsTo(TicketStatus::class);
     }
 
     public function user()

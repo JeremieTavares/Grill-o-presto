@@ -33,7 +33,7 @@
                         <label for="prenom" class="form-label">Prénom*</label>
                         <input type="text" name="prenom" id="prenom"
                             class="form-control @error('prenom') is-invalid @enderror"
-                            value="{{ $user[0]->info_user->prenom }}" required autocomplete="prenom" autofocus>
+                            value="{{ $user[0]->infoUser->prenom }}" required autocomplete="prenom" autofocus>
                         @error('prenom')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -42,7 +42,7 @@
                     <div class="col-md-6">
                         <label for="nom" class="form-label">Nom*</label>
                         <input type="text" name="nom" id="nom"
-                            class="form-control @error('nom') is-invalid @enderror" value="{{ $user[0]->info_user->nom }}"
+                            class="form-control @error('nom') is-invalid @enderror" value="{{ $user[0]->infoUser->nom }}"
                             required autocomplete="nom" autofocus />
                         @error('nom')
                             <div class="text-danger">{{ $message }}</div>
@@ -53,7 +53,7 @@
                     <div class="col-md-6">
                         <label for="rue" class="form-label">Rue*</label>
                         <input type="text" name="rue" id="rue"
-                            class="form-control @error('rue') is-invalid @enderror" value="{{ $user[0]->info_user->rue }}"
+                            class="form-control @error('rue') is-invalid @enderror" value="{{ $user[0]->infoUser->rue }}"
                             required autocomplete="rue" autofocus>
                         @error('rue')
                             <div class="text-danger">{{ $message }}</div>
@@ -64,7 +64,7 @@
                         <label for="noPorte" class="form-label">No de porte*</label>
                         <input type="text" name="noPorte" id="noPorte"
                             class="form-control @error('noPorte') is-invalid @enderror"
-                            value="{{ $user[0]->info_user->no_porte }}" required autocomplete="noPorte" autofocus>
+                            value="{{ $user[0]->infoUser->no_porte }}" required autocomplete="noPorte" autofocus>
                         @error('noPorte')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -74,7 +74,7 @@
                         <label for="appartement" class="form-label">Appartement</label>
                         <input type="text" name="appartement" id="appartement"
                             class="form-control @error('appartement') is-invalid @enderror"
-                            value="{{ $user[0]->info_user->appartement }}" autocomplete="appartement" autofocus>
+                            value="{{ $user[0]->infoUser->appartement }}" autocomplete="appartement" autofocus>
                         @error('appartement')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -85,7 +85,7 @@
                         <label for="zip_code" class="form-label">Code-Postal*</label>
                         <input type="text" name="zip_code" id="zip_code"
                             class="form-control @error('zip-code') is-invalid @enderror"
-                            value="{{ $user[0]->info_user->code_postal }}" required autocomplete="zip-code" autofocus>
+                            value="{{ $user[0]->infoUser->code_postal }}" required autocomplete="zip-code" autofocus>
                         @error('zip-code')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -95,7 +95,7 @@
                         <label for="ville" class="form-label">Ville*</label>
                         <input type="text" name="ville" id="ville"
                             class="form-control @error('ville') is-invalid @enderror"
-                            value="{{ $user[0]->info_user->ville }}" required autocomplete="ville" autofocus>
+                            value="{{ $user[0]->infoUser->ville }}" required autocomplete="ville" autofocus>
                         @error('ville')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -106,7 +106,7 @@
                         <label for="tel" class="form-label">Numéro de téléphone*</label>
                         <input type="tel" name="tel" id="tel"
                             class="form-control @error('tel') is-invalid @enderror"
-                            value="{{ $user[0]->info_user->telephone }}" required autocomplete="tel" autofocus>
+                            value="{{ $user[0]->infoUser->telephone }}" required autocomplete="tel" autofocus>
                         @error('tel')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

@@ -21,7 +21,7 @@ class Message extends Model
 
     public function scopeGetAllMessagesFromATicket($query, $id)
     {
-        return (object) $query->with('user', 'user.info_user', 'ticket', 'ticket.ticket_state')->where('ticket_id', (int) $id);
+        return (object) $query->with('user', 'user.infoUser', 'ticket', 'ticket.ticket_status')->where('ticket_id', (int) $id);
     }
 
     public function user()

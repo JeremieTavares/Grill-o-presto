@@ -27,7 +27,7 @@ class MessageRequest extends FormRequest
         return [
             'ticket_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\Ticket,id'],
             'user_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\User,id'],
-            'response' => ['required', 'regex:/^[A-zÀ-ú -\'@$,#0-9]{50,400}$/']
+            'response' => ['required', 'regex:/^[A-zÀ-ú -\'@$,#0-9]{5,400}$/']
         ];
     }
 
@@ -44,7 +44,7 @@ class MessageRequest extends FormRequest
             'user_id.gt' => 'Le user doit etre un entier supérieur a 0',
             'user_id.exists' => 'Le user est invalide',
             'response.required' => 'Votre réponse est requise',
-            'response.regex' => 'Votre réponse peut seulement contenir des: , - @ # $ \' des chiffres et des lettres et un longueur minimum de 50 caracteres et maximum 400',
+            'response.regex' => 'Votre réponse peut seulement contenir des: , - @ # $ \' des chiffres et des lettres et un longueur minimum de 5 caracteres et maximum 400',
         ];
     }
 }
