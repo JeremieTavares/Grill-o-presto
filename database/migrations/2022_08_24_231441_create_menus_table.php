@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\MenuType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,12 +16,10 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('menu_type_id');
+            $table->foreignIdFor(MenuType::class)->constrained();
             $table->date('start_date')->nullable(false);
             $table->date('end_date')->nullable(false);
             $table->timestamps();
-
-            $table->foreign('menu_type_id')->references('id')->on('menu_types');
         });
     }
 

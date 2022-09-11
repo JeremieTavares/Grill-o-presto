@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\InfoUser;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +16,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('info_user_id')->nullable();
-            $table->foreign('info_user_id')->references('id')->on('info_users')->cascadeOnDelete();
+            $table->foreignIdFor(InfoUser::class)->constrained();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at');
             $table->string('password');
