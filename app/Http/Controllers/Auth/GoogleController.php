@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Trait\RolesAvailable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,6 +15,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
+    use RolesAvailable;
 
     public function returnViewToCompleteRegisteration($user) {
         
@@ -28,14 +31,14 @@ class GoogleController extends Controller
     public function redirect()
     {
         $googleUserInfo = Socialite::driver('google')->stateless()->user();
-
+        $roles = new Role;
         $user = User::firstOrCreate(
             [
                 'email' => $googleUserInfo->email,
             ],
             [
                 'password' => Hash::make(Str::random(24)),
-                'role_id' => User::USER_ROLE_CLIENT
+                'role_id' =>  $roles->get_role_client()
             ]
         );
 

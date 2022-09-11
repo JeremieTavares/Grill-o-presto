@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-        $authUserId = Auth::user()->id;
+        $authUserId = (int) Auth::user()->id;
 
         $userInfo = User::with('info_user')->where('id', $authUserId)->get();
 
@@ -99,16 +99,16 @@ class UserController extends Controller
             );
         }
 
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $userInfo[0]->prenom = $request->prenom;
-        $userInfo[0]->nom = $request->nom;
-        $userInfo[0]->rue = $request->rue;
-        $userInfo[0]->no_porte = $request->noPorte;
-        $userInfo[0]->appartement = $request->appartement;
-        $userInfo[0]->code_postal = $request->zip_code;
-        $userInfo[0]->ville = $request->ville;
-        $userInfo[0]->telephone = $request->tel;
+        $user->email = (string) $request->email;
+        $user->password = (string) $request->password;
+        $userInfo[0]->prenom = (string) $request->prenom;
+        $userInfo[0]->nom = (string) $request->nom;
+        $userInfo[0]->rue = (string) $request->rue;
+        $userInfo[0]->no_porte = (int) $request->noPorte;
+        $userInfo[0]->appartement = (int) $request->appartement;
+        $userInfo[0]->code_postal = (string) $request->zip_code;
+        $userInfo[0]->ville = (string) $request->ville;
+        $userInfo[0]->telephone = (string) $request->tel;
         $user->save();
         $userInfo[0]->save();
 

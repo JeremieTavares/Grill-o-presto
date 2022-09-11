@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Ticket;
+use App\Models\Message;
 use App\Models\TicketType;
 use App\Models\TicketState;
 use Illuminate\Http\Request;
+use App\Trait\RolesAvailable;
 use App\Http\Requests\TicketRequest;
-use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
+
+    use RolesAvailable;
     /**
      * Display a listing of the resource.
      *
@@ -93,9 +97,18 @@ class TicketController extends Controller
      */
     public function show(int $id)
     {
+        $states = (object) new TicketState();
+        $opened = (int) $states->get_opened_state();
+        $closed = (int) $states->get_closed_state();
+        $expired = (int) $states->get_expired_state();
+        $not_resolved = (int) $states->get_not_resolved_state();
         $ticketMessages = (object) Message::GetAllMessagesFromATicket($id)->get();
-
-        return (object) view('user.user-tickets-show', ['ticketMessages' => (object) $ticketMessages]);
+        // dd($ticketMessages);
+        return (object) view('user.user-tickets-show',
+                             ['ticketMessages' => (object) $ticketMessages,
+                              'ticket_closed' => (int) $closed, 
+                              'ticket_expired' => (int) $expired,
+                              'ticket_not_resolved' => (int) $not_resolved]);
     }
 
     /**
@@ -118,21 +131,28 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $authUserId = (int) Auth::user()->id;
-        $admin = User::where('id', $authUserId)->get('role_id');
-        $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->get('id', 'ticket_state_id','user_id');
+        $loggedUserId = (int) Auth::user()->id;
+        $loggedUser = User::where('id', $loggedUserId)->get('role_id');
+        $userTemplate = new Role;
 
-        $d = new TicketState();
-        $d->getAllTicketState();
-        dd($d);
+        $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->get();
+        $states = (object) new TicketState();
+        $opened = (int) $states->get_opened_state();
+        $closed = (int) $states->get_closed_state();
+        $expired = (int) $states->get_expired_state();
+        $not_resolved = (int) $states->get_not_resolved_state();
+
 
         if (
-            $ticket[0]->user_id == 33 ||
-            (int) $admin[0]->role_id === (int)User::ADMIN_ROLE_1 ||
-            (int) $admin[0]->role_id === (int)User::ADMIN_ROLE_2 ||
-            (int) $admin[0]->role_id === (int)User::ADMIN_ROLE_3){
-            
-            } else
+            $ticket[0]->user_id ==  $loggedUserId  ||
+            (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_1() ||
+            (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_2() ||
+            (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_3()
+        ) {
+            $ticket[0]->ticket_state_id = $closed;
+            $ticket[0]->save();
+            return back()->with('ticketClosed', "Votre ticket #" . $ticket[0]->ticket_number . " est fermé");
+        } else
             return back()->with('noPermission', 'Vous n\'avez pas la permission pour cela');
     }
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Trait\RolesAvailable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +14,8 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GithubController extends Controller
 {
-
+    use RolesAvailable;
+    
     public function returnViewToCompleteRegisteration($user) {
         
         $userInfos = User::where('id', $user)->get();
@@ -28,7 +31,7 @@ class GithubController extends Controller
     public function redirect()
     {
         $githubUserInfo = Socialite::driver('github')->stateless()->user();
-
+        $roles = new Role;
         $user = User::firstOrCreate(
             [
                 'email' => $githubUserInfo->email,
@@ -36,7 +39,7 @@ class GithubController extends Controller
             ],
             [
                 'password' => Hash::make(Str::random(24)),
-                'role_id' => User::USER_ROLE_CLIENT
+                'role_id' => $roles->get_role_client()
             ]
         );
 
