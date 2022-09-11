@@ -103,13 +103,19 @@ class TicketController extends Controller
         $expired = (int) $states->get_expired_status();
         $not_resolved = (int) $states->get_not_resolved_status();
         $ticketMessages = (object) Message::GetAllMessagesFromATicket($id)->get();
-        // dd($ticketMessages);
-        return (object) view('user.user-tickets-show',
-                             ['ticketMessages' => (object) $ticketMessages,
-                              'ticket_closed' => (int) $closed, 
-                              'ticket_expired' => (int) $expired,
-                              'ticket_not_resolved' => (int) $not_resolved]);
-                          
+        $ticket = Ticket::where('id', $id)->get();
+        return (object) view(
+            'user.user-tickets-show',
+            [
+                'ticketMessages' => (object) $ticketMessages,
+                'ticket' => (object) $ticket,
+                'ticket_status' => $ticket[0]->ticket_status_id,
+                'ticket_opened' =>(int) $opened,
+                'ticket_closed' => (int) $closed,
+                'ticket_expired' => (int) $expired,
+                'ticket_not_resolved' => (int) $not_resolved
+            ]
+        );
     }
 
     /**

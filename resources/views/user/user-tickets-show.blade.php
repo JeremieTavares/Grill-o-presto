@@ -1,10 +1,18 @@
 @extends('public.template.base')
 @section('banner-title', 'Support - Ticket')
 @section('content')
+    <?php
+    $state = (int) $ticket_status;
+    ?>
     @if (Auth::check())
         @include('user.template.sub-navbar')
     @endif
+
+
     <main class="m-auto">
+
+
+
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             ?>
@@ -12,7 +20,18 @@
             <?php $user = ''; ?>
         @endif
 
+
+        
+
         <div class="container mw-900px">
+
+
+            @if (!isset($ticketMessages[0]))
+                <div class="my-4 div-useless"></div>
+            @endif
+
+
+
             @if (Session::has('successResponse'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
@@ -35,6 +54,10 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
             @endif
+
+
+
+
             @if (isset($ticketMessages[0]))
                 <div class="mt-md-5 mt-3 overflow-auto rounded-4" id="divMsg">
                     <div class="bg-dark pt-3 div-head-comments d-flex justify-content-around text-center sticky-top">
@@ -48,6 +71,10 @@
                                 {{ $ticketMessages[0]->ticket->description }}</p>
                             <span class="span-date-msg me-2">{{ $ticketMessages[0]->ticket->created_at }}</span>
                         </div>
+
+
+
+
                         @foreach ($ticketMessages as $response)
                             @if ($response->user_id == $response->ticket->user_id)
                                 <div class="d-flex flex-column align-items-end text-center">
@@ -70,8 +97,9 @@
                     </div>
                 </div>
 
-                <?php (int) $state = (int) $ticketMessages[0]->ticket->ticket_status_id; 
-                ?>
+
+
+
                 @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
                     <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
                         @csrf
@@ -96,63 +124,52 @@
                     <div class="">
                         <hr class="col-4 m-auto">
                     </div>
-        
+
+                    @include('user.template.model-close-ticket')
                 @endif
+
+
+
             @else
-                <h2 class="text-center">Aucune réponse pour ce Ticket</h2>
-                <h3 class="text-center fs-4">Nous répondons dans un délais de 24-48h maximum</h3>
+                @if ($state == $ticket_opened && $ticketMessages !== null)
+                    <h2 class="text-center">Aucune réponse pour ce Ticket</h2>
+                    <h3 class="text-center fs-4">Nous répondons normalement dans un délais de 24-48h maximum</h3>
+                    @include('user.template.model-close-ticket')
+                @elseif($state == $ticket_expired)
+                    <h2 class="text-center">Ce Ticket est expiré</h2>
+                    <h3 class="text-center fs-4">Vous devez envoyer un nouveau Ticket.</h3>
+                @elseif($state == $ticket_not_resolved)
+                    <h2 class="text-center">Ce Ticket est non résolus</h2>
+                    <h3 class="text-center fs-4">Nous sommes désolé.</h3>
+                @elseif($state == $ticket_closed)
+                    <h2 class="text-center">Ce Ticket est fermé</h2>
+                    <h3 class="text-center fs-4">Nous sommes content de vous avoir aidé</h3>
+                @endif
+
+
+
+                @if (!isset($ticketMessages[0]))
+                    <div class="my-4 div-useless"></div>
+                @endif
+
+
+
+                @if (isset($ticketMessages[0]) &&
+                    !($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
+                    @include('user.template.model-close-ticket')
+                @endif
             @endif
-
-
-         
-            @if($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved)
-                <div class="my-4 div-useless"></div>
-            @endif
-
-            @if (isset($ticketMessages[0]) && !($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
-                <div class="text-center my-5">
-                    <button type="button" id="btnCloseTicket" class="btn btn-primary btn-rounded btn-scale-press w-75"
-                        data-bs-toggle="modal" data-bs-target="#closeTicketModal">
-                        Annuler ce ticket
-                    </button>
-                </div>
-                <div class="modal fade" id="closeTicketModal" tabindex="-1" aria-labelledby="closeTicketModal"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered m-auto">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Fermer le ticket:
-                                    #{{ $ticketMessages[0]->ticket->ticket_number }}
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body d-flex flex-column align-items-center">
-                                <p class="fs-5 fw-bold"> Êtes-vous certain de vouloir fermer ce ticket?</p>
-                                <p class="text-danger fs-5 fw-bold">ATTENTION </p>
-                                <p class="text-danger fs-5 fw-bold">CETTE ACTION EST DÉFÉNITIVE</p>
-                                <span class="span-date-msg">*l'historique de la conversation sera toujours
-                                    disponible</span>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-scale-press"
-                                    data-bs-dismiss="modal">Annuler</button>
-
-                                <form action="{{ route('user.tickets.patch', $ticketMessages[0]->ticket->id) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="ticket_id" value="{{ $ticketMessages[0]->ticket->id }}">
-                                    <button type="submit" class="btn btn-primary btn-scale-press"
-                                        id="btnCloseModalYes">Supprimé</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
         </div>
+
+
+
+
+        @if ($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved)
+            <div class="my-4 div-useless"></div>
+        @endif
+
+
+
         <script>
             const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
             const btnCloseAlertSuccessSession = document.getElementById('btnAlertSucccessInfoChanged');
@@ -163,5 +180,7 @@
                 })
             }
         </script>
+
+
     </main>
 @endsection
