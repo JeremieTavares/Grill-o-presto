@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('order_number')->nullable();
             $table->foreignIdFor(TicketType::class)->constrained();
             $table->foreignIdFor(TicketStatus::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained()->nullable();
+            $table->foreignIdFor(User::class)->nullable()->constrained();
             $table->text('description');
             $table->string('email')->nullable();
             $table->timestamps();
