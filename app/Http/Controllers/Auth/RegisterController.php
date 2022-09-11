@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Info_user;
+use App\Models\InfoUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -117,7 +117,7 @@ class RegisterController extends Controller
     {
         $roles = new Role;
 
-        $infoUser = Info_user::create([
+        $infoUser = InfoUser::create([
             'prenom' => $data['prenom'],
             'nom' => $data['nom'],
             'telephone' => $data['tel'],

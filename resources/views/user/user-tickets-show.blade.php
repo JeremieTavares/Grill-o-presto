@@ -42,7 +42,7 @@
                         </p>
                         <p class="text-white fw-bold w-50">Ticket: #{{ $ticketMessages[0]->ticket->ticket_number }}</p>
                     </div>
-                    <div class="d-flex flex-column bg-ultra-light rounded-4 pt-5 pb-4 px-4 mb-4">
+                    <div class="d-flex flex-column bg-ultra-light rounded-4 pt-5 pb-4 px-4 mb-4 h-100">
                         <div class="d-flex flex-column align-items-end text-center">
                             <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
                                 {{ $ticketMessages[0]->ticket->description }}</p>
@@ -78,7 +78,7 @@
                         <div>
                             <label for="responseMessageTicketTextarea">Répondre:</label>
                             <textarea name="response" class="form-control @error('response') is-invalid @enderror" maxlength="400"
-                                placeholder="Expliquer nous le problème, avec un maximum d'informations." id="responseMessageTicketTextarea">{{ old('response') }}</textarea>
+                                placeholder="Répondre au dernier message." id="responseMessageTicketTextarea">{{ old('response') }}</textarea>
                             @error('response')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

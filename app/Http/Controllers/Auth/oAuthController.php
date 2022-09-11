@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Models\Info_user;
+use App\Models\InfoUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OAuthRequest;
@@ -28,7 +28,7 @@ class oAuthController extends Controller
     
         $userinfos = User::where('email', $request['email'])->get();
 
-        $newUser = Info_user::create([
+        $newUser = InfoUser::create([
             'prenom' => $request['prenom'],
             'nom' => $request['nom'],
             'telephone' => $request['tel'],

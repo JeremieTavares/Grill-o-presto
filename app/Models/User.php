@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
-use App\Models\Info_user;
+use App\Models\InfoUser;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,7 +60,7 @@ class User extends Authenticatable
 
     public function info_user()
     {
-        return $this->belongsTo(Info_user::class);
+        return $this->belongsTo(InfoUser::class);
     }
 
 

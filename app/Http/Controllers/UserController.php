@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OAuthRequest;
 use App\Http\Requests\UpdateUserInfoRequest;
-use App\Models\Info_user;
+use App\Models\InfoUser;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -82,7 +82,7 @@ class UserController extends Controller
         $validatedData = $request->validated();
 
         $user = User::findOrFail($id);
-        $userInfo = Info_user::where('id', $user->info_user_id)->get();
+        $userInfo = InfoUser::where('id', $user->info_user_id)->get();
 
         if ($request->tel !== $userInfo[0]->telephone) {
             $this->validate(
