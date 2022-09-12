@@ -28,9 +28,7 @@ class InfoUserSeeder extends Seeder
         $userClientInfo->code_postal = 'A1B-2C3';
         $userClientInfo->ville = 'Sherbrooke';
         
-        $userClientInfo->save();
-
-
+ 
         $adminInfo = new InfoUser();
 
         $adminInfo->id = 2;
@@ -42,6 +40,36 @@ class InfoUserSeeder extends Seeder
         $adminInfo->code_postal = 'A1B-2C3';
         $adminInfo->ville = 'Sherbrooke';
         
+   
+
+        $userInfosBlocked = new InfoUser();
+
+        $userInfosBlocked->id = 3;
+        $userInfosBlocked->prenom = 'Blocked';
+        $userInfosBlocked->nom = 'Blocked';
+        $userInfosBlocked->telephone = '819-992-2119';
+        $userInfosBlocked->rue = 'Du Cégep';
+        $userInfosBlocked->no_porte = '475';
+        $userInfosBlocked->code_postal = 'A1B-2C3';
+        $userInfosBlocked->ville = 'Sherbrooke';
+        
+  
+
+        $userInfosDeleted = new InfoUser();
+
+        $userInfosDeleted->id = 4;
+        $userInfosDeleted->prenom = 'Deleted';
+        $userInfosDeleted->nom = 'Deleted';
+        $userInfosDeleted->telephone = '819-992-2119';
+        $userInfosDeleted->rue = 'Du Cégep';
+        $userInfosDeleted->no_porte = '475';
+        $userInfosDeleted->code_postal = 'A1B-2C3';
+        $userInfosDeleted->ville = 'Sherbrooke';
+        
+
+        $userClientInfo->save();
+        $userInfosBlocked->save();
         $adminInfo->save();
+        $userInfosDeleted->save();
     }
 }
