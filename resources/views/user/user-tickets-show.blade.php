@@ -21,7 +21,7 @@
         @endif
 
 
-        
+
 
         <div class="container mw-900px">
 
@@ -125,7 +125,7 @@
                         <hr class="col-4 m-auto">
                     </div>
 
-                    @include('user.template.model-close-ticket')
+                    @include('user.template.modal-close-ticket')
                 @endif
 
 
@@ -134,7 +134,7 @@
                 @if ($state == $ticket_opened && $ticketMessages !== null)
                     <h2 class="text-center">Aucune réponse pour ce Ticket</h2>
                     <h3 class="text-center fs-4">Nous répondons normalement dans un délais de 24-48h maximum</h3>
-                    @include('user.template.model-close-ticket')
+                    @include('user.template.modal-close-ticket')
                 @elseif($state == $ticket_expired)
                     <h2 class="text-center">Ce Ticket est expiré</h2>
                     <h3 class="text-center fs-4">Vous devez envoyer un nouveau Ticket.</h3>
@@ -156,7 +156,7 @@
 
                 @if (isset($ticketMessages[0]) &&
                     !($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
-                    @include('user.template.model-close-ticket')
+                    @include('user.template.modal-close-ticket')
                 @endif
             @endif
         </div>

@@ -30,7 +30,9 @@ class GoogleController extends Controller
 
     public function redirect()
     {
-        $googleUserInfo = Socialite::driver('google')->stateless()->user();
+
+        // STATELESS ? TO BE ADDED IF PROBLEMS
+        $googleUserInfo = Socialite::driver('google')->user();
         $roles = new Role;
         $user = User::firstOrCreate(
             [

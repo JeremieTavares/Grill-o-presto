@@ -40,8 +40,9 @@ Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT
-Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware('auth')->name('user.edit.info');
-Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware('auth')->name('user.update.info');
+Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'prevent-back-history'])->name('user.edit.info');
+Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth', 'prevent-back-history'])->name('user.update.info');
+Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth', 'prevent-back-history'])->name('user.account.destroy');
 // ==========================================================================================================================================================
 
 
@@ -53,14 +54,14 @@ Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->mi
 Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
 Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->name('user.tickets.store');
 Route::get('user/tickets/show/{id?}', [TicketController::class, 'show'])->middleware('auth')->name('user.tickets.show');
-Route::patch('user/tickets/close/{id?}', [TicketController::class, 'update'])->middleware('auth')->name('user.tickets.patch');
+Route::patch('user/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth', 'prevent-back-history'])->name('user.tickets.patch');
 // ==========================================================================================================================================================
 
 
 
 // ==========================================================================================================================================================
 // MESSAGES / SINGLE ACTION CONTROLLER (INVOKE)
-Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware('auth')->name('user.tickets.message.submit');
+Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth', 'prevent-back-history'])->name('user.tickets.message.submit');
 
 
 

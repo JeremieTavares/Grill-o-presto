@@ -69,7 +69,7 @@
                     <input type="text" name="zip_code" id="zip_code"
                         class="form-control @error('zip-code') is-invalid @enderror" value="{{ old('zip_code') }}" required
                         autocomplete="zip-code" autofocus>
-                    @error('zip-code')
+                    @error('zip_code')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

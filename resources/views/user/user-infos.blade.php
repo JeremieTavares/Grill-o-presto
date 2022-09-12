@@ -160,9 +160,9 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">S'enregistrer</button>
+                <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">Enregistrer</button>
             </form>
-
+                @include('user.template.modal-user-destroy')
         </div>
     </main>
 @endsection

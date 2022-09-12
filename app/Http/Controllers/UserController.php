@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\OAuthRequest;
-use App\Http\Requests\UpdateUserInfoRequest;
 use App\Models\InfoUser;
+use Illuminate\Http\Request;
+use App\Http\Requests\OAuthRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
+use App\Http\Requests\UpdateUserInfoRequest;
 
 class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -121,8 +122,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+
+        // Excesive checking making sure someone is not trynna make so sketchy shit
+        if (((int)Auth::user()->id === (int) $id) &&
+            ((int)$request->active_logged_user === (int)Auth::user()->id) &&
+            ((int)$request->active_logged_user === (int) $id)
+        ) {
+            $user = User::where('id', Auth::user()->id)->get();
+            $user[0]->soft_deleted = date('Y-m-d h:i:s');
+            $user[0]->save();
+            Auth::logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect('/');
+        }
     }
 }
