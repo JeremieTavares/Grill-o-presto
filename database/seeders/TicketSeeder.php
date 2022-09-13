@@ -50,5 +50,14 @@ class TicketSeeder extends Seeder
             'description' => "Salut! lorsque je paye avec VISA ca me dit que ce marchand ne prends pas en charge cette methode de paiement. Pourquoi?",
             'user_id' => 1
         ]);
+
+        Ticket::create([
+            'ticket_number' => '123456',
+            'order_number' => '654321',
+            'ticket_type_id' => 1,
+            'ticket_status_id' => 1,
+            'description' => "Le pate chinois que j'ai recu etait trop bon... je veux un remboursement",
+            'user_id' => 1
+        ]);
     }
 }

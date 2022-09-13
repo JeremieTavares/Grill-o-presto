@@ -22,7 +22,7 @@
                             class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required
                             autocomplete="email" autofocus>
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="d-block invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -34,7 +34,7 @@
                             class="form-control @error('email') is-invalid @enderror" required
                             autocomplete="current-password" />
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="d-block invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -44,7 +44,7 @@
 
 
                 @if (Route::has('password.request'))
-                    <a class="btn btn-link my-3 p-0" href="{{ route('password.request') }}">
+                    <a class="btn btn-link my-3 p-0 text-decoration-none" href="{{ route('password.request') }}">
                         {{ __('J\'ai oublié mon mot de passe ?') }}
                     </a>
                 @endif

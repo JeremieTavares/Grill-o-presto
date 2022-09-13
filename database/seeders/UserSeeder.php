@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         $userClient = new User();
         
         $userClient->id = 1;
-        $userClient->info_user_id = 3;
+        $userClient->info_user_id = 1;
         $userClient->email = 'client@hotmail.com';
         $userClient->password = Hash::make('clientclient');
         $userClient->role_id = 1;
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         $userAdmin = new User();
         
         $userAdmin->id = 2;
-        $userAdmin->info_user_id = 4;
+        $userAdmin->info_user_id = 2;
         $userAdmin->email = 'admin@hotmail.com';
         $userAdmin->password = Hash::make('adminadmin');
         $userAdmin->role_id = 2;
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
         $userBlocked = new User();
         
         $userBlocked->id = 3;
-        $userBlocked->info_user_id = 2;
+        $userBlocked->info_user_id = 3;
         $userBlocked->email = 'blocked@blocked.com';
         $userBlocked->blocked_at = '2022-09-11 20:01:21';
         $userBlocked->password = Hash::make('blockedblocked');
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
         $userDeleted = new User();
         
         $userDeleted->id = 4;
-        $userDeleted->info_user_id = 1;
+        $userDeleted->info_user_id = 4;
         $userDeleted->email = 'deleted@deleted.com';
         $userDeleted->soft_deleted = '2022-09-11 20:01:21';
         $userDeleted->password = Hash::make('deleteddeleted');
