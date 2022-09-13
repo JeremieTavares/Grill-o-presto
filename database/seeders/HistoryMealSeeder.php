@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Allergen;
 use Faker\Factory;
 use App\Models\HistoryMeal;
 use Illuminate\Database\Seeder;
@@ -50,5 +51,13 @@ class HistoryMealSeeder extends Seeder
                 'image_path' => $faker->sentence()
             ]);
         }
+
+
+
+        foreach (HistoryMeal::all() as $meal) {
+            $allergen = Allergen::inRandomOrder()->take(rand(1,5))->pluck('id');
+            $meal->allergens()->attach($allergen);
+        }
+
     }
 }

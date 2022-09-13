@@ -31,11 +31,13 @@ class MenuController extends Controller
         return view('public.menu', ['meals' => $meals, 'favMeals' => $favMeals, 'menu' => $menu]);
     }
 
-    public function single($meal_id) {
-        $meal = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->find($meal_id);
+    public function single($meal_id, $addCart = false) {
+        $meal = HistoryMeal::with('menu.menu_type')->with('allergens')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->find($meal_id);
 
         $meal->ingredients = json_decode($meal->ingredients);
+        $meal->allergens = json_decode($meal->allergens);
 
-        return view('./public/singleMeal', ['meal' => $meal]);
+
+        return view('./public/singleMeal', ['meal' => $meal, 'addCart' => $addCart]);
     }
 }

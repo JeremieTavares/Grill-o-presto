@@ -1,0 +1,23 @@
+.singleMeal {
+    width: 100%;
+    .topSection {
+        background-color: $pink;
+    }
+    .mealSection {
+        padding: 2rem 20%;
+    }
+
+    .allergenContainer {
+        display: flex;
+        gap: 1rem;
+        .allergenItem {
+            list-style: none;
+            
+            i {
+                
+                font-size: 3rem;
+            }
+        }
+    }
+
+}

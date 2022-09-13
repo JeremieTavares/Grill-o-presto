@@ -27,7 +27,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
-Route::get('/repas/{repas}', [MenuController::class, 'single'])->name('repas');
+Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('repas');
 
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');

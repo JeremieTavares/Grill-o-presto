@@ -32,11 +32,13 @@
                 <h2>Nos Favoris de la semaine</h2>
                 <div class="card_container">
                     @foreach ($favMeals as $meal)
+                    <a href="{{route('repas', ['repas' => $meal->id])}}">
                         <div class="meal_card">
                             <img src="{{ $meal->image_path }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
+                    </a>
                     @endforeach
                 </div>
 
@@ -47,11 +49,13 @@
                 <h2>Not plats réguliers</h2>
                 <div class="card_container">
                     @foreach ($meals['classic'] as $meal)
+                    <a href="{{route('repas', ['repas' => $meal->id])}}">
                         <div class="meal_card">
                             <img src="{{ $meal->image_path }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
+                    </a>
                     @endforeach
                 </div>
                 <hr>
@@ -61,11 +65,13 @@
                 <h2>Not plats Végétariens</h2>
                 <div class="card_container">
                     @foreach ($meals['vegan'] as $meal)
+                    <a href="{{route('repas', ['repas' => $meal->id])}}">
                         <div class="meal_card">
                             <img src="{{ $meal->image_path }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
+                    </a>
                     @endforeach
                 </div>
                 <hr>
@@ -75,11 +81,13 @@
                 <h2>Not plats sans-gluten</h2>
                 <div class="card_container">
                     @foreach ($meals['gluten_free'] as $meal)
+                    <a href="{{route('repas', ['repas' => $meal->id])}}">
                         <div class="meal_card">
                             <img src="{{ $meal->image_path }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
+                    </a>
                     @endforeach
                 </div>
             @endif
