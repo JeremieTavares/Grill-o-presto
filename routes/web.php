@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -22,12 +23,19 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-
 Auth::routes();
-// Route::get('/', [HomeController::class, 'index'])->name('accueil');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 
+
+Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
+Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
+
+
+Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
+
+
+
+Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
 
 Route::controller(GoogleController::class)->name('google.')->group(function () {
     Route::get('/auth/google', 'auth')->name('auth');
@@ -46,3 +54,5 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
+
+

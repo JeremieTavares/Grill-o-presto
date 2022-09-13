@@ -35,7 +35,7 @@ class HistoryMealSeeder extends Seeder
                 'gluten_free' => $faker->boolean(),
                 'spicy' => $faker->randomNumber(),
                 'menu_id' => rand(1, 3),
-                'image_path' => $faker->sentence()
+                'image_path' => "./image/MEAL.jpg"
             ]);
         }
 

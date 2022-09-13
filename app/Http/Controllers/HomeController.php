@@ -10,17 +10,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
 
 
 
-        $meals = HistoryMeal::where('is_on_home_page', 1)->
-                              with('menu.menu_type')->
-                              whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->
-                              take(4)->
-                              get();
-    
+        $meals = HistoryMeal::where('is_on_home_page', 1)->with('menu.menu_type')->whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->take(4)->get();
+
+
         return view('./public/home', ['meals' => $meals]);
     }
     // /**
@@ -38,5 +36,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function platSelectionne()
+    {
+        /*  $plats = Repas::where('selectionne', true)->get();
 
+      return view('public.plat', ['plat sélectionné' => $plats]); */
+        return view('public.plat');
+    }
+
+    public function indexFaq()
+    {
+        return view('public.faq');
+    }
 }

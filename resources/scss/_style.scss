@@ -6,6 +6,11 @@ $pink: #FFD1D1;
     box-sizing: border-box;
 }
 
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+}
+
 #btn-login, #submit_oAuth_register{
     max-width: 15rem !important;
 }
@@ -27,8 +32,6 @@ $pink: #FFD1D1;
 
 h2 {
     font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
 }
 
 .h2_register {

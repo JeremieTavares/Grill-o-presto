@@ -44,7 +44,7 @@ class GithubController extends Controller
 
 
         if($user->info_user_id > 0)
-            return redirect()->route('accueil');
+            return redirect()->route('home');
         else
             return redirect()->route('github.finish.registeration', ['user' => $user]);
 
