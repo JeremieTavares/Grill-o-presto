@@ -28,6 +28,7 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('repas');
+Route::get('/panier/{delete?}', [MenuController::class, 'cart'])->name('cart');
 
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -51,7 +52,6 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
- 
-Route::get('/panier', [MainController::class, 'panier'])->name('commande');
+
 
 

@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
+   
+
     public function index($menu = 'all')
     {
+
         $meals = [];
 
         if($menu == 'all' || $menu == 'classic')
@@ -37,7 +40,31 @@ class MenuController extends Controller
         $meal->ingredients = json_decode($meal->ingredients);
         $meal->allergens = json_decode($meal->allergens);
 
+        $this->removeMenuSession();
 
         return view('./public/singleMeal', ['meal' => $meal, 'addCart' => $addCart]);
     }
+
+    public function cart($delete = null) {
+        if($delete) {
+            
+            $key = array_search($delete, session('cart'));
+            session()->forget('cart.'. $key);
+        }
+            
+        $meals = HistoryMeal::find(session('cart'));
+        
+        $this->removeMenuSession();
+
+        return view('./public/cart', ['meals' => $meals]);
+    }
+
+    protected function removeMenuSession() {
+        if(count(session('cart')) == 0) {
+            session()->forget('menu');
+            
+        }
+    }
+
+    
 }
