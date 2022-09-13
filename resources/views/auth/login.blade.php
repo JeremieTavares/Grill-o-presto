@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="password" class="form-label ">Mot de passe</label>
+                        <label for="password" class="form-label">Mot de passe</label>
                         <input type="password" name="password" id="password"
                             class="form-control @error('email') is-invalid @enderror" required
                             autocomplete="current-password" />
