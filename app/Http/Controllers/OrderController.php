@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,7 +16,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $authUserId = (int) Auth::user()->id;
+
+        $allOrdersForLoggedUser = (object) Order::where('user_id', $authUserId)->get();
+
+        dd($allOrdersForLoggedUser[0]);
+        // return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);
     }
 
     /**

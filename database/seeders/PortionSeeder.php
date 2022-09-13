@@ -15,7 +15,7 @@ class PortionSeeder extends Seeder
      */
     public function run()
     {
-        $portionArray = ['1 Personne', '2 Personnes', '4 personnes'];
+        $portionArray = ['1', '2', '4'];
 
         foreach ($portionArray as $portion) {
             Portion::create([

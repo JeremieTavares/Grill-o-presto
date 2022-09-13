@@ -1,4 +1,5 @@
 php artisan db:seed MenuTypeSeeder
+php artisan db:seed PortionSeeder
 php artisan db:seed MenuSeeder
 php artisan db:seed HistoryMealSeeder
 php artisan db:seed RoleSeeder
@@ -8,3 +9,5 @@ php artisan db:seed TicketStatusSeeder
 php artisan db:seed TicketTypeSeeder 
 php artisan db:seed TicketSeeder
 php artisan db:seed MessageSeeder
+php artisan db:seed OrderStatusSeeder
+php artisan db:seed OrderSeeder

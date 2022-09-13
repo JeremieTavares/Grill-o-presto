@@ -5,6 +5,6 @@
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.tickets.index', Auth::user()->id) }}">Tickets</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="">History</a></li>
+                href="{{ route('user.orders.index', Auth::user()->id) }}">History</a></li>
     </ul>
 </nav>
