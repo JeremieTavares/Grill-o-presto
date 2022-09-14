@@ -28,7 +28,7 @@ class OrderSeeder extends Seeder
             'telephone' => '819-444-4444',
             'email' => 'client@hotmail.com',
             'menu_id' => 1,
-            'prix' => '160',
+            'price' => '160',
             'order_number' => '3243242',
             'is_guest' => false,
             'order_status_id' => '2',

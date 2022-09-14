@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('email');
             $table->foreignIdFor(Menu::class)->constrained();
-            $table->integer('prix');
+            $table->integer('price');
             $table->integer('order_number');
             $table->boolean('is_guest');
             $table->foreignIdFor(OrderStatus::class)->constrained();

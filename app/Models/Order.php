@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -28,4 +29,10 @@ class Order extends Model
         'meals'
     ];
     use HasFactory;
+
+
+    public function order_status()
+    {
+        return $this->belongsTo(OrderStatus::class);
+    }
 }

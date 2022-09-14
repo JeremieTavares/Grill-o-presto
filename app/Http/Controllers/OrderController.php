@@ -20,8 +20,19 @@ class OrderController extends Controller
 
         $allOrdersForLoggedUser = (object) Order::where('user_id', $authUserId)->get();
 
-        dd($allOrdersForLoggedUser[0]);
-        // return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);
+
+        $orderArray = [];
+        // dd($allOrdersForLoggedUser[0]);
+        if(isset($allOrdersForLoggedUser[0])){       
+        for ($i = 0; $i < count($allOrdersForLoggedUser); $i++) {
+            $allOrdersForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allOrdersForLoggedUser[$i]->created_at));
+            array_push($orderArray,  $allOrdersForLoggedUser[$i]);
+        }
+    }
+
+    // dd($orderArray);
+        // dd($allOrdersForLoggedUser[0]);
+        return (object) view('user.user-orders', ['ordersArray' => $orderArray]);
     }
 
     /**
