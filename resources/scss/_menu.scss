@@ -16,7 +16,6 @@
 
 .menu {
 
-    
 
     .blocHeader {
         
@@ -33,6 +32,7 @@
         max-width: 100%;
 
         ul {
+            padding-left: 0;
             height: 3rem;
 
             .nav_selected {

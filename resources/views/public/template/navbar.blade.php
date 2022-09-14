@@ -18,14 +18,14 @@
                             aria-current="page" href="#">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white header_nav_item" href="#">Menu</a>
+                        <a class="nav-link text-white header_nav_item" href="{{route('menu')}}">Menu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white header_nav_item" href="#">Support</a>
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
-                    <a href="" class="text-secondary"><i
+                    <a href="{{route('cart')}}" class="text-secondary"><i
                             class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart"></i></a>
                             <?php if(Auth::user()){ ?>
                     <a href="" class="text-secondary"><i

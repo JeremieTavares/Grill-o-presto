@@ -1,7 +1,7 @@
 @extends('public.template.base')
 
 @section('content')
-    <menu class="singleMeal">
+    <main class="singleMeal">
         <section class="topSection p-5">
 
             
@@ -32,7 +32,8 @@
                 
                 ?>
             @endif
-            <img class="w-100" src="{{ $meal->image_path }}" alt="image">
+            <img class="w-100 mb-5" src="{{ $meal->image_path }}" alt="image">
+            <hr />
             <p><span class="fw-bold">Menu :</span> {{ $meal->menu->menu_type->type }}</p>
             <p><span class="fw-bold">Ingrédients :</span> </p>
             <ul>
@@ -71,8 +72,8 @@
             @elseif (session()->missing('menu') || session('menu') == $meal->menu->menu_type->type)
                 <a class="btn btn-primary mt-5" href="{{ route('repas', ['repas' => $meal->id, 'addCart' => true]) }}">Ajouter au panier</a>
             @endif
-            <a class="btn btn-primary mt-5" href="{{route('menu')}}">Retour au menu</a>
+            <a class="btn btn-secondary mt-5" href="{{route('menu')}}">Retour au menu</a>
 
         </section>
-    </menu>
+    </main>
 @endsection

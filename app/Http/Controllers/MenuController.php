@@ -60,7 +60,7 @@ class MenuController extends Controller
     }
 
     protected function removeMenuSession() {
-        if(count(session('cart')) == 0) {
+        if(session()->exists('cart') && count(session('cart')) == 0) {
             session()->forget('menu');
             
         }
