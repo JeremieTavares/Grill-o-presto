@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meal;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,19 +19,22 @@ class OrderController extends Controller
     {
         $authUserId = (int) Auth::user()->id;
 
-        $allOrdersForLoggedUser = (object) Order::where('user_id', $authUserId)->get();
-
-
+        $allOrdersForLoggedUser = (object) Order::with('portion')->where('user_id', $authUserId)->get();
+// dd($allOrdersForLoggedUser);
         $orderArray = [];
         // dd($allOrdersForLoggedUser[0]);
         if(isset($allOrdersForLoggedUser[0])){       
         for ($i = 0; $i < count($allOrdersForLoggedUser); $i++) {
             $allOrdersForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allOrdersForLoggedUser[$i]->created_at));
+
+            // dd($allOrdersForLoggedUser[$i]->meals);
+            $mealsArray = json_decode($allOrdersForLoggedUser[$i]->meals, true);
+            $mealsObject =  Meal::createMealFromJson($mealsArray);
+            $allOrdersForLoggedUser[$i]->meals = $mealsObject;
+            
             array_push($orderArray,  $allOrdersForLoggedUser[$i]);
         }
     }
-
-    // dd($orderArray);
         // dd($allOrdersForLoggedUser[0]);
         return (object) view('user.user-orders', ['ordersArray' => $orderArray]);
     }

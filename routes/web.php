@@ -51,8 +51,7 @@ Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT ORDERS
 Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth', 'prevent-back-history'])->name('user.orders.index');
-// Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth', 'prevent-back-history'])->name('user.update.info');
-// Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth', 'prevent-back-history'])->name('user.account.destroy');
+Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->middleware(['auth', 'prevent-back-history'])->name('user.orders.show');
 // ==========================================================================================================================================================
 
 

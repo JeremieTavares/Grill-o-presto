@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\Message;
 use App\Models\TicketType;
@@ -49,10 +50,15 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null)
     {
+
+        $order = Order::where('order_number', $id)->get('order_number');       
+        if((!$order != null) && $order[0]->user_id == Auth::user()->id){
+            $order = $order[0]->order_number;
+        }
         $typeTickets = (object) TicketType::all('id', 'type');
-        return (object) view('user.user-tickets-create', ['ticketTypes' => (object) $typeTickets]);
+        return (object) view('user.user-tickets-create', ['ticketTypes' => (object) $typeTickets, 'orderNumber' => $order]);
     }
 
     /**

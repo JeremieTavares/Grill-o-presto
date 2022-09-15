@@ -37,18 +37,20 @@ class OrderSeeder extends Seeder
                 [
                     "name" => "Pate-Chinois",
                     "ingrediants" => ['Patate', 'Boeuf', 'Mais'],
+                    "description" => "Est-ce que le pâté chinois est santé ? Résultats de recherche d'images pour « pate chinois » Le pâté chinois est un plat relativement équilibré (à première vue) en raison de ses 277 kcal/100 g. Il contient 22,5 de protéines, 31,5 g de glucides, 3,4 g de sucre et 7,2 g de matières grasses. Consommé en grande quantité (200 g par repas), il vous fera prendre 1 kg en à peine une semaine.",
                     "vegetarian" => false,
-                    "gluten_free" => "Pate-Chinois",
-                    "spicy" => "0",
-                    'allergens' => 'Lactose',
+                    "gluten_free" => false,
+                    "spicy" => 0,
+                    'allergens' => ['Oeufs', 'Laitier'],
                     "image_path" => "./none"
                 ], [
                     "name" => "Poulet au beurre",
                     "ingrediants" => ['Poulet', 'Riz', 'Beurre', 'Epices'],
+                    "description" => "Bien des gens affectionnent le poulet au beurre; c’est un véritable régal. Sa sauce tomate crémeuse et légèrement épicée en fait un repas accessible, même pour les palais les plus difficiles. Servi avec du riz moelleux et du pain naan chaud, ce plat est réconfortant à souhait!",
                     "vegetarian" => false,
-                    "gluten_free" => "Pate-Chinois",
-                    "spicy" => "0",
-                    'allergens' => 'Lactose',
+                    "gluten_free" => true,
+                    "spicy" => 0,
+                    'allergens' => ['Gluten', 'Noix'],
                     "image_path" => "./none"
                 ]
             ])

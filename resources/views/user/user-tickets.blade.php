@@ -3,24 +3,27 @@
 @section('content')
 
     @include('user.template.sub-navbar')
-    <main class="flex-wrapper m-auto">
-        <div class="mx-3">
+    <main class="m-auto d-flex flex-column align-items-center">
+        <div class="container mx-sm-3 mx-lg-0 mw-1000px ">
             @if ($ticketsArray != null)
                 <table class="table table-hover table-striped table-tickets">
                     <thead>
-                        <th class="border-0">Ticket</th>
-                        <th class="border-0">Date</th>
-                        <th class="border-0">État</th>
-                        <th class="border-0">Type</th>
-                        <th class="d-sm-none d-md-block border-0">Description</th>
-                        <th class="text-center border-0">Voir</th>
+                        <tr class="ccc">
+                            <th class="border-0 br-tl-10px p-2 p-md-3">Ticket</th>
+                            <th class="border-0 p-2 p-md-3">Date</th>
+                            <th class="border-0 p-2 p-md-3">État</th>
+                            <th class="border-0 p-2 p-md-3">Type</th>
+                            <th class="d-sm-none d-md-block border-0 p-2 p-md-3">Description</th>
+                            <th class="text-center border-0 br-tr-10px p-2 p-md-3">Voir</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 0; ?>
+                        <?php $i = 0;
+                        
+                        ?>
                         @foreach ($ticketsArray as $ticket)
                             <?php $i++; ?>
-                            @if ($i % 2 == 1)
-                            {{-- Regarder par la suite si je met la classe red-row --}}
+                            @if (count($ticketsArray) == 1)
                                 <tr class='border border-1'>
                                 @else
                                 <tr class='border border-1'>
@@ -39,16 +42,16 @@
                 </table>
         </div>
 
-        <hr class="w-25 text-primary my-5">
+        <hr class="w-25 text-primary my-5 m-auto">
 
         <div class="text-center mb-5">
-            <h2>Envoyer un nouveau Ticket</h2>
+            <h2 class="mb-5">Envoyer un nouveau Ticket</h2>
             <a href="{{ route('user.tickets.create', Auth::user()->id) }}"
                 class="btn btn-primary btn-rounded btn-scale-press px-5">Nouveau ticket</a>
         </div>
     @else
         <div class="text-center mb-5">
-            <h2>Envoyer un nouveau Ticket</h2>
+            <h2 class="mb-5">Envoyer un nouveau Ticket</h2>
             <a href="{{ route('user.tickets.create', Auth::user()->id) }}"
                 class="btn btn-primary btn-rounded btn-scale-press px-5">Nouveau ticket</a>
         </div>

@@ -11,7 +11,7 @@
             <?php $user = ''; ?>
         @endif
 
-        <div class="container mw-900px">
+        <div class="mw-1000px">
             @if (Session::has('successResponse'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
@@ -34,97 +34,53 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
             @endif
-            <div class="mx-3">
-                @if (isset($ordersArray[0]))
 
-
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
-
-
-                        <table class="table table-hover table-striped table-tickets">
-                            <thead class="text-center">
-                                <th class="border-0">Commande</th>
-                                <th class="border-0">Date</th>
-                                <th class="border-0">Prix</th>
-                                <th class="border-0">Statut</th>
-                                <th class="text-center border-0">Aide</th>
-                                <th class="text-center border-0">Voir</th>
-                            </thead>
-                        </table>
-
+            @if (isset($ordersArray[0]))
+                <div class="mx-3">
+                    <table class="table table-hover table-striped table-tickets">
+                        <thead class="ccc br-10px">
+                            <tr>
+                            <th class="border-0 br-tl-10px p-2 p-md-3">Commande</th>
+                            <th class="border-0 d-sm-none d-md-block p-md-3"">Date</th>
+                            <th class="border-0 p-md-3"">Prix</th>
+                            <th class="border-0 p-md-3"">Statut</th>
+                            <th class="text-center border-0 p-md-3"">Aide</th>
+                            <th class="text-center border-0 br-tr-10px p-md-3"">Voir</th>
+                            </tr>
+                        </thead>
                         <tbody>
 
                             @foreach ($ordersArray as $order)
-                                <tr class='border border-1'>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                                aria-controls="panelsStayOpen-collapseOne">
-
                                 <tr>
-
-                                    <td class="border-0 p-2 p-md-3 text-center">{{ $order->order_number }}</td>
-                                    <td class="border-0 p-2 p-md-3 text-center">{{ $order['date'] }}</td>
-                                    <td class="border-0 p-2 p-md-3 text-center">{{ $order->price }}</td>
-                                    <td class="border-0 p-2 p-md-3 text-center">{{ $order->order_status->status }}</td>
+                                    <td class="border-0 p-2 p-md-3">{{ $order->order_number }}</td>
+                                    <td class="border-0 p-2 p-md-3 d-sm-none d-md-block">{{ $order['date'] }}
+                                    </td>
+                                    <td class="border-0 p-2 p-md-3 ">{{ $order->price }}</td>
+                                    <td class="border-0 p-2 p-md-3 ">{{ $order->order_status->status }}</td>
                                     <td class="text-center border-0 p-2 p-md-3"><a
-                                            href="{{ route('user.tickets.show', $order->id) }}"><i
+                                            href="{{ route('user.tickets.create', $order->order_number) }}"><i
                                                 class="fa-solid fa-circle-exclamation"></i></a></td>
                                     <td class="text-center border-0 p-2 p-md-3"><a
-                                            href="{{ route('user.tickets.show', $order->id) }}"><i
+                                            href="{{ route('user.orders.show', $order->id) }}"><i
                                                 class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
-
                                 </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <h2>Aucune commandes pour ce compte</h2>
+            @endif
+            <script>
+                const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
+                const btnCloseAlertSuccessSession = document.getElementById('btnAlertSucccessInfoChanged');
 
-                                </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="panelsStayOpen-headingOne">
-                                    <div class="accordion-body">
-                                        <strong>This is the first item's accordion body.</strong> It is shown by default,
-                                        until
-                                        the collapse plugin adds the appropriate classes that we use to style each element.
-                                        These classes control the overall appearance, as well as the showing and hiding via
-                                        CSS
-                                        transitions. You can modify any of this with custom CSS or overriding our default
-                                        variables. It's also worth noting that just about any HTML can go within the
-                                        <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                </div>
-                    </div>
-
-                    </tr>
-                @endforeach
-                </tbody>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-        </div>
-    @else
-        <h2>Aucune commandes pour ce compte</h2>
-        @endif
-        <script>
-            const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
-            const btnCloseAlertSuccessSession = document.getElementById('btnAlertSucccessInfoChanged');
-
-            if (btnCloseAlertSuccessSession) {
-                btnCloseAlertSuccessSession.addEventListener('click', () => {
-                    divAlertSuccessSession.remove();
-                })
-            }
-        </script>
-
+                if (btnCloseAlertSuccessSession) {
+                    btnCloseAlertSuccessSession.addEventListener('click', () => {
+                        divAlertSuccessSession.remove();
+                    })
+                }
+            </script>
         </div>
     </main>
 

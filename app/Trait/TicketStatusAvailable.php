@@ -20,22 +20,22 @@ trait TicketStatusAvailable
 
     public function get_opened_status()
     {
-        return $this->TICKET_status_OUVERT = $this->getAllTicketstatus('Ouvert');
+        return $this->TICKET_STATUS_OUVERT = $this->getAllTicketstatus('Ouvert');
     }
 
     public function get_closed_status()
     {
-        return $this->TICKET_status_CLOSE = $this->getAllTicketstatus('Fermé');
+        return $this->TICKET_STATUS_CLOSE = $this->getAllTicketstatus('Fermé');
     }
 
     public function get_expired_status()
     {
-        return $this->TICKET_status_EXPIRED = $this->getAllTicketstatus('Expiré');
+        return $this->TICKET_STATUS_EXPIRED = $this->getAllTicketstatus('Expiré');
     }
 
     public function get_not_resolved_status()
     {
-        return $this->TICKET_status_NOT_RESOLVED = $this->getAllTicketstatus('Non-résolu');
+        return $this->TICKET_STATUS_NOT_RESOLVED = $this->getAllTicketstatus('Non-résolu');
     }
 
 

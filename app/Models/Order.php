@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Portion;
 use App\Models\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,5 +35,10 @@ class Order extends Model
     public function order_status()
     {
         return $this->belongsTo(OrderStatus::class);
+    }
+
+    public function portion()
+    {
+        return $this->belongsTo(Portion::class);
     }
 }

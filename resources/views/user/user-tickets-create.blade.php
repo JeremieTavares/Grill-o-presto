@@ -6,7 +6,6 @@
         @include('user.template.sub-navbar')
     @endif
     <main class="m-auto">
-
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             $userInfo = (object) App\Models\User::where('id', (int) $user)->get();
@@ -53,35 +52,36 @@
 
                 <div class="my-4">
                     <label for="order_number" class="form-label">Numéro de commande s'il y a lieu</label>
-                    <input type="text" name="order_number" id="order_number" value="{{ old('order_number') }}"
+                    <input type="text" name="order_number" id="order_number"
+                        @if (isset($orderNumber[0])) value="{{ $orderNumber[0]->order_number }}" @else value="{{ old('order_number') }}" @endif
                         class="form-control @error('order_number') is-invalid @enderror" placeholder="# de commande">
                     @error('order_number')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-4">
                     <label for="emailTicket" class="form-label">Courriel de contact</label>
                     <input type="email" name="email" id="emailTicket"
-                        @if (isset($userInfo[0]->email) && $userInfo[0]->email != null) value="{{ (string) $userInfo[0]->email }} @else value="{{ old('email') }} @endif " class="form-control @error('email') is-invalid @enderror" placeholder="Courriel">
-                                    @error('email')
-        <div class="text-danger">{{ $message }}</div>
-    @enderror
-                                </div>
+                        @if (isset($userInfo[0]->email) && $userInfo[0]->email != null) value="{{ (string) $userInfo[0]->email }}" @else value="{{ old('email') }}" @endif
+                        class="form-control @error('email') is-invalid @enderror" placeholder="Courriel">
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                                <div>
-                                    <label for="textareaNewTicket">Explication du problème</label>
-                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" maxlength="400"
-                                        placeholder="Expliquer nous le problème, avec un maximum d'informations." id="textareaNewTicket">{{ old('description') }}</textarea>
-                                    @error('description')
-        <div class="text-danger">{{ $message }}</div>
-    @enderror
-                                </div>
+                <div>
+                    <label for="textareaNewTicket">Explication du problème</label>
+                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" maxlength="400"
+                        placeholder="Expliquer nous le problème, avec un maximum d'informations." id="textareaNewTicket">{{ old('description') }}</textarea>
+                    @error('description')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-success btn-rounded btn-scale-press w-50 my-5">Envoyer</button>
-                                </div>
-                            </form>
-                        </div>
-                    </main>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success btn-rounded btn-scale-press w-50 my-5">Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </main>
 @endsection

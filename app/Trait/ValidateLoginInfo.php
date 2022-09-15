@@ -136,6 +136,7 @@ trait ValidateLoginInfo
 
         $userInfos = User::where('email', $request->email)->get();
 
+
         if ($userInfos[0]->soft_deleted > 1) {
             $this->customLogout($request);
             return back()->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $userInfos[0]->soft_deleted]);
