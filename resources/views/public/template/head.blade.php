@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 
     @vite(['resources/scss/import.scss', 'resources/js/app.js'])
-
+    <script defer src="{{ asset('js/main.js') }}" ></script>
 </head>
 
 <body class="">

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Role;
 use App\Models\User;
-use App\Models\Info_user;
+use App\Models\InfoUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use App\Trait\RolesAvailable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -25,6 +27,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    use RolesAvailable;
 
     /**
      * Where to redirect users after registration.
@@ -40,7 +43,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest');
+        $this->middleware('guest');
         // **** A REMETTRE ***
         // CECI EMPECHAIT DALLER SUR REGISTER SI ON EST LOG
     }
@@ -60,10 +63,10 @@ class RegisterController extends Controller
             'email_confirmation' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'min:8'],
-            'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\Info_user,telephone'],
-            'zip-code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
+            'tel' => ['regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/', 'required', 'unique:App\Models\InfoUser,telephone'],
+            'zip_code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
             'noPorte' => ['integer', 'gt:0', 'required'],
-            'appartement' => ['integer', 'gt:0'],
+            'appartement' => ['integer', 'nullable', 'gt:0'],
             'ville' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
             'rue' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
             'role_id' => ['integer', 'gt:0', 'exists:App\Models\Role,role']
@@ -88,7 +91,7 @@ class RegisterController extends Controller
             'tel.regex' => 'Le format doit etre (888-888-8888)',
             'tel.required' => 'Le numéro de téléphone est requis',
             'tel.unique' => 'Ce numéro est invalide ou existe déja',
-            'zip-code.regex' => 'Format (A1B-2C3) ou (A1B 2C3) seulement',
+            'zip_code.regex' => 'Format (A1B-2C3) ou (A1B 2C3) seulement',
             'noPorte.integer' => 'Seuelement les chiffres sont accepté',
             'noPorte.gt' => 'Valeur de 0 ou supérieur seulement',
             'noPorte.required' => 'Votre no Porte est requis',
@@ -112,14 +115,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $roles = new Role;
 
-        $infoUser = Info_user::create([
+        $infoUser = InfoUser::create([
             'prenom' => $data['prenom'],
             'nom' => $data['nom'],
             'telephone' => $data['tel'],
             'rue' => $data['rue'],
             'no_porte' => $data['noPorte'],
-            'code_postal' => $data['zip-code'],
+            'code_postal' => $data['zip_code'],
             'ville' => $data['ville']
         ]);
 
@@ -127,8 +131,7 @@ class RegisterController extends Controller
             'info_user_id' => $infoUser->id,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => empty($data['role']) ? User::USER_ROLE_CLIENT : $data['role'],
-
+            'role_id' => empty($data['role']) ?  $roles->get_role_client() : $data['role'],
         ]);
 
         return $user;

@@ -5,14 +5,16 @@ namespace App\Trait;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Trait\UserStateManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth as AuthFoundation;
 
-trait ValidateOAuthInfo
+trait ValidateLoginInfo
 {
-    use AuthFoundation\RedirectsUsers, AuthFoundation\ThrottlesLogins;
+    use AuthFoundation\RedirectsUsers, AuthFoundation\ThrottlesLogins, UserStateManager;
 
     /**
      * Show the application's login form.
@@ -88,6 +90,7 @@ trait ValidateOAuthInfo
      */
     protected function attemptLogin(Request $request)
     {
+
         return $this->guard()->attempt(
             $this->credentials($request),
             $request->boolean('remember')
@@ -115,33 +118,42 @@ trait ValidateOAuthInfo
         return $request->only($this->username(), 'password');
     }
 
-/**
- * Send the response after the user was authenticated.
- *
- * @param  \Illuminate\Http\Request  $request
- * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
- */
-protected function sendLoginResponse(Request $request)
-{
-    $request->session()->regenerate();
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendLoginResponse(Request $request)
+    {
 
-    $this->clearLoginAttempts($request);
+        $request->session()->regenerate();
 
-    if ($response = $this->authenticated($request, $this->guard()->user())) {
-        return $response;
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+        
+        $userInfos = User::getLoggedUserInfo()->get();
+
+        $response = $this->checkIfUserStateIsValid($userInfos[0], $request, "TraitValidateLoginInfo");
+        if (isset($response['blockedTrue'])) {
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a suspendu le " . $userInfos[0]->blocked_at]);
+        }
+        if (isset($response['deletedTrue'])) {
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $userInfos[0]->soft_deleted]);
+        }
+
+        if ($request->wantsJson()) {
+            return new JsonResponse([], 204);
+        } elseif ($userInfos[0]->info_user_id <= 0) {
+            return redirect()->route('finish.registeration', ['user' => $userInfos[0]->id]);
+        } else {
+            return redirect()->intended($this->redirectPath());
+        }
     }
-
-    $userinfos = User::where('email', $request['email'])->get();
-    if($request->wantsJson()){
-      return new JsonResponse([], 204);
-    } elseif($userinfos[0]->info_user_id <= 0){
-        return redirect()->route('finish.registeration', ['user' => $userinfos[0]->id]);
-    } else {
-      return redirect()->intended($this->redirectPath());
-    }
-
-}
-
 
     /**
      * The user has been authenticated.
@@ -155,20 +167,20 @@ protected function sendLoginResponse(Request $request)
         //
     }
 
-/**
- * Get the failed login response instance.
- *
- * @param  \Illuminate\Http\Request  $request
- * @return \Symfony\Component\HttpFoundation\Response
- *
- * @throws \Illuminate\Validation\ValidationException
- */
-protected function sendFailedLoginResponse(Request $request)
-{
-    throw ValidationException::withMessages([
-        $this->username() => [trans('auth.noMatch')],
-    ]);
-}
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.noMatch')],
+        ]);
+    }
 
     /**
      * Get the login username to be used by the controller.

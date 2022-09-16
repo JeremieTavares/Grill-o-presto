@@ -14,32 +14,32 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-5 align-items-center ul_nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white text-sm-secondary text-lg-white header_nav_item text-align-center fs-5"
+                        <a class="nav-link text-white text-sm-secondary text-lg-white header_nav_item text-align-center fs-5 btn-scale-press"
                             aria-current="page" href="/">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white header_nav_item fs-5" href="#">Menu</a>
+                        <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="#">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white header_nav_item fs-5" href="{{route('faq')}}">Support</a>
+                        <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="{{route('faq')}}">Support</a>
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
                     <a href="" class="text-secondary"><i
-                            class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart"></i></a>
+                            class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
                     <?php if(Auth::user()){ ?>
-                    <a href="" class="text-secondary"><i
-                            class="fa-solid fa-user fs-5 me-3 color-primary nav_cart"></i></a>
+                    <a href="{{ route('user.edit.info', Auth::user()->id) }}" class="text-secondary"><i
+                            class="fa-solid fa-user fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
                     <?php } ?>
                     <?php if(Auth::user()){ ?>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button class="btn btn-secondary">Deconnexion</button>
+                        <button class="btn btn-secondary btn-scale-press">Deconnexion</button>
                     </form>
                     <?php } else {
                                     ?>
-                    <a class="btn pink fs-4" href="{{ route('login') }}">Connexion</a>
-                    <a class="btn btn-secondary fs-4" href="{{ route('register') }}">Inscription <i
+                    <a class="btn pink fs-4 btn-scale-press" href="{{ route('login') }}">Connexion</a>
+                    <a class="btn btn-secondary fs-4 btn-scale-press" href="{{ route('register') }}">Inscription <i
                             class="fa fa-arrow-right"></i></a>
                     <?php
                                 }?>
