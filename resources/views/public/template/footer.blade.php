@@ -16,7 +16,7 @@
 
 
                     <div class="d-flex justify-content-center position-relative">
-                        <div class="form-outline mb-4 col-lg-7 col-12">
+                        <div class="form-outline mb-4 col-sm-12 col-md-8">
                             <input type="email" id="email_footer" class="form-control rounded-0"
                                 placeholder="Courriel" />
                         </div>
