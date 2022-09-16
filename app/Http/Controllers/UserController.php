@@ -134,9 +134,8 @@ class UserController extends Controller
         ) {
             $user[0]->soft_deleted = date('Y-m-d h:i:s');
             $user[0]->save();
-
-            $this->customLogout($request);
-
+            
+            $this->checkIfUserStateIsValid($user[0], $request);
             return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $user[0]->soft_deleted]);
         }
     }
