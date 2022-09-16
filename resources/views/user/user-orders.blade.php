@@ -40,12 +40,12 @@
                     <table class="table table-hover table-striped table-tickets">
                         <thead class="ccc br-10px">
                             <tr>
-                            <th class="border-0 br-tl-10px p-2 p-md-3">Commande</th>
-                            <th class="border-0 d-sm-none d-md-block p-md-3"">Date</th>
-                            <th class="border-0 p-md-3"">Prix</th>
-                            <th class="border-0 p-md-3"">Statut</th>
-                            <th class="text-center border-0 p-md-3"">Aide</th>
-                            <th class="text-center border-0 br-tr-10px p-md-3"">Voir</th>
+                                <th class="border-0 br-tl-10px p-2 p-md-3">Commande</th>
+                                <th class="border-0 d-sm-none d-md-block p-md-3"">Date</th>
+                                <th class="border-0 p-md-3"">Prix</th>
+                                <th class="border-0 p-md-3"">Statut</th>
+                                <th class="text-center border-0 p-md-3"">Aide</th>
+                                <th class="text-center border-0 br-tr-10px p-md-3"">Voir</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,8 +68,23 @@
                         </tbody>
                     </table>
                 </div>
+
+                <hr class="w-25 text-primary my-5 m-auto">
+
+                <div class="text-center mb-5">
+                    <h2 class="mb-5">Commander de nouveaux repas</h2>
+                    <a href="{{ route('menu') }}"
+                        class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
+                </div>
             @else
                 <h2 class="text-center">Aucune commandes pour ce compte</h2>
+                <hr class="w-25 text-primary my-5 m-auto">
+
+                <div class="text-center mb-5">
+                    <h2 class="mb-5">Commander de nouveaux repas</h2>
+                    <a href="{{ route('menu') }}"
+                        class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
+                </div>
             @endif
             <script>
                 const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');

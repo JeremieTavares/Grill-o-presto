@@ -1,4 +1,4 @@
-<div class="text-center my-5">
+<div class="text-center my-5 d-flex justify-content-start">
     <button type="button" id="btnCloseTicket" class="btn-scale btn btn-link text-primary p-0 pb-4 text-decoration-none"
         data-bs-toggle="modal" data-bs-target="#closeTicketModal">Supprimer mon compte</button>
 </div>

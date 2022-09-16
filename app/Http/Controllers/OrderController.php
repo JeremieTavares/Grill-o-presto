@@ -67,7 +67,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        // JE VAIS FAIRE CETTE VIEW LORSQUE ALL0o AURA FINI DE MERGE
+        return view('user.user-orders-show');
     }
 
     /**
