@@ -137,7 +137,7 @@ class UserController extends Controller
 
             $this->customLogout($request);
 
-            return redirect('/');
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $user[0]->soft_deleted]);
         }
     }
 }
