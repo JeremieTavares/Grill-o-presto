@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(InfoUser::class)->nullable()->constrained()->onDelete('cascade');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at');
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('password_verified_at')->nullable();
             $table->foreignId('role_id')->constrained();
