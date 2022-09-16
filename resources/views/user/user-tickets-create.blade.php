@@ -17,19 +17,12 @@
 
         <div class="container mw-600px">
             @if (Session::has('SuccessTicket'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                <div class="alert alert-success mt-5 d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('SuccessTicket') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
-                <script>
-                    const div = document.getElementById('divAlertSucccessInfoChanged');
-                    const btn = document.getElementById('btnAlertSucccessInfoChanged');
-                    btn.addEventListener('click', () => {
-                        div.remove();
-                    })
-                </script>
             @endif
             <form action="{{ route('user.tickets.store', $user) }}" method="POST">
                 @csrf

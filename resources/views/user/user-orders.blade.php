@@ -86,16 +86,6 @@
                         class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
                 </div>
             @endif
-            <script>
-                const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
-                const btnCloseAlertSuccessSession = document.getElementById('btnAlertSucccessInfoChanged');
-
-                if (btnCloseAlertSuccessSession) {
-                    btnCloseAlertSuccessSession.addEventListener('click', () => {
-                        divAlertSuccessSession.remove();
-                    })
-                }
-            </script>
         </div>
     </main>
 

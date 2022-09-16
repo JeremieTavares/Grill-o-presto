@@ -27,7 +27,7 @@ class TicketRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255'],
             'order_number' => ['required', 'integer', 'gt:0', 'digits_between:1,12'],
             'ticket_type_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\TicketType,id'],
-            'description' => ['required', "regex:/^[A-zÀ-ú .-'@$,#0-9]{50,400}$/"]
+            'description' => ['required', 'regex:/^[A-zÀ-ú \'@$,-.#0-9]{5,400}$/']
         ];
     }
 

@@ -167,20 +167,5 @@
         @if ($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved)
             <div class="my-4 div-useless"></div>
         @endif
-
-
-
-        <script>
-            const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
-            const btnCloseAlertSuccessSession = document.getElementById('btnAlertSucccessInfoChanged');
-
-            if (btnCloseAlertSuccessSession) {
-                btnCloseAlertSuccessSession.addEventListener('click', () => {
-                    divAlertSuccessSession.remove();
-                })
-            }
-        </script>
-
-
     </main>
 @endsection

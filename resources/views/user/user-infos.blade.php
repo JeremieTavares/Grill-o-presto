@@ -18,13 +18,6 @@
                     <button type="button" class="close btn btn-link text-decoration-none" id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
-            <script>
-                const div = document.getElementById('divAlertSucccessInfoChanged');
-                const btn = document.getElementById('btnAlertSucccessInfoChanged');
-                btn.addEventListener('click', () => {
-                    div.remove();
-                })
-            </script>
             <form action="{{ route('user.update.info', $user[0]->id) }}" method="POST">
                 @method('PATCH')
                 @csrf
