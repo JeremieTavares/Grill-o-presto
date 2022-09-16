@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\InfoUser;
 use Illuminate\Http\Request;
+use App\Trait\UserStateManager;
 use App\Http\Requests\OAuthRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,8 @@ use App\Http\Requests\UpdateUserInfoRequest;
 
 class UserController extends Controller
 {
+
+    use UserStateManager;
     /**
      * Display a listing of the resource.
      *
@@ -64,9 +67,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-        $authUserId = (int) Auth::user()->id;
-
-        $userInfo = User::with('infoUser')->where('id', $authUserId)->get();
+        $userInfo = (object) User::GetLoggedUserInfo()->get();
 
         return view('user.user-infos', ['user' => $userInfo]);
     }
@@ -82,8 +83,9 @@ class UserController extends Controller
     {
         $validatedData = $request->validated();
 
-        $user = User::findOrFail($id);
-        $userInfo = InfoUser::where('id', $user->info_user_id)->get();
+        $user = (object) User::GetLoggedUserInfo()->get();
+
+        $userInfo = InfoUser::where('id', (int) $user[0]->info_user_id)->get();
 
         if ($request->tel !== $userInfo[0]->telephone) {
             $this->validate(
@@ -100,8 +102,8 @@ class UserController extends Controller
             );
         }
 
-        $user->email = (string) $request->email;
-        $user->password = (string) $request->password;
+        $user[0]->email = (string) $request->email;
+        $user[0]->password = (string) $request->password;
         $userInfo[0]->prenom = (string) $request->prenom;
         $userInfo[0]->nom = (string) $request->nom;
         $userInfo[0]->rue = (string) $request->rue;
@@ -110,7 +112,7 @@ class UserController extends Controller
         $userInfo[0]->code_postal = (string) $request->zip_code;
         $userInfo[0]->ville = (string) $request->ville;
         $userInfo[0]->telephone = (string) $request->tel;
-        $user->save();
+        $user[0]->save();
         $userInfo[0]->save();
 
         return back()->with('successInfosChanged', 'Vos informations on été changé');
@@ -124,21 +126,16 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-
-
         // Excesive checking making sure someone is not trynna make so sketchy shit
-        if (((int)Auth::user()->id === (int) $id) &&
-            ((int)$request->active_logged_user === (int)Auth::user()->id) &&
+        $user = (object) User::GetLoggedUserInfo()->get();
+        if (((int)$user[0]->id === (int) $id) &&
+            ((int)$request->active_logged_user === (int)$user[0]->id) &&
             ((int)$request->active_logged_user === (int) $id)
         ) {
-            $user = User::where('id', Auth::user()->id)->get();
             $user[0]->soft_deleted = date('Y-m-d h:i:s');
             $user[0]->save();
-            Auth::logout();
 
-            $request->session()->invalidate();
-
-            $request->session()->regenerateToken();
+            $this->customLogout($request);
 
             return redirect('/');
         }

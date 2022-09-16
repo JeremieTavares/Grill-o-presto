@@ -25,9 +25,9 @@ class TicketController extends Controller
      */
     public function index(int $id)
     {
-        $authUserId = (int) Auth::user()->id;
+        $authUserId = (object) User::GetLoggedUserInfo()->get('id');
 
-        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId)->get();
+        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId[0]->id)->get();
 
         $ticketArray = [];
 
@@ -36,7 +36,6 @@ class TicketController extends Controller
             $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);
             array_push($ticketArray,  $allTicketsForLoggedUser[$i]);
         }
-        // dd($ticketArray[0]->id);
         return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);
     }
 
@@ -54,7 +53,7 @@ class TicketController extends Controller
     {
 
         $order = Order::where('order_number', $id)->get('order_number');       
-        if((!$order != null) && $order[0]->user_id == Auth::user()->id){
+        if((!$order != null) && $order[0]->user_id == User::GetLoggedUserInfo()->get('id')){
             $order = $order[0]->order_number;
         }
         $typeTickets = (object) TicketType::all('id', 'type');
@@ -72,20 +71,18 @@ class TicketController extends Controller
         $validatedData = $request->validated();
 
         if ((bool) Auth::check()) {
-            $authUserId = (int) Auth::user()->id;
-            $user = (object) User::where('id', (int) $authUserId)->get('email');
+            $authUserId = (object) User::GetLoggedUserInfo()->get('id');
         }
 
         $ticketNumber = mt_rand(10000, 2147483647);
         $ticketTypeOpen = (object) TicketStatus::where('status', 'Ouvert')->get();
 
-
         $newTicket = Ticket::create([
             'ticket_number' => (int) $ticketNumber,
             'ticket_type_id' => (int) $request->ticket_type_id,
             'ticket_status_id' => (int) $ticketTypeOpen[0]->id,
-            'user_id' => Auth::check() ? (int)$authUserId : NULL,
-            'email' => Auth::check() ? (string) $request->email : NULL,
+            'user_id' => Auth::check() ? (int) $authUserId[0]->id : NULL,
+            'email' => $request->email,
             'description' => $request->description
         ]);
 
@@ -144,8 +141,7 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $loggedUserId = (int) Auth::user()->id;
-        $loggedUser = User::where('id', $loggedUserId)->get('role_id');
+        $authUserId = (object) User::GetLoggedUserInfo()->get();
         $userTemplate = new Role;
 
         $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->get();
@@ -157,10 +153,10 @@ class TicketController extends Controller
 
 
         if (
-            $ticket[0]->user_id ==  $loggedUserId  ||
-            (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_1() ||
-            (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_2() ||
-            (int) $loggedUser[0]->role_id === (int)$userTemplate->get_role_admin_3()
+            $ticket[0]->user_id ==  $authUserId[0]->id ||
+            (int) $authUserId[0]->role_id === (int)$userTemplate->get_role_admin_1() ||
+            (int) $authUserId[0]->role_id === (int)$userTemplate->get_role_admin_2() ||
+            (int) $authUserId[0]->role_id === (int)$userTemplate->get_role_admin_3()
         ) {
             $ticket[0]->ticket_status_id = $closed;
             $ticket[0]->save();

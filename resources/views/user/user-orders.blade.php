@@ -69,7 +69,7 @@
                     </table>
                 </div>
             @else
-                <h2>Aucune commandes pour ce compte</h2>
+                <h2 class="text-center">Aucune commandes pour ce compte</h2>
             @endif
             <script>
                 const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');

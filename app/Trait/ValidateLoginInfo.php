@@ -5,6 +5,7 @@ namespace App\Trait;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Trait\UserStateManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Auth as AuthFoundation;
 
 trait ValidateLoginInfo
 {
-    use AuthFoundation\RedirectsUsers, AuthFoundation\ThrottlesLogins;
+    use AuthFoundation\RedirectsUsers, AuthFoundation\ThrottlesLogins, UserStateManager;
 
     /**
      * Show the application's login form.
@@ -134,19 +135,17 @@ trait ValidateLoginInfo
             return $response;
         }
 
-        $userInfos = User::where('email', $request->email)->get();
+        
+        $userInfos = User::getLoggedUserInfo()->get();
 
+        $response = $this->checkIfUserStateIsValid($userInfos[0], $request, "TraitValidateLoginInfo");
+        if (isset($response['blockedTrue'])) {
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a suspendu le " . $userInfos[0]->blocked_at]);
+        }
+        if (isset($response['deletedTrue'])) {
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $userInfos[0]->soft_deleted]);
+        }
 
-        if ($userInfos[0]->soft_deleted > 1) {
-            $this->customLogout($request);
-            return back()->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $userInfos[0]->soft_deleted]);
-            exit;
-        }
-        if ($userInfos[0]->blocked_at > 1) {
-            $this->customLogout($request);
-            return back()->withErrors(['accountErrorstatus' => "Votre compte a suspendu le " . $userInfos[0]->blocked_at]);
-            exit;
-        }
         if ($request->wantsJson()) {
             return new JsonResponse([], 204);
         } elseif ($userInfos[0]->info_user_id <= 0) {
@@ -154,15 +153,6 @@ trait ValidateLoginInfo
         } else {
             return redirect()->intended($this->redirectPath());
         }
-    }
-
-
-
-    protected function customLogout($request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
     }
 
     /**

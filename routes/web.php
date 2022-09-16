@@ -41,34 +41,34 @@ Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT INFORMATIONS
-Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'prevent-back-history'])->name('user.edit.info');
-Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth', 'prevent-back-history'])->name('user.update.info');
-Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth', 'prevent-back-history'])->name('user.account.destroy');
+Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.edit.info');
+Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.update.info');
+Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.account.destroy');
 // ==========================================================================================================================================================
 
 
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT ORDERS
-Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth', 'prevent-back-history'])->name('user.orders.index');
-Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->middleware(['auth', 'prevent-back-history'])->name('user.orders.show');
+Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.orders.index');
+Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.orders.show');
 // ==========================================================================================================================================================
 
 
 // ==========================================================================================================================================================
 // TICKETS / USER ACCOUNT TICKETS
-Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->middleware('auth')->name('user.tickets.index');
+Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->middleware(['auth', 'validate-user-infos'])->name('user.tickets.index');
 Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
 Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->name('user.tickets.store');
-Route::get('user/account/tickets/show/{id?}', [TicketController::class, 'show'])->middleware('auth')->name('user.tickets.show');
-Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth', 'prevent-back-history'])->name('user.tickets.patch');
+Route::get('user/account/tickets/show/{id?}', [TicketController::class, 'show'])->middleware(['auth', 'validate-user-infos',])->name('user.tickets.show');
+Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.tickets.patch');
 // ==========================================================================================================================================================
 
 
 
 // ==========================================================================================================================================================
 // MESSAGES / SINGLE ACTION CONTROLLER (INVOKE)
-Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth', 'prevent-back-history'])->name('user.tickets.message.submit');
+Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.tickets.message.submit');
 // ==========================================================================================================================================================
 
 
@@ -76,18 +76,18 @@ Route::post('user/account/tickets/message/submit/{id}', MessageController::class
 
 // ==========================================================================================================================================================
 // AUTH, REGISTER, OAUTH
-Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware('auth')->name('finish.registeration');
+Route::get('/finish_registeration/{user}', [oAuthController::class, 'returnViewToCompleteRegisteration'])->middleware(['auth', 'prevent-back-history'])->name('finish.registeration');
 Route::controller(GoogleController::class)->name('google.')->group(function () {
     Route::get('/auth/google', 'auth')->name('auth');
     Route::get('/auth/google/redirect', 'redirect')->name('redirect');
-    Route::get('google/finish_registeration/{user}', 'returnViewToCompleteRegisteration')->middleware('auth')->name('finish.registeration');
+    Route::get('google/finish_registeration/{user}', 'returnViewToCompleteRegisteration')->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('finish.registeration');
 });
 
 
 Route::controller(GithubController::class)->name('github.')->group(function () {
     Route::get('/auth/github', 'auth')->name('auth');
     Route::get('/auth/github/redirect', 'redirect')->name('redirect');
-    Route::get('github/finish_registeration/{user}', 'returnViewToCompleteRegisteration')->middleware('auth')->name('finish.registeration');
+    Route::get('github/finish_registeration/{user}', 'returnViewToCompleteRegisteration')->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('finish.registeration');
 });
 
 
@@ -95,4 +95,3 @@ Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->gro
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
 // ==========================================================================================================================================================
-

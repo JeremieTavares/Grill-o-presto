@@ -17,10 +17,11 @@ class GoogleController extends Controller
 {
     use RolesAvailable;
 
-    public function returnViewToCompleteRegisteration($user) {
-        
+    public function returnViewToCompleteRegisteration($user)
+    {
+
         $userInfos = User::where('id', $user)->get();
-        return view ('auth.oAuthRegister', ['userInfos' => $userInfos]);
+        return view('auth.oAuthRegister', ['userInfos' => $userInfos]);
     }
 
     public function auth()
@@ -44,9 +45,18 @@ class GoogleController extends Controller
             ]
         );
 
-        Auth::login($user);
 
-        if ($user->info_user_id > 0)
+        if ($user->soft_deleted > 1) {
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $user->soft_deleted]);
+            exit;
+        }
+        if ($user->blocked_at > 1) {
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a suspendu le " . $user->blocked_at]);
+            exit;
+        }
+
+        Auth::login($user);
+        if ($user->info_user_id > 0 && $user->blocked_at < 1 && $user->soft_deleted < 1)
             return redirect()->route('home');
         else
             return redirect()->route('google.finish.registeration', ['user' => $user]);

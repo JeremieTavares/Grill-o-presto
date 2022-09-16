@@ -17,7 +17,8 @@ class Ticket extends Model
         'ticket_type_id',
         'ticket_status_id',
         'description',
-        'user_id'
+        'user_id',
+        'email'
     ];
 
 
