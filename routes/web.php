@@ -59,7 +59,7 @@ Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->m
 // TICKETS / USER ACCOUNT TICKETS
 Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->middleware(['auth', 'validate-user-infos'])->name('user.tickets.index');
 Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
-Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->name('user.tickets.store');
+Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->middleware('prevent-back-history')->name('user.tickets.store');
 Route::get('user/account/tickets/show/{id?}', [TicketController::class, 'show'])->middleware(['auth', 'validate-user-infos',])->name('user.tickets.show');
 Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.tickets.patch');
 // ==========================================================================================================================================================
@@ -91,7 +91,7 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 });
 
 
-Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->group(function () {
+Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->middleware((['auth', 'prevent-back-history']))->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
 // ==========================================================================================================================================================
