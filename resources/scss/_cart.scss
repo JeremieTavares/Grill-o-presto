@@ -27,6 +27,21 @@
     
     }
 
+    .login_container {
+
+        form {
+            width: 100%;
+            &>div {
+
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            
+        }
+    }
+
 
 }
 
@@ -39,6 +54,22 @@
 
         .cart_container {
             max-width: 50rem;
+        }
+
+        .login_container {
+            max-width: 50rem;
+
+            form {
+                &>div {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+
+                    .checkoutBTN {
+                        grid-column: span 2;
+                    }
+                }
+            }
+
         }
 
     }

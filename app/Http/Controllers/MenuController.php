@@ -42,29 +42,24 @@ class MenuController extends Controller
 
         $this->removeMenuSession();
 
-        return view('./public/singleMeal', ['meal' => $meal, 'addCart' => $addCart]);
+        $added = false;
+        if ($addCart) {
+                if (session()->missing('cart') || count(session('cart')) == 0) {
+                    session()->put('menu', $meal->menu->menu_type->type);
+                    session()->put('cart', []);
+                }
+
+                
+
+                if(!in_array($meal->id, session('cart')) && count(session('cart')) < 5)  {
+                    session()->push('cart', $meal->id);
+                    $added = true;
+                }
+            }
+        return view('./public/singleMeal', ['meal' => $meal, 'addCart' => $addCart, 'added' => $added]);
     }
 
-    public function cart($delete = null) {
-        if($delete) {
-            
-            $key = array_search($delete, session('cart'));
-            session()->forget('cart.'. $key);
-        }
-            
-        $meals = HistoryMeal::find(session('cart'));
-        
-        $this->removeMenuSession();
-
-        return view('./public/cart', ['meals' => $meals]);
-    }
-
-    protected function removeMenuSession() {
-        if(session()->exists('cart') && count(session('cart')) == 0) {
-            session()->forget('menu');
-            
-        }
-    }
+    
 
     
 }

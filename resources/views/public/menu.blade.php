@@ -32,7 +32,7 @@
                 <h2>Nos Favoris de la semaine</h2>
                 <div class="card_container">
                     @foreach ($favMeals as $meal)
-                    <a href="{{route('repas', ['repas' => $meal->id])}}">
+                    <a href="{{route('meal', ['repas' => $meal->id])}}">
                         <div class="meal_card">
                             <img src="{{ $meal->image_path }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>

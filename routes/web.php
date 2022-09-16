@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('meal');
-Route::get('/panier/{delete?}', [MenuController::class, 'cart'])->name('cart');
+Route::get('/panier/{delete?}', [CartController::class, 'index'])->name('cart');
 
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');

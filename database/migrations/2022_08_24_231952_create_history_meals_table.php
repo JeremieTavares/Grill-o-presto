@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->json('ingredients')->nullable(true);
+            $table->text('description');
             $table->boolean('vegetarian')->default(false);
             $table->boolean('gluten_free')->default(false);
             $table->integer('spicy')->default(0);

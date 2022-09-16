@@ -4,34 +4,17 @@
     <main class="singleMeal">
         <section class="topSection p-5">
 
-            
-
             <h1 class="text-center">{{ $meal->name }}</h1>
         </section>
+        
+        @if ($added)
+            <div class="alert alert-success text-center mt-3 mb-3">
+                Vous avez bien ajoutez le repas au panier
+            </div>
+        @endif
 
         <section class="mealSection fs-5">
-            @if ($addCart)
-                <?php
-                
-                if (session()->missing('cart') || count(session('cart')) == 0) {
-                    session()->put('menu', $meal->menu->menu_type->type);
-                    session()->put('cart', []);
-                }
-
-                
-
-                if(!in_array($meal->id, session('cart')) && count(session('cart')) < 5)  {
-                    session()->push('cart', $meal->id);
-                            
-                    ?>
-                        <div class="alert alert-success text-center mt-3 mb-3">
-                            Vous avez bien ajoutez le repas au panier
-                        </div>
-                    <?php
-                }
-                
-                ?>
-            @endif
+            
             <img class="w-100 mb-5" src="{{ $meal->image_path }}" alt="image">
             <hr />
             <p><span class="fw-bold">Menu :</span> {{ $meal->menu->menu_type->type }}</p>
@@ -70,7 +53,7 @@
             @elseif (session()->exists('menu') && session('menu') != $meal->menu->menu_type->type)
                 <div class="alert alert-danger">Ce repas fait partie du menu <span class="fw-bold">{{ $meal->menu->menu_type->type }}</span> mais le menu selectionné est : <span class="fw-bold">{{ session('menu') }}</span>. <br />Vous pouvez changer le menu en supprimant tous les repas de votre panier et en sélectionnant un repas du menu voulu.</div>
             @elseif (session()->missing('menu') || session('menu') == $meal->menu->menu_type->type)
-                <a class="btn btn-primary mt-5" href="{{ route('repas', ['repas' => $meal->id, 'addCart' => true]) }}">Ajouter au panier</a>
+                <a class="btn btn-primary mt-5" href="{{ route('meal', ['repas' => $meal->id, 'addCart' => true]) }}">Ajouter au panier</a>
             @endif
             <a class="btn btn-secondary mt-5" href="{{route('menu')}}">Retour au menu</a>
 
