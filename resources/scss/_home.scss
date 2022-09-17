@@ -428,3 +428,7 @@
         right: 2%;
     }
 }
+
+*, *:before, *:after {
+    box-sizing: border-box !important;
+}
