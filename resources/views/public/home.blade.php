@@ -18,7 +18,7 @@
                         <div>
                             <a href="#" class="btn btn-secondary mt-sm-5">Nos menus</a>
                         </div> --}}
-                        <a href="#" class="btn btn-secondary fs-4 btn-scale-press">Nos menus</a>
+                        <a href="#" class="btn btn-secondary fs-4 btn-scale-press">Nosw menus</a>
                     </div>
                 </div>
             </div>
