@@ -9,7 +9,7 @@
 
                     <p class="mb-5">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour
                         tous, végétariens et sans glutens.</p>
-                    <div>
+                    <div class="menu-home-link-div">
 
                         {{-- <p class="d-sm-none d-md-block">
                             Nos plats prêts à manger sous-vide préparés par nos chefs avec des ingrédients locaux.<br>
