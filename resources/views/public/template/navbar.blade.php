@@ -38,8 +38,8 @@
                     </form>
                     <?php } else {
                                     ?>
-                    <a class="btn pink fs-4 btn-scale-press" href="{{ route('login') }}">Connexion</a>
-                    <a class="btn btn-secondary fs-4 btn-scale-press" href="{{ route('register') }}">Inscription <i
+                    <a class="btn pink fs-4 btn-scale-press" id="home-login-btn" href="{{ route('login') }}">Connexion</a>
+                    <a class="btn home-register-btn btn-secondary fs-4 btn-scale-press" href="{{ route('register') }}">Inscription <i
                             class="fa fa-arrow-right"></i></a>
                     <?php
                                 }?>
