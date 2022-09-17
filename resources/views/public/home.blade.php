@@ -18,7 +18,7 @@
                         <div>
                             <a href="#" class="btn btn-secondary mt-sm-5">Nos menus</a>
                         </div> --}}
-                        <a href="#" class="btn btn-secondary btn-scale-press">Nos menus</a>
+                        <a href="#" class="btn btn-secondary fs-4 btn-scale-press">Nos menus</a>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                         <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
                         <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
                         <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
-                        <a class="btn btn-primary btn-rounded mt-5" href="">Nos menus</a>
+                        <a class="btn btn-primary btn-rounded mt-5 btn-scale-press" href="">Nos menus</a>
                     </ul>
                 </div>
             </div>
