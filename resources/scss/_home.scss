@@ -87,8 +87,6 @@
     }
 
     .wave_middle_section {
-
-
         position: relative;
 
         .chef_img {
@@ -431,4 +429,13 @@
 
 *, *:before, *:after {
     box-sizing: border-box !important;
+}
+
+
+.path 
+{
+    min-width: 100vw !important;
+}
+.topWave {
+    min-width: 100vw !important;
 }
