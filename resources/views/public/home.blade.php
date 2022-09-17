@@ -23,7 +23,7 @@
                 </div>
             </div>
             <svg class="topWave" id="svg" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,600 C 0,600 0,300 0,300 C 86.16923076923078,260.5846153846154 172.33846153846156,221.16923076923075 256,240 C 339.66153846153844,258.83076923076925 420.8153846153846,335.9076923076923 507,360 C 593.1846153846154,384.0923076923077 684.4,355.2 751,320 C 817.6,284.8 859.5846153846154,243.2923076923077 940,229 C 1020.4153846153846,214.7076923076923 1139.2615384615383,227.6307692307692 1229,244 C 1318.7384615384617,260.3692307692308 1379.3692307692309,280.1846153846154 1440,300 C 1440,300 1440,600 1440,600 Z" stroke="none" stroke-width="0" fill="#b40500" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 300)"></path></svg>
-            <img class="saladeImg col-sm-4" src="./image/salade_no_bg.png" alt="Salade Image">
+            
         </section>
 
         <section class="card_section w-100 p-5">
