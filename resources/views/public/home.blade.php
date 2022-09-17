@@ -2,9 +2,9 @@
 @include('public.template.navbar')
 
     <main class="home d-flex flex-column">
-        <section class="wave_top_section">
+        <section class="wave_top_section w-100">
             <div class="over_wave_top bg-primary">
-                <div class="flex-md-column justify-content-between">
+                <div class="flex-md-column justify-content-between w-100">
                     <h1 class="mb-5 main-title">GRILL-O-PRESTO</h1>
 
                     <p class="mb-5">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour
