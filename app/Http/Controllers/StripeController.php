@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Stripe;
 use Session;
 use App\Models\User;
+use App\Models\Creditcard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +33,7 @@ class StripeController extends Controller
         // $stripeCust =  $stripe->customers->search([
         //     'query' => 'email:"\beauchampx@outlook.com"',
         // ]);
-        // $userToken =  $stripe->customers->retrieve(
-        //    'cus_MSM12CcDpafOSl',
-        // );
+
         //
         //dd($request->stripeToken);
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -49,12 +48,32 @@ class StripeController extends Controller
             // If the existing user have an StipeToken , it means it already exist
             // Then we connect that token to the actual stripe transaction (Stripe server side)
             if ($user->stripeToken > 1) {
+
+                $stripUserObject =  $stripe->customers->retrieve(
+                    $user->stripeToken
+                );
+
+                $stripe->customers->createSource(
+                    $stripUserObject->id,
+                    ['source' => $request->stripeToken]
+                );
                 Stripe\Charge::create([
                     "amount" => (200) + (200 * 0.15),
                     "currency" => "CAD",
                     "customer" => $user->stripeToken,
                     "description" => "Paiement Gill-O-Presto"
                 ]);
+
+                $newCreditCard = new Creditcard();
+
+                $newCreditCard->name = $request->name;
+                $newCreditCard->card_number = $request->card_number;
+                $newCreditCard->cvc = $request->cvc;
+                $newCreditCard->month = $request->month;
+                $newCreditCard->year = $request->year;
+                $newCreditCard->user_id = $request->loggedUserId;
+
+                $newCreditCard->save();
             } else {
                 // Create new client for Stripe via Logged user
                 $newClientLogged =  $stripe->customers->create([
@@ -65,7 +84,7 @@ class StripeController extends Controller
                 //Update payment card
                 $stripe->customers->createSource(
                     $newClientLogged->id,
-                    ['source' => $request->stripeToken]
+                    ['source' => $user->stripeToken]
                 );
                 // Create new transaction
                 $paiement = Stripe\Charge::create([

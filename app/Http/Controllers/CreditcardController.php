@@ -36,7 +36,16 @@ class CreditcardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCreditCard = new Creditcard();
+
+        $newCreditCard->name = $request->name;
+        $newCreditCard->card_number = $request->card_number;
+        $newCreditCard->cvc = $request->cvc;
+        $newCreditCard->month = $request->month;
+        $newCreditCard->year = $request->year;
+        $newCreditCard->user_id = $request->loggedUserId;
+
+        $newCreditCard->save();
     }
 
     /**

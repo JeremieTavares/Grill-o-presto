@@ -111,33 +111,38 @@
 
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
-                                <label class='control-label'>Nom sur la carte</label> <input class='form-control'
-                                    size='4' type='text'>
+                                <label class='control-label'>Nom sur la carte</label>
+                                <input class='form-control' name="name" size='4' type='text'>
                             </div>
                         </div>
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Numéro de carte</label> <input autocomplete='off'
-                                    class='form-control card-number' size='20' type='text'>
+                                    name="card_number" class='form-control card-number' size='20'
+                                    type='text'>
                             </div>
                         </div>
                         <div class='form-row row'>
                             <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                <label class='control-label'>CVC</label> <input autocomplete='off'
-                                    class='form-control card-cvc' placeholder='ex. 311' size='4'
-                                    type='text'>
+                                <label class='control-label'>CVC</label>
+                                <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311'
+                                    name="cvc" size='4' type='text'>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Exp - Mois</label> <input
+                                <label class='control-label'>Exp - Mois</label> <input name="month"
                                     class='form-control card-expiry-month' placeholder='MM' size='2'
                                     type='text'>
                             </div>
                             <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Exp - Année</label> <input
+                                <label class='control-label'>Exp - Année</label> <input name="year"
                                     class='form-control card-expiry-year' placeholder='YYYY' size='4'
                                     type='text'>
                             </div>
                         </div>
+
+                        @if (Auth::check())
+                            <input type="hidden" name="loggedUserId" value="{{ Auth::user()->id }}">
+                        @endif
                         {{-- <div class='form-row row'>
                                 <div class='col-md-12 error form-group hide'>
                                     <div class='alert-danger alert'>Please correct the errors and try
