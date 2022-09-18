@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->json('ingredients');
+            $table->text('description');
             $table->boolean('vegetarian')->default(false);
             $table->boolean('gluten_free')->default(false);
             $table->integer('spicy')->default(0);
-            $table->string('image_path')->nullable(false);;
+            $table->string('image_path')->nullable(false);
             $table->timestamps();
         });
     }

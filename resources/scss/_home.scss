@@ -1,12 +1,36 @@
 /* ACCUEIL */
 
 // MOBILE VIEW
+*,
+*:before,
+*:after {
+    box-sizing: border-box !important;
+}
+
+
+
+
+// en haut de 1100 ca sapplique
+
+.div_home_page_middlewave {
+
+    padding: 0 10px !important;
+
+    p {
+        text-align: center;
+        width: 100% !important;
+        padding: 0 10px 62px 10px !important;
+        font-size: 1.5rem !important;
+    }
+}
+
 
 .home {
 
     .wave_top_section {
         width: 100vw;
         position: relative;
+        max-height: 900px;
 
 
 
@@ -14,9 +38,9 @@
             padding: 0 5%;
             padding-top: 2rem;
 
-         h1 {
+            h1 {
                 font-size: 4rem;
-            }    
+            }
 
             &>div {
                 display: flex;
@@ -48,13 +72,11 @@
             right: 2%;
         }
 
-        .waveTop {
-            transform: translateY(-1px);
-        }
+
 
     }
 
-    
+
 
     .home_grid_card {
         display: grid;
@@ -63,13 +85,12 @@
 
     }
 
-    
+
     .engage {
         display: none;
     }
 
     .wave_middle_section {
-
         position: relative;
 
         .chef_img {
@@ -101,7 +122,7 @@
         }
 
         &>div {
-            
+
             padding-top: 2rem;
             padding-right: 5%;
 
@@ -119,6 +140,7 @@
         margin-top: 10rem;
         position: relative;
 
+
         &>div {
             padding: 4rem 2rem;
         }
@@ -127,15 +149,16 @@
             text-align: center;
         }
 
-        
+
 
         form {
             width: 100%;
+
             input {
                 height: 2.5rem;
                 border-radius: 15px;
                 border: none;
-                box-shadow: none ;
+                box-shadow: none;
             }
 
             label {
@@ -143,7 +166,7 @@
             }
         }
 
-        
+
 
         img {
             width: 40vw;
@@ -190,10 +213,11 @@
     .home {
         .wave_top_section {
             order: 1;
+
             h1.main-title {
                 font-size: 6rem;
             }
-    
+
             &>div {
                 padding-left: 5rem;
             }
@@ -214,7 +238,7 @@
         .offer_section {
             order: 6;
         }
-    
+
         .engage {
             padding: 0 5%;
             display: block;
@@ -224,7 +248,7 @@
                 font-size: 5rem;
             }
 
-            
+
 
             .engage_container {
                 gap: 6rem;
@@ -271,7 +295,7 @@
                     font-size: 1.3rem;
                 }
 
-                
+
 
 
                 form {
@@ -283,7 +307,7 @@
                         width: 75% !important;
                     }
                 }
-                
+
 
             }
 
@@ -306,9 +330,107 @@
         }
 
     }
-    #btn-login, #submit_oAuth_register{
+
+    #btn-login,
+    #submit_oAuth_register {
         max-width: 15rem !important;
     }
 
 
+    .div_home_page_middlewave {
+        p {
+            padding: 4rem 0 22% 0 !important;
+            font-size: 2rem !important;
+            width: 60% !important;
+            max-height: 100px !important;
+            text-align: unset;
+            z-index: 2;
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+    .div_home_page_middlewave {
+        p {
+            padding: 3.7rem 0 5rem 0 !important;
+            font-size: 2rem !important;
+            width: 60% !important;
+            max-height: 100px !important;
+            z-index: 2;
+        }
+    }
+}
+
+
+
+
+
+
+@media (min-width: 483px) {
+    .ship_range_section {
+
+        img {
+            position: absolute;
+            top: -33% !important;
+        }
+    }
+
+}
+
+
+@media (min-width: 571px) {
+    .ship_range_section {
+
+        img {
+            position: absolute;
+            top: -38% !important;
+        }
+    }
+
+}
+
+@media (min-width: 700px) {
+    .ship_range_section {
+
+        img {
+            position: absolute;
+            top: -10rem !important;
+        }
+    }
+
+}
+
+@media (min-width: 700px) {
+    .ship_range_section {
+
+        img {
+            position: absolute;
+            top: -10rem !important;
+        }
+    }
+
+}
+
+
+@media (min-width: 1500px) {
+    .topWave {
+        position: relative;
+        top: -100px;
+    }
+
+    .menu-home-link-div {
+        z-index: 99;
+    }
+
+    .saladeImg {
+        position: absolute;
+        width: 50vw !important;
+        max-width: 675px;
+        bottom: -70px !important;
+        right: 2%;
+    }
+}
+
+.topWave {
+    transform: translateY(-2px) !important;
 }

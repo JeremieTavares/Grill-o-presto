@@ -32,6 +32,7 @@ class HistoryMealSeeder extends Seeder
             HistoryMeal::create([
                 'name' => $faker->sentence(),
                 'ingredients' => json_encode($ingredient),
+                'description' => "Bien des gens affectionnent le poulet au beurre; c’est un véritable régal. Sa sauce tomate crémeuse et légèrement épicée en fait un repas accessible, même pour les palais les plus difficiles. Servi avec du riz moelleux et du pain naan chaud, ce plat est réconfortant à souhait!",
                 'vegetarian' => $faker->boolean(),
                 'gluten_free' => $faker->boolean(),
                 'spicy' => $faker->randomNumber(),
@@ -44,6 +45,7 @@ class HistoryMealSeeder extends Seeder
             HistoryMeal::create([
                 'name' => $faker->sentence(),
                 'ingredients' => json_encode($ingredient),
+                'description' => "Bien des gens affectionnent le poulet au beurre; c’est un véritable régal. Sa sauce tomate crémeuse et légèrement épicée en fait un repas accessible, même pour les palais les plus difficiles. Servi avec du riz moelleux et du pain naan chaud, ce plat est réconfortant à souhait!",
                 'vegetarian' => $faker->boolean(),
                 'gluten_free' => $faker->boolean(),
                 'spicy' => $faker->randomNumber(),

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistoryMeal;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
    
 
-    public function index($menu = 'all')
-    {
+    public function index($menu = 'all') {
 
         $meals = [];
 
@@ -29,7 +27,7 @@ class MenuController extends Controller
         take(4)->
         get();
 
-
+        
 
         return view('public.menu', ['meals' => $meals, 'favMeals' => $favMeals, 'menu' => $menu]);
     }
@@ -57,6 +55,12 @@ class MenuController extends Controller
                 }
             }
         return view('./public/singleMeal', ['meal' => $meal, 'addCart' => $addCart, 'added' => $added]);
+    }
+
+    private function removeMenuSession() {
+        if(session()->exists('cart') && count(session('cart')) == 0) {
+            session()->forget('menu');
+        }
     }
 
     

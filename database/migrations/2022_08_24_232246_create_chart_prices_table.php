@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Menu;
+use App\Models\Portion;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -15,9 +17,9 @@ return new class extends Migration
     {
         Schema::create('chart_prices', function (Blueprint $table) {
             $table->id();  
-            $table->foreignId('portion_id')->constrained()->nullable(false);
-            $table->foreignId('menu_id')->constrained()->nullable(false);
-            $table->integer('price')->nullable(false);
+            $table->foreignIdFor(Portion::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
+            $table->integer('price');
             $table->timestamps();
         });
     }

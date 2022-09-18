@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Trait\ValidateLoginInfo;
 use App\Trait\ValidateOAuthInfo;
+use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 // use Illuminate\Foundation\Auth\Validate_OAuth_User_Info;
@@ -22,7 +23,7 @@ class LoginController extends Controller
     |
     */
 
-    use ValidateOAuthInfo;
+    use ValidateLoginInfo;
 
     /**
      * Where to redirect users after login.

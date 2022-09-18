@@ -88,24 +88,16 @@ trait AuthenticatesUsers
         );
     }
 
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
     protected function credentials(Request $request)
-{
-    $request->validate([
-        'email' => ['required', 'string', 'email', 'max:255'],
-        'password' => ['required', 'string', 'min:8'],
-    ], [
-        'email.required' => 'Votre email est requis',
-        'email.string' => 'Votre email doit etre une chaine de caracteres',
-        'email.email' => 'Votre email doit etre du format email standard',
-        'email.max' => 'Votre email doit etre d\'une longueur de 255 carateres maximum',
-        'password.required' => 'Votre mot de passe est requis',
-        'password.string' => 'Votre mot de passe doit etre une chaine de caracteres',
-        'password.min' => 'Votre mot de passe doit etre d\'une longueur de 8 caracteres minimum'
-    ]
-);
-
-    return $request->only($this->username(), 'password');
-}
+    {
+        return $request->only($this->username(), 'password');
+    }
 
     /**
      * Send the response after the user was authenticated.

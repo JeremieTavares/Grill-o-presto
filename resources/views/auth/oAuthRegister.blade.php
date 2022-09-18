@@ -1,7 +1,8 @@
 @extends('public.template.base')
+@section('banner-title', 'Informations supplémentaires')
 
 @section('content')
-<main>
+<main class="m-auto">
     <div class="container p-4">
         <div class="message mb-5">
             <h1 class="display-3 fw-bold">Me créer un compte</h1>
@@ -55,8 +56,8 @@
                 <div class="col-md-2">
                     <label for="appartement" class="form-label">Appartement</label>
                     <input type="text" name="appartement" id="appartement"
-                        class="form-control @error('appartement') is-invalid @enderror" value="{{ old('noPorte') }}"
-                        required autocomplete="appartement" autofocus>
+                        class="form-control @error('appartement') is-invalid @enderror" value="{{ old('appartement') }}"
+                        autocomplete="appartement" autofocus>
                     @error('appartement')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -64,11 +65,11 @@
 
 
                 <div class="col-md-2">
-                    <label for="zip-code" class="form-label">Code-Postal*</label>
-                    <input type="text" name="zip-code" id="zip-code"
-                        class="form-control @error('zip-code') is-invalid @enderror" value="{{ old('zip-code') }}" required
+                    <label for="zip_code" class="form-label">Code-Postal*</label>
+                    <input type="text" name="zip_code" id="zip_code"
+                        class="form-control @error('zip-code') is-invalid @enderror" value="{{ old('zip_code') }}" required
                         autocomplete="zip-code" autofocus>
-                    @error('zip-code')
+                    @error('zip_code')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -139,7 +140,7 @@
 
                 <div>
                     <button type="submit" class="btn btn-primary mt-5 mb-5"
-                        id="submit_oAuth_register">S'enregistrer</button>
+                        id="submit_oAuth_register px-5 btn-rounded">S'enregistrer</button>
                 </div>
             </div>
         </form>
