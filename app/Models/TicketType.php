@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Ticket_type extends Model
+class TicketType extends Model
 {
+
+    protected $fillable = [
+        'type'
+    ];
+
     use HasFactory;
 
     public function tickets()

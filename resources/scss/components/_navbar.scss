@@ -25,6 +25,10 @@
         color: black !important;
         margin: 0 !important;
     }
+    #home-login-btn {
+        background-color: #B40500 !important;
+     }
+   
  }
 
 
@@ -35,3 +39,8 @@
        }
     } 
  }
+
+ #home-login-btn, .home-register-btn {
+    width: 12rem;
+ }
+

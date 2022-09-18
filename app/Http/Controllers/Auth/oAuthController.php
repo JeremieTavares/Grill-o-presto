@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use App\Models\Info_user;
+use App\Models\InfoUser;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Trait\UserStateManager;
 use App\Http\Requests\OAuthRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class oAuthController extends Controller
 {
+
+    use UserStateManager;
 
     public function returnViewToCompleteRegisteration($user)
     {
@@ -21,20 +25,17 @@ class oAuthController extends Controller
 
     public function updateOAuthUser(OAuthRequest $request)
     {
-
-        
         $validatedData = $request->validated();
+      
+        $userinfos = User::GetLoggedUserInfo()->get();
 
-    
-        $userinfos = User::where('email', $request['email'])->get();
-
-        $newUser = Info_user::create([
+        $newUser = InfoUser::create([
             'prenom' => $request['prenom'],
             'nom' => $request['nom'],
             'telephone' => $request['tel'],
             'rue' => $request['rue'],
             'no_porte' => $request['noPorte'],
-            'code_postal' => $request['zip-code'],
+            'code_postal' => $request['zip_code'],
             'ville' => $request['ville']
         ]);
 

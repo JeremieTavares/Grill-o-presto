@@ -47,9 +47,9 @@
         </div>
 
         <div class="container d-flex justify-content-center">
-            <a href="" class="btn btn-primary m-1 portion-mobile">1 personne</a>
-            <a href="" class="btn btn-primary m-1 portion-mobile">2 personnes</a>
-            <a href="" class="btn btn-primary m-1 portion-mobile">4 Familliale</a>
+            <a href="" class="btn btn-primary m-1 portion-mobile btn-scale-press">1 personne</a>
+            <a href="" class="btn btn-primary m-1 portion-mobile btn-scale-press">2 personnes</a>
+            <a href="" class="btn btn-primary m-1 portion-mobile btn-scale-press">4 Familliale</a>
         </div>
 
         <hr class="breakLine w-50 my-4 m-auto">
@@ -61,7 +61,7 @@
         
 
         <div class="container d-flex justify-content-center my-3">
-            <a href="" class="btn btn-primary">Ajouter au panier</a>
+            <a href="" class="btn btn-primary btn-scale-press">Ajouter au panier</a>
         </div>
     </main>
 @endsection

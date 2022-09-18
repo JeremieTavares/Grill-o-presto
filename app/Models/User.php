@@ -2,22 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
-use App\Models\Info_user;
+use App\Models\InfoUser;
+use App\Trait\UserStateManager;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    const USER_ROLE_CLIENT = 1;
-    const ADMIN_ROLE_1 = 2;
-    const ADMIN_ROLE_2 = 3;
-    const ADMIN_ROLE_3 = 4;
 
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, UserStateManager;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +26,8 @@ class User extends Authenticatable
         'info_user_id',
         'email',
         'password',
+        'blocked_at',
+        'soft_deleted',
         'role_id'
     ];
 
@@ -49,6 +49,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function scopeGetLoggedUserInfo($query){
+       return (object) $query->where('id', Auth::user()->id);
+    }
 
 
     public function messages()
@@ -64,7 +68,7 @@ class User extends Authenticatable
 
     public function infoUser()
     {
-        return $this->hasOne(Info_user::class, 'info_user_id');
+        return $this->belongsTo(InfoUser::class);
     }
 
 
