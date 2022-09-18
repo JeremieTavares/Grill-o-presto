@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
@@ -55,4 +56,5 @@ Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->gro
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
 
-
+Route::get('/paiement', [StripeController::class, 'stripe']);
+Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.post');
