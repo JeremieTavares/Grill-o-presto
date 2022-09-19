@@ -28,11 +28,12 @@ function creditCardAutoComplete() {
     const clientCardMonth = document.getElementById('clientCardMonth');
     const clientCardYear = document.getElementById('clientCardYear');
 
+    if(selectCard){
     selectCard.addEventListener('change', () => {
         const value = selectCard.value;
         getCard(value);
     })
-
+    }
     async function getCard(ccNumber) {
 
 
