@@ -21,7 +21,7 @@ class StripeController extends Controller
     {
 
         if (Auth::check()) {
-            $allCardsForLoggedUser = Creditcard::where('user_id', Auth::user()->id)->get();
+            $allCardsForLoggedUser = Creditcard::where('user_id', Auth::user()->id)->get('card_number');
         } else
             $allCardsForLoggedUser = 0;
         return view('public.template.stripe', ['cc' => $allCardsForLoggedUser]);
