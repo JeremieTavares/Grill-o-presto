@@ -33,6 +33,13 @@
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
+            @elseif (Session::has('paymentSuccess'))
+                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                    id="divAlertSucccessInfoChanged">
+                    {{ Session::get('paymentSuccess') }}
+                    <button type="button" class="close btn btn-link text-decoration-none"
+                        id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
+                </div>
             @endif
 
             @if (isset($ordersArray[0]))

@@ -532,6 +532,7 @@ class ComposerStaticInit029a8eaf24e4a3d7d897b6280fbf0c7e
         'App\\Http\\Controllers\\Auth\\oAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/oAuthController.php',
         'App\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/CartController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\CreditcardController' => __DIR__ . '/../..' . '/app/Http/Controllers/CreditcardController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MenuController' => __DIR__ . '/../..' . '/app/Http/Controllers/MenuController.php',
         'App\\Http\\Controllers\\MessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/MessageController.php',

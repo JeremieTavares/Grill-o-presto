@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Creditcard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreditCardRequest;
 
 class StripeController extends Controller
 {
@@ -18,7 +19,12 @@ class StripeController extends Controller
      */
     public function stripe()
     {
-        return view('public.template.stripe');
+
+        if (Auth::check()) {
+            $allCardsForLoggedUser = Creditcard::where('user_id', Auth::user()->id)->get();
+        } else
+            $allCardsForLoggedUser = 0;
+        return view('public.template.stripe', ['cc' => $allCardsForLoggedUser]);
     }
 
     /**
@@ -26,98 +32,126 @@ class StripeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripePost(Request $request)
+    public function stripePost(CreditCardRequest $request)
     {
-        // Find existing user
 
+        // FAIRE UN CUSTOM REQUEST WORKING NOW ITS NOT
+        $validatedData = $request->validated();
+
+        // ***KEEPING FOR BACKUP***
+        // Find existing user
         // $stripeCust =  $stripe->customers->search([
         //     'query' => 'email:"\beauchampx@outlook.com"',
         // ]);
+        // $stripUserObject =  $stripe->customers->retrieve(
+        //     $user->stripeToken
+        // );
 
-        //
-        //dd($request->stripeToken);
+
+
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $stripe = new \Stripe\StripeClient(
             'sk_test_51LiLVXLQyEBjABClty9cNuhsOxMMyxAOdg2fAM9SXjI2nwMarcOuVtILIuzEe89E9iF5PmSpwwKhcTZ7N63v2A9800IGFHhOAb'
         );
 
-
-        $fullName = $request->prenom . ' ' . $request->nom;
         if (Auth::check()) {
+
+
             $user = User::getLoggedUserInfo()->first();
+
+
             // If the existing user have an StipeToken , it means it already exist
             // Then we connect that token to the actual stripe transaction (Stripe server side)
             if ($user->stripeToken > 1) {
-
-                $stripUserObject =  $stripe->customers->retrieve(
-                    $user->stripeToken
-                );
-
-                $stripe->customers->createSource(
-                    $stripUserObject->id,
-                    ['source' => $request->stripeToken]
-                );
-                Stripe\Charge::create([
+                //Update the default creditcard for the logged user
+                $stripe->customers->update($user->stripeToken, ['source' => $request->stripeToken]);
+                // Create a new transaction for the logged user
+                $transaction = Stripe\Charge::create([
                     "amount" => (200) + (200 * 0.15),
                     "currency" => "CAD",
                     "customer" => $user->stripeToken,
                     "description" => "Paiement Gill-O-Presto"
                 ]);
+                // Insert the credit card in the Database for the related user for the first transaction evermade for the user
+                $cc = Creditcard::verifyIfUserUsingExistingCard($request)->get('card_number');
 
-                $newCreditCard = new Creditcard();
+                if ($cc[0]->card_number < 2) {
+                    Creditcard::newCardFill($request);
+                }
+            }
 
-                $newCreditCard->name = $request->name;
-                $newCreditCard->card_number = $request->card_number;
-                $newCreditCard->cvc = $request->cvc;
-                $newCreditCard->month = $request->month;
-                $newCreditCard->year = $request->year;
-                $newCreditCard->user_id = $request->loggedUserId;
 
-                $newCreditCard->save();
-            } else {
-                // Create new client for Stripe via Logged user
+            // iF LOGGED USER DONT HAVE A STRIPE ACCOUNT
+            else {
+                // Create new client for Stripe for the ACTIVE LOGGED USER IN GRILL-O-PRESTO
                 $newClientLogged =  $stripe->customers->create([
                     'description' => "Client email: $user->email, Form email: $request->email",
                     'name' => $user->prenom . " " . $user->nom,
                     'email' => $user->email
                 ]);
-                //Update payment card
-                $stripe->customers->createSource(
-                    $newClientLogged->id,
-                    ['source' => $user->stripeToken]
-                );
-                // Create new transaction
-                $paiement = Stripe\Charge::create([
+                //Update the default creditcard for the logged user
+                $stripe->customers->update($newClientLogged->id, ['source' => $request->stripeToken]);
+
+                // Create a new transaction for the logged user
+                $transaction = Stripe\Charge::create([
                     "amount" => (200) + (200 * 0.15),
                     "currency" => "CAD",
                     "customer" => $newClientLogged->id,
                     "description" => "Paiement Gill-O-Presto"
                 ]);
-
                 $user->stripeToken = $newClientLogged->id;
                 $user->save();
+                // Insert the credit card in the Database for the related user
+
+                $cc = Creditcard::verifyIfUserUsingExistingCard($request)->get('card_number');
+
+                if ($cc[0]->card_number < 2) {
+                    Creditcard::newCardFill($request);
+                }
             }
-        } else {
+        }
+
+
+
+
+        // IF ITS A GUEST CHECKOUT
+        else {
+            $fullName = $request->prenom . ' ' . $request->nom;
+            // Create new guest user profile
             $newClient =  $stripe->customers->create([
                 'description' => "Form email: $request->email",
                 'name' => $fullName,
                 'email' => $request->email
             ]);
+
+            // Create new credit card for guest user profile in stripe
             $stripe->customers->createSource(
                 $newClient->id,
                 ['source' => $request->stripeToken]
             );
-            // Create new transaction
-            $paiement = Stripe\Charge::create([
+            
+            // Create new transaction for guest user
+            $transaction = Stripe\Charge::create([
                 "amount" => (2002) + (200 * 0.15),
                 "currency" => "CAD",
                 "customer" => $newClient->id,
                 "description" => "Paiement Gill-O-Presto"
             ]);
         }
-        Session::flash('success', 'Payment successful!');
 
-        return back();
+
+
+        // Get the id of the transaction
+        // $transaction->id
+
+        if ($transaction->status === "succeeded") {
+            if (Auth::check())
+                return to_route('user.orders.index', Auth::user()->id)->with('paymentSuccess', "Merci, Votre paiement est passée");
+            else
+                return back()->with('paymentSuccess', "Merci, Votre paiement est passée");
+        } else {
+            return back()->with('paymentFailed', "Erreur lors du paiement");
+        }
     }
 }
 
