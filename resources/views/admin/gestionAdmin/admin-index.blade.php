@@ -15,7 +15,7 @@
                     @endforeach
                 </select>
 
-                <button type="submit btn-success">Rechercher</button>
+                <button type="submit" class="btn btn-success mt-5">Rechercher</button>
             </form>
 
         </div>
