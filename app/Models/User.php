@@ -61,8 +61,6 @@ class User extends Authenticatable
     public static function getAllAdmin(){
         $roles = Role::getAllAdminRoleId()->get('id')->toArray();
         $adminArr = User::with('infoUser', 'role')->whereIn('role_id', $roles)->get();
-
-        dd($adminArr[0]);
         return $adminArr;
     }
 

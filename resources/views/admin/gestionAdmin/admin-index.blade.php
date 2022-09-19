@@ -6,12 +6,17 @@
         <div class="mw-1000px">
 
             <label for="selectAdmin">Sélectionnez un Administrateur</label>
-            <select name="selectAdmin" id="selectAdmin" name="selectAdmin" class="form-select">
 
-                @foreach ($admins as $admin)
-                    <option value="{{ $admin->id }}">{{ $admin->prenom }}</option>
-                @endforeach
-            </select>
+            <form action="{{ route('admin.admin-edit', "") }}" method="POST">
+                @csrf
+                <select name="selectAdmin" id="selectAdmin" name="selectAdmin" class="form-select">
+                    @foreach ($admins as $admin)
+                        <option value="{{ $admin->id }}">{{ $admin->InfoUser->prenom }}</option>
+                    @endforeach
+                </select>
+
+                <button type="submit btn-success">Rechercher</button>
+            </form>
 
         </div>
     </main>

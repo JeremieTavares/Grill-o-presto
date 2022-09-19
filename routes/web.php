@@ -109,8 +109,7 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
 // ==========================================================================================================================================================
 
-
-Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'name' => 'admin.'], function() {
+Route::controller(GestionAdminController::class)->prefix('admin/')->name('admin.')->middleware('auth')->group(function () {
     Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
+    Route::get('admin-edit', [GestionAdminController::class, 'index'])->name('admin-edit');
 });
-
