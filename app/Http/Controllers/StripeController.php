@@ -128,6 +128,7 @@ class StripeController extends Controller
                 $newClient->id,
                 ['source' => $request->stripeToken]
             );
+            
             // Create new transaction for guest user
             $transaction = Stripe\Charge::create([
                 "amount" => (2002) + (200 * 0.15),
