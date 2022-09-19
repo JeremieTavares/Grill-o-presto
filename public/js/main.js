@@ -59,7 +59,10 @@ function creditCardAutoComplete() {
             clientCardName.value = jsondata.name
             clientCardNumber.value = jsondata.card_number
             clientCardCVC.value = jsondata.cvc
-            clientCardMonth.value = jsondata.month
+            if (clientCardMonth.value < 10)
+                clientCardMonth.value = '0' + jsondata.month
+            else
+                clientCardMonth.value = jsondata.month
             clientCardYear.value = jsondata.year
         } else {
             clientCardName.value = ""
