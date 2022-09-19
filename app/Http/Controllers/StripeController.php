@@ -123,11 +123,13 @@ class StripeController extends Controller
                 'name' => $fullName,
                 'email' => $request->email
             ]);
+
             // Create new credit card for guest user profile in stripe
             $stripe->customers->createSource(
                 $newClient->id,
                 ['source' => $request->stripeToken]
             );
+            
             // Create new transaction for guest user
             $transaction = Stripe\Charge::create([
                 "amount" => (2002) + (200 * 0.15),
