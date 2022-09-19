@@ -16,10 +16,12 @@ class GestionAdminController extends Controller
      */
     public function index()
     {
-        $roles = Role::where('role', 'Admin_1')->orWhere('role', 'Admin_2')->orWhere('role', 'Admin_3')->get('id')->toArray();
-      
-        $adminArr = User::whereIn('role_id', $roles)->get();
-        dd($adminArr);
+
+      $admins = User::getAllAdmin();
+
+
+      dd($allo);
+    
     }
 
     /**

@@ -64,6 +64,13 @@ class User extends Authenticatable
         return (object) $query->with('infoUser')->where('id', Auth::user()->id);
     }
 
+    public static function getAllAdmin(){
+        $roles = Role::getAllAdminRoleId()->get('id')->toArray();
+        $adminArr = User::whereIn('role_id', $roles)->get();
+
+        return $adminArr;
+    }
+
 
     public function messages()
     {
