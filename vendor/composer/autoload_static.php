@@ -553,6 +553,7 @@ class ComposerStaticInit029a8eaf24e4a3d7d897b6280fbf0c7e
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\ValidateUserInfo' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateUserInfo.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\CreditCardRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CreditCardRequest.php',
         'App\\Http\\Requests\\MessageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MessageRequest.php',
         'App\\Http\\Requests\\OAuthRequest' => __DIR__ . '/../..' . '/app/Http/Requests/OAuthRequest.php',
         'App\\Http\\Requests\\TicketRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TicketRequest.php',
