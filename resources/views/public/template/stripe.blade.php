@@ -6,9 +6,6 @@
         <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
             data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
             @csrf
-            <h1>informations</h1>
-
-
             @if (Session::has('paymentSuccess'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
@@ -27,7 +24,7 @@
                 </div>
             @endif
 
-            <h1 id="h1Paiement">Paiement</h1>
+            <h2 id="h2Paiement">Paiement</h2>
 
 
             <div class="row">
@@ -125,12 +122,12 @@
         <script>
 
 $(function() {
-    const h1pay = document.getElementById('h1Paiement');
+    const h2pay = document.getElementById('h2Paiement');
     const h2InvalidCardInfo = document.getElementById('h2InvalidCard');
 
     var $form = $(".require-validation");
     $('form.require-validation').bind('submit', function(e) {
-        const h1pay = document.getElementById('h1Paiement');
+        const h2pay = document.getElementById('h1Paiement');
 
         var $form = $(".require-validation"),
             inputSelector = ['input[type=email]', 'input[type=password]',
@@ -145,7 +142,7 @@ $(function() {
         $inputs.each(function(i, el) {
             var $input = $(el);
             if ($input.val() === '') {
-                h1pay.remove();
+                h2pay.remove();
                 $input.parent().addClass('has-error');
                 $errorMessage.removeClass('hide');
                 e.preventDefault();
@@ -171,8 +168,8 @@ $(function() {
                 .find('.alert')
                 .text(response.error.message)
 
-                if (h1pay.nextElementSibling.tagName !== "P"){
-                    h1pay.insertAdjacentHTML('afterend',"<p id='h2InvalidCard' class='text-danger fs-5 fw-bold'>Les informations de la carte sont invalides, veuillez réessayer</p>")
+                if (h2pay.nextElementSibling.tagName !== "P"){
+                    h2pay.insertAdjacentHTML('afterend',"<p id='h2InvalidCard' class='text-danger fs-5 fw-bold'>Les informations de la carte sont invalides, veuillez réessayer</p>")
                 }
         } else {
             /* token contains id, last4, and card type */
