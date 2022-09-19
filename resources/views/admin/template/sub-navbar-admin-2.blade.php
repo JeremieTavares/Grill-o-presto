@@ -1,4 +1,4 @@
-<nav class="nav_container mt-5">
+<nav class="nav_container mt-5 px-2">
     <ul class="d-flex justify-content-center align-items-center">
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.tickets.index', Auth::user()->id) }}">Menu</a></li>
