@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\gestionAdmin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class GestionAdminController extends Controller
 {
@@ -14,7 +16,10 @@ class GestionAdminController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::where('role', 'Admin_1')->orWhere('role', 'Admin_2')->orWhere('role', 'Admin_3')->get('id')->toArray();
+      
+        $adminArr = User::whereIn('role_id', $roles)->get();
+        dd($adminArr);
     }
 
     /**
