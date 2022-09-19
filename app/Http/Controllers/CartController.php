@@ -36,9 +36,7 @@ class CartController extends Controller
 
         $inviteInformation = $request;
 
-        
-
-        return view('public.checkout', ['clientInfo' => $inviteInformation]);
+        dd($inviteInformation);
 
     }
 
