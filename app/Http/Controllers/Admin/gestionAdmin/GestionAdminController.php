@@ -19,9 +19,7 @@ class GestionAdminController extends Controller
 
       $admins = User::getAllAdmin();
 
-
-      dd($allo);
-    
+      dd($admins);
     }
 
     /**
