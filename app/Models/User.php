@@ -65,10 +65,9 @@ class User extends Authenticatable
         return $adminArr;
     }
 
-    public function scopeGetUserWithInfo($id)
+    public function scopeGetUserWithInfo($query, $id)
     {
-        $adminArr = User::with('infoUser', 'role')->where('id', $id);
-        return $adminArr;
+        return (object) $query->with('infoUser', 'role')->where('id', $id);
     }
 
 

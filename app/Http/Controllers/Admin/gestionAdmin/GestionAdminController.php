@@ -61,9 +61,11 @@ class GestionAdminController extends Controller
      */
     public function edit(Request $request)
     {
+
+    
         $admin = User::getUserWithInfo($request->selectAdmin)->first();
-        dd($admin);
-        dd($request);
+
+        
     }
 
     /**
