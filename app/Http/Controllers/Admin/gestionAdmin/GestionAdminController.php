@@ -18,8 +18,7 @@ class GestionAdminController extends Controller
     {
 
       $admins = User::getAllAdmin();
-
-      dd($admins);
+      return view('admin.gestionAdmin.admin-index', ['admins' => $admins]);
     }
 
     /**
