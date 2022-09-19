@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Auth\oAuthController;
+use App\Http\Controllers\CreditcardController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\CreditcardController;
-use App\Http\Controllers\GestionAdminController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 
 /*
 |--------------------------------------------------------------------------
