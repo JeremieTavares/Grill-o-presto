@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Creditcard;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CreditcardController extends Controller
 {
+
+
+
+    public function getCreditCardForLoggedUser(Request $request)
+    {
+        $uniqueCC = Creditcard::where([['card_number', $request[0]], ["user_id", Auth::user()->id]])->first();
+        return response()->json($uniqueCC);
+    }
+
+
+
+
     /**
      * Display a listing of the resource.
      *

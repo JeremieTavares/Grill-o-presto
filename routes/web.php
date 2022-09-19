@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CreditcardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TicketController;
@@ -98,3 +99,6 @@ Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->mid
 
 Route::get('/paiement', [StripeController::class, 'stripe']);
 Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.post');
+
+
+Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');

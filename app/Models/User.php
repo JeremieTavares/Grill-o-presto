@@ -51,6 +51,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function scopeGetLoggedUserInfo($query)
     {
         return (object) $query->where('id', Auth::user()->id);

@@ -7,7 +7,4 @@
 
 @yield('content')
 
-
-
-
 @include('public.template.footer')
