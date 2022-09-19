@@ -34,7 +34,7 @@ class StripeController extends Controller
      */
     public function stripePost(CreditCardRequest $request)
     {
-        
+
         // FAIRE UN CUSTOM REQUEST WORKING NOW ITS NOT
         $validatedData = $request->validated();
 
@@ -143,7 +143,10 @@ class StripeController extends Controller
         // $transaction->id
 
         if ($transaction->status === "succeeded") {
-            return back()->with('paymentSuccess', "Merci, Votre paiement est passée");
+            if (Auth::check())
+                return to_route('user.orders.index', Auth::user()->id)->with('paymentSuccess', "Merci, Votre paiement est passée");
+            else
+                return back()->with('paymentSuccess', "Merci, Votre paiement est passée");
         } else {
             return back()->with('paymentFailed', "Erreur lors du paiement");
         }
