@@ -123,6 +123,7 @@ class StripeController extends Controller
                 'name' => $fullName,
                 'email' => $request->email
             ]);
+
             // Create new credit card for guest user profile in stripe
             $stripe->customers->createSource(
                 $newClient->id,
