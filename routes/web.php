@@ -96,9 +96,14 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->middleware((['auth', 'prevent-back-history']))->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
+// ==========================================================================================================================================================
 
+
+// ==========================================================================================================================================================
+// CREDIT CARD AND PAYMENT
 Route::get('/paiement', [StripeController::class, 'stripe']);
 Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.post');
 
 
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
+// ==========================================================================================================================================================
