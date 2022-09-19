@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('role_id')->constrained();
             $table->dateTime('blocked_at')->nullable();
             $table->dateTime('soft_deleted')->nullable();
+            $table->string('stripeToken')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

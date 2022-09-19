@@ -28,7 +28,8 @@ class User extends Authenticatable
         'password',
         'blocked_at',
         'soft_deleted',
-        'role_id'
+        'role_id',
+        'stripeToken'
     ];
 
     /**
@@ -49,9 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function scopeGetLoggedUserInfo($query){
-       return (object) $query->where('id', Auth::user()->id);
+
+    public function scopeGetLoggedUserInfo($query)
+    {
+        return (object) $query->where('id', Auth::user()->id);
     }
 
 

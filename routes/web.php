@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\Auth\GithubController;
@@ -49,16 +50,16 @@ Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT INFORMATIONS
 Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.edit.info');
-Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.update.info');
-Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.account.destroy');
+Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.update.info');
+Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.account.destroy');
 // ==========================================================================================================================================================
 
 
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT ORDERS
-Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.orders.index');
-Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.orders.show');
+Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.orders.index');
+Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.orders.show');
 // ==========================================================================================================================================================
 
 
@@ -68,14 +69,14 @@ Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->mi
 Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
 Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->middleware('prevent-back-history')->name('user.tickets.store');
 Route::get('user/account/tickets/show/{id?}', [TicketController::class, 'show'])->middleware(['auth', 'validate-user-infos',])->name('user.tickets.show');
-Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.tickets.patch');
+Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.patch');
 // ==========================================================================================================================================================
 
 
 
 // ==========================================================================================================================================================
 // MESSAGES / SINGLE ACTION CONTROLLER (INVOKE)
-Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth','validate-user-infos', 'prevent-back-history'])->name('user.tickets.message.submit');
+Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.message.submit');
 // ==========================================================================================================================================================
 
 
@@ -101,4 +102,6 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->middleware((['auth', 'prevent-back-history']))->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
-// ==========================================================================================================================================================
+
+Route::get('/paiement', [StripeController::class, 'stripe']);
+Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.post');
