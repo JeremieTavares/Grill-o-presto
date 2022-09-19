@@ -74,7 +74,7 @@ class StripeController extends Controller
                 ]);
                 // Insert the credit card in the Database for the related user for the first transaction evermade for the user
                 $cc = Creditcard::verifyIfUserUsingExistingCard($request)->get('card_number');
-                if (isset($cc[0])) {
+                if (!isset($cc[0])) {
                     Creditcard::newCardFill($request);
                 }
             }
@@ -104,7 +104,7 @@ class StripeController extends Controller
                 // Insert the credit card in the Database for the related user
 
                 $cc = Creditcard::verifyIfUserUsingExistingCard($request)->get('card_number');
-                if (isset($cc[0])) {
+                if (!isset($cc[0])) {
                     Creditcard::newCardFill($request);
                 }
             }
