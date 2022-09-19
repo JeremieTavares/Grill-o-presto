@@ -2,7 +2,9 @@
 
 @section('content')
     <main class="cart">
+
         <section class="cart_container">
+            
             @if (session()->exists('cart') && count(session('cart')) > 0)
                 <h2 class="mb-5">Menu : {{ session('menu') }}</h2>
                 <div class="card_container">
@@ -105,6 +107,7 @@
                             @enderror
                         </div>
 
+                        
                         <input class="btn btn-primary mt-3 checkoutBTN" type="submit" value="Passer à la caisse">
             @endif
 
