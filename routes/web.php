@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreditcardController;
+use App\Http\Controllers\GestionAdminController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TicketController;
@@ -107,3 +108,9 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
 // ==========================================================================================================================================================
+
+
+Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'name' => 'admin.'], function() {
+    Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
+});
+
