@@ -58,6 +58,19 @@ class User extends Authenticatable
     }
 
 
+    public static function getAllAdmin()
+    {
+        $roles = Role::getAllAdminRoleId()->get('id')->toArray();
+        $adminArr = User::with('infoUser', 'role')->whereIn('role_id', $roles)->get();
+        return $adminArr;
+    }
+
+    public function scopeGetUserWithInfo($query, $id)
+    {
+        return (object) $query->with('infoUser', 'role')->where('id', $id);
+    }
+
+
     public function messages()
     {
         return $this->hasMany(Message::class);
