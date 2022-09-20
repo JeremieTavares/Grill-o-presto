@@ -18,6 +18,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\MenuAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,3 +110,7 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 
 
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
+
+
+Route::get('/adminMenu', [MenuAdmin::class, 'create'])->name('menu.admin');
+Route::post('/adminMenu/ajouter', [MenuAdmin::class, 'store'])->name('menu.admin.store');
