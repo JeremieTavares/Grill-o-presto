@@ -42,6 +42,8 @@ class GestionAdminController extends Controller
      */
     public function store(OAuthRequest $request)
     {
+
+        
         $validatedData = $request->validated();
 
         $infoUser = InfoUser::create([
@@ -53,12 +55,13 @@ class GestionAdminController extends Controller
             'code_postal' =>  $request->zip_code,
             'ville' =>  $request->ville
         ]);
-
+        $role = new Role;
+        
         $user = User::create([
             'info_user_id' => $infoUser->id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' =>  $request->roleRadio,
+            'role_id' =>  $role->get_user_role($request->roleRadio)
         ]);
     }
 

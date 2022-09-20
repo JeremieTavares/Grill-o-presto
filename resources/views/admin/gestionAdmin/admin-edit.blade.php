@@ -35,7 +35,8 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
-            <form action="{{ route('admin.admin-update') }}" method="Post">
+            <form action="{{ route('admin.admin-update') }}" method="POST">
+                @method('PATCH')
                 @csrf
                 <div class="form-check d-flex flex-column mt-5 align-items-center">
                     <div>

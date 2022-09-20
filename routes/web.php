@@ -112,6 +112,6 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 Route::controller(GestionAdminController::class)->prefix('admin/')->name('admin.')->middleware('auth')->group(function () {
     Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
     Route::get('{id?}/admin-edit/', [GestionAdminController::class, 'edit'])->name('admin-edit');
-    Route::post('/admin-update', [GestionAdminController::class, 'update'])->name('admin-update');
+    Route::patch('/admin-update', [GestionAdminController::class, 'update'])->name('admin-update');
     Route::post('/admin-store', [GestionAdminController::class, 'store'])->name('admin-store');
 });
