@@ -111,5 +111,6 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 
 Route::controller(GestionAdminController::class)->prefix('admin/')->name('admin.')->middleware('auth')->group(function () {
     Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
-    Route::post('{id}/admin-edit', [GestionAdminController::class, 'edit'])->name('admin-edit');
+    Route::get('{id?}/admin-edit/', [GestionAdminController::class, 'edit'])->name('admin-edit');
+    Route::post('/admin-update', [GestionAdminController::class, 'update'])->name('admin-update');
 });
