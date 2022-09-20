@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
+use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,7 +111,7 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 // ==========================================================================================================================================================
 
 
-Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'name' => 'admin.'], function() {
+Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'name' => 'admin.'], function () {
     Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
+    Route::get('admin-gestion-client', [GestionClientController::class, 'index'])->name('admin-gestion-client');
 });
-
