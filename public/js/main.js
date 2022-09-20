@@ -80,12 +80,12 @@ function creditCardAutoComplete() {
 // // EVERYTHING NEEDED FOR STRIPE FORM VALIDATION
 
 // $(function() {
-//     const h1pay = document.getElementById('h1Paiement');
+//     const h2pay = document.getElementById('h2Paiement');
 //     const h2InvalidCardInfo = document.getElementById('h2InvalidCard');
 
 //     var $form = $(".require-validation");
 //     $('form.require-validation').bind('submit', function(e) {
-//         const h1pay = document.getElementById('h1Paiement');
+//         const h2pay = document.getElementById('h1Paiement');
 
 //         var $form = $(".require-validation"),
 //             inputSelector = ['input[type=email]', 'input[type=password]',
@@ -100,7 +100,7 @@ function creditCardAutoComplete() {
 //         $inputs.each(function(i, el) {
 //             var $input = $(el);
 //             if ($input.val() === '') {
-//                 h1pay.remove();
+//                 h2pay.remove();
 //                 $input.parent().addClass('has-error');
 //                 $errorMessage.removeClass('hide');
 //                 e.preventDefault();
@@ -126,8 +126,8 @@ function creditCardAutoComplete() {
 //                 .find('.alert')
 //                 .text(response.error.message)
 
-//                 if (h1pay.nextElementSibling.tagName !== "P"){
-//                     h1pay.insertAdjacentHTML('afterend',"<p id='h2InvalidCard' class='text-danger fs-5 fw-bold'>Les informations de la carte sont invalides, veuillez réessayer</p>")
+//                 if (h2pay.nextElementSibling.tagName !== "P"){
+//                     h2pay.insertAdjacentHTML('afterend',"<p id='h2InvalidCard' class='text-danger fs-5 fw-bold'>Les informations de la carte sont invalides, veuillez réessayer</p>")
 //                 }
 //         } else {
 //             /* token contains id, last4, and card type */

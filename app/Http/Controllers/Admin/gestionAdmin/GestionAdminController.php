@@ -16,10 +16,9 @@ class GestionAdminController extends Controller
      */
     public function index()
     {
-        $roles = Role::where('role', 'Admin_1')->orWhere('role', 'Admin_2')->orWhere('role', 'Admin_3')->get('id')->toArray();
-      
-        $adminArr = User::whereIn('role_id', $roles)->get();
-        dd($adminArr);
+
+      $admins = User::getAllAdmin();
+      return view('admin.gestionAdmin.admin-index', ['admins' => $admins]);
     }
 
     /**
@@ -57,12 +56,16 @@ class GestionAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+    
+        $admin = User::getUserWithInfo($request->selectAdmin)->first();
+
+        
     }
 
     /**
