@@ -19,7 +19,7 @@
                     @endforeach
                 </select>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
+                    <button type="submit" class="btn btn-primary btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
                 </div>
             </form>
 
@@ -203,7 +203,7 @@
 
                 <input type="hidden" name="user_id" value="{{ $selectedAdmin->id }}">
                 <div class="d-flex justify-content-center mb-5">
-                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Envoyer</button>
+                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Ajouter</button>
                 </div>
 
             </form>

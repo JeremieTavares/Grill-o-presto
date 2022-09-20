@@ -6,7 +6,9 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\InfoUser;
 use Illuminate\Http\Request;
+use App\Http\Requests\OAuthRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserInfoRequest;
 
 class GestionAdminController extends Controller
@@ -38,9 +40,26 @@ class GestionAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OAuthRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $infoUser = InfoUser::create([
+            'prenom' => $request->prenom,
+            'nom' =>  $request->nom,
+            'telephone' =>  $request->tel,
+            'rue' =>  $request->rue,
+            'no_porte' =>  $request->noPorte,
+            'code_postal' =>  $request->zip_code,
+            'ville' =>  $request->ville
+        ]);
+
+        $user = User::create([
+            'info_user_id' => $infoUser->id,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' =>  $request->roleRadio,
+        ]);
     }
 
     /**
