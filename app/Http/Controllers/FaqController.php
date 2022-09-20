@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -14,10 +15,10 @@ class FaqController extends Controller
 
     public function index($faq = 'all')
     {
-        $faq = [];
+        
+        $faq = Faq::all();
 
-
-        return view('public.faq', ['faq' => $faq]);
+        return view('public.faq', compact('faq'));
     }
     
 

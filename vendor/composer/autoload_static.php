@@ -554,6 +554,7 @@ class ComposerStaticInit029a8eaf24e4a3d7d897b6280fbf0c7e
         'App\\Models\\Allergen' => __DIR__ . '/../..' . '/app/Models/Allergen.php',
         'App\\Models\\AllergenMeal' => __DIR__ . '/../..' . '/app/Models/AllergenMeal.php',
         'App\\Models\\ChartPrice' => __DIR__ . '/../..' . '/app/Models/ChartPrice.php',
+        'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
         'App\\Models\\HistoryMeal' => __DIR__ . '/../..' . '/app/Models/HistoryMeal.php',
         'App\\Models\\InfoUser' => __DIR__ . '/../..' . '/app/Models/InfoUser.php',
         'App\\Models\\Ingrediant' => __DIR__ . '/../..' . '/app/Models/Ingrediant.php',

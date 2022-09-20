@@ -46,6 +46,7 @@ return array(
     'App\\Models\\Allergen' => $baseDir . '/app/Models/Allergen.php',
     'App\\Models\\AllergenMeal' => $baseDir . '/app/Models/AllergenMeal.php',
     'App\\Models\\ChartPrice' => $baseDir . '/app/Models/ChartPrice.php',
+    'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',
     'App\\Models\\HistoryMeal' => $baseDir . '/app/Models/HistoryMeal.php',
     'App\\Models\\InfoUser' => $baseDir . '/app/Models/InfoUser.php',
     'App\\Models\\Ingrediant' => $baseDir . '/app/Models/Ingrediant.php',
