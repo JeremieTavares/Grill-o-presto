@@ -27,7 +27,7 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
-            <form action="{{ route('admin.client.update') }}" method="POST">
+            <form action="{{ route('admin.client.update', ' ') }}" method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="row">

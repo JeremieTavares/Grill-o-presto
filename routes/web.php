@@ -116,10 +116,6 @@ Route::prefix('admin/')->name('admin.')->group(function () {
         Route::get('{id}/admin/edit', 'edit')->name('admin.edit');
     });
 
-    Route::controller(GestionClientController::class)->middleware('auth')->group(function () {
-        Route::get('client/gestion', 'index')->name('client.gestion');
-        Route::get('client/show/{info}', 'show')->name('client.show');
-        Route::patch('client/update', 'update')->name('client.update');
-        Route::delete('client/destroy', 'destroy')->name('client.destroy');
-    });
+
+    Route::resource('client', GestionClientController::class);
 });

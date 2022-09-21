@@ -18,7 +18,7 @@
                 <button type="button" class="btn btn-secondary btn-scale-press"
                     data-bs-dismiss="modal">Annuler</button>
 
-                <form action="{{ route('admin.client.destroy') }}" method="POST">
+                <form action="{{ route('admin.client.destroy', ' ') }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="client_id" value="{{ $user[0]->id }}">

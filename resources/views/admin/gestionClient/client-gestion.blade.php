@@ -1,7 +1,18 @@
 @extends('public.template.base')
 @section('banner-title', 'Rechercher un client')
+
 @section('content')
 
+    <div class="container">
+        @if (Session::has('noUserFound'))
+            <div class="alert alert-danger d-flex justify-content-between align-items-center w-100 mw-700px mt-5"
+                id="divAlertSucccessInfoChanged">
+                {{ Session::get('noUserFound') }}
+                <button type="button" class="close btn btn-link text-decoration-none" id="btnAlertSucccessInfoChanged"><span
+                        class="text-danger">X</span></button>
+            </div>
+        @endif
+    </div>
     @include('admin.template.sub-navbar-admin-3')
     <main class="m-auto">
         <div class="container d-flex flex-column align-items-center mb-5">

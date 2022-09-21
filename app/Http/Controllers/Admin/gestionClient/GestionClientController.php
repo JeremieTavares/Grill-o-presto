@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\gestionClient;
 
-use Stripe\Product;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\InfoUser;
@@ -12,43 +11,14 @@ use App\Http\Requests\UpdateUserInfoRequest;
 
 class GestionClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('admin.gestionClient.client-gestion');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Request $request)
     {
         if (isset($request->email))
@@ -56,32 +26,18 @@ class GestionClientController extends Controller
         else
             $user = User::with('infoUser')->whereRelation('InfoUser', 'telephone', $request->tel)->get();
 
-
-        return view('admin.gestionClient.search', [
-            'user' => $user
-        ]);
+        if (isset($user[0])) {
+            return view('admin.gestionClient.search', [
+                'user' => $user
+            ]);
+        } else
+            return back()->with('noUserFound', "Aucun client n'as été trouvé");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $userInfo = (object) User::GetLoggedUserInfo()->get();
 
-        return view('user.user-infos', ['user' => $userInfo]);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function update(UpdateUserInfoRequest $request)
     {
         $validatedData = $request->validated();
@@ -141,12 +97,6 @@ class GestionClientController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         $admin = (object) User::GetLoggedUserInfo()->first();
