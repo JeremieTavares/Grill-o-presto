@@ -1,4 +1,5 @@
 @extends('public.template.base')
+@section('title', 'Admin')
 @section('banner-title', 'Mon profil - informations personnelles')
 @section('content')
     @include('admin.template.sub-navbar-admin-3')

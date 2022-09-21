@@ -1,5 +1,5 @@
 @extends('admin.template.base')
-
+@section('title', 'Menu rechercher')
 @section('content')
     <main class="admin_search_menu d-flex flex-column align-items-center justify-content-center">
         <h1>Rechercher un menu</h1>

@@ -1,6 +1,6 @@
-// creditCardAutoComplete()
-// closedModalPopup();
-// toggleSearchInputForAdmin();
+creditCardAutoComplete()
+closedModalPopup();
+toggleSearchInputForAdmin();
 adminMenu();
 
 function closedModalPopup() {
@@ -21,57 +21,58 @@ function closedModalPopup() {
 // **** TO FIX LATER ***
 
 function creditCardAutoComplete() {
+    if (document.title == 'Commander') {
+        const selectCard = document.getElementById('ccUser');
+        const clientCardName = document.getElementById('clientCardName');
+        const clientCardNumber = document.getElementById('clientCardNumber');
+        const clientCardCVC = document.getElementById('clientCardCVC');
+        const clientCardMonth = document.getElementById('clientCardMonth');
+        const clientCardYear = document.getElementById('clientCardYear');
 
-    const selectCard = document.getElementById('ccUser');
-    const clientCardName = document.getElementById('clientCardName');
-    const clientCardNumber = document.getElementById('clientCardNumber');
-    const clientCardCVC = document.getElementById('clientCardCVC');
-    const clientCardMonth = document.getElementById('clientCardMonth');
-    const clientCardYear = document.getElementById('clientCardYear');
-
-    if (selectCard) {
-        selectCard.addEventListener('change', () => {
-            const value = selectCard.value;
-            getCard(value);
-        })
-    }
-    async function getCard(ccNumber) {
+        if (selectCard) {
+            selectCard.addEventListener('change', () => {
+                const value = selectCard.value;
+                getCard(value);
+            })
+        }
+        async function getCard(ccNumber) {
 
 
-        // A METTRE EN HAUT DE LA PAGE ->
-        // <meta name="csrf-token" content="{{ csrf_token() }}"
-        // SUIVI DE CA COMME SELECTEUR ET A NETTRE DANS LE X-CSRF HEADERS DE NOTRE FETCH
-        // const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            // A METTRE EN HAUT DE LA PAGE ->
+            // <meta name="csrf-token" content="{{ csrf_token() }}"
+            // SUIVI DE CA COMME SELECTEUR ET A NETTRE DANS LE X-CSRF HEADERS DE NOTRE FETCH
+            // const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        // POSIBILITE DE METTRE DANS LURL DU FETCH
-        // const urlReq = window.location.origin + "/getAuthUserCreditCard";
+            // POSIBILITE DE METTRE DANS LURL DU FETCH
+            // const urlReq = window.location.origin + "/getAuthUserCreditCard";
 
-        const result = await fetch("/getAuthUserCreditCard", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.querySelector('input[name=_token]').value
-            },
-            body: JSON.stringify(ccNumber),
-        });
-        const jsondata = await result.json(ccNumber);
+            const result = await fetch("/getAuthUserCreditCard", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.querySelector('input[name=_token]').value
+                },
+                body: JSON.stringify(ccNumber),
+            });
+            const jsondata = await result.json(ccNumber);
 
-        if (ccNumber > 1) {
-            clientCardName.value = jsondata.name
-            clientCardNumber.value = jsondata.card_number
-            clientCardCVC.value = jsondata.cvc
-            if (parseInt(jsondata.month) < 10)
-                clientCardMonth.value = '0' + jsondata.month
-            else
-                clientCardMonth.value = jsondata.month
-            clientCardYear.value = jsondata.year
-        } else {
-            clientCardName.value = ""
-            clientCardNumber.value = ""
-            clientCardCVC.value = ""
-            clientCardMonth.value = ""
-            clientCardYear.value = ""
+            if (ccNumber > 1) {
+                clientCardName.value = jsondata.name
+                clientCardNumber.value = jsondata.card_number
+                clientCardCVC.value = jsondata.cvc
+                if (parseInt(jsondata.month) < 10)
+                    clientCardMonth.value = '0' + jsondata.month
+                else
+                    clientCardMonth.value = jsondata.month
+                clientCardYear.value = jsondata.year
+            } else {
+                clientCardName.value = ""
+                clientCardNumber.value = ""
+                clientCardCVC.value = ""
+                clientCardMonth.value = ""
+                clientCardYear.value = ""
+            }
         }
     }
 }
@@ -292,24 +293,26 @@ function addEventOnMealDel() {
 // CECI SERA POUR DISPLAY TOGGLE LES SEARCH VIA EMAIL AND TEL FOR ADMIN CLIENT SEARCH
 
 function toggleSearchInputForAdmin() {
-    const emailLink = document.querySelector('#linkSearchEmail');
-    const divEmailSearch = document.querySelector('#divSearchEmail');
+    if (document.title == 'Client gestion') {
+        const emailLink = document.querySelector('#linkSearchEmail');
+        const divEmailSearch = document.querySelector('#divSearchEmail');
 
-    const telLink = document.querySelector('#linkSearchTel');
-    const divTelSearch = document.querySelector('#divSearchTel');
+        const telLink = document.querySelector('#linkSearchTel');
+        const divTelSearch = document.querySelector('#divSearchTel');
 
-    emailLink.addEventListener('click', (e) => {
-        if (divEmailSearch.classList.contains('d-none')) {
-            divEmailSearch.classList.toggle('d-none')
-            divTelSearch.classList.toggle('d-none')
-        }
-    })
+        emailLink.addEventListener('click', (e) => {
+            if (divEmailSearch.classList.contains('d-none')) {
+                divEmailSearch.classList.toggle('d-none')
+                divTelSearch.classList.toggle('d-none')
+            }
+        })
 
-    telLink.addEventListener('click', (e) => {
-        if (divTelSearch.classList.contains('d-none')) {
-            divTelSearch.classList.toggle('d-none')
-            divEmailSearch.classList.toggle('d-none')
-        }
-    })
+        telLink.addEventListener('click', (e) => {
+            if (divTelSearch.classList.contains('d-none')) {
+                divTelSearch.classList.toggle('d-none')
+                divEmailSearch.classList.toggle('d-none')
+            }
+        })
+    }
 }
 // ======================================================================
