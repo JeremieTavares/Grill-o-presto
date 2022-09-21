@@ -6,9 +6,9 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\InfoUser;
 use Illuminate\Http\Request;
-use App\Http\Requests\OAuthRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\AdminInsertRequest;
 use App\Http\Requests\UpdateUserInfoRequest;
 
 class GestionAdminController extends Controller
@@ -40,29 +40,29 @@ class GestionAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OAuthRequest $request)
+    public function store(UpdateUserInfoRequest $request)
     {
-
-        
         $validatedData = $request->validated();
+        $role = Role::where("role", $request->role)->first();
 
         $infoUser = InfoUser::create([
-            'prenom' => $request->prenom,
-            'nom' =>  $request->nom,
-            'telephone' =>  $request->tel,
-            'rue' =>  $request->rue,
-            'no_porte' =>  $request->noPorte,
-            'code_postal' =>  $request->zip_code,
-            'ville' =>  $request->ville
+            'prenom' => (string) $request->prenom,
+            'nom' => (string) $request->nom,
+            'telephone' => (string) $request->tel,
+            'rue' => (string) $request->rue,
+            'no_porte' => $request->noPorte,
+            'code_postal' => $request->zip_code,
+            'ville' => (string) $request->ville
         ]);
-        $role = new Role;
-        
+
         $user = User::create([
-            'info_user_id' => $infoUser->id,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role_id' =>  $role->get_user_role($request->roleRadio)
+            'info_user_id' => (int) $infoUser->id,
+            'email' => (string) $request->email,
+            'password' => (string) Hash::make($request->password),
+            'role_id' => (int) $role->id
         ]);
+
+        return back()->with('successInfosChanged', "L'administrateur à été créé");
     }
 
     /**
@@ -86,6 +86,8 @@ class GestionAdminController extends Controller
     {
         $admins = User::getAllAdmin();
         $admin = User::getUserWithInfo($request->selectAdmin)->first();
+        if (empty($admin))
+            return back()->with('noAdmin', "Aucun administrateur n'a été trouvé");
         return view('admin.gestionAdmin.admin-edit', ['admins' => $admins, 'selectedAdmin' => $admin]);
     }
 
@@ -101,7 +103,7 @@ class GestionAdminController extends Controller
         $validatedData = $request->validated();
 
         $admin = (object) User::where('id', $request->user_id)->first();
-        $role = Role::where("role", $request->roleRadio)->first();
+        $role = Role::where("role", $request->role)->first();
         $adminInfo = InfoUser::where('id', (int) $admin->info_user_id)->first();
 
         if ($request->tel !== $adminInfo->telephone) {
@@ -132,7 +134,7 @@ class GestionAdminController extends Controller
         }
 
         $admin->email = (string) $request->email;
-        $admin->role_id = (string) $role->id;
+        $admin->role_id = (int) $role->id;
         $admin->password = (string) $request->password;
         $adminInfo->prenom = (string) $request->prenom;
         $adminInfo->nom = (string) $request->nom;
@@ -142,6 +144,8 @@ class GestionAdminController extends Controller
         $adminInfo->code_postal = (string) $request->zip_code;
         $adminInfo->ville = (string) $request->ville;
         $adminInfo->telephone = (string) $request->tel;
+        $admin->blocked_at = isset($request->blocked_at) ? NULL : $admin->blocked_at;
+        $admin->soft_deleted = isset($request->soft_deleted) ? NULL : $admin->soft_deleted;
         $admin->save();
         $adminInfo->save();
 
@@ -154,8 +158,21 @@ class GestionAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $admin = (object) User::GetLoggedUserInfo()->first();
+        $client = User::where('id', $request->client_id)->first();
+        $role = new Role;
+        if ((int)$admin->role_id === (int) $role->get_role_admin_3()) {
+            if (isset($request->blocked_at)) {
+                $client->blocked_at = date('Y-m-d h:i:s');
+                $client->save();
+                return back()->with('clientAccountBlocked',  "Le compte du client a ete bloqué");
+            } elseif (isset($request->soft_deleted)) {
+                $client->soft_deleted = date('Y-m-d h:i:s');
+                $client->save();
+                return back()->with('clientAccountDeleted',  "Le compte du client a ete supprimé");
+            }
+        }
     }
 }

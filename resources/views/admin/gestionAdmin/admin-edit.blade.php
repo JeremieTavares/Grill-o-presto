@@ -4,11 +4,13 @@
     @include('admin.template.sub-navbar-admin-3')
     <main class="m-auto">
         <div class="container mw-750px">
-
+            <div class="text-center my-3">
+                <a href="{{ route('admin.admin.index') }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+            </div>
             <h2 class="text-center fs-3 my-5">Choisissez l'administrateur à modifier</h2>
             <label for="selectAdmin">Sélectionnez un Administrateur</label>
 
-            <form action="{{ route('admin.admin-edit', Auth::user()->id) }}" method="get">
+            <form action="{{ route('admin.admin.edit', Auth::user()->id) }}" method="get">
                 <select name="selectAdmin" id="selectAdmin" name="selectAdmin" class="form-select btn-rounded px-3">
                     @foreach ($admins as $admin)
                         @if ($selectedAdmin->id == $admin->id)
@@ -19,7 +21,7 @@
                     @endforeach
                 </select>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
+                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
                 </div>
             </form>
 
@@ -35,13 +37,16 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
-            <form action="{{ route('admin.admin-update') }}" method="POST">
+            <form action="{{ route('admin.admin.update', ' ') }}" method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="form-check d-flex flex-column mt-5 align-items-center">
+                    @error('role')
+                        <div class="text-danger fs-5 fw-bold mb-3">{{ $message }}</div>
+                    @enderror
                     <div>
                         <input @if ($selectedAdmin->role->role == 'Admin_1') checked @endif class="form-check-input" type="radio"
-                            name="roleRadio" id="admin1Radio" value="Admin_1">
+                            name="role" id="admin1Radio" value="Admin_1">
                         <label class="form-label" for="admin1Radio">
                             Administrateur niveau 1
                         </label>
@@ -50,7 +55,7 @@
 
                     <div>
                         <input @if ($selectedAdmin->role->role == 'Admin_2') checked @endif class="form-check-input" type="radio"
-                            name="roleRadio" id="admin2Radio" value="Admin_2">
+                            name="role" id="admin2Radio" value="Admin_2">
                         <label class="form-label" for="admin2Radio">
                             Administrateur niveau 2
                         </label>
@@ -58,7 +63,7 @@
 
                     <div>
                         <input @if ($selectedAdmin->role->role == 'Admin_3') checked @endif class="form-check-input" type="radio"
-                            name="roleRadio" id="admin3Radio" value="Admin_3">
+                            name="role" id="admin3Radio" value="Admin_3">
                         <label class="form-label" for="admin3Radio">
                             Administrateur niveau 3
                         </label>
@@ -200,14 +205,52 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
 
-                <input type="hidden" name="user_id" value="{{ $selectedAdmin->id }}">
-                <div class="d-flex justify-content-center mb-5">
-                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Ajouter</button>
-                </div>
 
+                    <input type="hidden" name="user_id" value="{{ $selectedAdmin->id }}">
+                    <div class="d-flex justify-content-center mb-5">
+                        <button type="submit"
+                            class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Modifier</button>
+                    </div>
+
+
+                    <h2 class="display-6 mt-5">Action sur le compte admin</h2>
+
+                    <div class="col-md-6 mt-5">
+                        <label for="accountDeleted" class="form-label ">Date de suppression</label>
+                        <input type="text" name="accountDeleted" id="accountDeleted"
+                            value="{{ $selectedAdmin->soft_deleted }}" disabled class="form-control"
+                            placeholder="Date de suppression" />
+                        <div class="mt-2">
+                            <label for="restoreClient" class="form-check-label">Récupérer le compte admin ?</label>
+                            <input type="checkbox" value="restoreClient" id="restoreClient" name="soft_deleted"
+                                class="form-check-input">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <label for="accountBlocked" class="form-label">Date de du bannissement</label>
+                        <input type="text" name="accountBlocked" id="accountBlocked"
+                            value="{{ $selectedAdmin->blocked_at }}" disabled class="form-control"
+                            placeholder="Date du bloquage" />
+                        <div class="mt-2">
+                            <label for="unblockClient" class="form-check-label">Débloquer le compte admin ?</label>
+                            <input type="checkbox" value="unblockClient" id="unblockClient" name="blocked_at"
+                                class="form-check-input">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="client_id" value="{{ $selectedAdmin->id }}">
+
+                    <div class="d-flex justify-content-sm-center justify-content-md-start">
+                        <button type="submit"
+                            class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">Enregistrer</button>
+                    </div>
+                </div>
             </form>
+            @include('admin.gestionAdmin.template.modal-admin-destroy')
+            @include('admin.gestionAdmin.template.modal-admin-block')
+        </div>
         </div>
     </main>
 @endsection
