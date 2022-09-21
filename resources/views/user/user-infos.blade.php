@@ -78,9 +78,9 @@
                     <div class="col-md-2">
                         <label for="zip_code" class="form-label">Code-Postal*</label>
                         <input type="text" name="zip_code" id="zip_code"
-                            class="form-control @error('zip-code') is-invalid @enderror"
+                            class="form-control @error('zip_code') is-invalid @enderror"
                             value="{{ $user[0]->infoUser->code_postal }}" required autocomplete="zip-code" autofocus>
-                        @error('zip-code')
+                        @error('zip_code')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
