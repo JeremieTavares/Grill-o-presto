@@ -1,3 +1,5 @@
-@extends('public.template.base')
-@section('banner-title', 'Mon profil - informations personnelles')
+@extends('admin.template.base')
+@section('title', 'Modifier la Faq')
 @section('content')
+    
+@endsection
