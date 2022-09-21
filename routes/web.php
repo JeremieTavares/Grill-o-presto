@@ -4,6 +4,7 @@ use App\Models\User;
 use Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MenuController;
@@ -12,14 +13,14 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\CreditcardController;
+use App\Http\Controllers\RepasAdminController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\MenuAdmin;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 
 /*
@@ -125,15 +126,16 @@ Route::prefix('admin/')->name('admin.')->group(function() {
     });
 
     Route::resource('client', GestionClientController::class);
+    Route::resource('repas', RepasAdminController::class);
 
-    Route::get('/menu/ajouter', [MenuAdmin::class, 'create'])->name('menu');
-    Route::post('/menu/ajouter', [MenuAdmin::class, 'store'])->name('menu.store');
-    Route::get('/menu/rechercher', [MenuAdmin::class, 'research'])->name('menu.research');
-    Route::post('/menu/rechercher', [MenuAdmin::class, 'search'])->name('menu.search');
-    Route::get('/menu/edit/{id}', [MenuAdmin::class, 'edit'])->name('menu.edit');
-    Route::put('/menu/edit/{id}', [MenuAdmin::class, 'update'])->name('menu.update');
-    // Route::post('/menu/modifier/{id}', [MenuAdmin::class, 'update'])->name('menu.update');
-    Route::delete('/menu/supprimer/{id}', [MenuAdmin::class, 'destroy'])->name('menu.destroy');
+    Route::get('/menu/ajouter', [MenuAdminController::class, 'create'])->name('menu');
+    Route::post('/menu/ajouter', [MenuAdminController::class, 'store'])->name('menu.store');
+    Route::get('/menu/rechercher', [MenuAdminController::class, 'research'])->name('menu.research');
+    Route::post('/menu/rechercher', [MenuAdminController::class, 'search'])->name('menu.search');
+    Route::get('/menu/edit/{id}', [MenuAdminController::class, 'edit'])->name('menu.edit');
+    Route::put('/menu/edit/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
+    // Route::post('/menu/modifier/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
+    Route::delete('/menu/supprimer/{id}', [MenuAdminController::class, 'destroy'])->name('menu.destroy');
 });
 
 

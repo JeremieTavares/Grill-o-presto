@@ -8,7 +8,7 @@ use App\Models\Menu;
 use App\Models\MenuType;
 use Illuminate\Http\Request;
 
-class MenuAdmin extends Controller
+class MenuAdminController extends Controller
 {
     public function create()
     {

@@ -316,3 +316,16 @@ function toggleSearchInputForAdmin() {
     }
 }
 // ======================================================================
+
+function adminRepas() {
+    if(document.title == 'Repas ajouter') {
+        let ingredientContainer = document.querySelector('.input_container');
+        let ingredientButton = document.querySelector('.ingrediants button');
+
+        ingredientButton.addEventListener('click', () => {
+            ingredientContainer.innerHTML += '<div><label for="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'">Ingrédiant :</label><input type="text" name="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'"></div>'
+
+        });
+
+    }
+}
