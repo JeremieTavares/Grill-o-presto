@@ -135,7 +135,7 @@ class GestionAdminController extends Controller
 
         $admin->email = (string) $request->email;
         $admin->role_id = (int) $role->id;
-        $admin->password = (string) $request->password;
+        $admin->password = (string) Hash::make($request->password);
         $adminInfo->prenom = (string) $request->prenom;
         $adminInfo->nom = (string) $request->nom;
         $adminInfo->rue = (string) $request->rue;
@@ -160,6 +160,7 @@ class GestionAdminController extends Controller
      */
     public function destroy(Request $request)
     {
+       
         $admin = (object) User::GetLoggedUserInfo()->first();
         $client = User::where('id', $request->client_id)->first();
         $role = new Role;
@@ -167,11 +168,11 @@ class GestionAdminController extends Controller
             if (isset($request->blocked_at)) {
                 $client->blocked_at = date('Y-m-d h:i:s');
                 $client->save();
-                return back()->with('clientAccountBlocked',  "Le compte du client a ete bloqué");
+                return back()->with('clientAccountBlocked',  "Le compte administrateur a été bloqué");
             } elseif (isset($request->soft_deleted)) {
                 $client->soft_deleted = date('Y-m-d h:i:s');
                 $client->save();
-                return back()->with('clientAccountDeleted',  "Le compte du client a ete supprimé");
+                return back()->with('clientAccountDeleted',  "Le compte administrateur a été supprimé");
             }
         }
     }

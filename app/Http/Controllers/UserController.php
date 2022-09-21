@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use App\Http\Requests\UpdateUserInfoRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -116,7 +117,7 @@ class UserController extends Controller
 
 
         $user->email = (string) $request->email;
-        $user->password = (string) $request->password;
+        $user->password = (string) Hash::make($request->password);
         $userInfo->prenom = (string) $request->prenom;
         $userInfo->nom = (string) $request->nom;
         $userInfo->rue = (string) $request->rue;

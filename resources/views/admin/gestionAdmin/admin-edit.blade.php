@@ -7,6 +7,15 @@
             <div class="text-center my-3">
                 <a href="{{ route('admin.admin.index') }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
             </div>
+            @if (Session::has('clientAccountBlocked') || Session::has('clientAccountDeleted'))
+            <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                id="divAlertSucccessInfoChanged">
+                {{ Session::get('clientAccountBlocked') }}
+                {{ Session::get('clientAccountDeleted') }}
+                <button type="button" class="close btn btn-link text-decoration-none"
+                    id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
+            </div>
+        @endif
             <h2 class="text-center fs-3 my-5">Choisissez l'administrateur à modifier</h2>
             <label for="selectAdmin">Sélectionnez un Administrateur</label>
 
@@ -24,10 +33,8 @@
                     <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
                 </div>
             </form>
-
-            <hr class="w-25 text-primary my-5 m-auto">
-
-
+            
+            <hr class="w-25 text-primary my-5 m-auto">           
             <h2 class="text-center fs-3 my-5">Changer le rôle de l'administrateur</h2>
             @if (Session::has('successInfosChanged'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
