@@ -2,18 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\FaqTheme;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faq extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'question',
-        'answer'
+        'answer',
+        'faq_theme_id',
+        'user_id',
+        'is_active'
     ];
 
-    public function faq() {
-        return $this->belongsTo(Faq::class);
+    public function faqThemes() {
+        return $this->belongsTo(FaqTheme::class);
     }
 }
