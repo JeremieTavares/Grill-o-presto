@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
+use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,7 +110,12 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
 // ==========================================================================================================================================================
 
-Route::controller(GestionAdminController::class)->prefix('admin/')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
-    Route::post('{id}/admin-edit', [GestionAdminController::class, 'edit'])->name('admin-edit');
+Route::prefix('admin/')->name('admin.')->group(function () {
+    Route::controller(GestionAdminController::class)->middleware('auth')->group(function () {
+        Route::get('admin/gestion', 'index')->name('admin.index');
+        Route::get('{id}/admin/edit', 'edit')->name('admin.edit');
+    });
+
+
+    Route::resource('client', GestionClientController::class);
 });
