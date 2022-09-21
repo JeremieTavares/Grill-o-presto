@@ -113,7 +113,7 @@ class MenuAdmin extends Controller
 
     public function edit($id) {
         $menu = Menu::with('history_meals')->with('menu_type')->find($id);
-
+        
         $menuMealName = [];
         foreach ($menu->history_meals as $value) {
             array_push($menuMealName, $value->name);
@@ -133,6 +133,18 @@ class MenuAdmin extends Controller
         
         return view('admin.gestionMenu.menu_edit', ['menu' => $menu, 'meals' => $meals, 'mealId' => $mealId]);
 
+
+    }
+
+    public function destroy($id) {
+        $responseMeals = HistoryMeal::with('menu')->whereRelation('menu', 'id', $id)->delete();
+        if($responseMeals) {
+            $responseMenu = Menu::find($id)->delete();
+            if($responseMenu) {
+                return redirect()->route('admin.menu.research')->with('success', 'La suppression s\'set a été fait avec succès.');
+            }
+        }
+        return redirect()->route('admin.menu.research')->with('error', 'La suppression ne s\'est pas passé comme prévu.');
 
     }
 

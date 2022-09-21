@@ -128,6 +128,8 @@ Route::prefix('admin/')->name('admin.')->group(function() {
     Route::get('/menu/rechercher', [MenuAdmin::class, 'research'])->name('menu.research');
     Route::post('/menu/rechercher', [MenuAdmin::class, 'search'])->name('menu.search');
     Route::get('/menu/edit/{id}', [MenuAdmin::class, 'edit'])->name('menu.edit');
+    // Route::post('/menu/modifier/{id}', [MenuAdmin::class, 'update'])->name('menu.update');
+    Route::delete('/menu/supprimer/{id}', [MenuAdmin::class, 'destroy'])->name('menu.destroy');
 });
 
 

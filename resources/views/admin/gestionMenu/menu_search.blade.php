@@ -4,6 +4,12 @@
     <main class="admin_search_menu d-flex flex-column align-items-center justify-content-center">
         <h1>Rechercher un menu</h1>
 
+        @if (Session::has('success'))
+            <p class="alert alert-success">{{Session::get('success')}}</p>
+        @elseif(Session::has('error'))
+            <p class="alert alert-danger">{{Session::get('error')}}</p>
+        @endif
+
         <form class=" w-100 d-flex flex-column" action="{{route('admin.menu.search')}}" method="POST">
             @csrf
             <div>
@@ -45,7 +51,7 @@
                                 <p class="m-0 w-50">{{$menu->start_date." / ".$menu->end_date}}</p>
                                 <p class="m-0 w-50">{{$menu->menu_type->type}}</p>
                             </div>
-                            <a class="me-3" href="">
+                            <a class="me-3" href="{{route('admin.menu.edit', ['id' => $menu->id])}}">
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
