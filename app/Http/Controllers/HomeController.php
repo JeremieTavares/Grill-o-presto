@@ -44,8 +44,4 @@ class HomeController extends Controller
         return view('public.plat');
     }
 
-    public function indexFaq()
-    {
-        return view('public.faq');
-    }
 }

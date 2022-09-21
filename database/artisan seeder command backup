@@ -11,3 +11,6 @@ php artisan db:seed TicketSeeder
 php artisan db:seed MessageSeeder
 php artisan db:seed OrderStatusSeeder
 php artisan db:seed OrderSeeder
+php artisan db:seed FaqThemeSeeder
+php artisan db:seed FaqSeeder
+
