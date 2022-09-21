@@ -13,9 +13,8 @@
             ?>
 
             <div class="accordion" id="accordionExample">
-
+                <?php $i = 0; ?>
                 @foreach ($faqs as $faq)
-                    <?php $i = 0; ?>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading<?php echo $i; ?>">
                             <button class="accordion-button <?php($i>1) ? 'collapsed':''; ?> ?> ?> ?>" type="button" data-bs-toggle="collapse"
