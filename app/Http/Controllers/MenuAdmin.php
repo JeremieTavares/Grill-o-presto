@@ -141,11 +141,48 @@ class MenuAdmin extends Controller
         if($responseMeals) {
             $responseMenu = Menu::find($id)->delete();
             if($responseMenu) {
-                return redirect()->route('admin.menu.research')->with('success', 'La suppression s\'set a été fait avec succès.');
+                return redirect()->route('admin.menu.research')->with('success', 'La suppression s\'est passé comme prévu.');
             }
         }
         return redirect()->route('admin.menu.research')->with('error', 'La suppression ne s\'est pas passé comme prévu.');
 
+    }
+
+    public function update(Request $request, $id) {
+
+        HistoryMeal::with('menu')->whereRelation('menu', 'id', $id)->delete();
+
+        $mealId = [];
+        foreach ($request->all() as $key => $value) {
+            if (explode('-', $key)[0] == 'meal') {
+                $idExp = explode('-', $key);
+                $idMeal = $idExp[count($idExp) - 1];
+                array_push($mealId, $idMeal);
+            }
+        }
+        
+
+        if(HistoryMeal::with('menu')->whereRelation('menu', 'id', $id)->first() == null) {
+            $meals = Meal::find($mealId);
+            foreach ($meals as $key => $meal) {
+                $hMeal = new HistoryMeal();
+    
+                $hMeal->name = $meal->name;
+                $hMeal->ingredients = $meal->ingredients;
+                $hMeal->description = $meal->description;
+                $hMeal->vegetarian = $meal->vegetarian;
+                $hMeal->gluten_free = $meal->gluten_free;
+                $hMeal->spicy = $meal->spicy;
+                $hMeal->menu_id = $id;
+                $hMeal->image_path = $meal->image_path;
+                $hMeal->is_on_home_page = 0;
+                $hMeal->save();
+            }
+        }
+        
+
+        return back()->with('success', 'Modification du menu avec succès.');
+      
     }
 
 }

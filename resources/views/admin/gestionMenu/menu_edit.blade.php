@@ -4,9 +4,16 @@
     <main class="menu_edit_admin">
         
         <h1>Modification du menu</h1>
+        @if (Session::has('success'))
+            <p class="alert alert-success">{{Session::get('success')}}</p>
+        @elseif(Session::has('error'))
+            <p class="alert alert-danger">{{Session::get('error')}}</p>
+        @endif
         <p>Date : {{$menu->start_date." / ".$menu->end_date}}</p>
         <p>Type : {{$menu->menu_type->type}}</p>
-        <form action="" method="POST" class="d-flex flex-column align-items-center">
+        <form action="{{route('admin.menu.update', ['id' => $menu->id])}}" method="POST" class="d-flex flex-column align-items-center">
+            @method('put')
+            @csrf
             @if (date($menu->start_date) > date('Y-m-d', strtotime('last Monday + 7 days')))
                 <div>
                     <label for="meals">Repas</label>
