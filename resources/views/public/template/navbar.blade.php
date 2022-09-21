@@ -25,7 +25,7 @@
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
-                    <a href="" class="text-secondary"><i
+                    <a href="{{route('cart')}}" class="text-secondary"><i
                             class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
                     <?php if(Auth::user()){ ?>
                     <a href="{{ route('user.edit.info', Auth::user()->id) }}" class="text-secondary"><i

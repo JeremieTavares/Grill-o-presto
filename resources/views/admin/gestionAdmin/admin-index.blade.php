@@ -1,4 +1,5 @@
 @extends('public.template.base')
+@section('title', 'Admin')
 @section('banner-title', 'Mon profil - informations personnelles')
 @section('content')
     @include('admin.template.sub-navbar-admin-3')
@@ -7,7 +8,7 @@
 
             <label for="selectAdmin">Sélectionnez un Administrateur</label>
 
-            <form action="{{ route('admin.admin-edit', Auth::user()->id) }}" method="Post">
+            <form action="{{ route('admin.admin.edit', Auth::user()->id) }}" method="Post">
                 @csrf
                 <select name="selectAdmin" id="selectAdmin" name="selectAdmin" class="form-select btn-rounded px-3">
                     <option value="" selected>Choisissez un Admin</option>

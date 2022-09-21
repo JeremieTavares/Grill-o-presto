@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Allergen;
-use App\Models\Meal;
+use App\Models\HistoryMeal;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,10 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('allergen_meals', function (Blueprint $table) {
+        Schema::create('allergen_history_meal', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Allergen::class)->constrained();
-            $table->foreignIdFor(Meal::class)->constrained();
+            $table->foreignIdFor(Allergen::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(HistoryMeal::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('allergen_meals');
+        Schema::dropIfExists('allergen_hystory_meal');
     }
 };

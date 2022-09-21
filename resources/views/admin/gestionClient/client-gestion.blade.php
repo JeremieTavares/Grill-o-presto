@@ -1,6 +1,6 @@
 @extends('public.template.base')
 @section('banner-title', 'Rechercher un client')
-
+@section('title', 'Client gestion')
 @section('content')
 
     <div class="container">

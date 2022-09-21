@@ -18,8 +18,8 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('response')->nullable();
-            $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(Ticket::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Ticket::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

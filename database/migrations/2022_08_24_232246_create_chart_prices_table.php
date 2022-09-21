@@ -17,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('chart_prices', function (Blueprint $table) {
             $table->id();  
-            $table->foreignIdFor(Portion::class)->constrained();
-            $table->foreignIdFor(Menu::class)->constrained();
+            $table->foreignIdFor(Portion::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
             $table->integer('price');
             $table->timestamps();
         });
