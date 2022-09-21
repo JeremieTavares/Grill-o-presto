@@ -6,6 +6,9 @@
 
     <main>
         <div class="container p-4">
+                    <div class="text-center my-3">
+                <a href="{{ route('admin.client.index') }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+            </div>
             <div class="message mt-4 mb-5">
                 <h2>Informations personnelles du client</h2>
             </div>
