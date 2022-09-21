@@ -126,7 +126,7 @@ Route::prefix('admin/')->name('admin.')->group(function() {
 
     Route::resource('client', GestionClientController::class);
 
-    Route::get('/menu', [MenuAdmin::class, 'create'])->name('menu');
+    Route::get('/menu/ajouter', [MenuAdmin::class, 'create'])->name('menu');
     Route::post('/menu/ajouter', [MenuAdmin::class, 'store'])->name('menu.store');
     Route::get('/menu/rechercher', [MenuAdmin::class, 'research'])->name('menu.research');
     Route::post('/menu/rechercher', [MenuAdmin::class, 'search'])->name('menu.search');

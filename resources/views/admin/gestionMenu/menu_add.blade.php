@@ -15,7 +15,7 @@
             <div>
                 <label for="start_date">Choisir la date</label>
                 <select name="start_date" id="start_date" class="custom-select">
-                    @for ($i = 0; $i < 10; $i++)
+                    @for ($i = 1; $i <= 10; $i++)
                         <option value="{{date('Y-m-d',strtotime("next Monday + " . (7*$i) . " days"))}}">{{date('Y-m-d',strtotime("next Monday + " . (7*$i) . " days"))}}</option>
                     @endfor
                 </select>

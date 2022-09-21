@@ -1,7 +1,7 @@
-creditCardAutoComplete()
-closedModalPopup();
-toggleSearchInputForAdmin();
-
+// creditCardAutoComplete()
+// closedModalPopup();
+// toggleSearchInputForAdmin();
+adminMenu();
 
 function closedModalPopup() {
     const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
@@ -140,150 +140,152 @@ function creditCardAutoComplete() {
 //     }
 // });
 // =======================MENU ADMIN===================================
-if (document.title == 'Menu ajout') {
+function adminMenu() {
+    if (document.title == 'Menu ajout') {
 
-    let menuTypeSelect = document.querySelector('#menu_type');
-    let mealsSelectAdminItems = document.querySelectorAll('.menu_add_admin .meal');
-    let mealsSelectAdmin = document.querySelector('.menu_add_admin #meals');
-    let divContainer = document.querySelector('.meals_menu_container');
-    let buttons = divContainer.querySelectorAll('button');
-    let counter = document.querySelector('.menu_add_admin .mealsCounter');
-    let maxMealBox = document.querySelector('.maxMealBox');
-    let alreadyTaken = document.querySelector('.alreadyTaken');
-    let nbRepasCounter = 0;
+        let menuTypeSelect = document.querySelector('#menu_type');
+        let mealsSelectAdminItems = document.querySelectorAll('.menu_add_admin .meal');
+        let mealsSelectAdmin = document.querySelector('.menu_add_admin #meals');
+        let divContainer = document.querySelector('.meals_menu_container');
+        let buttons = divContainer.querySelectorAll('button');
+        let counter = document.querySelector('.menu_add_admin .mealsCounter');
+        let maxMealBox = document.querySelector('.maxMealBox');
+        let alreadyTaken = document.querySelector('.alreadyTaken');
+        let nbRepasCounter = 0;
 
-    menuTypeSelect.addEventListener('change', () => {
-        document.querySelectorAll(".checkBox_container input").forEach(item => {
-            item.removeAttribute("checked");
+        menuTypeSelect.addEventListener('change', () => {
+            document.querySelectorAll(".checkBox_container input").forEach(item => {
+                item.removeAttribute("checked");
+                maxMealBox.classList.add('displayNone');
+                nbRepasCounter = 0;
+                counter.innerHTML = nbRepasCounter + "/10";
+            })
+            divContainer.innerHTML = "";
+            mealsSelectAdminItems.forEach($meal => {
+                if (menuTypeSelect.value == "Végétarien") {
+                    if (!$meal.classList.contains("vegetarian")) {
+                        console.log(menuTypeSelect.value);
+                        $meal.classList.add('displayNone');
+                    }
+                }
+                else if (menuTypeSelect.value == "Sans Gluten") {
+                    if (!$meal.classList.contains("gluten_free")) {
+                        console.log(menuTypeSelect.value);
+                        $meal.classList.add('displayNone');
+                    }
+                }
+                else {
+                    $meal.classList.remove('displayNone');
+                }
+            })
+        });
+
+        mealsSelectAdmin.addEventListener('change', () => {
+
+            if (nbRepasCounter < 10) {
+                document.querySelector(".meal-" + mealsSelectAdmin.value).setAttribute('checked', 'checked');
+
+                let exists = false;
+                divContainer.querySelectorAll('div').forEach(item => {
+                    if (item.classList.contains('meal-' + mealsSelectAdmin.value))
+                        exists = true;
+                })
+
+                if (!exists) {
+                    divContainer.innerHTML += '<div id="meal-' + mealsSelectAdmin.value + '" class="adminMealDiv meal-' + mealsSelectAdmin.value + '"><p>' + document.querySelector('#meals [value="' + mealsSelectAdmin.value + '"]').innerHTML + '</p><button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button></div>'
+                    nbRepasCounter++;
+                    counter.innerHTML = nbRepasCounter + "/10";
+                    alreadyTaken.classList.add('displayNone');
+                }
+                else {
+                    alreadyTaken.classList.remove('displayNone');
+                }
+
+
+                buttons = divContainer.querySelectorAll('button');
+                addEventOnMealDel();
+            }
+            else {
+                maxMealBox.classList.remove('displayNone');
+            }
+
+        });
+
+
+
+    }
+
+    if (document.title == 'Menu modification') {
+        let mealsSelectAdminItems = document.querySelectorAll('.menu_edit_admin .meal');
+        let mealsSelectAdmin = document.querySelector('.menu_edit_admin #meals');
+        let divContainer = document.querySelector('.meals_menu_container');
+        let buttons = divContainer.querySelectorAll('button');
+        let counter = document.querySelector('.menu_edit_admin .mealsCounter');
+        let maxMealBox = document.querySelector('.maxMealBox');
+        let alreadyTaken = document.querySelector('.alreadyTaken');
+        let nbRepasCounter = document.querySelectorAll('input[checked]').length;
+
+        addEventOnMealDel()
+
+        console.log(nbRepasCounter);
+
+        mealsSelectAdmin.addEventListener('change', () => {
+
+            if (nbRepasCounter < 10) {
+                document.querySelector(".meal-" + mealsSelectAdmin.value).setAttribute('checked', 'checked');
+
+                let exists = false;
+                divContainer.querySelectorAll('div').forEach(item => {
+                    if (item.classList.contains('meal-' + mealsSelectAdmin.value))
+                        exists = true;
+                })
+
+                if (!exists) {
+                    divContainer.innerHTML += '<div id="meal-' + mealsSelectAdmin.value + '" class="adminMealDiv meal-' + mealsSelectAdmin.value + '"><p>' + document.querySelector('#meals [value="' + mealsSelectAdmin.value + '"]').innerHTML + '</p><button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button></div>'
+                    nbRepasCounter++;
+                    counter.innerHTML = nbRepasCounter + "/10";
+                    alreadyTaken.classList.add('displayNone');
+                }
+                else {
+                    alreadyTaken.classList.remove('displayNone');
+                }
+
+
+                buttons = divContainer.querySelectorAll('button');
+                addEventOnMealDel();
+            }
+            else {
+                maxMealBox.classList.remove('displayNone');
+            }
+
+        });
+
+        function addEventOnMealDel() {
+            buttons.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.remove();
+                    document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
+                    maxMealBox.classList.add('displayNone');
+                    nbRepasCounter--;
+                    counter.innerHTML = nbRepasCounter + "/10";
+                })
+            });
+
+        }
+    }
+}
+
+function addEventOnMealDel() {
+    buttons.forEach(item => {
+        item.addEventListener('click', () => {
+            item.parentElement.remove();
+            document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
             maxMealBox.classList.add('displayNone');
-            nbRepasCounter = 0;
+            nbRepasCounter--;
             counter.innerHTML = nbRepasCounter + "/10";
         })
-        divContainer.innerHTML = "";
-        mealsSelectAdminItems.forEach($meal => {
-            if (menuTypeSelect.value == "Végétarien") {
-                if (!$meal.classList.contains("vegetarian")) {
-                    console.log(menuTypeSelect.value);
-                    $meal.classList.add('displayNone');
-                }
-            }
-            else if (menuTypeSelect.value == "Sans Gluten") {
-                if (!$meal.classList.contains("gluten_free")) {
-                    console.log(menuTypeSelect.value);
-                    $meal.classList.add('displayNone');
-                }
-            }
-            else {
-                $meal.classList.remove('displayNone');
-            }
-        })
     });
-
-    mealsSelectAdmin.addEventListener('change', () => {
-
-        if (nbRepasCounter < 10) {
-            document.querySelector(".meal-" + mealsSelectAdmin.value).setAttribute('checked', 'checked');
-
-            let exists = false;
-            divContainer.querySelectorAll('div').forEach(item => {
-                if (item.classList.contains('meal-' + mealsSelectAdmin.value))
-                    exists = true;
-            })
-
-            if (!exists) {
-                divContainer.innerHTML += '<div id="meal-' + mealsSelectAdmin.value + '" class="adminMealDiv meal-' + mealsSelectAdmin.value + '"><p>' + document.querySelector('#meals [value="' + mealsSelectAdmin.value + '"]').innerHTML + '</p><button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button></div>'
-                nbRepasCounter++;
-                counter.innerHTML = nbRepasCounter + "/10";
-                alreadyTaken.classList.add('displayNone');
-            }
-            else {
-                alreadyTaken.classList.remove('displayNone');
-            }
-
-
-            buttons = divContainer.querySelectorAll('button');
-            addEventOnMealDel();
-        }
-        else {
-            maxMealBox.classList.remove('displayNone');
-        }
-
-    });
-
-
-    function addEventOnMealDel() {
-        buttons.forEach(item => {
-            item.addEventListener('click', () => {
-                item.parentElement.remove();
-                document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
-                maxMealBox.classList.add('displayNone');
-                nbRepasCounter--;
-                counter.innerHTML = nbRepasCounter + "/10";
-            })
-        });
-    }
 }
-
-if (document.title == 'Menu modification') {
-    let mealsSelectAdminItems = document.querySelectorAll('.menu_edit_admin .meal');
-    let mealsSelectAdmin = document.querySelector('.menu_edit_admin #meals');
-    let divContainer = document.querySelector('.meals_menu_container');
-    let buttons = divContainer.querySelectorAll('button');
-    let counter = document.querySelector('.menu_edit_admin .mealsCounter');
-    let maxMealBox = document.querySelector('.maxMealBox');
-    let alreadyTaken = document.querySelector('.alreadyTaken');
-    let nbRepasCounter = document.querySelectorAll('input[checked]').length;
-
-    addEventOnMealDel()
-
-    console.log(nbRepasCounter);
-
-    mealsSelectAdmin.addEventListener('change', () => {
-
-        if (nbRepasCounter < 10) {
-            document.querySelector(".meal-" + mealsSelectAdmin.value).setAttribute('checked', 'checked');
-
-            let exists = false;
-            divContainer.querySelectorAll('div').forEach(item => {
-                if (item.classList.contains('meal-' + mealsSelectAdmin.value))
-                    exists = true;
-            })
-
-            if (!exists) {
-                divContainer.innerHTML += '<div id="meal-' + mealsSelectAdmin.value + '" class="adminMealDiv meal-' + mealsSelectAdmin.value + '"><p>' + document.querySelector('#meals [value="' + mealsSelectAdmin.value + '"]').innerHTML + '</p><button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button></div>'
-                nbRepasCounter++;
-                counter.innerHTML = nbRepasCounter + "/10";
-                alreadyTaken.classList.add('displayNone');
-            }
-            else {
-                alreadyTaken.classList.remove('displayNone');
-            }
-
-
-            buttons = divContainer.querySelectorAll('button');
-            addEventOnMealDel();
-        }
-        else {
-            maxMealBox.classList.remove('displayNone');
-        }
-
-    });
-
-    function addEventOnMealDel() {
-        buttons.forEach(item => {
-            item.addEventListener('click', () => {
-                item.parentElement.remove();
-                document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
-                maxMealBox.classList.add('displayNone');
-                nbRepasCounter--;
-                counter.innerHTML = nbRepasCounter + "/10";
-            })
-        });
-
-    }
-}
-
-
 
 
 // ======================================================================
