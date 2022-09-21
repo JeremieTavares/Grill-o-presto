@@ -16,7 +16,7 @@
     @include('admin.template.sub-navbar-admin-3')
     <main class="m-auto">
         <div class="container d-flex flex-column align-items-center mb-5">
-            <div class="nav_container mt-5 px-2">
+            <div class="nav_container mt-4 px-2">
                 <ul class="d-flex justify-content-center align-items-center">
                     <li class="d-flex align-items-center justify-content-center"><a
                             class="cursor-pointer bg-primary text-white" id="linkSearchEmail">Email</a></li>

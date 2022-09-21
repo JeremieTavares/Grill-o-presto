@@ -6,7 +6,7 @@
 
     <main>
         <div class="container p-4">
-            <div class="message my-5">
+            <div class="message mt-4 mb-5">
                 <h2>Informations personnelles du client</h2>
             </div>
 
