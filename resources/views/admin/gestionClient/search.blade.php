@@ -1,25 +1,36 @@
 @extends('public.template.base')
-@section('banner-title', 'Mon profil - informations personnelles')
+@section('banner-title', 'Administrateur- Modification des informations client')
 @section('content')
 
-    @include('user.template.sub-navbar')
+    @include('admin.template.sub-navbar-admin-3')
+
     <main>
         <div class="container p-4">
-            <div class="message mb-4">
-                <h1 class="display-3 fw-bold">Mes informations</h1>
-                <h2>Informations client</h2>
+                    <div class="text-center my-3">
+                <a href="{{ route('admin.client.index') }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+            </div>
+            <div class="message mt-4 mb-5">
+                <h2>Informations personnelles du client</h2>
             </div>
 
 
-            @if (Session::has('successInfosChanged'))
+            @if (Session::has('successInfosChanged') ||
+                Session::has('clientAccountUnblocked') ||
+                Session::has('clientAccountUndeleted') ||
+                Session::has('clientAccountDeleted') ||
+                Session::has('clientAccountBlocked'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
+                    {{ Session::get('clientAccountDeleted') }}
+                    {{ Session::get('clientAccountBlocked') }}
+                    {{ Session::get('clientAccountUnblocked') }}
+                    {{ Session::get('clientAccountUndeleted') }}
                     {{ Session::get('successInfosChanged') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
-            <form action="{{ route('user.update.info', $user[0]->id) }}" method="POST">
+            <form action="{{ route('admin.client.update', ' ') }}" method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="row">
@@ -108,8 +119,8 @@
 
 
 
-                    <div class="message my-4">
-                        <h2 class="fs-1">Informations du compte</h2>
+                    <div class="message my-5">
+                        <h2 class="fs-1">Informations du compte client</h2>
                     </div>
 
                     <div class="col-md-6">
@@ -143,7 +154,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label for="password_confirmation" class="form-label ">Confirmer le mot de passe*</label>
+                        <label for="password_confirmation" class="form-label">Confirmer le mot de passe*</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
                             value="{{ $user[0]->password }}"
                             class="form-control @error('password_confirmation') is-invalid @enderror"
@@ -152,12 +163,42 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
 
-                <button type="submit"
-                    class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">Enregistrer</button>
+                    <h2 class="display-6 mt-5">Action sur le compte client</h2>
+
+                    <div class="col-md-6 mt-5">
+                        <label for="accountDeleted" class="form-label ">Date de suppression</label>
+                        <input type="text" name="accountDeleted" id="accountDeleted"
+                            value="{{ $user[0]->soft_deleted }}" disabled class="form-control"
+                            placeholder="Date de suppression" />
+                        <div class="mt-2">
+                            <label for="restoreClient" class="form-check-label">Récupérer le compte de ce client ?</label>
+                            <input type="checkbox" value="restoreClient" id="restoreClient" name="soft_deleted"
+                                class="form-check-input">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <label for="accountBlocked" class="form-label">Date de du bannissement</label>
+                        <input type="text" name="accountBlocked" id="accountBlocked"
+                            value="{{ $user[0]->blocked_at }}" disabled class="form-control"
+                            placeholder="Date du bloquage" />
+                        <div class="mt-2">
+                            <label for="unblockClient" class="form-check-label">Débloquer ce client ?</label>
+                            <input type="checkbox" value="unblockClient" id="unblockClient" name="blocked_at"
+                                class="form-check-input">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="client_id" value="{{ $user[0]->id }}">
+                </div>
+                <div class="d-flex justify-content-sm-center justify-content-md-start">
+                    <button type="submit"
+                        class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">Enregistrer</button>
+                </div>
             </form>
-            @include('user.template.modal-user-destroy')
+            @include('admin.gestionClient.template.modal-user-destroy')
+            @include('admin.gestionClient.template.modal-user-block')
         </div>
     </main>
 @endsection

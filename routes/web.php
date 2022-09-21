@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuAdmin;
+use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,8 @@ Route::prefix('admin/')->name('admin.')->group(function() {
         Route::get('admin/gestion', 'index')->name('admin.index');
         Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
     });
+
+    Route::resource('client', GestionClientController::class);
 
     Route::get('/menu', [MenuAdmin::class, 'create'])->name('menu');
     Route::post('/menu/ajouter', [MenuAdmin::class, 'store'])->name('menu.store');

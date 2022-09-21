@@ -3,7 +3,7 @@
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.tickets.index', Auth::user()->id) }}">Admin</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('user.tickets.index', Auth::user()->id) }}">User</a></li>
+                href="{{ route('admin.client.index') }}">User</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.tickets.index', Auth::user()->id) }}">Menu</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
