@@ -34,10 +34,9 @@ class GithubController extends Controller
         
         try {
     $githubUserInfo = Socialite::driver('github')->user();
-}
-catch (\Exception $e) {
-    return redirect()->route('home');
-}
+     } catch (\Exception $e) {
+            return redirect()->route('login');
+      }
 
         // STATELESS ? TO BE ADDED IF PROBLEMS
         
