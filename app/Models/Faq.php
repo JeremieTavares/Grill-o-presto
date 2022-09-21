@@ -18,7 +18,7 @@ class Faq extends Model
         'is_active'
     ];
 
-    public function faqThemes() {
+    public function faqTheme() {
         return $this->belongsTo(FaqTheme::class);
     }
 }

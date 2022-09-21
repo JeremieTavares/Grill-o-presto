@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin\gestionFaq;
 
-use App\Http\Controllers\Controller;
+use App\Models\Faq;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\FaqTheme;
 
 class GestionFaqController extends Controller
 {
@@ -14,8 +16,9 @@ class GestionFaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::with('FaqTheme')
-        return view('admin.gestionFaq.faq-index', ['admins' => $admins]);
+        $faqs = Faq::with('faqTheme')->get();
+        $faqThemes = FaqTheme::all();         
+        return view('admin.gestionFaq.faq-index', ['faqs' => $faqs, 'faqThemes' => $faqThemes]);
     }
 
     /**

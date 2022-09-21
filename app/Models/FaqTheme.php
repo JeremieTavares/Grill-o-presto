@@ -10,7 +10,7 @@ class FaqTheme extends Model
 {
     use HasFactory;
 
-    public function faq(){
+    public function faqs(){
         return $this->hasMany(Faq::class);
     }
 }
