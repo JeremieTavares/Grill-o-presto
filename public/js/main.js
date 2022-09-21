@@ -1,5 +1,6 @@
 creditCardAutoComplete()
 closedModalPopup();
+toggleSearchInputForAdmin();
 
 
 function closedModalPopup() {
@@ -28,11 +29,11 @@ function creditCardAutoComplete() {
     const clientCardMonth = document.getElementById('clientCardMonth');
     const clientCardYear = document.getElementById('clientCardYear');
 
-    if(selectCard){
-    selectCard.addEventListener('change', () => {
-        const value = selectCard.value;
-        getCard(value);
-    })
+    if (selectCard) {
+        selectCard.addEventListener('change', () => {
+            const value = selectCard.value;
+            getCard(value);
+        })
     }
     async function getCard(ccNumber) {
 
@@ -138,4 +139,33 @@ function creditCardAutoComplete() {
 //         }
 //     }
 // });
+// ======================================================================
+
+
+
+
+// ======================================================================
+// CECI SERA POUR DISPLAY TOGGLE LES SEARCH VIA EMAIL AND TEL FOR ADMIN CLIENT SEARCH
+
+function toggleSearchInputForAdmin() {
+    const emailLink = document.querySelector('#linkSearchEmail');
+    const divEmailSearch = document.querySelector('#divSearchEmail');
+
+    const telLink = document.querySelector('#linkSearchTel');
+    const divTelSearch = document.querySelector('#divSearchTel');
+
+    emailLink.addEventListener('click', (e) => {
+        if (divEmailSearch.classList.contains('d-none')) {
+            divEmailSearch.classList.toggle('d-none')
+            divTelSearch.classList.toggle('d-none')
+        }
+    })
+
+    telLink.addEventListener('click', (e) => {
+        if (divTelSearch.classList.contains('d-none')) {
+            divTelSearch.classList.toggle('d-none')
+            divEmailSearch.classList.toggle('d-none')
+        }
+    })
+}
 // ======================================================================
