@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin\gestionFaq;
 
 use App\Models\Faq;
+use App\Models\FaqTheme;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\FaqTheme;
+use Illuminate\Support\Facades\Auth;
 
 class GestionFaqController extends Controller
 {
@@ -17,7 +18,7 @@ class GestionFaqController extends Controller
     public function index()
     {
         $faqs = Faq::with('faqTheme')->get();
-        $faqThemes = FaqTheme::all();         
+        $faqThemes = FaqTheme::all();
         return view('admin.gestionFaq.faq-index', ['faqs' => $faqs, 'faqThemes' => $faqThemes]);
     }
 
@@ -39,7 +40,11 @@ class GestionFaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['user_id'] = Auth::user()->id;
+        $faq = Faq::create($request->all());
+
+
+        return back()->with('FaqCreated', "La question/réponse a été créé");
     }
 
     /**
@@ -59,9 +64,13 @@ class GestionFaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $faq = Faq::firstWhere('id', $request->id);
+        $faqs = Faq::all();
+        $faqThemes = FaqTheme::all();
+
+        return view('admin.gestionFaq.faq-edit', ['faqs' => $faqs, 'faq' => $faq, 'faqThemes' => $faqThemes]);
     }
 
     /**
@@ -73,7 +82,9 @@ class GestionFaqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request['user_id'] = Auth::user()->id;
+        Faq::find($request->faq_id)->update($request->all());
+        return back()->with('FaqCreated', "La question/réponse a été modifié");
     }
 
     /**

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('answer');
             $table->foreignIdFor(FaqTheme::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }
