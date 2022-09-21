@@ -14,7 +14,8 @@ class GestionFaqController extends Controller
      */
     public function index()
     {
-        //
+        $faqs = Faq::with('FaqTheme')
+        return view('admin.gestionFaq.faq-index', ['admins' => $admins]);
     }
 
     /**
