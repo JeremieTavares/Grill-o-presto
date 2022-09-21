@@ -35,12 +35,10 @@ use App\Http\Controllers\MenuAdmin;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('meal');
 Route::get('/panier/{delete?}', [CartController::class, 'index'])->name('cart');
-Route::post('/checkout', [CartController::class, 'preCheckout'])->name('preCheckout.log');
+Route::get('/checkout', [CartController::class, 'preCheckout'])->name('preCheckout.log');
 Route::post('/checkout', [CartController::class, 'preCheckoutGuest'])->name('preCheckout.guest');
 
 Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
@@ -117,11 +115,19 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
 // ==========================================================================================================================================================
 
-Route::controller(GestionAdminController::class)->prefix('admin/')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('admin-gestion', [GestionAdminController::class, 'index'])->name('admin-index');
-    Route::post('{id}/admin-edit', [GestionAdminController::class, 'edit'])->name('admin-edit');
+//MIDDLLEEWARRRREEE
+
+Route::prefix('admin/')->name('admin.')->group(function() {
+    Route::controller(GestionAdminController::class)->middleware('auth')->group(function () {
+        Route::get('admin/gestion', 'index')->name('admin.index');
+        Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
+    });
+
+    Route::get('/menu', [MenuAdmin::class, 'create'])->name('menu');
+    Route::post('/menu/ajouter', [MenuAdmin::class, 'store'])->name('menu.store');
+    Route::get('/menu/rechercher', [MenuAdmin::class, 'research'])->name('menu.research');
+    Route::post('/menu/rechercher', [MenuAdmin::class, 'search'])->name('menu.search');
+    Route::get('/menu/edit/{id}', [MenuAdmin::class, 'edit'])->name('menu.edit');
 });
 
 
-Route::get('/adminMenu', [MenuAdmin::class, 'create'])->name('menu.admin');
-Route::post('/adminMenu/ajouter', [MenuAdmin::class, 'store'])->name('menu.admin.store');

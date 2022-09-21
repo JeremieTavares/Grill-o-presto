@@ -1,7 +1,7 @@
 @extends('public.template.base')
 
 @section('content')
-    <main class="cart">
+    <main class="cart m-auto">
         <section class="cart_container">
             @if (session()->exists('cart') && count(session('cart')) > 0)
                 <h2 class="mb-5">Menu : {{ session('menu') }}</h2>
