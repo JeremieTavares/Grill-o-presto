@@ -40,9 +40,7 @@ class GestionFaqController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(FaqRequest $request)
-    {    
-        $validatedData = $request->validated();
-
+    {
         $request['user_id'] = Auth::user()->id;
         $faq = Faq::create($request->all());
         return back()->with('FaqCreated', "La question/réponse a été créé");
@@ -84,7 +82,6 @@ class GestionFaqController extends Controller
     public function update(FaqRequest $request, $id)
     {
         $validatedData = $request->validated();
-        
         $request['user_id'] = Auth::user()->id;
         Faq::find($request->faq_id)->update($request->all());
         return back()->with('FaqCreated', "La question/réponse a été modifié");

@@ -16,14 +16,17 @@ class FaqRequest extends FormRequest
         return true;
     }
 
-    
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
     public function rules()
     {
         return [
             'question' => ['string', 'required', 'regex:/^[A-zÀ-ú \'@$,-.#0-9]{5,120}$/'],
             'answer' => ['string', 'required', 'regex:/^[A-zÀ-ú \'@$,-.#0-9]{5,500}$/'],
-            'faq_theme_id' => ['integer', 'gt:0', 'required', 'exists:App\Models\faqTheme,id'],
-            'user_id' => ['integer', 'gt:0','required', 'exists:App\Models\User,id'],
+            'faq_theme_id' => ['integer', 'gt:0', 'required', 'exists:App\Models\FaqTheme,id'],
             'is_active' => ['boolean', 'required']
         ];
     }
@@ -41,10 +44,6 @@ class FaqRequest extends FormRequest
             'faq_theme_id.gt' => 'Valeur de 0 ou supérieur seulement',
             'faq_theme_id.required' => 'Valeur de 0 ou supérieur seulement',
             'faq_theme_id.exists' => 'Le role n\'existe pas',
-            'user_id.integer' => 'Seulement les chiffres sont accepté',
-            'user_id.gt' => 'Valeur de 0 ou supérieur seulement',
-            'user_id.required' => 'user_id requis',
-            'user_id.exists' => 'Le role n\'existe pas',
             'is_active.boolean' => 'Doit être vrai ou faux',
             'is_active.required' => 'info is_active requis'
         ];

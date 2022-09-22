@@ -19,7 +19,7 @@
 
 
             <label for="id">Sélectionnez une question</label>
-            <form action="{{ route('admin.faq.edit'," ") }}" method="get">
+            <form action="{{ route('admin.faq.edit', ' ') }}" method="get">
                 <select name="id" id="id" name="id" class="form-select btn-rounded px-3">
                     <option value="" selected>Sélectionnez une question</option>
                     @foreach ($faqs as $faq)
@@ -47,35 +47,50 @@
                 @csrf
                 <div>
                     <label class="form-label" for='faqQuestion'>Entrez le titre de la question</label>
-                    <input type="text" name="question" id="faqQuestion" class="form-control">
+                    <input type="text" name="question" id="faqQuestion" class="form-control @error('question') is-invalid @enderror">
+                    @error('question')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="my-4">
                     <label class="form-label" for='faqAnswer'>Entrez le titre de la question</label>
-                    <textarea type="text" name="answer" id="faqAnswer" class="form-control"></textarea>
+                    <textarea type="text" name="answer" id="faqAnswer" class="form-control  @error('answer') is-invalid @enderror"></textarea>
+                    @error('answer')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
-                    <select name="faq_theme_id" id="faq_theme_id" class="form-select btn-rounded px-2">
+                    <select name="faq_theme_id" id="faq_theme_id" class="form-select btn-rounded px-2 @error('faq_theme_id') is-invalid @enderror">
                         @foreach ($faqThemes as $theme)
-                        @if ($theme->theme === "Général")
-                        <option selected value="{{ $theme->id }}">{{ $theme->theme }}</option>
-                        @else
-                        <option value="{{ $theme->id }}">{{ $theme->theme }}</option>
-                        @endif
+                            @if ($theme->theme === 'Général')
+                                <option selected value="{{ $theme->id }}">{{ $theme->theme }}</option>
+                            @else
+                                <option value="{{ $theme->id }}">{{ $theme->theme }}</option>
+                            @endif
                         @endforeach
                     </select>
+                    @error('faq_theme_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" name="is_active" type="checkbox" role="switch"
-                        value="1"    id="flexSwitchCheckDefault">
+                        <input class="form-check-input @error('is_active') is-invalid @enderror" name="is_active" type="checkbox" role="switch" value="1"
+                            id="flexSwitchCheckDefault">
                         <label class="form-check-label user-select-none" for="flexSwitchCheckDefault">Afficher sur la page
                             FAQ ?</label>
+                        @error('is_active')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                </div>           
+                </div>
                 <div class="mb-4">
-                    <input type="hidden" name="user_id" value="changePasCaSinonJteKickDansGorge">
+                    <input type="hidden" name="user_id" class=" @error('user_id') is-invalid @enderror" value="changePasCaSinonJteKickDansGorge">
+                    @error('user_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="d-flex justify-content-center mb-5">
                     <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Ajouter</button>
