@@ -16,14 +16,14 @@
                 <?php $i = 0; ?>
                 @foreach ($faqs as $faq)
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading<?php echo $i; ?>">
-                            <button class="accordion-button <?php($i>1) ? 'collapsed':''; ?> ?> ?> ?>" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse<?php echo $i; ?>" aria-expanded=<?php echo $i > 1 ? 'false' : 'true'; ?>
+                        <h2 class="accordion-header" id="heading <?php echo $i; ?>">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse<?php echo $i; ?>"
                                 aria-controls="collapse<?php echo $i; ?>">
                                 <?php echo $faq->question; ?>
                             </button>
                         </h2>
-                        <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse <?php($i>1) ? '':'show'; ?> ?> ?>"
+                        <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse"
                             aria-labelledby="heading<?php echo $i; ?>" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <?php echo $faq->answer; ?>
