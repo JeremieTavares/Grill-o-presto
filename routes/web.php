@@ -4,6 +4,7 @@ use App\Models\User;
 use Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
@@ -21,7 +22,13 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
+
+use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
+
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\MenuAdmin;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +52,7 @@ Route::post('/checkout', [CartController::class, 'preCheckoutGuest'])->name('pre
 
 Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 
-Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
 
 
@@ -117,6 +124,7 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
 // ==========================================================================================================================================================
 
+
 //MIDDLLEEWARRRREEE
 
 Route::prefix('admin/')->name('admin.')->group(function() {
@@ -133,7 +141,7 @@ Route::prefix('admin/')->name('admin.')->group(function() {
     Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
     Route::resource('repas', RepasAdminController::class)->except('show');
     Route::resource('admin', GestionAdminController::class);
-
+ Route::resource('faq', GestionFaqController::class);
 
     Route::get('/menu/ajouter', [MenuAdminController::class, 'create'])->name('menu');
     Route::post('/menu/ajouter', [MenuAdminController::class, 'store'])->name('menu.store');
@@ -144,5 +152,3 @@ Route::prefix('admin/')->name('admin.')->group(function() {
     // Route::post('/menu/modifier/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
     Route::delete('/menu/supprimer/{id}', [MenuAdminController::class, 'destroy'])->name('menu.destroy');
 });
-
-
