@@ -9,6 +9,6 @@
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('admin.ticket.index', Auth::user()->id) }}">Ticket</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('admin.faq.index', Auth::user()->id) }}">Faq</a></li>
+                href="{{ route('admin.ticket.index', Auth::user()->id) }}">Faq</a></li>
     </ul>
 </nav>

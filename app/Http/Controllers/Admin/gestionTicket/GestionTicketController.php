@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\gestionTicket;
 
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Message;
 use App\Models\TicketStatus;
@@ -17,7 +19,7 @@ class GestionTicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::getAllTicketInfosAndRelationsForAdmin()->get();
+        $tickets = Ticket::getAllTicketInfosAndRelationsForAdmin()->paginate(8);
 
         $ticketArray = [];
 
@@ -26,29 +28,8 @@ class GestionTicketController extends Controller
             $tickets[$i]['description'] = (string) substr($tickets[$i]->description, 0, 50);
             array_push($ticketArray,  $tickets[$i]);
         }
-        return (object) view('admin.gestionTicket.ticket-index', ['ticketsArray' => $ticketArray]);
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    //  La 2ime valeur envoyer dans la view est pour la pagination, elle ne peut traiter un array (ticketArray)
+        return (object) view('admin.gestionTicket.ticket-index', ['ticketsArray' => $ticketArray, 'ticketForPagination' => $tickets]);
     }
 
     /**
@@ -66,14 +47,13 @@ class GestionTicketController extends Controller
         $not_resolved = (int) $states->get_not_resolved_status();
         $ticketMessages = (object) Message::GetAllMessagesFromATicket($id)->get();
         $ticket = Ticket::where('id', $id)->get();
-
         return (object) view(
             'admin.gestionTicket.ticket-show',
             [
                 'ticketMessages' => (object) $ticketMessages,
                 'ticket' => (object) $ticket,
                 'ticket_status' => $ticket[0]->ticket_status_id,
-                'ticket_opened' =>(int) $opened,
+                'ticket_opened' => (int) $opened,
                 'ticket_closed' => (int) $closed,
                 'ticket_expired' => (int) $expired,
                 'ticket_not_resolved' => (int) $not_resolved
@@ -81,28 +61,6 @@ class GestionTicketController extends Controller
         );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -110,8 +68,33 @@ class GestionTicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+
+        $authUserId = (object) User::GetLoggedUserInfo()->first();
+        $userTemplate = new Role;
+        $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->first();
+        $states = (object) new TicketStatus();
+        $opened = (int) $states->get_opened_status();
+        $closed = (int) $states->get_closed_status();
+        $expired = (int) $states->get_expired_status();
+        $not_resolved = (int) $states->get_not_resolved_status();
+
+
+        if (
+            (int) $authUserId->role_id === (int)$userTemplate->get_role_admin_1() ||
+            (int) $authUserId->role_id === (int)$userTemplate->get_role_admin_2() ||
+            (int) $authUserId->role_id === (int)$userTemplate->get_role_admin_3()
+        ) {
+            if ($request->status == "closed")
+                $ticket->ticket_status_id = $closed;
+            if ($request->status == "expired")
+                $ticket->ticket_status_id = $expired;
+            if ($request->status == "notResolved")
+                $ticket->ticket_status_id = $not_resolved;
+            $ticket->save();
+            return back()->with('ticketClosed', "Votre ticket #" . $ticket->ticket_number . " est fermé");
+        } else
+            return back()->with('noPermission', 'Vous n\'avez pas la permission pour cela');
     }
 }

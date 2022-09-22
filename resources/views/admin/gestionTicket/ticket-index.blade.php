@@ -2,7 +2,19 @@
 @section('banner-title', 'Administrateur - Gestion des tickets')
 @section('content')
 
-    @include('admin.template.sub-navbar-admin-1')
+    @switch(Auth::user()->role->role)
+        @case('Admin_1')
+            @include('admin.template.sub-navbar-admin-1')
+        @break
+
+        @case('Admin_2')
+            @include('admin.template.sub-navbar-admin-2')
+        @break
+
+        @case('Admin_3')
+            @include('admin.template.sub-navbar-admin-3')
+        @break
+    @endswitch
     <main class="m-auto d-flex flex-column align-items-center mt-5">
         <div class="container mx-sm-3 mx-lg-0 mw-1000px ">
             @if ($ticketsArray != null)
@@ -26,46 +38,45 @@
                             @if (count($ticketsArray) == 1)
                                 @switch($ticket->ticket_type->type)
                                     @case('Paiement refusé')
-                                    <tr class='border border-1 yellowRow'>
-                                    @break
+                                        <tr class='border border-1 yellowRow'>
+                                        @break
 
-                                    @case('Commande non reçu')
-                                    <tr class='border border-1 blueRow'>
-                                    @break
+                                        @case('Commande non reçu')
+                                        <tr class='border border-1 blueRow'>
+                                        @break
 
-                                    @case('Support')
-                                    <tr class='border border-1 greenRow'>
-                                    @break
+                                        @case('Support')
+                                        <tr class='border border-1 greenRow'>
+                                        @break
 
-                                    @case('Problème de commande')
-                                    <tr class='border border-1 redRow'>
-                                    @break
+                                        @case('Problème de commande')
+                                        <tr class='border border-1 redRow'>
+                                        @break
 
-                                    @default
-                                    <tr class='border border-1'>
-                                @endswitch
-                                
+                                        @default
+                                        <tr class='border border-1'>
+                                    @endswitch
                                 @else
-                                @switch($ticket->ticket_type->type)
-                                    @case('Paiement refusé')
-                                    <tr class='border border-1 yellowRow'>
-                                    @break
+                                    @switch($ticket->ticket_type->type)
+                                        @case('Paiement refusé')
+                                        <tr class='border border-1 yellowRow'>
+                                        @break
 
-                                    @case('Commande non reçu')
-                                    <tr class='border border-1 blueRow'>
-                                    @break
+                                        @case('Commande non reçu')
+                                        <tr class='border border-1 blueRow'>
+                                        @break
 
-                                    @case('Support')
-                                    <tr class='border border-1 greenRow'>
-                                    @break
+                                        @case('Support')
+                                        <tr class='border border-1 greenRow'>
+                                        @break
 
-                                    @case('Problème de commande')
-                                    <tr class='border border-1 redRow'>
-                                    @break
+                                        @case('Problème de commande')
+                                        <tr class='border border-1 redRow'>
+                                        @break
 
-                                    @default
-                                    <tr class='border border-1'>
-                                @endswitch
+                                        @default
+                                        <tr class='border border-1'>
+                                    @endswitch
                             @endif
                             <td class="border-0 p-2 p-md-3">{{ $ticket->ticket_number }}</td>
                             <td class="border-0 p-2 p-md-3">{{ $ticket['date'] }}</td>
@@ -84,6 +95,13 @@
                     <h2 class="mb-5">Aucun ticket d'ouvert</h2>
                 </div>
             @endif
+
+
         </div>
+        @if ($ticketForPagination instanceof \Illuminate\Pagination\LengthAwarePaginator)
+            <div class="mt-5">
+                {{ $ticketForPagination->links('public.template.pagination') }}
+            </div>
+        @endif
     </main>
 @endsection

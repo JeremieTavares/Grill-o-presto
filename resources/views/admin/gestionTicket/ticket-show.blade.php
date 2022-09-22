@@ -1,13 +1,23 @@
-@extends('public.template.base')
-@section('banner-title', 'Support - Ticket')
+@extends('admin.template.base')
+@section('banner-title', 'Administrateur - Gestion Ticket')
 @section('content')
     <?php
     $state = (int) $ticket_status;
     ?>
-    @if (Auth::check())
-        @include('user.template.sub-navbar')
-    @endif
 
+    @switch(Auth::user()->role->role)
+        @case('Admin_1')
+            @include('admin.template.sub-navbar-admin-1')
+        @break
+
+        @case('Admin_2')
+            @include('admin.template.sub-navbar-admin-2')
+        @break
+
+        @case('Admin_3')
+            @include('admin.template.sub-navbar-admin-3')
+        @break
+    @endswitch
 
     <main class="m-auto">
 
@@ -71,6 +81,8 @@
                         </div>
                     </div>
                 </div>
+
+                 @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
                 <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
                     @csrf
                     <div>
@@ -95,9 +107,10 @@
                     <hr class="col-4 m-auto">
                 </div>
 
-                @include('user.template.modal-close-ticket')
-                @include('user.template.modal-close-ticket')
-                @include('user.template.modal-close-ticket')
+                @include('admin.gestionTicket.template.modal-close-ticket')
+                @include('admin.gestionTicket.template.modal-expire-ticket')
+                @include('admin.gestionTicket.template.modal-notResolved-ticket')
+                @endif
             @endif
 
             @if (isset($ticketMessages[0]))
@@ -167,28 +180,23 @@
                         <hr class="col-4 m-auto">
                     </div>
 
-                    @include('user.template.modal-close-ticket')
+                    @include('admin.gestionTicket.template.modal-close-ticket')
+                    @include('admin.gestionTicket.template.modal-expire-ticket')
+                    @include('admin.gestionTicket.template.modal-notResolved-ticket')
                 @endif
             @else
                 @if ($state == $ticket_expired)
-                    <h2 class="text-center">Ce Ticket est expiré</h2>
+                    <h2 class="text-center mt-5">Ce Ticket est expiré</h2>
                 @elseif($state == $ticket_not_resolved)
-                    <h2 class="text-center">Ce Ticket est non résolus</h2>
+                    <h2 class="text-center mt-5">Ce Ticket est non résolus</h2>
                 @elseif($state == $ticket_closed)
-                    <h2 class="text-center">Ce Ticket est fermé</h2>
+                    <h2 class="text-center mt-5">Ce Ticket est fermé</h2>
                 @endif
 
 
 
                 @if (!isset($ticketMessages[0]))
                     <div class="my-4 div-useless"></div>
-                @endif
-
-
-
-                @if (isset($ticketMessages[0]) &&
-                    !($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
-                    @include('user.template.modal-close-ticket')
                 @endif
             @endif
         </div>
