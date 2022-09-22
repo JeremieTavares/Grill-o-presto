@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Auth\LoginController;
+use App\Http\Controllers\MenuAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
@@ -14,16 +15,15 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\Auth\oAuthController;
 use App\Http\Controllers\CreditcardController;
-use App\Http\Controllers\RepasAdminController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
-use App\Http\Controllers\MenuAdmin;
+use App\Http\Controllers\Admin\gestionMenu\MenuAdminController;
+use App\Http\Controllers\Admin\gestionRepas\RepasAdminController;
+use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
 

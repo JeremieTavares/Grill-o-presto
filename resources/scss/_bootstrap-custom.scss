@@ -22,6 +22,12 @@ $grid-breakpoints: (
   border: 1px solid rgb(214, 214, 214) !important;
 }
 
+.form-control-file {
+  border-radius: 15px !important;
+  padding: 10px !important;
+  border: 1px solid rgb(214, 214, 214) !important;
+}
+
 
 // math.div($widthPercent, 100) or calc($widthPercent / 100)
 $widthPercentage: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;

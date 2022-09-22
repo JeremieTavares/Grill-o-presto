@@ -10,7 +10,6 @@
         padding: 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        border-top: 1px solid black;
         li {
             list-style: none;
             padding: 1rem;
@@ -24,3 +23,8 @@
 .adminRepasIndex > ul > li:nth-of-type(odd) {
     border-left: 1px solid black;
 }   
+
+.input-padding{
+    padding: 6px 6px 6px 10px!important;
+
+}

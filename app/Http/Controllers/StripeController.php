@@ -138,11 +138,6 @@ class StripeController extends Controller
             ]);
         }
 
-
-
-        // Get the id of the transaction
-        // $transaction->id
-
         if ($transaction->status === "succeeded") {
             if (Auth::check())
                 return to_route('user.orders.index', Auth::user()->id)->with('paymentSuccess', "Merci, Votre paiement est passée");
@@ -153,8 +148,3 @@ class StripeController extends Controller
         }
     }
 }
-
-
-
-//'customer' =>  'cus_MSMFPr2kPILU55',
-//"source" => $request->stripeToken,

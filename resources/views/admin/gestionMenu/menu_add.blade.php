@@ -2,50 +2,53 @@
 @section('title', 'Menu ajout')
 @section('content')
 
-    <main class="menu_add_admin d-flex flex-column align-items-center">
+    <main class="mw-750px menu_add_admin d-flex flex-column align-items-center m-auto">
         <h1>Ajouter un menu</h1>
         @if (Session::has('success'))
-            
-            <div class="alert alert-success">{{Session::get('success')}}</div>
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
         @elseif(Session::has('menuAlreadyExists'))
-            <div class="alert alert-danger">{{Session::get('menuAlreadyExists')}}</div>
+            <div class="alert alert-danger">{{ Session::get('menuAlreadyExists') }}</div>
         @endif
-        <form action="{{route('admin.menu.store')}}" method="POST" class="d-flex flex-column">
+        <form action="{{ route('admin.menu.store') }}" method="POST" class="d-flex flex-column">
             @csrf
             <div>
-                <label for="start_date">Choisir la date</label>
-                <select name="start_date" id="start_date" class="custom-select">
+                <label for="start_date" class="form-label">Choisir la date</label>
+                <select name="start_date" id="start_date" class="custom-select form-control">
                     @for ($i = 1; $i <= 10; $i++)
-                        <option value="{{date('Y-m-d',strtotime("next Monday + " . (7*$i) . " days"))}}">{{date('Y-m-d',strtotime("next Monday + " . (7*$i) . " days"))}}</option>
+                        <option value="{{ date('Y-m-d', strtotime('next Monday + ' . 7 * $i . ' days')) }}">
+                            {{ date('Y-m-d', strtotime('next Monday + ' . 7 * $i . ' days')) }}</option>
                     @endfor
                 </select>
             </div>
             <div>
-                <label for="menu_type">Type de menu</label>
-                <select name="menu_type" id="menu_type" class="custom-select">
+                <label for="menu_type" class="form-label">Type de menu</label>
+                <select name="menu_type" id="menu_type" class="custom-select form-control">
                     @foreach ($menuType as $type)
-                        <option value="{{$type->type}}">{{$type->type}}</option>
+                        <option value="{{ $type->type }}">{{ $type->type }}</option>
                     @endforeach
                 </select>
             </div>
             <div>
-                <label for="meals">Repas</label>
-                <select name="meals" id="meals" class="custom-select">
+                <label for="meals" class="form-label">Repas</label>
+                <select name="meals" id="meals" class="custom-select form-control">
                     <option value="null">Repas</option>
                     @foreach ($meals as $meal)
-                        <option class="meal {{$meal->vegetarian ? "vegetarian" : ""}} {{$meal->gluten_free ? "gluten_free" : ""}}" value="{{$meal->id}}">{{$meal->name}}</option>
+                        <option
+                            class="meal {{ $meal->vegetarian ? 'vegetarian' : '' }} {{ $meal->gluten_free ? 'gluten_free' : '' }}"
+                            value="{{ $meal->id }}">{{ $meal->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="checkBox_container">
                 @foreach ($meals as $meal)
-                    <input name="meal-{{$meal->id}}" type="checkbox" class="meal-{{$meal->id}}">
+                    <input name="meal-{{ $meal->id }}" type="checkbox" class="meal-{{ $meal->id }}">
                 @endforeach
             </div>
-            
-            <div class="alert alert-danger maxMealBox displayNone">Vous avez atteint le nombre maximum de plat par menu.</div>
+
+            <div class="alert alert-danger maxMealBox displayNone">Vous avez atteint le nombre maximum de plat par menu.
+            </div>
             <div class="alert alert-danger alreadyTaken displayNone">Vous avez déjà sélectionné ce repas dans ce menu.</div>
-            
+
             <div class="meal_div_container">
                 <div class="d-flex justify-content-between ps-3 pe-3 pt-2 pb-2 bg-primary header_container">
                     <p class="m-0">Nom du repas</p>
@@ -53,15 +56,15 @@
                     <p class="m-0">Supprimer</p>
                 </div>
                 <div class="meals_menu_container">
-                
+
                 </div>
             </div>
-
-            <input class="btn btn-success" type="submit" value="Ajouter le menu">
-
+            <div class="d-flex m-auto">
+                <input class="btn btn-success btn-rounded px-5" type="submit" value="Ajouter le menu">
+            </div>
         </form>
 
     </main>
-    
+
 
 @endsection
