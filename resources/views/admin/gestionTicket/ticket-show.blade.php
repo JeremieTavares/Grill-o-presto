@@ -34,14 +34,9 @@
 
 
         <div class="container mw-900px">
-
-
-            @if (!isset($ticketMessages[0]))
-                <div class="my-4 div-useless"></div>
-            @endif
-
-
-
+            <div class="text-center my-3">
+                <a href="{{ url()->previous() }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+            </div>
             @if (Session::has('successResponse'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
@@ -64,6 +59,14 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
             @endif
+            @if ($state == $ticket_expired)
+                <h2 class="text-center mt-4">Ce Ticket est expiré</h2>
+            @elseif($state == $ticket_not_resolved)
+                <h2 class="text-center mt-4">Ce Ticket est non résolus</h2>
+            @elseif($state == $ticket_closed)
+                <h2 class="text-center mt-4">Ce Ticket est fermé</h2>
+            @endif
+
 
 
             @if (isset($ticketMessages) && !isset($ticketMessages[0]))
@@ -82,34 +85,34 @@
                     </div>
                 </div>
 
-                 @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
-                <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
-                    @csrf
-                    <div>
-                        <label for="responseMessageTicketTextarea">Répondre:</label>
-                        <textarea name="response" class="form-control @error('response') is-invalid @enderror" maxlength="400"
-                            placeholder="Répondre au dernier message." id="responseMessageTicketTextarea">{{ old('response') }}</textarea>
-                        @error('response')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
+                @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
+                    <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
+                        @csrf
+                        <div>
+                            <label for="responseMessageTicketTextarea">Répondre:</label>
+                            <textarea name="response" class="form-control @error('response') is-invalid @enderror" maxlength="400"
+                                placeholder="Répondre au dernier message." id="responseMessageTicketTextarea">{{ old('response') }}</textarea>
+                            @error('response')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="d-flex justify-content-center">
+
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="ticket_id" value="{{ $ticket[0]->id }}">
+
+                            <button type="submit" class="btn btn-success btn-scale-press btn-rounded my-5 w-75"
+                                id="btnSubmitMessage">Envoyer</button>
+                        </div>
+                    </form>
+
+                    <div class="">
+                        <hr class="col-4 m-auto">
                     </div>
-                    <div class="d-flex justify-content-center">
 
-                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="ticket_id" value="{{ $ticket[0]->id }}">
-
-                        <button type="submit" class="btn btn-success btn-scale-press btn-rounded my-5 w-75"
-                            id="btnSubmitMessage">Envoyer</button>
-                    </div>
-                </form>
-
-                <div class="">
-                    <hr class="col-4 m-auto">
-                </div>
-
-                @include('admin.gestionTicket.template.modal-close-ticket')
-                @include('admin.gestionTicket.template.modal-expire-ticket')
-                @include('admin.gestionTicket.template.modal-notResolved-ticket')
+                    @include('admin.gestionTicket.template.modal-close-ticket')
+                    @include('admin.gestionTicket.template.modal-expire-ticket')
+                    @include('admin.gestionTicket.template.modal-notResolved-ticket')
                 @endif
             @endif
 
@@ -185,24 +188,9 @@
                     @include('admin.gestionTicket.template.modal-notResolved-ticket')
                 @endif
             @else
-                @if ($state == $ticket_expired)
-                    <h2 class="text-center mt-5">Ce Ticket est expiré</h2>
-                @elseif($state == $ticket_not_resolved)
-                    <h2 class="text-center mt-5">Ce Ticket est non résolus</h2>
-                @elseif($state == $ticket_closed)
-                    <h2 class="text-center mt-5">Ce Ticket est fermé</h2>
-                @endif
-
-
-
-                @if (!isset($ticketMessages[0]))
-                    <div class="my-4 div-useless"></div>
-                @endif
+                <div class="my-4 div-useless"></div>
             @endif
         </div>
-
-
-
 
         @if ($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved)
             <div class="my-4 div-useless"></div>

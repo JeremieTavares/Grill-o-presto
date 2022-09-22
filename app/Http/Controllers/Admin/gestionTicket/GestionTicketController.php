@@ -71,7 +71,7 @@ class GestionTicketController extends Controller
     public function destroy(Request $request, $id)
     {
 
-        $authUserId = (object) User::GetLoggedUserInfo()->first();
+        $authUser = (object) User::GetLoggedUserInfo()->first();
         $userTemplate = new Role;
         $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->first();
         $states = (object) new TicketStatus();
@@ -82,9 +82,9 @@ class GestionTicketController extends Controller
 
 
         if (
-            (int) $authUserId->role_id === (int)$userTemplate->get_role_admin_1() ||
-            (int) $authUserId->role_id === (int)$userTemplate->get_role_admin_2() ||
-            (int) $authUserId->role_id === (int)$userTemplate->get_role_admin_3()
+            (int) $authUser->role_id === (int)$userTemplate->get_role_admin_1() ||
+            (int) $authUser->role_id === (int)$userTemplate->get_role_admin_2() ||
+            (int) $authUser->role_id === (int)$userTemplate->get_role_admin_3()
         ) {
             if ($request->status == "closed")
                 $ticket->ticket_status_id = $closed;
@@ -93,7 +93,7 @@ class GestionTicketController extends Controller
             if ($request->status == "notResolved")
                 $ticket->ticket_status_id = $not_resolved;
             $ticket->save();
-            return back()->with('ticketClosed', "Votre ticket #" . $ticket->ticket_number . " est fermé");
+            return back()->with('ticketClosed', "Le ticket #" . $ticket->ticket_number . " est fermé");
         } else
             return back()->with('noPermission', 'Vous n\'avez pas la permission pour cela');
     }
