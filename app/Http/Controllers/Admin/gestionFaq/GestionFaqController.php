@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\gestionFaq;
 use App\Models\Faq;
 use App\Models\FaqTheme;
 use Illuminate\Http\Request;
+use App\Http\Requests\FaqRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,12 +39,12 @@ class GestionFaqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(FaqRequest $request)
+    {    
+        $validatedData = $request->validated();
+
         $request['user_id'] = Auth::user()->id;
         $faq = Faq::create($request->all());
-
-
         return back()->with('FaqCreated', "La question/réponse a été créé");
     }
 
@@ -80,8 +81,10 @@ class GestionFaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FaqRequest $request, $id)
     {
+        $validatedData = $request->validated();
+        
         $request['user_id'] = Auth::user()->id;
         Faq::find($request->faq_id)->update($request->all());
         return back()->with('FaqCreated', "La question/réponse a été modifié");
