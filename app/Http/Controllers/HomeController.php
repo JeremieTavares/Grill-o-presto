@@ -16,8 +16,7 @@ class HomeController extends Controller
 
 
 
-        $meals = HistoryMeal::where('is_on_home_page', 1)->with('menu.menu_type')->whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->take(4)->get();
-
+        $meals = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->inRandomOrder()->take(4)->get();
 
         return view('./public/home', ['meals' => $meals]);
     }

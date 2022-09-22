@@ -40,7 +40,7 @@ class MenuAdminController extends Controller
                 }
             }
 
-            $meals = Meal::find($mealId);
+            $meals = Meal::with('allergens')->find($mealId);
             foreach ($meals as $key => $meal) {
                 $hMeal = new HistoryMeal();
 
@@ -54,6 +54,7 @@ class MenuAdminController extends Controller
                 $hMeal->image_path = $meal->image_path;
                 $hMeal->is_on_home_page = 0;
                 $hMeal->save();
+                $hMeal->attach($meal->allergens);
             }
 
             return back()->with('success', 'Ajout du menu avec succès.');

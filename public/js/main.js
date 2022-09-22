@@ -320,14 +320,19 @@ function toggleSearchInputForAdmin() {
 
 function adminRepas() {
     if(document.title == 'Repas ajouter') {
-        let ingredientContainer = document.querySelector('.input_container');
-        let ingredientButton = document.querySelector('.ingrediants > button');
+        let ingredientContainer = document.querySelector('.mealAddAdmin .ingredient_container');
+        let ingredientButton = document.querySelector('.mealAddAdmin .ingrediants > button');
+
         console.log(ingredientContainer.querySelectorAll('div'));
+
+
         ingredientButton.addEventListener('click', () => {
-            ingredientContainer.innerHTML += '<div><label for="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'">Ingrédiant :</label><input type="text" name="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'"><button type="button" class="btn btn-primary">Supprimer</button></div>'
-            ingredientContainer.querySelectorAll('div').forEach(item => {
-                item.querySelector('button').addEventListener('click', (event) => {
-                    event.currentTarget.parentElement.remove();
+            ingredientContainer.innerHTML += '<div class="ingredient_item d-flex mb-2"><input class="form-control" type="text" name="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" /><button type="button" class="btn btn-primary ms-2 deleteButton">Supprimer</button></div>'
+            ingredientContainer.querySelectorAll('.ingredient_item').forEach((item, key) => {
+                console.log(item)
+                if(key>0)
+                item.querySelector('.deleteButton').addEventListener('click', () => {
+                    item.remove();
                 });
             });
             

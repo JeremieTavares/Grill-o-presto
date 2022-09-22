@@ -127,8 +127,11 @@ Route::prefix('admin/')->name('admin.')->group(function() {
 
     
     Route::resource('client', GestionClientController::class);
-    Route::resource('repas', RepasAdminController::class)->except(['index', 'show']);
-    Route::get('repas/{type?}', [RepasAdminController::class, 'index'])->name('repas');
+
+    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll');
+    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show');
+    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
+    Route::resource('repas', RepasAdminController::class)->except('show');
     Route::resource('admin', GestionAdminController::class);
 
 
