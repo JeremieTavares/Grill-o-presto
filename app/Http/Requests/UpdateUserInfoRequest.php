@@ -6,14 +6,19 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserInfoRequest extends FormRequest
 {
+    // protected $redirect = 'login';
+    // protected function getRedirectUrl()
+    // {
+    //     $url = $this->redirector->getUrlGenerator();
+    //     return back()->withInput();
+    // }
 
-      
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -24,20 +29,21 @@ class UpdateUserInfoRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    {   
+    {
+
         return [
-                'prenom' => 'required|regex:/^[A-zÀ-ú -]{2,30}$/',
-                'nom' => ['required', 'regex:/^[A-zÀ-ú -]{2,50}$/'],
-                'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
-                'email_confirmation' => ['required', 'string', 'email', 'max:255'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'password_confirmation' => ['required', 'string', 'min:8'],
-                'zip_code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
-                'noPorte' => ['integer', 'gt:0', 'required'],
-                'appartement' => ['integer', 'nullable', 'gte:0'],
-                'ville' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
-                'rue' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
-                'role_id' => ['integer', 'gt:0', 'exists:App\Models\Role,role']
+            'prenom' => 'required|regex:/^[A-zÀ-ú -]{2,30}$/',
+            'nom' => ['required', 'regex:/^[A-zÀ-ú -]{2,50}$/'],
+            'email' => ['required', 'string', 'email', 'max:255', 'confirmed'],
+            'email_confirmation' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required', 'string', 'min:8'],
+            'zip_code' => ['regex:/^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/', 'required'],
+            'noPorte' => ['integer', 'gt:0', 'required'],
+            'appartement' => ['integer', 'nullable', 'gte:0'],
+            'ville' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
+            'rue' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
+            'role_id' => ['integer', 'gt:0', 'exists:App\Models\Role,role']
         ];
     }
 

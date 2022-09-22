@@ -1,0 +1,26 @@
+.adminRepasIndex {
+    max-width: 1200px;
+    .nav_container {
+        li {
+            flex: 1;
+        }
+    }
+
+    &>ul {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid black;
+        li {
+            list-style: none;
+            padding: 1rem;
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+        }
+        
+    }
+}
+
+.adminRepasIndex > ul > li:nth-of-type(odd) {
+    border-left: 1px solid black;
+}   
