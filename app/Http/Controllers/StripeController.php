@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Stripe;
 use Session;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Creditcard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreditCardRequest;
+use App\Http\Controllers\OrderController;
+use App\Models\HistoryMeal;
+use App\Models\OrderStatus;
 
 class StripeController extends Controller
 {
@@ -67,7 +71,7 @@ class StripeController extends Controller
                 $stripe->customers->update($user->stripeToken, ['source' => $request->stripeToken]);
                 // Create a new transaction for the logged user
                 $transaction = Stripe\Charge::create([
-                    "amount" => (200) + (200 * 0.15),
+                    "amount" => 200,
                     "currency" => "CAD",
                     "customer" => $user->stripeToken,
                     "description" => "Paiement Gill-O-Presto"
@@ -144,9 +148,32 @@ class StripeController extends Controller
         // $transaction->id
 
         if ($transaction->status === "succeeded") {
-            if (Auth::check())
+
+            $order = new Order;
+            if(Auth::check()) {
+                $order->user_id = Auth::user()->id;
+            }
+            
+            $order->prenom = $request->firstName;
+            $order->nom = $request->lastName;
+            $order->rue = $request->street;
+            $order->no_porte = $request->door;
+            $order->appartement = $request->appartement;
+            $order->code_postal = $request->zip;
+            $order->ville = $request->town;
+            $order->telephone = $request->tel;
+            $order->email = $request->email;
+            $order->menu_id = HistoryMeal::where('id', session('cart')[0])->first('menu_id')->menu_id;
+            $order->price = 100;
+            $order->order_number = $transaction->id;
+            $order->order_status_id = OrderStatus::where('status', 'En attente')->first('id')->id;
+            $order->portion_id = $request->portion;
+            $order->meals = json_encode(session('cart'));
+
+            $order->save();
+            if(Auth::check()) 
                 return to_route('user.orders.index', Auth::user()->id)->with('paymentSuccess', "Merci, Votre paiement est passée");
-            else
+            else 
                 return back()->with('paymentSuccess', "Merci, Votre paiement est passée");
         } else {
             return back()->with('paymentFailed', "Erreur lors du paiement");

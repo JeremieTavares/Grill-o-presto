@@ -22,20 +22,20 @@ class OrderController extends Controller
 
         $allOrdersForLoggedUser = (object) Order::with('portion')->where('user_id', $authUserId[0]->id)->get();
 
-        $orderArray = [];
+        // $orderArray = [];
 
-        if (isset($allOrdersForLoggedUser[0])) {
-            for ($i = 0; $i < count($allOrdersForLoggedUser); $i++) {
-                $allOrdersForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allOrdersForLoggedUser[$i]->created_at));
+        // if (isset($allOrdersForLoggedUser[0])) {
+        //     for ($i = 0; $i < count($allOrdersForLoggedUser); $i++) {
+        //         $allOrdersForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allOrdersForLoggedUser[$i]->created_at));
 
-                $mealsArray = json_decode($allOrdersForLoggedUser[$i]->meals, true);
-                $mealsObject =  Meal::createMealFromJson($mealsArray);
-                $allOrdersForLoggedUser[$i]->meals = $mealsObject;
+        //         $mealsArray = json_decode($allOrdersForLoggedUser[$i]->meals, true);
+        //         $mealsObject =  Meal::createMealFromJson($mealsArray);
+        //         $allOrdersForLoggedUser[$i]->meals = $mealsObject;
 
-                array_push($orderArray,  $allOrdersForLoggedUser[$i]);
-            }
-        }
-        return (object) view('user.user-orders', ['ordersArray' => $orderArray]);
+        //         array_push($orderArray,  $allOrdersForLoggedUser[$i]);
+        //     }
+        // }
+        return (object) view('user.user-orders', ['ordersArray' => $allOrdersForLoggedUser]);
     }
 
     /**
@@ -54,9 +54,9 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    static function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
