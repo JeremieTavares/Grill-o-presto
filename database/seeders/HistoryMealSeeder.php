@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Allergen;
 use Faker\Factory;
 use App\Models\HistoryMeal;
 use Illuminate\Database\Seeder;
@@ -36,13 +37,7 @@ class HistoryMealSeeder extends Seeder
                 'gluten_free' => $faker->boolean(),
                 'spicy' => $faker->randomNumber(),
                 'menu_id' => rand(1, 3),
-                'allergens' => json_encode([
-                    [
-                        "name" => "Poisson"
-                    ],[
-                        "name" => "Gluten"
-                    ]]),
-                'image_path' => "./image/MEAL.jpg"
+                'image_path' => "/image/MEAL.jpg"
             ]);
         }
 
@@ -55,14 +50,16 @@ class HistoryMealSeeder extends Seeder
                 'gluten_free' => $faker->boolean(),
                 'spicy' => $faker->randomNumber(),
                 'menu_id' => 4,
-                'allergens' => json_encode([
-                    [
-                        "name" => "Arachides"
-                    ],[
-                        "name" => "Noix"
-                    ]]),
                 'image_path' => $faker->sentence()
             ]);
         }
+
+
+
+        foreach (HistoryMeal::all() as $meal) {
+            $allergen = Allergen::inRandomOrder()->take(rand(1,5))->pluck('id');
+            $meal->allergens()->attach($allergen);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 creditCardAutoComplete()
 closedModalPopup();
-
+toggleSearchInputForAdmin();
+adminMenu();
 
 function closedModalPopup() {
     const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
@@ -20,57 +21,58 @@ function closedModalPopup() {
 // **** TO FIX LATER ***
 
 function creditCardAutoComplete() {
+    if (document.title == 'Commander') {
+        const selectCard = document.getElementById('ccUser');
+        const clientCardName = document.getElementById('clientCardName');
+        const clientCardNumber = document.getElementById('clientCardNumber');
+        const clientCardCVC = document.getElementById('clientCardCVC');
+        const clientCardMonth = document.getElementById('clientCardMonth');
+        const clientCardYear = document.getElementById('clientCardYear');
 
-    const selectCard = document.getElementById('ccUser');
-    const clientCardName = document.getElementById('clientCardName');
-    const clientCardNumber = document.getElementById('clientCardNumber');
-    const clientCardCVC = document.getElementById('clientCardCVC');
-    const clientCardMonth = document.getElementById('clientCardMonth');
-    const clientCardYear = document.getElementById('clientCardYear');
-
-    if(selectCard){
-    selectCard.addEventListener('change', () => {
-        const value = selectCard.value;
-        getCard(value);
-    })
-    }
-    async function getCard(ccNumber) {
+        if (selectCard) {
+            selectCard.addEventListener('change', () => {
+                const value = selectCard.value;
+                getCard(value);
+            })
+        }
+        async function getCard(ccNumber) {
 
 
-        // A METTRE EN HAUT DE LA PAGE ->
-        // <meta name="csrf-token" content="{{ csrf_token() }}"
-        // SUIVI DE CA COMME SELECTEUR ET A NETTRE DANS LE X-CSRF HEADERS DE NOTRE FETCH
-        // const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            // A METTRE EN HAUT DE LA PAGE ->
+            // <meta name="csrf-token" content="{{ csrf_token() }}"
+            // SUIVI DE CA COMME SELECTEUR ET A NETTRE DANS LE X-CSRF HEADERS DE NOTRE FETCH
+            // const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        // POSIBILITE DE METTRE DANS LURL DU FETCH
-        // const urlReq = window.location.origin + "/getAuthUserCreditCard";
+            // POSIBILITE DE METTRE DANS LURL DU FETCH
+            // const urlReq = window.location.origin + "/getAuthUserCreditCard";
 
-        const result = await fetch("/getAuthUserCreditCard", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": document.querySelector('input[name=_token]').value
-            },
-            body: JSON.stringify(ccNumber),
-        });
-        const jsondata = await result.json(ccNumber);
+            const result = await fetch("/getAuthUserCreditCard", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": document.querySelector('input[name=_token]').value
+                },
+                body: JSON.stringify(ccNumber),
+            });
+            const jsondata = await result.json(ccNumber);
 
-        if (ccNumber > 1) {
-            clientCardName.value = jsondata.name
-            clientCardNumber.value = jsondata.card_number
-            clientCardCVC.value = jsondata.cvc
-            if (parseInt(jsondata.month) < 10)
-                clientCardMonth.value = '0' + jsondata.month
-            else
-                clientCardMonth.value = jsondata.month
-            clientCardYear.value = jsondata.year
-        } else {
-            clientCardName.value = ""
-            clientCardNumber.value = ""
-            clientCardCVC.value = ""
-            clientCardMonth.value = ""
-            clientCardYear.value = ""
+            if (ccNumber > 1) {
+                clientCardName.value = jsondata.name
+                clientCardNumber.value = jsondata.card_number
+                clientCardCVC.value = jsondata.cvc
+                if (parseInt(jsondata.month) < 10)
+                    clientCardMonth.value = '0' + jsondata.month
+                else
+                    clientCardMonth.value = jsondata.month
+                clientCardYear.value = jsondata.year
+            } else {
+                clientCardName.value = ""
+                clientCardNumber.value = ""
+                clientCardCVC.value = ""
+                clientCardMonth.value = ""
+                clientCardYear.value = ""
+            }
         }
     }
 }
@@ -138,4 +140,179 @@ function creditCardAutoComplete() {
 //         }
 //     }
 // });
+// =======================MENU ADMIN===================================
+function adminMenu() {
+    if (document.title == 'Menu ajout') {
+
+        let menuTypeSelect = document.querySelector('#menu_type');
+        let mealsSelectAdminItems = document.querySelectorAll('.menu_add_admin .meal');
+        let mealsSelectAdmin = document.querySelector('.menu_add_admin #meals');
+        let divContainer = document.querySelector('.meals_menu_container');
+        let buttons = divContainer.querySelectorAll('button');
+        let counter = document.querySelector('.menu_add_admin .mealsCounter');
+        let maxMealBox = document.querySelector('.maxMealBox');
+        let alreadyTaken = document.querySelector('.alreadyTaken');
+        let nbRepasCounter = 0;
+
+        menuTypeSelect.addEventListener('change', () => {
+            document.querySelectorAll(".checkBox_container input").forEach(item => {
+                item.removeAttribute("checked");
+                maxMealBox.classList.add('displayNone');
+                nbRepasCounter = 0;
+                counter.innerHTML = nbRepasCounter + "/10";
+            })
+            divContainer.innerHTML = "";
+            mealsSelectAdminItems.forEach($meal => {
+                if (menuTypeSelect.value == "Végétarien") {
+                    if (!$meal.classList.contains("vegetarian")) {
+                        console.log(menuTypeSelect.value);
+                        $meal.classList.add('displayNone');
+                    }
+                }
+                else if (menuTypeSelect.value == "Sans Gluten") {
+                    if (!$meal.classList.contains("gluten_free")) {
+                        console.log(menuTypeSelect.value);
+                        $meal.classList.add('displayNone');
+                    }
+                }
+                else {
+                    $meal.classList.remove('displayNone');
+                }
+            })
+        });
+
+        mealsSelectAdmin.addEventListener('change', () => {
+
+            if (nbRepasCounter < 10) {
+                document.querySelector(".meal-" + mealsSelectAdmin.value).setAttribute('checked', 'checked');
+
+                let exists = false;
+                divContainer.querySelectorAll('div').forEach(item => {
+                    if (item.classList.contains('meal-' + mealsSelectAdmin.value))
+                        exists = true;
+                })
+
+                if (!exists) {
+                    divContainer.innerHTML += '<div id="meal-' + mealsSelectAdmin.value + '" class="adminMealDiv meal-' + mealsSelectAdmin.value + '"><p>' + document.querySelector('#meals [value="' + mealsSelectAdmin.value + '"]').innerHTML + '</p><button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button></div>'
+                    nbRepasCounter++;
+                    counter.innerHTML = nbRepasCounter + "/10";
+                    alreadyTaken.classList.add('displayNone');
+                }
+                else {
+                    alreadyTaken.classList.remove('displayNone');
+                }
+
+
+                buttons = divContainer.querySelectorAll('button');
+                addEventOnMealDel();
+            }
+            else {
+                maxMealBox.classList.remove('displayNone');
+            }
+
+        });
+
+
+
+    }
+
+    if (document.title == 'Menu modification') {
+        let mealsSelectAdminItems = document.querySelectorAll('.menu_edit_admin .meal');
+        let mealsSelectAdmin = document.querySelector('.menu_edit_admin #meals');
+        let divContainer = document.querySelector('.meals_menu_container');
+        let buttons = divContainer.querySelectorAll('button');
+        let counter = document.querySelector('.menu_edit_admin .mealsCounter');
+        let maxMealBox = document.querySelector('.maxMealBox');
+        let alreadyTaken = document.querySelector('.alreadyTaken');
+        let nbRepasCounter = document.querySelectorAll('input[checked]').length;
+
+        addEventOnMealDel()
+
+        console.log(nbRepasCounter);
+
+        mealsSelectAdmin.addEventListener('change', () => {
+
+            if (nbRepasCounter < 10) {
+                document.querySelector(".meal-" + mealsSelectAdmin.value).setAttribute('checked', 'checked');
+
+                let exists = false;
+                divContainer.querySelectorAll('div').forEach(item => {
+                    if (item.classList.contains('meal-' + mealsSelectAdmin.value))
+                        exists = true;
+                })
+
+                if (!exists) {
+                    divContainer.innerHTML += '<div id="meal-' + mealsSelectAdmin.value + '" class="adminMealDiv meal-' + mealsSelectAdmin.value + '"><p>' + document.querySelector('#meals [value="' + mealsSelectAdmin.value + '"]').innerHTML + '</p><button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button></div>'
+                    nbRepasCounter++;
+                    counter.innerHTML = nbRepasCounter + "/10";
+                    alreadyTaken.classList.add('displayNone');
+                }
+                else {
+                    alreadyTaken.classList.remove('displayNone');
+                }
+
+
+                buttons = divContainer.querySelectorAll('button');
+                addEventOnMealDel();
+            }
+            else {
+                maxMealBox.classList.remove('displayNone');
+            }
+
+        });
+
+        function addEventOnMealDel() {
+            buttons.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.parentElement.remove();
+                    document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
+                    maxMealBox.classList.add('displayNone');
+                    nbRepasCounter--;
+                    counter.innerHTML = nbRepasCounter + "/10";
+                })
+            });
+
+        }
+    }
+}
+
+function addEventOnMealDel() {
+    buttons.forEach(item => {
+        item.addEventListener('click', () => {
+            item.parentElement.remove();
+            document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
+            maxMealBox.classList.add('displayNone');
+            nbRepasCounter--;
+            counter.innerHTML = nbRepasCounter + "/10";
+        })
+    });
+}
+
+
+// ======================================================================
+// CECI SERA POUR DISPLAY TOGGLE LES SEARCH VIA EMAIL AND TEL FOR ADMIN CLIENT SEARCH
+
+function toggleSearchInputForAdmin() {
+    if (document.title == 'Client gestion') {
+        const emailLink = document.querySelector('#linkSearchEmail');
+        const divEmailSearch = document.querySelector('#divSearchEmail');
+
+        const telLink = document.querySelector('#linkSearchTel');
+        const divTelSearch = document.querySelector('#divSearchTel');
+
+        emailLink.addEventListener('click', (e) => {
+            if (divEmailSearch.classList.contains('d-none')) {
+                divEmailSearch.classList.toggle('d-none')
+                divTelSearch.classList.toggle('d-none')
+            }
+        })
+
+        telLink.addEventListener('click', (e) => {
+            if (divTelSearch.classList.contains('d-none')) {
+                divTelSearch.classList.toggle('d-none')
+                divEmailSearch.classList.toggle('d-none')
+            }
+        })
+    }
+}
 // ======================================================================

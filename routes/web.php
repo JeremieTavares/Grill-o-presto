@@ -19,7 +19,13 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
+
 use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
+
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\MenuAdmin;
+use App\Http\Controllers\Admin\gestionClient\GestionClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +41,12 @@ use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
+Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('meal');
+Route::get('/panier/{delete?}', [CartController::class, 'index'])->name('cart');
+Route::get('/checkout', [CartController::class, 'preCheckout'])->name('preCheckout.log');
+Route::post('/checkout', [CartController::class, 'preCheckoutGuest'])->name('preCheckout.guest');
+
 Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
@@ -111,15 +121,26 @@ Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
 // ==========================================================================================================================================================
 
-Route::prefix('admin/')->name('admin.')->group(function () {
 
+//MIDDLLEEWARRRREEE
+
+Route::prefix('admin/')->name('admin.')->group(function() {
     Route::controller(GestionAdminController::class)->middleware('auth')->group(function () {
         Route::get('admin/gestion', 'index')->name('admin.index');
-        Route::get('{id}/admin/edit', 'edit')->name('admin.edit');
+        Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
     });
 
-
+    
     Route::resource('client', GestionClientController::class);
+    Route::resource('admin', GestionAdminController::class);
+ Route::resource('faq', GestionFaqController::class);
 
-    Route::resource('faq', GestionFaqController::class);
+    Route::get('/menu/ajouter', [MenuAdmin::class, 'create'])->name('menu');
+    Route::post('/menu/ajouter', [MenuAdmin::class, 'store'])->name('menu.store');
+    Route::get('/menu/rechercher', [MenuAdmin::class, 'research'])->name('menu.research');
+    Route::post('/menu/rechercher', [MenuAdmin::class, 'search'])->name('menu.search');
+    Route::get('/menu/edit/{id}', [MenuAdmin::class, 'edit'])->name('menu.edit');
+    Route::put('/menu/edit/{id}', [MenuAdmin::class, 'update'])->name('menu.update');
+    // Route::post('/menu/modifier/{id}', [MenuAdmin::class, 'update'])->name('menu.update');
+    Route::delete('/menu/supprimer/{id}', [MenuAdmin::class, 'destroy'])->name('menu.destroy');
 });

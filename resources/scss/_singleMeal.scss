@@ -1,0 +1,41 @@
+.singleMeal {
+
+    img {
+        border-radius: 25px;
+    }
+
+    .topSection {
+        width: 100%;
+        background-color: $pink;
+    }
+    .mealSection {
+        padding: 2rem 1rem;
+    }
+
+    .allergenContainer {
+        display: flex;
+        gap: 1rem;
+        .allergenItem {
+            list-style: none;
+            
+            i {
+                
+                font-size: 3rem;
+            }
+        }
+    }
+
+}
+
+@media (min-width: 768px) {
+    
+    .singleMeal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .mealSection {
+            max-width: 50rem;
+        }
+    }
+    
+}

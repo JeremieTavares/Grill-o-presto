@@ -20,9 +20,9 @@ return new class extends Migration
             $table->id();
             $table->integer('ticket_number');
             $table->string('order_number')->nullable();
-            $table->foreignIdFor(TicketType::class)->constrained();
-            $table->foreignIdFor(TicketStatus::class)->constrained();
-            $table->foreignIdFor(User::class)->nullable()->constrained();
+            $table->foreignIdFor(TicketType::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(TicketStatus::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete();
             $table->text('description');
             $table->string('email')->nullable();
             $table->timestamps();

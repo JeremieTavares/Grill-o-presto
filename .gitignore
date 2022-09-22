@@ -12,5 +12,6 @@ auth.json
 npm-debug.log
 yarn-error.log
 /.idea
+.env
 /.vscode
 

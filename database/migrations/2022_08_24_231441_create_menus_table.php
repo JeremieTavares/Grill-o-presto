@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(MenuType::class)->constrained();
+            $table->foreignIdFor(MenuType::class)->constrained()->cascadeOnDelete();
             $table->date('start_date')->nullable(false);
             $table->date('end_date')->nullable(false);
             $table->timestamps();

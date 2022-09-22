@@ -19,7 +19,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable()->constrained();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('prenom');
             $table->string('nom');
             $table->string('rue');
@@ -29,12 +29,12 @@ return new class extends Migration
             $table->string('ville');
             $table->string('telephone');
             $table->string('email');
-            $table->foreignIdFor(Menu::class)->constrained();
+            $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
             $table->integer('price');
             $table->integer('order_number');
             $table->boolean('is_guest');
-            $table->foreignIdFor(OrderStatus::class)->constrained();
-            $table->foreignIdFor(Portion::class)->constrained();
+            $table->foreignIdFor(OrderStatus::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Portion::class)->constrained()->cascadeOnDelete();
             $table->json('meals');
             $table->timestamps();
         });
