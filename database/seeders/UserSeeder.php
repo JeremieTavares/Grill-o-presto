@@ -35,24 +35,6 @@ class UserSeeder extends Seeder
         $userAdmin->role_id = 2;
 
 
-        $userAdmin2 = new User();
-        
-        $userAdmin2->id = 5;
-        $userAdmin2->info_user_id = 5;
-        $userAdmin2->email = 'admin2@hotmail.com';
-        $userAdmin2->password = Hash::make('adminadmin');
-        $userAdmin2->role_id = 3;
-
-
-        $userAdmin3 = new User();
-        
-        $userAdmin3->id = 6;
-        $userAdmin3->info_user_id = 6;
-        $userAdmin3->email = 'admin3@hotmail.com';
-        $userAdmin3->password = Hash::make('adminadmin');
-        $userAdmin3->role_id = 4;
-
-
         $userBlocked = new User();
         
         $userBlocked->id = 3;
@@ -75,8 +57,6 @@ class UserSeeder extends Seeder
 
         $userClient->save();
         $userAdmin->save();
-        $userAdmin2->save();
-        $userAdmin3->save();
         $userBlocked->save();
         $userDeleted->save();
     }

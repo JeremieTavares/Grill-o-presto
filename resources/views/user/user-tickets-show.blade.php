@@ -127,6 +127,9 @@
 
                     @include('user.template.modal-close-ticket')
                 @endif
+
+
+
             @else
                 @if ($state == $ticket_opened && $ticketMessages !== null)
                     <h2 class="text-center">Aucune réponse pour ce Ticket</h2>

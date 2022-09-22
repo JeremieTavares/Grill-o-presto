@@ -32,7 +32,7 @@
 
                 @foreach ($meals as $meal)
                     <div class="meal_card">
-                        <img src="image/MEAL.jpg" alt="repas_image">
+                        <img src="{{ $meal->image_path }}" alt="repas_image">
                         <p>{{ $meal->name }}</p>
                         <p>{{ $meal->menu->menu_type->type }}</p>
                     </div>

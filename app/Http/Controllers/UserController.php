@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use App\Http\Requests\UpdateUserInfoRequest;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -84,12 +83,12 @@ class UserController extends Controller
     {
         $validatedData = $request->validated();
 
-        $user = (object) User::GetLoggedUserInfo()->first();
+        $user = (object) User::GetLoggedUserInfo()->get();
 
-        $userInfo = InfoUser::where('id', (int) $user->info_user_id)->first();
+        $userInfo = InfoUser::where('id', (int) $user[0]->info_user_id)->get();
 
-        if ($request->tel !== $userInfo->telephone) {
-            $response = $this->validate(
+        if ($request->tel !== $userInfo[0]->telephone) {
+            $this->validate(
                 $request,
 
                 [
@@ -102,32 +101,19 @@ class UserController extends Controller
                 ]
             );
         }
-        if ($request->email !== $user->email) {
-            $response = $this->validate(
-                $request,
 
-                [
-                    'email' => ['unique:App\Models\User,email'],
-                ],
-                [
-                    'email.unique' => 'Ce email est invalide ou existe déja',
-                ]
-            );
-        }
-
-
-        $user->email = (string) $request->email;
-        $user->password = (string) Hash::make($request->password);
-        $userInfo->prenom = (string) $request->prenom;
-        $userInfo->nom = (string) $request->nom;
-        $userInfo->rue = (string) $request->rue;
-        $userInfo->no_porte = (int) $request->noPorte;
-        $userInfo->appartement = (int) $request->appartement;
-        $userInfo->code_postal = (string) $request->zip_code;
-        $userInfo->ville = (string) $request->ville;
-        $userInfo->telephone = (string) $request->tel;
-        $user->save();
-        $userInfo->save();
+        $user[0]->email = (string) $request->email;
+        $user[0]->password = (string) $request->password;
+        $userInfo[0]->prenom = (string) $request->prenom;
+        $userInfo[0]->nom = (string) $request->nom;
+        $userInfo[0]->rue = (string) $request->rue;
+        $userInfo[0]->no_porte = (int) $request->noPorte;
+        $userInfo[0]->appartement = (int) $request->appartement;
+        $userInfo[0]->code_postal = (string) $request->zip_code;
+        $userInfo[0]->ville = (string) $request->ville;
+        $userInfo[0]->telephone = (string) $request->tel;
+        $user[0]->save();
+        $userInfo[0]->save();
 
         return back()->with('successInfosChanged', 'Vos informations on été changé');
     }
@@ -141,16 +127,16 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         // Excesive checking making sure someone is not trynna make so sketchy shit
-        $user = (object) User::GetLoggedUserInfo()->first();
-        if (((int)$user->id === (int) $id) &&
-            ((int)$request->active_logged_user === (int)$user->id) &&
+        $user = (object) User::GetLoggedUserInfo()->get();
+        if (((int)$user[0]->id === (int) $id) &&
+            ((int)$request->active_logged_user === (int)$user[0]->id) &&
             ((int)$request->active_logged_user === (int) $id)
         ) {
-            $user->soft_deleted = date('Y-m-d h:i:s');
-            $user->save();
-
-            $this->checkIfUserStateIsValid($user, $request);
-            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $user->soft_deleted]);
+            $user[0]->soft_deleted = date('Y-m-d h:i:s');
+            $user[0]->save();
+            
+            $this->checkIfUserStateIsValid($user[0], $request);
+            return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a été supprimé le " . $user[0]->soft_deleted]);
         }
     }
 }

@@ -33,7 +33,7 @@ class TicketController extends Controller
 
         for ($i = 0; $i < count($allTicketsForLoggedUser); $i++) {
             $allTicketsForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allTicketsForLoggedUser[$i]->created_at));
-            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 60);
+            $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 50);
             array_push($ticketArray,  $allTicketsForLoggedUser[$i]);
         }
         return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);

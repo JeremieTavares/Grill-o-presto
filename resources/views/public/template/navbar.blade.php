@@ -21,7 +21,7 @@
                         <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="#">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="{{route('faq.index')}}">Support</a>
+                        <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="{{route('faq')}}">Support</a>
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">

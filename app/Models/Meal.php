@@ -22,7 +22,6 @@ class Meal extends Model
 
 
 
-
     protected static function createMealFromJson($meals)
     {
         $mealsArr = [];
@@ -40,9 +39,5 @@ class Meal extends Model
         }
         
         return $mealsArr;
-    }
-
-    public function allergens() {
-        return $this->belongsToMany(Allergen::class);
     }
 }

@@ -6,6 +6,9 @@
         <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
             data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
             @csrf
+            <h1>informations</h1>
+
+
             @if (Session::has('paymentSuccess'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
                     id="divAlertSucccessInfoChanged">
@@ -24,7 +27,7 @@
                 </div>
             @endif
 
-            <h2 id="h2Paiement">Paiement</h2>
+            <h1 id="h1Paiement">Paiement</h1>
 
 
             <div class="row">
@@ -119,67 +122,5 @@
 
         {{-- NEED FOR STRIPE --}}
         <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-        <script>
-
-$(function() {
-    const h2pay = document.getElementById('h2Paiement');
-    const h2InvalidCardInfo = document.getElementById('h2InvalidCard');
-
-    var $form = $(".require-validation");
-    $('form.require-validation').bind('submit', function(e) {
-        const h2pay = document.getElementById('h1Paiement');
-
-        var $form = $(".require-validation"),
-            inputSelector = ['input[type=email]', 'input[type=password]',
-                'input[type=text]', 'input[type=file]',
-                'textarea'
-            ].join(', '),
-            $inputs = $form.find('.required').find(inputSelector),
-            $errorMessage = $form.find('div.error'),
-            valid = true;
-        $errorMessage.addClass('');
-        $('.has-error').removeClass('has-error');
-        $inputs.each(function(i, el) {
-            var $input = $(el);
-            if ($input.val() === '') {
-                h2pay.remove();
-                $input.parent().addClass('has-error');
-                $errorMessage.removeClass('hide');
-                e.preventDefault();
-            }
-        });
-        if (!$form.data('cc-on-file')) {
-            e.preventDefault();
-
-            Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-            Stripe.createToken({
-                number: $('.card-number').val(),
-                cvc: $('.card-cvc').val(),
-                exp_month: $('.card-expiry-month').val(),
-                exp_year: $('.card-expiry-year').val()
-            }, stripeResponseHandler);
-        }
-    });
-
-    function stripeResponseHandler(status, response) {
-        if (response.error) {
-            $('.error')
-                .removeClass('hide')
-                .find('.alert')
-                .text(response.error.message)
-
-                if (h2pay.nextElementSibling.tagName !== "P"){
-                    h2pay.insertAdjacentHTML('afterend',"<p id='h2InvalidCard' class='text-danger fs-5 fw-bold'>Les informations de la carte sont invalides, veuillez réessayer</p>")
-                }
-        } else {
-            /* token contains id, last4, and card type */
-            var token = response['id'];
-            $form.find('input[type=text]').empty();
-            $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-            $form.get(0).submit();
-        }
-    }
-});
-        </script>
     </main>
 @endsection

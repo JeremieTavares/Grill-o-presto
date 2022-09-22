@@ -21,7 +21,7 @@ class StripeController extends Controller
     {
 
         if (Auth::check()) {
-            $allCardsForLoggedUser = Creditcard::where('user_id', Auth::user()->id)->get('card_number');
+            $allCardsForLoggedUser = Creditcard::where('user_id', Auth::user()->id)->get();
         } else
             $allCardsForLoggedUser = 0;
         return view('public.template.stripe', ['cc' => $allCardsForLoggedUser]);
@@ -74,7 +74,8 @@ class StripeController extends Controller
                 ]);
                 // Insert the credit card in the Database for the related user for the first transaction evermade for the user
                 $cc = Creditcard::verifyIfUserUsingExistingCard($request)->get('card_number');
-                if (!isset($cc[0])) {
+
+                if ($cc[0]->card_number < 2) {
                     Creditcard::newCardFill($request);
                 }
             }
@@ -89,7 +90,6 @@ class StripeController extends Controller
                     'email' => $user->email
                 ]);
                 //Update the default creditcard for the logged user
-
                 $stripe->customers->update($newClientLogged->id, ['source' => $request->stripeToken]);
 
                 // Create a new transaction for the logged user
@@ -104,7 +104,8 @@ class StripeController extends Controller
                 // Insert the credit card in the Database for the related user
 
                 $cc = Creditcard::verifyIfUserUsingExistingCard($request)->get('card_number');
-                if (!isset($cc[0])) {
+
+                if ($cc[0]->card_number < 2) {
                     Creditcard::newCardFill($request);
                 }
             }
@@ -128,7 +129,7 @@ class StripeController extends Controller
                 $newClient->id,
                 ['source' => $request->stripeToken]
             );
-
+            
             // Create new transaction for guest user
             $transaction = Stripe\Charge::create([
                 "amount" => (2002) + (200 * 0.15),
