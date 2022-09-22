@@ -24,9 +24,7 @@
             @endif
         </section>
         <section class="w-100 login_container d-flex flex-column align-items-center">
-            @if (Auth::check())
-                <a href="{{route('preCheckout.log')}}">Passer à la caisse</a>
-            @else
+            
                 <a class="btn btn-primary mt-5" href="{{ route('login') }}">Se connecter</a>
                 <hr class="w-75" />
                 <h2>Rester invité</h2>
@@ -51,14 +49,8 @@
                             @enderror
                         </div>
 
-                        <div>
-                            <label for="tel">Téléphone</label>
-                            <input class="form-control @error('tel') is-invalid @enderror" value="{{ old('tel') }}"
-                                name="tel" id="tel" type="tel">
-                            @error('tel')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        
+                        
 
                         <div>
                             <label for="street">Rue</label>
@@ -96,14 +88,27 @@
                             @enderror
                         </div>
 
-                        <div>
-                            <label for="email">Courriel</label>
-                            <input class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
-                                name="email" id="email" type="email">
-                            @error('email')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        @guest
+                            <div>
+                                <label for="tel">Téléphone</label>
+                                <input class="form-control @error('tel') is-invalid @enderror" value="{{ old('tel') }}"
+                                    name="tel" id="tel" type="tel">
+                                @error('tel')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endguest
+                            
+                        @guest
+                            <div>
+                                <label for="email">Courriel</label>
+                                <input class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                                    name="email" id="email" type="email">
+                                @error('email')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endguest
 
                         <input class="btn btn-primary mt-3 checkoutBTN" type="submit" value="Passer à la caisse">
             @endif

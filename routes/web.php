@@ -25,7 +25,6 @@ use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 
 use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
 
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuAdmin;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 
