@@ -1,4 +1,4 @@
-@extends('public.template.base')
+@extends('admin.template.base')
 @section('banner-title', 'FAQ - Gestion de la FAQ')
 @section('content')
     @include('admin.template.sub-navbar-admin-3')

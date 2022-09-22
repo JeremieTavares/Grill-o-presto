@@ -1,4 +1,4 @@
-@extends('public.template.base')
+@extends('admin.template.base')
 @section('banner-title', 'Administrateur- Modification des informations client')
 @section('title', 'Client rechercher')
 @section('content')
