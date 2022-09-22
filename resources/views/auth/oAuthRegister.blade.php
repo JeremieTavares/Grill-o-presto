@@ -67,8 +67,8 @@
                 <div class="col-md-2">
                     <label for="zip_code" class="form-label">Code-Postal*</label>
                     <input type="text" name="zip_code" id="zip_code"
-                        class="form-control @error('zip-code') is-invalid @enderror" value="{{ old('zip_code') }}" required
-                        autocomplete="zip-code" autofocus>
+                        class="form-control @error('zip_code') is-invalid @enderror" value="{{ old('zip_code') }}" required
+                        autocomplete="zip_code" autofocus>
                     @error('zip_code')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

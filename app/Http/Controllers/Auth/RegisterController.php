@@ -131,7 +131,7 @@ class RegisterController extends Controller
             'info_user_id' => $infoUser->id,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => empty($data['role']) ?  $roles->get_role_client() : $data['role'],
+            'role_id' =>  $roles->get_role_client()
         ]);
 
         return $user;

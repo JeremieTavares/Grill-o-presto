@@ -125,9 +125,12 @@ Route::prefix('admin/')->name('admin.')->group(function() {
         Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
     });
 
+    
     Route::resource('client', GestionClientController::class);
     Route::resource('repas', RepasAdminController::class)->except(['index', 'show']);
     Route::get('repas/{type?}', [RepasAdminController::class, 'index'])->name('repas');
+    Route::resource('admin', GestionAdminController::class);
+
 
     Route::get('/menu/ajouter', [MenuAdminController::class, 'create'])->name('menu');
     Route::post('/menu/ajouter', [MenuAdminController::class, 'store'])->name('menu.store');

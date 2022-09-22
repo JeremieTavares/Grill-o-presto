@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OAuthRequest extends FormRequest
+class AdminInsertRequest extends FormRequest
 {
   
     /**
@@ -37,7 +37,7 @@ class OAuthRequest extends FormRequest
                 'appartement' => ['integer', 'nullable', 'gte:0'],
                 'ville' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
                 'rue' => ['regex:/^[A-zÀ-ú -]{2,50}$/', 'required'],
-                'role_id' => ['integer', 'gt:0', 'exists:App\Models\Role,role']
+                'role' => ['required', 'exists:App\Models\Role,role']
         ];
     }
 
@@ -74,9 +74,10 @@ class OAuthRequest extends FormRequest
             'ville.required' => 'La ville est requise',
             'rue.regex' => 'La rue doit seulement contenir des lettres et -',
             'rue.required' => 'La rue est requise',
-            'role_id.integer' => 'Le role doit etre un chiffre entier',
-            'role_id.gt' => 'Le role doit etre une valeur supérieur a 0',
-            'role_id.exists' => 'Le role n\'existe pas'
+            'role.integer' => 'Le role doit etre un chiffre entier',
+            'role.gt' => 'Le role doit etre une valeur supérieur a 0',
+            'role.exists' => 'Le role n\'existe pas',
+            'role.required' => "Le role d'administrateur est requis"
         ];
     }
 }
