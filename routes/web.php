@@ -24,10 +24,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 
 use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
-
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuAdmin;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
+use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
 
 
 /*
@@ -127,21 +126,23 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 
 //MIDDLLEEWARRRREEE
 
-Route::prefix('admin/')->name('admin.')->group(function() {
+Route::prefix('admin/')->name('admin.')->group(function () {
     Route::controller(GestionAdminController::class)->middleware('auth')->group(function () {
         Route::get('admin/gestion', 'index')->name('admin.index');
         Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
     });
 
-    
+
     Route::resource('client', GestionClientController::class);
 
     Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll');
     Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show');
     Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
+
     Route::resource('repas', RepasAdminController::class)->except('show');
     Route::resource('admin', GestionAdminController::class);
- Route::resource('faq', GestionFaqController::class);
+    Route::resource('faq', GestionFaqController::class);
+    Route::resource('ticket', GestionTicketController::class);
 
     Route::get('/menu/ajouter', [MenuAdminController::class, 'create'])->name('menu');
     Route::post('/menu/ajouter', [MenuAdminController::class, 'store'])->name('menu.store');

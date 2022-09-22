@@ -39,11 +39,6 @@ class TicketController extends Controller
         return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);
     }
 
-    public function indexFaq()
-    {
-        return (object) view('public.faq');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -119,17 +114,6 @@ class TicketController extends Controller
                 'ticket_not_resolved' => (int) $not_resolved
             ]
         );
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

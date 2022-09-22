@@ -21,7 +21,7 @@
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
 
                     <?php if(Auth::user()){ ?>
-                    <a href="{{ route('user.edit.info', Auth::user()->id) }}" class="text-secondary"><i
+                    <a href="{{ route('admin.ticket.index', Auth::user()->id) }}" class="text-secondary"><i
                             class="fa-solid fa-user fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
                     <?php } ?>
                     <?php if(Auth::user()){ ?>
