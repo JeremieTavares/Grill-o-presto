@@ -17,32 +17,40 @@ class FaqSeeder extends Seeder
     {
         Faq::create([
             'question' => "Quoi faire si j'ai des allergies",
-            'answer' => "Nous veillons à ce que tous nos aliments soient préparés en toute sécurité. Nous indiquons sur chaque recette les allergènes contenus dans la recette, et nos ingrédients sont pré-dosés dans des emballages individuels, ce qui facilite l'échange d'ingrédients. Cependant, toutes nos boîtes sont assemblées dans la même installation de traitement, ce qui signifie que nous ne pouvons pas garantir qu'il n'y a pas de contamination croisée. Si vous souffrez d'une allergie alimentaire sévère et souhaitez assurer la plus grande prudence, nous vous déconseillons de commander une boîte Goodfood.",
+            'answer' => "Nous veillons à ce que tous nos aliments soient préparés en toute sécurité.",
             'faq_theme_id' => 1,
             'user_id' => 4,
             'is_active' => true
         ]);
 
         Faq::create([
-            'question' => "Quel genre de plats offrez vous?",
-            'answer' => "Nous offront des plats pour tout les goûts, et pour les petits et les grands",
+            'question' => "Livrez-vous en dehors de 50km",
+            'answer' => "Notre livraison est gratuite à l'intérieur de 50km mais des frais s'applique à l'extérieur",
             'faq_theme_id' => 1,
-            'user_id' => 3,
+            'user_id' => 4,
             'is_active' => true
         ]);
 
         Faq::create([
-            'question' => "Quoi faire si j'ai des allergies",
-            'answer' => "Nous veillons à ce que tous nos aliments soient préparés en toute sécurité. Nous indiquons sur chaque recette les allergènes contenus dans la recette, et nos ingrédients sont pré-dosés dans des emballages individuels, ce qui facilite l'échange d'ingrédients. Cependant, toutes nos boîtes sont assemblées dans la même installation de traitement, ce qui signifie que nous ne pouvons pas garantir qu'il n'y a pas de contamination croisée. Si vous souffrez d'une allergie alimentaire sévère et souhaitez assurer la plus grande prudence, nous vous déconseillons de commander une boîte Goodfood.",
+            'question' => "Comment fonctionne la politique de remboursement",
+            'answer' => "Passez nous un appel et nous vous expliqueront comment procéder avec les démarches de remboursement. Vous serez surpris par la grande souplesse de notre équipe.",
+            'faq_theme_id' => 1,
+            'user_id' => 4,
+            'is_active' => true
+        ]);
+
+        Faq::create([
+            'question' => "Offrez vous des repas spéciaux pour le temps des fêtes",
+            'answer' => "Nous offront des spéciaux sur certains menus lors de la période des fêtes, vous pouvez aussi comptez sur des extras festifs pour mettre de la joie dans vos coeur.",
             'faq_theme_id' => 2,
-            'user_id' => 4,
-            'is_active' => false
+            'user_id' => 2,
+            'is_active' => true
         ]);
 
         Faq::create([
-            'question' => "Quoi faire si j'ai des allergies",
-            'answer' => "Nous veillons à ce que tous nos aliments soient préparés en toute sécurité. Nous indiquons sur chaque recette les allergènes contenus dans la recette, et nos ingrédients sont pré-dosés dans des emballages individuels, ce qui facilite l'échange d'ingrédients. Cependant, toutes nos boîtes sont assemblées dans la même installation de traitement, ce qui signifie que nous ne pouvons pas garantir qu'il n'y a pas de contamination croisée. Si vous souffrez d'une allergie alimentaire sévère et souhaitez assurer la plus grande prudence, nous vous déconseillons de commander une boîte Goodfood.",
-            'faq_theme_id' => 3,
+            'question' => "Avez-vous des offres spéciales pour les couples pendant la Saint-Valentin",
+            'answer' => "Pour les couples durant cette période vous pourrez compter sur des formats spéciaux deux portions pour satisfaire vous et votre douce moitié",
+            'faq_theme_id' => 4,
             'user_id' => 2,
             'is_active' => false
         ]);

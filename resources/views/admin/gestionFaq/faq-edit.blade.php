@@ -111,6 +111,10 @@
                     <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Modifier</button>
                 </div>
 
+                <div class="d-flex justify-content-center mb-5">
+                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5" action="{{ route('admin.faq.destroy', Auth::user()->id) }}" method="Post">supprimer</button>
+                </div>
+
             </form>
         </div>
     </main>

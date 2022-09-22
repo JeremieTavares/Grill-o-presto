@@ -95,6 +95,13 @@ class GestionFaqController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+       /*  $request['user_id'] = Auth::user()->id;
+        Faq::find($request->faq_id)->destroy($request->all());
+        if (isset($request->soft_deleted)) {
+            $faq->soft_deleted = date('Y-m-d h:i:s');
+            $faq->save();
+            return back()->with('faqDeleted',  "La question à été supprimée");
+        } */
     }
 }
