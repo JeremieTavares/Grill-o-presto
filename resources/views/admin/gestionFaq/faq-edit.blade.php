@@ -12,10 +12,11 @@
                         class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
             </div>
 
-            @if (Session::has('FaqCreated'))
+            @if (Session::has('FaqCreated') || Session::has('faqDeleted'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center mb-5"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('FaqCreated') }}
+                    {{ Session::get('faqDeleted') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
@@ -26,12 +27,19 @@
             <form action="{{ route('admin.faq.edit', ' ') }}" method="get" class="mt-2">
                 <select name="id" id="id" name="id" class="form-select btn-rounded px-3">
                     @foreach ($faqs as $single)
-                        <option value="{{ $single->id }}">{{ $single->question }} - {{ $single->faqTheme->theme }}
-                        </option>
+                        @if ($faq->id === $single->id)
+                            <option selected value="{{ $single->id }}">{{ $single->question }} -
+                                {{ $single->faqTheme->theme }}
+                            </option>
+                        @else
+                            <option value="{{ $single->id }}">{{ $single->question }} - {{ $single->faqTheme->theme }}
+                            </option>
+                        @endif
                     @endforeach
                 </select>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Modifier la sélection</button>
+                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Modifier la
+                        sélection</button>
                 </div>
             </form>
 
@@ -68,7 +76,8 @@
                 </div>
                 <div class="mb-4">
                     <p>Modifier le thème de la question:</p>
-                    <select name="faq_theme_id" id="faq_theme_id" class="form-select btn-rounded px-2 @error('faq_theme_id') is-invalid @enderror">
+                    <select name="faq_theme_id" id="faq_theme_id"
+                        class="form-select btn-rounded px-2 @error('faq_theme_id') is-invalid @enderror">
                         @foreach ($faqThemes as $theme)
                             @if ($faq->faqTheme->theme == $theme->theme)
                                 <option selected value="{{ $theme->id }}">{{ $theme->theme }}</option>
@@ -85,8 +94,9 @@
                 <div class="mb-4">
                     <div class="form-check form-switch">
 
-                        <input class="form-check-input  @error('is_active') is-invalid @enderror" name="is_active" type="checkbox" role="switch" value="1"
-                            @if ($faq->is_active === 1) checked @endif id="flexSwitchCheckDefault">
+                        <input class="form-check-input  @error('is_active') is-invalid @enderror" name="is_active"
+                            type="checkbox" role="switch" value="1" @if ($faq->is_active === 1) checked @endif
+                            id="flexSwitchCheckDefault">
                         <label class="form-check-label user-select-none" for="flexSwitchCheckDefault">Afficher sur la page
                             FAQ ?</label>
                         @error('is_active')
@@ -95,13 +105,15 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <input type="hidden" name="user_id" value="changePasCaSinonJteKickDansGorge" class=" @error('user_id') is-invalid @enderror">
+                    <input type="hidden" name="user_id" value="changePasCaSinonJteKickDansGorge"
+                        class=" @error('user_id') is-invalid @enderror">
                     @error('user_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <input type="hidden" name="faq_id" class=" @error('faq_id') is-invalid @enderror" value="{{ $faq->id }}">
+                    <input type="hidden" name="faq_id" class=" @error('faq_id') is-invalid @enderror"
+                        value="{{ $faq->id }}">
                     @error('faq_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -110,12 +122,14 @@
                 <div class="d-flex justify-content-center mb-5">
                     <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Modifier</button>
                 </div>
-
-                <div class="d-flex justify-content-center mb-5">
-                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5" action="{{ route('admin.faq.destroy', Auth::user()->id) }}" method="Post">supprimer</button>
-                </div>
-
             </form>
+            <div class="d-flex justify-content-center mb-5">
+                <form action="{{ route('admin.faq.destroy', $faq->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-primary btn btn-link text-decoration-none">Supprimer cette question</button>
+                </form>
+            </div>
         </div>
     </main>
 @endsection

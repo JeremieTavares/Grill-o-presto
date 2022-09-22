@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(FaqTheme::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
             $table->boolean('is_active')->default(0);
+            $table->datetime('soft_deleted')->nullable();
             $table->timestamps();
         });
     }

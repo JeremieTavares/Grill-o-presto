@@ -18,7 +18,7 @@ class GestionFaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::with('faqTheme')->get();
+        $faqs = Faq::with('faqTheme')->where('soft_deleted', NULL)->get();
         $faqThemes = FaqTheme::all();
         return view('admin.gestionFaq.faq-index', ['faqs' => $faqs, 'faqThemes' => $faqThemes]);
     }
@@ -66,7 +66,7 @@ class GestionFaqController extends Controller
     public function edit(Request $request, $id)
     {
         $faq = Faq::firstWhere('id', $request->id);
-        $faqs = Faq::all();
+        $faqs = Faq::with('faqTheme')->where('soft_deleted', NULL)->get();
         $faqThemes = FaqTheme::all();
 
         return view('admin.gestionFaq.faq-edit', ['faqs' => $faqs, 'faq' => $faq, 'faqThemes' => $faqThemes]);
@@ -95,13 +95,9 @@ class GestionFaqController extends Controller
      */
     public function destroy($id)
     {
-
-       /*  $request['user_id'] = Auth::user()->id;
-        Faq::find($request->faq_id)->destroy($request->all());
-        if (isset($request->soft_deleted)) {
-            $faq->soft_deleted = date('Y-m-d h:i:s');
-            $faq->save();
-            return back()->with('faqDeleted',  "La question à été supprimée");
-        } */
+        $faq = Faq::find($id);
+        $faq->soft_deleted = date('Y-m-d h:i:s');
+        $faq->save();
+        return back()->with('faqDeleted',  "La question à été supprimée");
     }
 }
