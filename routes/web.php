@@ -126,11 +126,6 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 //MIDDLLEEWARRRREEE
 
 Route::prefix('admin/')->name('admin.')->group(function () {
-    Route::controller(GestionAdminController::class)->middleware('auth')->group(function () {
-        Route::get('admin/gestion', 'index')->name('admin.index');
-        Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
-    });
-
 
     Route::resource('client', GestionClientController::class);
 
