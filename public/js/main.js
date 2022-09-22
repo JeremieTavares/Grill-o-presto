@@ -2,6 +2,7 @@ creditCardAutoComplete()
 closedModalPopup();
 toggleSearchInputForAdmin();
 adminMenu();
+adminRepas();
 
 function closedModalPopup() {
     const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
@@ -316,3 +317,28 @@ function toggleSearchInputForAdmin() {
     }
 }
 // ======================================================================
+
+function adminRepas() {
+    if(document.title == 'Repas ajouter') {
+        let ingredientContainer = document.querySelector('.mealAddAdmin .ingredient_container');
+        let ingredientButton = document.querySelector('.mealAddAdmin .ingrediants > button');
+
+        console.log(ingredientContainer.querySelectorAll('div'));
+
+
+        ingredientButton.addEventListener('click', () => {
+            ingredientContainer.innerHTML += '<div class="ingredient_item d-flex mb-2"><input class="form-control" type="text" name="ingredient[]" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" /><button type="button" class="btn btn-primary ms-2 deleteButton">Supprimer</button></div>'
+            ingredientContainer.querySelectorAll('.ingredient_item').forEach((item, key) => {
+                console.log(item)
+                if(key>0)
+                item.querySelector('.deleteButton').addEventListener('click', () => {
+                    item.remove();
+                });
+            });
+            
+        });
+
+        
+
+    }
+}
