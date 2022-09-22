@@ -55,8 +55,13 @@
                 </div>
             @endif
 
-
-
+            @if ($state == $ticket_expired)
+                <h2 class="text-center fs-2 mt-2">Ce Ticket est expiré</h2>
+            @elseif($state == $ticket_not_resolved)
+                <h2 class="text-center fs-2 mt-2">Ce Ticket est non résolus</h2>
+            @elseif($state == $ticket_closed)
+                <h2 class="text-center fs-2 mt-2">Ce Ticket est fermé</h2>
+            @endif
 
             @if (isset($ticketMessages[0]))
                 <div class="mt-md-5 mt-3 overflow-auto rounded-4" id="divMsg">
@@ -69,18 +74,23 @@
                         <div class="d-flex flex-column align-items-end text-center">
                             <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
                                 {{ $ticketMessages[0]->ticket->description }}</p>
-                            <span class="span-date-msg me-2">{{ $ticketMessages[0]->ticket->created_at }}</span>
+                            <div>
+                                <span class="span-date-msg">{{ $ticketMessages[0]->ticket->created_at }}</span>
+                                <span class="span-date-msg">-</span>
+                                <span class="span-date-msg">{{ $ticket[0]->user->infoUser->prenom }}</span>
+                            </div>
                         </div>
-
-
-
 
                         @foreach ($ticketMessages as $response)
                             @if ($response->user_id == $response->ticket->user_id)
                                 <div class="d-flex flex-column align-items-end text-center">
                                     <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
                                         {{ $response->response }}</p>
-                                    <span class="span-date-msg me-2">{{ $response->created_at }}</span>
+                                    <div>
+                                        <span class="span-date-msg">{{ $response->created_at }}</span>
+                                        <span class="span-date-msg">-</span>
+                                        <span class="span-date-msg">{{ $ticket[0]->user->infoUser->prenom }}</span>
+                                    </div>
                                 </div>
                             @else
                                 <div class="d-flex justify-content-start flex-column align-items-start text-center">

@@ -21,8 +21,6 @@
 
     <main class="m-auto">
 
-
-
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             ?>
@@ -30,12 +28,10 @@
             <?php $user = ''; ?>
         @endif
 
-
-
-
         <div class="container mw-900px">
             <div class="text-center my-3">
-                <a href="{{ url()->previous() }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+                <a href="{{ route('admin.ticket.index') }}" class="text-decoration-none"><i
+                        class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
             </div>
             @if (Session::has('successResponse'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
@@ -59,15 +55,14 @@
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
             @endif
+
             @if ($state == $ticket_expired)
-                <h2 class="text-center mt-4">Ce Ticket est expiré</h2>
+                <h2 class="text-center fs-2 mt-4">Ce Ticket est expiré</h2>
             @elseif($state == $ticket_not_resolved)
-                <h2 class="text-center mt-4">Ce Ticket est non résolus</h2>
+                <h2 class="text-center fs-2 mt-4">Ce Ticket est non résolus</h2>
             @elseif($state == $ticket_closed)
-                <h2 class="text-center mt-4">Ce Ticket est fermé</h2>
+                <h2 class="text-center fs-2 mt-4">Ce Ticket est fermé</h2>
             @endif
-
-
 
             @if (isset($ticketMessages) && !isset($ticketMessages[0]))
                 <div class="mt-md-5 mt-3 overflow-auto rounded-4" id="divMsg">
@@ -80,7 +75,11 @@
                         <div class="d-flex flex-column align-items-start text-center">
                             <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
                                 {{ $ticket[0]->description }}</p>
-                            <span class="span-date-msg me-2">{{ $ticket[0]->created_at }}</span>
+                            <div>
+                                <span class="span-date-msg">{{ $ticket[0]->created_at }}</span>
+                                <span class="span-date-msg">-</span>
+                                <span class="span-date-msg">{{ $ticket[0]->user->infoUser->prenom }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
