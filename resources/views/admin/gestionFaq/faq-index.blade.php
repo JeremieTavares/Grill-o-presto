@@ -5,7 +5,7 @@
 
     <main class="m-auto">
         <div class="container mw-750px">
-            <h2 class="text-center fs-3 my-5">Choisissez la FAQ à modifier</h2>
+            <h2 class="text-center fs-3 my-5">Choisissez la question à modifier</h2>
 
 
             @if (Session::has('FaqCreated'))
@@ -19,21 +19,22 @@
 
 
             <label for="id">Sélectionnez une question</label>
-            <form action="{{ route('admin.faq.edit', ' ') }}" method="get">
+            <form action="{{ route('admin.faq.edit', ' ') }}" method="get" class="mt-2">
                 <select name="id" id="id" name="id" class="form-select btn-rounded px-3">
-                    <option value="" selected>Sélectionnez une question</option>
                     @foreach ($faqs as $faq)
                         <option value="{{ $faq->id }}">{{ $faq->question }} - {{ $faq->faqTheme->theme }} </option>
                     @endforeach
                 </select>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
+                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Modifier la sélection</button>
                 </div>
             </form>
 
             <hr class="w-25 text-primary my-5 m-auto">
 
-            <h2 class="text-center fs-3 my-5">Ajouter une nouvelle Question/Réponse</h2>
+           <h2 class="text-center fs-3">Ou préférez-vous :</h2>
+
+            <h2 class="text-center fs-3 my-4">Créer une nouvelle question</h2>
 
             @if (Session::has('successInfosChanged'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
@@ -46,7 +47,7 @@
             <form action="{{ route('admin.faq.store') }}" method="Post">
                 @csrf
                 <div>
-                    <label class="form-label" for='faqQuestion'>Entrez le titre de la question</label>
+                    <label class="form-label" for='faqQuestion'>Entrez la question ici :</label>
                     <input type="text" name="question" id="faqQuestion" class="form-control @error('question') is-invalid @enderror">
                     @error('question')
                         <div class="text-danger">{{ $message }}</div>
@@ -54,13 +55,14 @@
                 </div>
 
                 <div class="my-4">
-                    <label class="form-label" for='faqAnswer'>Entrez le titre de la question</label>
+                    <label class="form-label" for='faqAnswer'>Entrez la réponse ici :</label>
                     <textarea type="text" name="answer" id="faqAnswer" class="form-control  @error('answer') is-invalid @enderror"></textarea>
                     @error('answer')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <p>Choisissez le thème de la question:</p>
                     <select name="faq_theme_id" id="faq_theme_id" class="form-select btn-rounded px-2 @error('faq_theme_id') is-invalid @enderror">
                         @foreach ($faqThemes as $theme)
                             @if ($theme->theme === 'Général')

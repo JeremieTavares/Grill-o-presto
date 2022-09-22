@@ -23,22 +23,21 @@
 
 
             <label for="id">Sélectionnez une question</label>
-            <form action="{{ route('admin.faq.edit', ' ') }}" method="get">
+            <form action="{{ route('admin.faq.edit', ' ') }}" method="get" class="mt-2">
                 <select name="id" id="id" name="id" class="form-select btn-rounded px-3">
-                    <option value="" selected>Sélectionnez une question</option>
                     @foreach ($faqs as $single)
                         <option value="{{ $single->id }}">{{ $single->question }} - {{ $single->faqTheme->theme }}
                         </option>
                     @endforeach
                 </select>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
+                    <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Modifier la sélection</button>
                 </div>
             </form>
 
             <hr class="w-25 text-primary my-5 m-auto">
 
-            <h2 class="text-center fs-3 my-5">Ajouter une nouvelle Question/Réponse</h2>
+            <h2 class="text-center fs-3 my-5">Modifier la question</h2>
 
             @if (Session::has('successInfosChanged'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
@@ -52,7 +51,7 @@
                 @method('PATCH')
                 @csrf
                 <div>
-                    <label class="form-label" for='faqQuestion'>Entrez le titre de la question</label>
+                    <label class="form-label" for='faqQuestion'>Entrez votre question modifiée :</label>
                     <input type="text" name="question" id="faqQuestion"
                         class="form-control @error('question') is-invalid @enderror" value="{{ $faq->question }}">
                     @error('question')
@@ -61,13 +60,14 @@
                 </div>
 
                 <div class="my-4">
-                    <label class="form-label" for='faqAnswer'>Entrez le titre de la question</label>
+                    <label class="form-label" for='faqAnswer'>Entrez votre réponse modifiée :</label>
                     <textarea type="text" name="answer" id="faqAnswer" class="form-control @error('answer') is-invalid @enderror">{{ $faq->answer }}</textarea>
                     @error('answer')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <p>Modifier le thème de la question:</p>
                     <select name="faq_theme_id" id="faq_theme_id" class="form-select btn-rounded px-2 @error('faq_theme_id') is-invalid @enderror">
                         @foreach ($faqThemes as $theme)
                             @if ($faq->faqTheme->theme == $theme->theme)
