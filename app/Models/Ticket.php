@@ -27,6 +27,11 @@ class Ticket extends Model
         return (object) $query->with((array)'ticket_type', (array)'ticket_status')->where('user_id', (int) $authUserId);
     }
 
+    public function scopeGetAllTicketInfosAndRelationsForAdmin($query)
+    {
+        return (object) $query->with((array)'ticket_type', (array)'ticket_status')->whereRelation('ticket_status', 'status', '=', 'Ouvert');
+    }
+
     public function messages()
     {
         return $this->hasMany(Messages::class);

@@ -1,7 +1,7 @@
 <nav class="nav_container mt-5 px-2">
     <ul class="d-flex justify-content-center align-items-center">
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('user.tickets.index', Auth::user()->id) }}">Admin</a></li>
+                href="{{ route('admin.admin.index', Auth::user()->id) }}">Admin</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('admin.client.index') }}">User</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
@@ -11,7 +11,7 @@
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.orders.index', Auth::user()->id) }}">Order</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('user.orders.index', Auth::user()->id) }}">Ticket</a></li>
+                href="{{ route('admin.ticket.index', Auth::user()->id) }}">Ticket</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.orders.index', Auth::user()->id) }}">Faq</a></li>
     </ul>

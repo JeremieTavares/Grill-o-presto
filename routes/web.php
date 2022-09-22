@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuAdmin;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
+use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +128,7 @@ Route::prefix('admin/')->name('admin.')->group(function() {
     
     Route::resource('client', GestionClientController::class);
     Route::resource('admin', GestionAdminController::class);
+    Route::resource('ticket', GestionTicketController::class);
 
 
     Route::get('/menu/ajouter', [MenuAdmin::class, 'create'])->name('menu');
