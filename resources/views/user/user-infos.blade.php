@@ -2,8 +2,7 @@
 @section('banner-title', 'Mon profil - informations personnelles')
 @section('content')
 
-@include('user.template.sub-navbar')
-
+    @include('user.template.sub-navbar')
     <main>
         <div class="container p-4">
             <div class="message mb-4">
@@ -13,9 +12,11 @@
 
 
             @if (Session::has('successInfosChanged'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center" id="divAlertSucccessInfoChanged">
+                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                    id="divAlertSucccessInfoChanged">
                     {{ Session::get('successInfosChanged') }}
-                    <button type="button" class="close btn btn-link text-decoration-none" id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
+                    <button type="button" class="close btn btn-link text-decoration-none"
+                        id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
             <form action="{{ route('user.update.info', $user[0]->id) }}" method="POST">
@@ -77,9 +78,9 @@
                     <div class="col-md-2">
                         <label for="zip_code" class="form-label">Code-Postal*</label>
                         <input type="text" name="zip_code" id="zip_code"
-                            class="form-control @error('zip-code') is-invalid @enderror"
+                            class="form-control @error('zip_code') is-invalid @enderror"
                             value="{{ $user[0]->infoUser->code_postal }}" required autocomplete="zip-code" autofocus>
-                        @error('zip-code')
+                        @error('zip_code')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -153,9 +154,10 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">Enregistrer</button>
+                <button type="submit"
+                    class="btn btn-primary mt-5 mb-5 px-5 btn-scale-press btn-rounded">Enregistrer</button>
             </form>
-                @include('user.template.modal-user-destroy')
+            @include('user.template.modal-user-destroy')
         </div>
     </main>
 @endsection

@@ -4,20 +4,31 @@ use App\Models\User;
 use Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\StripeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MenuAdminController;
 use App\Http\Controllers\Auth\oAuthController;
+use App\Http\Controllers\CreditcardController;
+use App\Http\Controllers\RepasAdminController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\CreditcardController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
+
+use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
+
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\MenuAdmin;
+use App\Http\Controllers\Admin\gestionClient\GestionClientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,17 +44,15 @@ use App\Http\Controllers\CartController;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('meal');
 Route::get('/panier/{delete?}', [CartController::class, 'index'])->name('cart');
-Route::post('/checkout', [CartController::class, 'preCheckout'])->name('preCheckout.log');
+Route::get('/checkout', [CartController::class, 'preCheckout'])->name('preCheckout.log');
 Route::post('/checkout', [CartController::class, 'preCheckoutGuest'])->name('preCheckout.guest');
 
 Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 
-Route::get('/faq', [HomeController::class, 'indexFaq'])->name('faq');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
 
 
@@ -103,9 +112,43 @@ Route::controller(GithubController::class)->name('github.')->group(function () {
 Route::controller(oAuthController::class)->name('oAuth.')->prefix('oAuth/')->middleware((['auth', 'prevent-back-history']))->group(function () {
     Route::post('register/', 'updateOAuthUser')->name('register');
 });
+// ==========================================================================================================================================================
 
+
+// ==========================================================================================================================================================
+// CREDIT CARD AND PAYMENT
 Route::get('/paiement', [StripeController::class, 'stripe']);
 Route::post('/paiement', [StripeController::class, 'stripePost'])->name('stripe.post');
 
 
 Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCardForLoggedUser'])->middleware('auth')->name('creditcard.user.auth');
+// ==========================================================================================================================================================
+
+
+//MIDDLLEEWARRRREEE
+
+Route::prefix('admin/')->name('admin.')->group(function() {
+    Route::controller(GestionAdminController::class)->middleware('auth')->group(function () {
+        Route::get('admin/gestion', 'index')->name('admin.index');
+        Route::post('{id}/admin/edit', 'edit')->name('admin.edit');
+    });
+
+    
+    Route::resource('client', GestionClientController::class);
+
+    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll');
+    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show');
+    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
+    Route::resource('repas', RepasAdminController::class)->except('show');
+    Route::resource('admin', GestionAdminController::class);
+ Route::resource('faq', GestionFaqController::class);
+
+    Route::get('/menu/ajouter', [MenuAdminController::class, 'create'])->name('menu');
+    Route::post('/menu/ajouter', [MenuAdminController::class, 'store'])->name('menu.store');
+    Route::get('/menu/rechercher', [MenuAdminController::class, 'research'])->name('menu.research');
+    Route::post('/menu/rechercher', [MenuAdminController::class, 'search'])->name('menu.search');
+    Route::get('/menu/edit/{id}', [MenuAdminController::class, 'edit'])->name('menu.edit');
+    Route::put('/menu/edit/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
+    // Route::post('/menu/modifier/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
+    Route::delete('/menu/supprimer/{id}', [MenuAdminController::class, 'destroy'])->name('menu.destroy');
+});

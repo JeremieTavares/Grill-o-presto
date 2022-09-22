@@ -25,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'info_user_id',
         'email',
+        'email_verified_at',
         'password',
         'blocked_at',
         'soft_deleted',
@@ -55,6 +56,19 @@ class User extends Authenticatable
     public function scopeGetLoggedUserInfo($query)
     {
         return (object) $query->where('id', Auth::user()->id);
+    }
+
+
+    public static function getAllAdmin()
+    {
+        $roles = Role::getAllAdminRoleId()->get('id')->toArray();
+        $adminArr = User::with('infoUser', 'role')->whereIn('role_id', $roles)->get();
+        return $adminArr;
+    }
+
+    public function scopeGetUserWithInfo($query, $id)
+    {
+        return (object) $query->with('infoUser', 'role')->where('id', $id);
     }
 
 

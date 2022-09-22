@@ -3,7 +3,7 @@
 @section('content')
 
     @include('user.template.sub-navbar')
-    <main class="m-auto">
+    <main class="m-auto mt-5">
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             ?>
@@ -80,8 +80,7 @@
 
                 <div class="text-center mb-5">
                     <h2 class="mb-5">Commander de nouveaux repas</h2>
-                    <a href="{{ route('menu') }}"
-                        class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
+                    <a href="{{ route('menu') }}" class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
                 </div>
             @else
                 <h2 class="text-center">Aucune commandes pour ce compte</h2>
@@ -89,8 +88,7 @@
 
                 <div class="text-center mb-5">
                     <h2 class="mb-5">Commander de nouveaux repas</h2>
-                    <a href="{{ route('menu') }}"
-                        class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
+                    <a href="{{ route('menu') }}" class="btn btn-primary btn-rounded btn-scale-press px-5">Commander</a>
                 </div>
             @endif
         </div>

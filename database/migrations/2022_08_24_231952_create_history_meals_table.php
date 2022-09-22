@@ -25,7 +25,6 @@ return new class extends Migration
             $table->integer('spicy')->default(0);
             $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
             $table->string('image_path')->nullable(false);
-            $table->boolean('is_on_home_page')->default(false);
             $table->timestamps();
         });
     }
