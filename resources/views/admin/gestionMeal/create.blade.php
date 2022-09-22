@@ -9,10 +9,13 @@
             </div>
             <div class="ingrediants">
                 <div class="input_container">
-                    <label for="">Ingrédiant :</label>
-                    <input type="text" name="" id="">
+                    <div>
+                        <label for="ingredient-0">Ingrédiant :</label>
+                        <input type="text" name="ingredient-0" id="ingredient-0">
+                    </div>
+                    
                 </div>
-                <button class="btn btn-primary">Ajouter un ingédiant</button>
+                <button class="btn btn-primary" type="button">Ajouter un ingédiant</button>
             </div>
             <div>
                 <label for="description">Description :</label>

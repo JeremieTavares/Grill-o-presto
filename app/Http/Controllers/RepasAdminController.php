@@ -16,6 +16,7 @@ class RepasAdminController extends Controller
      */
     public function index($type = 'classique')
     {
+
         if($type == 'classique') {
             $meals = Meal::all();
         }
@@ -36,7 +37,7 @@ class RepasAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.gestionMeal.create');
     }
 
     /**

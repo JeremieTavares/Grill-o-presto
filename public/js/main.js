@@ -2,6 +2,7 @@ creditCardAutoComplete()
 closedModalPopup();
 toggleSearchInputForAdmin();
 adminMenu();
+adminRepas();
 
 function closedModalPopup() {
     const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
@@ -320,12 +321,19 @@ function toggleSearchInputForAdmin() {
 function adminRepas() {
     if(document.title == 'Repas ajouter') {
         let ingredientContainer = document.querySelector('.input_container');
-        let ingredientButton = document.querySelector('.ingrediants button');
-
+        let ingredientButton = document.querySelector('.ingrediants > button');
+        console.log(ingredientContainer.querySelectorAll('div'));
         ingredientButton.addEventListener('click', () => {
-            ingredientContainer.innerHTML += '<div><label for="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'">Ingrédiant :</label><input type="text" name="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'"></div>'
-
+            ingredientContainer.innerHTML += '<div><label for="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'">Ingrédiant :</label><input type="text" name="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'"><button type="button" class="btn btn-primary">Supprimer</button></div>'
+            ingredientContainer.querySelectorAll('div').forEach(item => {
+                item.querySelector('button').addEventListener('click', (event) => {
+                    event.currentTarget.parentElement.remove();
+                });
+            });
+            
         });
+
+        
 
     }
 }
