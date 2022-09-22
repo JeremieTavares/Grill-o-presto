@@ -1,4 +1,5 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Modification des repas')
 @section('title', 'Afficher tout les repas')
 @section('content')
         <main class="adminRepasIndex">  

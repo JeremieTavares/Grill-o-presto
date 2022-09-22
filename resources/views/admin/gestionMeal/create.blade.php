@@ -1,4 +1,5 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Modification des repas')
 @section('title', 'Repas ajouter')
 @section('content')
     <main class="mealAddAdmin mw-750px">
@@ -8,12 +9,18 @@
             <div class="pb-3">
                 <label class="form-label fw-bold" for="name">Nom : </label>
                 <input class="form-control" type="text" name="name" id="name">
+                @error('name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="ingrediants pb-3">
                 <div class="ingredient_container">
                     <div class="ingredient_item mb-2">
                         <label class="form-label fw-bold" for="ingredient-0">Ingrédiant :</label>
-                        <input class="form-control" type="text" name="ingredient-0" id="ingredient-0">
+                        <input class="form-control" type="text" name="ingredient[]" id="ingredient-0">
+                        @error('ingredient')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                 </div>
@@ -22,6 +29,9 @@
             <div class="pb-3">
                 <label class="form-label fw-bold" for="description">Description :</label>
                 <textarea class="form-control" type="text" name="description" id="description"></textarea>
+                @error('description')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div>
                 <p class="fw-bold">Type : </p>
@@ -37,6 +47,9 @@
             <div class="fileInputGroup pb-3">
                 <label class="form-label fw-bold" for="image">Image :</label>
                 <input class="form-control " type="file" name="image" id="image">
+                @error('image')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="d-flex flex-column">
                 <p class="fw-bold">Allergens : </p>

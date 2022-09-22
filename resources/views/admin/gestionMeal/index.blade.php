@@ -1,4 +1,5 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Modification des repas')
 @section('title', 'Repas ajouter')
 @section('content')
     <main class="adminRepasIndex">
@@ -13,7 +14,7 @@
                 <form action="{{route('admin.repas.show')}}" method="POST">
                     @csrf
                     <div id="divSearchEmail">
-                        <label for="meal" class="form-label">Rechercher un client via son email</label>
+                        <label for="meal" class="form-label">Rechercher un repas</label>
                         <select class="form-select" name="meal" id="meal">
                             <option value="">Repas</option>
                             @foreach ($meals as $meal)
@@ -21,11 +22,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div id="divSearchTel" class="d-none">
-                        <label for="tel" class="form-label">Rechercher un repas</label>
-                        <input type="tel" class="form-control" placeholder="819-000-0000" name="tel">
-                    </div>
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center mb-3">
                         <button type="submit"
                             class="btn btn-info mt-5 btn-rounded px-5 btn-scale-press">Rechercher</button>
                     </div>
@@ -35,7 +32,7 @@
 
                 <hr class="w-100" />
 
-                <a class="btn btn-success btn-rounded pt-2 pb-2 ps-3 pe-3" href="{{route('admin.repas.create')}}">Afficher tout les repas</a>
+                <a class="btn btn-success btn-rounded pt-2 pb-2 ps-3 pe-3" href="{{route('admin.repas.create')}}">Ajouter un repas</a>
 
             </div>
         </div>

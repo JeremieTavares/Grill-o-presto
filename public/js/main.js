@@ -327,7 +327,7 @@ function adminRepas() {
 
 
         ingredientButton.addEventListener('click', () => {
-            ingredientContainer.innerHTML += '<div class="ingredient_item d-flex mb-2"><input class="form-control" type="text" name="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" /><button type="button" class="btn btn-primary ms-2 deleteButton">Supprimer</button></div>'
+            ingredientContainer.innerHTML += '<div class="ingredient_item d-flex mb-2"><input class="form-control" type="text" name="ingredient[]" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" /><button type="button" class="btn btn-primary ms-2 deleteButton">Supprimer</button></div>'
             ingredientContainer.querySelectorAll('.ingredient_item').forEach((item, key) => {
                 console.log(item)
                 if(key>0)

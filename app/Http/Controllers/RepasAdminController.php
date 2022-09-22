@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MealRequest;
 use App\Models\Meal;
 use App\Models\Allergen;
 use Illuminate\Http\Request;
@@ -56,18 +57,20 @@ class RepasAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MealRequest $request)
     {
 
-        $ingredientTable = [];
+        $request->validated();
 
-        foreach ($request->all() as $key => $value) {
-            if (explode('-', $key)[0] == 'ingredient') {
-                if($value) {
-                    array_push($ingredientTable, $value);
-                } 
-            }
-        }
+        // $ingredientTable = [];
+
+        // foreach ($request->all() as $key => $value) {
+        //     if (explode('-', $key)[0] == 'ingredient') {
+        //         if($value) {
+        //             array_push($ingredientTable, $value);
+        //         } 
+        //     }
+        // }
 
         $allergens = [];
         foreach ($request->all() as $key => $value) {
@@ -82,13 +85,15 @@ class RepasAdminController extends Controller
         $meal = new Meal();
 
         $meal->name = $request->name;
-        $meal->ingredients = json_encode($ingredientTable);
+        $meal->ingredients = json_encode($request->ingredient);
         $meal->description = $request->description;
-        $meal->vegetarian = ($request->vegetarian == 'ON' ? true : false);
-        $meal->gluten_free = ($request->gluten_free == 'ON' ? true : false);
+        $meal->vegetarian = ($request->vegetarian == 'on' ? true : false);
+        $meal->gluten_free = ($request->gluten_free == 'on' ? true : false);
         $meal->image_path = $request->file('image')->store('image', 'public');
         $meal->save();
         $meal->allergens()->attach($allergens);
+
+        return redirect()->route('admin.repas.index');
     }
 
     /**
