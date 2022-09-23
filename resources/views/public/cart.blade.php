@@ -56,7 +56,12 @@
                 @endguest
                 
                 <hr class="w-75" />
-                <h2>Rester invité</h2>
+                @if (Auth::check())
+                    <h2>Information de commande</h2>
+                @else
+                    <h2>Rester invité</h2>
+                @endif
+                
                 <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
                     data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                     @csrf
