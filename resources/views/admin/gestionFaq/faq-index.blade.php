@@ -2,7 +2,7 @@
 @section('banner-title', 'FAQ - Gestion de la FAQ')
 @section('content')
 @if (Auth::user()->role->role === "Admin_1")
-@include('admin.template.sub-navbar-admin-2')
+@include('admin.template.sub-navbar-admin-1')
 @endif
 @if (Auth::user()->role->role === "Admin_2")
 @include('admin.template.sub-navbar-admin-2')
