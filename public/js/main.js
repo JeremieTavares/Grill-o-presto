@@ -357,6 +357,5 @@ function changePrice(portionSelect) {
             price = item.lastElementChild.innerHTML;
         }
     });
-    console.log(price, number)
     button.innerHTML = "Payer maintenant " + (price * number) + ",00$";
 }
