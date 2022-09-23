@@ -132,7 +132,7 @@ Route::prefix('admin/')->name('admin.')->group(function () {
     Route::resource('admin', GestionAdminController::class)->middleware('Admin3');
 
 
-    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll')->middleware('Admin2');
+    Route::get('repas/afficher/tout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll')->middleware('Admin2');
     Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show')->middleware('Admin2');
     Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get')->middleware('Admin2');
 
