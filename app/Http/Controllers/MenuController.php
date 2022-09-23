@@ -21,11 +21,7 @@ class MenuController extends Controller
         if($menu == 'all' || $menu == 'gluten-free')
             $meals += ["gluten_free" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Sans Gluten')->get()];
 
-        $favMeals = HistoryMeal::where('is_on_home_page', 1)->
-        with('menu.menu_type')->
-        whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->
-        take(4)->
-        get();
+        $favMeals = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->inRandomOrder()->take(4)->get();
 
         
 

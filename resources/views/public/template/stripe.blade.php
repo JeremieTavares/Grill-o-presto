@@ -1,35 +1,18 @@
-@extends('public.template.base')
-@section('content')
-    <main class="m-auto container p-4">
+
+   
         {{-- NEED FOR STRIPE --}}
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
-            data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
+        
+            
             @csrf
-            @if (Session::has('paymentSuccess'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('paymentSuccess') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
-                </div>
-            @endif
-
-            @if (Session::has('paymentFailed'))
-                <div class="alert alert-danger  d-flex justify-content-between align-items-center"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('paymentFailed') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
-                </div>
-            @endif
+           
 
             <h2 id="h2Paiement">Paiement</h2>
 
 
             <div class="row">
 
-                <div class="col-md-6 col-md-offset-">
+                <div class="col-md-6 col-md-offset w-100">
                     @isset($cc[0])
                         <select name="ccUser" id="ccUser" class="form-select">
                             @for ($i = 0; $i < count($cc); $i++)
@@ -104,9 +87,8 @@
                                 <input type="hidden" name="loggedUserId" value="{{ Auth::user()->id }}">
                             @endif
                             <div class="row mt-5">
-                                <div class="col-xs-12">
-                                    <button class="btn btn-primary btn-lg btn-block btn-rounded px-5 btn-scale-press" type="submit">Pay Now
-                                        ($100)</button>
+                                <div class="col-xs-12 d-flex">
+                                    <button class="btn btn-primary btn-lg btn-block btn-rounded px-5 btn-scale-press m-auto payButton" type="submit">Pay Now</button>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +96,7 @@
                 </div>
             </div>
             </div>
-        </form>
+        
 
 
         {{-- NEED FOR STRIPE --}}
@@ -181,5 +163,5 @@ $(function() {
     }
 });
         </script>
-    </main>
-@endsection
+
+

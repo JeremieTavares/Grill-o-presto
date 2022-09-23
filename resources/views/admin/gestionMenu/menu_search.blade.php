@@ -1,6 +1,9 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Recherche menu')
+
 @section('title', 'Menu rechercher')
 @section('content')
+
 @if (Auth::user()->role->role === "Admin_2")
 @include('admin.template.sub-navbar-admin-2')
 @endif
@@ -8,6 +11,7 @@
 @include('admin.template.sub-navbar-admin-3')
 @endif
     <main class="admin_search_menu d-flex flex-column align-items-center justify-content-center m-auto">
+
         <h1>Rechercher un menu</h1>
 
         @if (Session::has('success'))
