@@ -1,5 +1,5 @@
 @extends('public.template.base')
-
+@section('banner-title', 'Menu')
 @section('content')
     <main class="menu pt-5 pb-5 ps-1 pe-1">
 

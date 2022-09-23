@@ -22,8 +22,11 @@ class CartController extends Controller
             
         $portions = Portion::all();
         $meals = HistoryMeal::find(session('cart'));
-        $priceInfo = ChartPrice::where('menu_type_id', MenuType::where('type', session('menu'))->first('id')->id)->get();
+        $priceInfo = [];
+        if(session()->exists('menu'))
+            $priceInfo = ChartPrice::where('menu_type_id', MenuType::where('type', session('menu'))->first('id')->id)->get();
         
+
         $this->removeMenuSession();
 
         return view('./public/cart', ['meals' => $meals, 'portions' => $portions, 'priceInfo' => $priceInfo]);

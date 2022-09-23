@@ -357,7 +357,9 @@ function changePrice(portionSelect) {
             price = item.lastElementChild.innerHTML;
         }
     });
-    button.innerHTML = "Payer maintenant " + (price * number) + ",00$";
+    
+    if(price && number)
+        button.innerHTML = "Payer maintenant " + (price * number) + ",00$";
 }
 
 

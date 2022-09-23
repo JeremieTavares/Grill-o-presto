@@ -1,5 +1,5 @@
 @extends('public.template.base')
-
+@section('banner-title', 'Repas : ' . $meal->name)
 @section('content')
     <main class="singleMeal">
         <section class="topSection p-5">
