@@ -17,9 +17,8 @@ class Admin2
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd((Auth::user()->role->role != "Admin_2") || (Auth::user()->role->role != "Admin3"), Auth::user()->role->role);
         if (Auth::user()) {
-            if (!(Auth::user()->role->role == "Admin_2") || (Auth::user()->role->role == "Admin3"))
+            if (!(Auth::user()->role->role == "Admin_2") || (Auth::user()->role->role == "Admin_3"))
                 return redirect()->back();
             return $next($request);;
         } else {
