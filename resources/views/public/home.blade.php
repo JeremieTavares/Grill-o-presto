@@ -1,5 +1,5 @@
 @extends('public.template.base')
-@section('banner_title_on', "displayNone")
+@section('banner_title_on', "d-none")
 @section('title', 'Accueil')
 @section('content')
 <main class="home d-flex flex-column">
