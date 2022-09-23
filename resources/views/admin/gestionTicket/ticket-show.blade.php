@@ -129,7 +129,7 @@
                             <div>
                                 <span class="span-date-msg">{{ $ticketMessages[0]->ticket->created_at }}</span>
                                 <span class="span-date-msg">-</span>
-                                <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
+                                <span class="span-date-msg">{{ $ticketMessages->user->infoUser->prenom }}</span>
                             </div>
                         </div>
 
