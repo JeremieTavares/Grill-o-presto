@@ -2,6 +2,8 @@
 
 use App\Models\User;
 use Auth\LoginController;
+use App\Http\Middleware\Admin1;
+use App\Http\Middleware\Admin2;
 use App\Http\Middleware\Admin3;
 use App\Http\Controllers\MenuAdmin;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +29,6 @@ use App\Http\Controllers\Admin\gestionRepas\RepasAdminController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
-use App\Http\Middleware\Admin2;
 
 
 /*
