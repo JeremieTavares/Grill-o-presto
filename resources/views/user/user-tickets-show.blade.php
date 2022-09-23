@@ -57,10 +57,13 @@
 
             @if ($state == $ticket_expired)
                 <h2 class="text-center fs-2 mt-2">Ce Ticket est expiré</h2>
+                <h3 class="text-center fs-4">Vous devez envoyer un nouveau Ticket.</h3>
             @elseif($state == $ticket_not_resolved)
                 <h2 class="text-center fs-2 mt-2">Ce Ticket est non résolus</h2>
+                <h3 class="text-center fs-4">Nous sommes désolé.</h3>
             @elseif($state == $ticket_closed)
                 <h2 class="text-center fs-2 mt-2">Ce Ticket est fermé</h2>
+                <h3 class="text-center fs-4">Nous sommes content de vous avoir aidé</h3>
             @endif
 
             @if (isset($ticketMessages[0]))
@@ -142,7 +145,7 @@
                     <h2 class="text-center">Aucune réponse pour ce Ticket</h2>
                     <h3 class="text-center fs-4">Nous répondons normalement dans un délais de 24-48h maximum</h3>
                     @include('user.template.modal-close-ticket')
-                @elseif($state == $ticket_expired)
+           {{--      @elseif($state == $ticket_expired)
                     <h2 class="text-center">Ce Ticket est expiré</h2>
                     <h3 class="text-center fs-4">Vous devez envoyer un nouveau Ticket.</h3>
                 @elseif($state == $ticket_not_resolved)
@@ -150,7 +153,7 @@
                     <h3 class="text-center fs-4">Nous sommes désolé.</h3>
                 @elseif($state == $ticket_closed)
                     <h2 class="text-center">Ce Ticket est fermé</h2>
-                    <h3 class="text-center fs-4">Nous sommes content de vous avoir aidé</h3>
+                    <h3 class="text-center fs-4">Nous sommes content de vous avoir aidé</h3> --}}
                 @endif
 
 
