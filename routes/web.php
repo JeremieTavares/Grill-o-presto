@@ -138,8 +138,8 @@ Route::prefix('admin/')->name('admin.')->group(function () {
 
     Route::resource('repas', RepasAdminController::class)->except('show')->middleware('Admin3');
     
-    Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
-    Route::resource('ticket', GestionTicketController::class)->middleware('Admin2');
+    Route::resource('faq', GestionFaqController::class)->middleware('Admin1');
+    Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
 
 
     Route::controller(MenuAdminController::class)->middleware('Admin2')->group(function(){
