@@ -4,7 +4,7 @@
 
     @include('user.template.sub-navbar')
     <main class="m-auto d-flex flex-column align-items-center mt-5">
-        <div class="container mx-sm-3 mx-lg-0 mw-1000px ">
+        <div class="container mx-sm-3 mx-lg-0 ">
             @if ($ticketsArray != null)
                 <table class="table table-hover table-striped table-tickets">
                     <thead>
