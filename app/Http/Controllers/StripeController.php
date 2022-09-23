@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Stripe;
-use Session;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\ChartPrice;
 use App\Models\Creditcard;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreditCardRequest;
-use App\Http\Controllers\OrderController;
 use App\Models\HistoryMeal;
 use App\Models\OrderStatus;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreditCardRequest;
+use App\Http\Controllers\OrderController;
 
 class StripeController extends Controller
 {
@@ -71,7 +72,7 @@ class StripeController extends Controller
                 $stripe->customers->update($user->stripeToken, ['source' => $request->stripeToken]);
                 // Create a new transaction for the logged user
                 $transaction = Stripe\Charge::create([
-                    "amount" => 200,
+                    "amount" => ChartPrice::where('portion_id', $request->portion)->where('menu_type_id', HistoryMeal::where('id', session('cart')[0])->with('menu')->first()->menu->menu_type_id)->first('price')->price * count(session('cart')) * 100,
                     "currency" => "CAD",
                     "customer" => $user->stripeToken,
                     "description" => "Paiement Gill-O-Presto"
@@ -96,9 +97,11 @@ class StripeController extends Controller
 
                 $stripe->customers->update($newClientLogged->id, ['source' => $request->stripeToken]);
 
+                
+
                 // Create a new transaction for the logged user
                 $transaction = Stripe\Charge::create([
-                    "amount" => (200) + (200 * 0.15),
+                    "amount" => ChartPrice::where('portion_id', $request->portion)->where('menu_type_id', HistoryMeal::where('id', session('cart')[0])->with('menu')->first()->menu->menu_type_id)->first('price')->price * count(session('cart')) * 100,
                     "currency" => "CAD",
                     "customer" => $newClientLogged->id,
                     "description" => "Paiement Gill-O-Presto"
@@ -135,7 +138,7 @@ class StripeController extends Controller
 
             // Create new transaction for guest user
             $transaction = Stripe\Charge::create([
-                "amount" => (2002) + (200 * 0.15),
+                "amount" => ChartPrice::where('portion_id', $request->portion)->where('menu_type_id', HistoryMeal::where('id', session('cart')[0])->with('menu')->first()->menu->menu_type_id)->first('price')->price * count(session('cart')) * 100,
                 "currency" => "CAD",
                 "customer" => $newClient->id,
                 "description" => "Paiement Gill-O-Presto"
@@ -152,6 +155,10 @@ class StripeController extends Controller
             $order = new Order;
             if(Auth::check()) {
                 $order->user_id = Auth::user()->id;
+                $order->is_guest = 0;
+            }
+            else {
+                $order->is_guest = 1;
             }
             
             $order->prenom = $request->firstName;
@@ -171,8 +178,12 @@ class StripeController extends Controller
             $order->meals = json_encode(session('cart'));
 
             $order->save();
-            if(Auth::check()) 
+            
+            session()->forget('cart');
+
+            if(Auth::check()) { 
                 return to_route('user.orders.index', Auth::user()->id)->with('paymentSuccess', "Merci, Votre paiement est passée");
+            }
             else 
                 return back()->with('paymentSuccess', "Merci, Votre paiement est passée");
         } else {

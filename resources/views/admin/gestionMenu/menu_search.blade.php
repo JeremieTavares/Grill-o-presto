@@ -1,7 +1,9 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Recherche menu')
+
 @section('title', 'Menu rechercher')
 @section('content')
-    <main class="admin_search_menu d-flex flex-column align-items-center justify-content-center">
+    <main class="m-auto admin_search_menu d-flex flex-column align-items-center justify-content-center">
         <h1>Rechercher un menu</h1>
 
         @if (Session::has('success'))

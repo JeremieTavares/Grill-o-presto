@@ -5,23 +5,7 @@
         
             
             @csrf
-            @if (Session::has('paymentSuccess'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('paymentSuccess') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
-                </div>
-            @endif
-
-            @if (Session::has('paymentFailed'))
-                <div class="alert alert-danger  d-flex justify-content-between align-items-center"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('paymentFailed') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
-                </div>
-            @endif
+           
 
             <h2 id="h2Paiement">Paiement</h2>
 
@@ -104,8 +88,7 @@
                             @endif
                             <div class="row mt-5">
                                 <div class="col-xs-12 d-flex">
-                                    <button class="btn btn-primary btn-lg btn-block btn-rounded px-5 btn-scale-press m-auto" type="submit">Pay Now
-                                        ($100)</button>
+                                    <button class="btn btn-primary btn-lg btn-block btn-rounded px-5 btn-scale-press m-auto payButton" type="submit">Pay Now</button>
                                 </div>
                             </div>
                         </div>

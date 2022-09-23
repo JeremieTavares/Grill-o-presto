@@ -52,7 +52,6 @@ class MenuAdminController extends Controller
                 $hMeal->spicy = $meal->spicy;
                 $hMeal->menu_id = Menu::where('start_date', $request['start_date'])->with('menu_type')->whereRelation('menu_type', ['type' => $request['menu_type']])->first('id')->id;
                 $hMeal->image_path = $meal->image_path;
-                $hMeal->is_on_home_page = 0;
                 $hMeal->save();
                 $hMeal->attach($meal->allergens);
             }
@@ -122,6 +121,7 @@ class MenuAdminController extends Controller
 
         $mealId = Meal::whereIn('name', $menuMealName)->get()->pluck('id', 'name');
 
+        $meals = [];
         if($menu->menu_type->type == 'Classique') {
             $meals = Meal::all();
         }
@@ -176,7 +176,6 @@ class MenuAdminController extends Controller
                 $hMeal->spicy = $meal->spicy;
                 $hMeal->menu_id = $id;
                 $hMeal->image_path = $meal->image_path;
-                $hMeal->is_on_home_page = 0;
                 $hMeal->save();
             }
         }

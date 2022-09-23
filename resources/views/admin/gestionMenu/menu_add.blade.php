@@ -1,8 +1,9 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Ajout menu')
 @section('title', 'Menu ajout')
 @section('content')
 
-    <main class="menu_add_admin d-flex flex-column align-items-center">
+    <main class="m-auto menu_add_admin d-flex flex-column align-items-center">
         <h1>Ajouter un menu</h1>
         @if (Session::has('success'))
             

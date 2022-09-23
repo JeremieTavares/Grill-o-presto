@@ -1,15 +1,33 @@
 @extends('public.template.base')
-
+@section('title', 'Panier')
+@section('banner-title', 'Commande')
 @section('content')
     <main class="cart m-auto">
         @if (Session::has('success'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center mb-5"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('success') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
-                </div>
-            @endif
+            <div class="alert alert-success  d-flex justify-content-between align-items-center mb-5"
+                id="divAlertSucccessInfoChanged">
+                {{ Session::get('success') }}
+                <button type="button" class="close btn btn-link text-decoration-none"
+                    id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
+            </div>
+        @endif
+        @if (Session::has('paymentSuccess'))
+        <div class="alert alert-success  d-flex justify-content-between align-items-center"
+            id="divAlertSucccessInfoChanged">
+            {{ Session::get('paymentSuccess') }}
+            <button type="button" class="close btn btn-link text-decoration-none"
+                id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
+        </div>
+        @endif
+
+        @if (Session::has('paymentFailed'))
+            <div class="alert alert-danger  d-flex justify-content-between align-items-center"
+                id="divAlertSucccessInfoChanged">
+                {{ Session::get('paymentFailed') }}
+                <button type="button" class="close btn btn-link text-decoration-none"
+                    id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
+            </div>
+        @endif
         
         <section class="cart_container">
             @if (session()->exists('cart') && count(session('cart')) > 0)
@@ -132,15 +150,24 @@
                             <div class="mt-3 mb-5 portion_div">
                                 <label class="form-label" for="portion">Nombre de portions</label>
                                 <select class="form-select p-2" name="portion" id="portion">
-                                    <option value="1">1 personne</option>
-                                    <option value="2">2 personnes</option>
-                                    <option value="4">4 personnes</option>
+                                    @foreach ($portions as $portion)
+                                    <option value="{{$portion->id}}">{{$portion->portion}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
             </div>
             @include('public.template.stripe')
             </form>
+            <div class="priceInfo displayNone">
+                <p>{{session()->exists('cart') ? count(session('cart')) : ""}}</p>
+                @foreach ($priceInfo as $info)
+                    <div class="price ">
+                        <p>{{$info->portion_id}}</p>
+                        <p>{{$info->price}}</p>
+                    </div>
+                @endforeach
+            </div>
         </section>
 
     </main>

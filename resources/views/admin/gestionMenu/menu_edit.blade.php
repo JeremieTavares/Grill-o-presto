@@ -1,7 +1,8 @@
 @extends('admin.template.base')
 @section('title', 'Menu modification')
+@section('banner-title', 'Administrateur- Modification des menu')
 @section('content')
-    <main class="menu_edit_admin">
+    <main class="m-auto menu_edit_admin">
         
         <h1>Modification du menu</h1>
         @if (Session::has('success'))
@@ -19,9 +20,11 @@
                     <label for="meals">Repas</label>
                     <select name="meals" id="meals" class="custom-select">
                         <option value="null">Repas</option>
-                        @foreach ($meals as $meal)
+                        @if (isset($meals))
+                            @foreach ($meals as $meal)
                             <option class="meal" value="{{ $meal->id }}">{{ $meal->name }}</option>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             @else

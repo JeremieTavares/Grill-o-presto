@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Menu;
+use App\Models\MenuType;
 use App\Models\Portion;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +19,7 @@ return new class extends Migration
         Schema::create('chart_prices', function (Blueprint $table) {
             $table->id();  
             $table->foreignIdFor(Portion::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(MenuType::class)->constrained()->cascadeOnDelete();
             $table->integer('price');
             $table->timestamps();
         });
