@@ -132,11 +132,11 @@ Route::prefix('admin/')->name('admin.')->group(function () {
     Route::resource('admin', GestionAdminController::class)->middleware('Admin3');
 
 
-    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->middleware('Admin2')->name('repas.showAll');
-    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->middleware('Admin2')->name('repas.show');
-    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->middleware('Admin2')->name('repas.show.get');
+    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll');
+    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show');
+    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
 
-    Route::resource('repas', RepasAdminController::class)->except('show')->middleware('Admin2');
+    Route::resource('repas', RepasAdminController::class)->except('show');
     
     Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
     Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
