@@ -70,10 +70,13 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
+                <?php
+                if(Auth::user()){
+                    if (!(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success btn-rounded btn-scale-press w-50 my-5">Envoyer</button>
                 </div>
+                <?php }}?>
             </form>
         </div>
     </main>

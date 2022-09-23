@@ -167,7 +167,7 @@
             <div class="priceInfo displayNone">
                 <p>{{session()->exists('cart') ? count(session('cart')) : ""}}</p>
                 @foreach ($priceInfo as $info)
-                    <div class="price ">
+                    <div class="price">
                         <p>{{$info->portion_id}}</p>
                         <p>{{$info->price}}</p>
                     </div>

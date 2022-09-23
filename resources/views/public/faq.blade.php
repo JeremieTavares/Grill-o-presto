@@ -18,8 +18,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading <?php echo $i; ?>">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse<?php echo $i; ?>"
-                                aria-controls="collapse<?php echo $i; ?>">
+                                data-bs-target="#collapse<?php echo $i; ?>" aria-controls="collapse<?php echo $i; ?>">
                                 <?php echo $faq->question; ?>
                             </button>
                         </h2>
@@ -56,11 +55,14 @@
                 <div class="d-flex justify-content-center p-1">
                     <p>819-843-8321</p>
                 </div>
+                <?php
+                if(Auth::user()){
+                    if (!(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
                 <div class="d-flex justify-content-center p-4 mb-5">
                     <a href="{{ route('user.tickets.create') }}"
                         class="btn btn-primary btn-rounded btn-scale-press px-5">Envoyer un Ticket</a>
                 </div>
-
+                <?php }}?>
             </div>
         </div>
     </main>
