@@ -56,17 +56,18 @@
                     <p>819-843-8321</p>
                 </div>
                 <?php
-                    if ((Auth::user()) && !(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
+                if(Auth::user()){
+                    if (!(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
                 <div class="d-flex justify-content-center p-4 mb-5">
                     <a href="{{ route('user.tickets.create') }}"
                         class="btn btn-primary btn-rounded btn-scale-press px-5">Envoyer un Ticket</a>
                 </div>
-                <?php }else {
+                <?php }} else {
                     ?>
-                <div class="d-flex justify-content-center p-4 mb-5">
-                    <a href="{{ route('user.tickets.create') }}"
-                        class="btn btn-primary btn-rounded btn-scale-press px-5">Envoyer un Ticket</a>
-                </div>
+                    <div class="d-flex justify-content-center p-4 mb-5">
+                        <a href="{{ route('user.tickets.create') }}"
+                            class="btn btn-primary btn-rounded btn-scale-press px-5">Envoyer un Ticket</a>
+                    </div>
                 <div class="my-5"></div>
                 <?php
                 }?>
