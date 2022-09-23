@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('description');
             $table->boolean('vegetarian')->default(false);
             $table->boolean('gluten_free')->default(false);
-            $table->integer('spicy')->default(0);
             $table->string('image_path')->nullable(false);
             $table->timestamps();
         });

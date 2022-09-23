@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\gestionMenu;
 
 use App\Models\HistoryMeal;
 use App\Models\Meal;
 use App\Models\Menu;
 use App\Models\MenuType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MenuAdminController extends Controller
 {

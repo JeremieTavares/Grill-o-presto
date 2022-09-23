@@ -23,6 +23,70 @@ class TicketSeeder extends Seeder
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 3,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 4,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 1,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 3,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 2,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 1,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 3,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
+        Ticket::create([
+            'ticket_number' => '432651',
+            'order_number' => '969478',
+            'ticket_type_id' => 4,
+            'ticket_status_id' => 1,
+            'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
+            'user_id' => 1
+        ]);
 
         Ticket::create([
             'ticket_number' => '774562',

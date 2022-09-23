@@ -32,7 +32,6 @@ return new class extends Migration
             $table->foreignIdFor(Menu::class)->constrained()->cascadeOnDelete();
             $table->integer('price');
             $table->string('order_number');
-            $table->boolean('is_guest');
             $table->foreignIdFor(OrderStatus::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Portion::class)->constrained()->cascadeOnDelete();
             $table->json('meals');

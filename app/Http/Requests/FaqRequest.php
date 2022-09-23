@@ -27,7 +27,7 @@ class FaqRequest extends FormRequest
             'question' => ['string', 'required', 'regex:/^[A-zÀ-ú \'@$,-.#0-9]{5,120}$/'],
             'answer' => ['string', 'required', 'regex:/^[A-zÀ-ú \'@$,-.#0-9]{5,500}$/'],
             'faq_theme_id' => ['integer', 'gt:0', 'required', 'exists:App\Models\FaqTheme,id'],
-            'is_active' => ['boolean', 'required']
+//             'is_active' => ['boolean', 'required']
         ];
     }
 
@@ -44,8 +44,8 @@ class FaqRequest extends FormRequest
             'faq_theme_id.gt' => 'Valeur de 0 ou supérieur seulement',
             'faq_theme_id.required' => 'Valeur de 0 ou supérieur seulement',
             'faq_theme_id.exists' => 'Le role n\'existe pas',
-            'is_active.boolean' => 'Doit être vrai ou faux',
-            'is_active.required' => 'info is_active requis'
+//             'is_active.boolean' => 'Doit être vrai ou faux',
+//             'is_active.required' => 'info is_active requis'
         ];
     }
 }

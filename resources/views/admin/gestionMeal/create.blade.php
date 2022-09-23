@@ -2,7 +2,13 @@
 @section('banner-title', 'Administrateur- Modification des repas')
 @section('title', 'Repas ajouter')
 @section('content')
-    <main class="mealAddAdmin mw-750px">
+@if (Auth::user()->role->role === "Admin_2")
+@include('admin.template.sub-navbar-admin-2')
+@endif
+@if (Auth::user()->role->role === "Admin_3")
+@include('admin.template.sub-navbar-admin-3')
+@endif
+    <main class="mealAddAdmin mw-750px m-auto">
         <h1 class="text-center">Ajouter un repas</h1>
         <form action="{{route('admin.repas.store')}}" method="POST" class="pb-5" enctype="multipart/form-data">
             @csrf
@@ -24,7 +30,7 @@
                     </div>
                     
                 </div>
-                <button class="btn btn-primary" type="button">Ajouter un ingédiant</button>
+                <button class="btn btn-success btn-rounded btn-press-sclae px-4 minw-235px" type="button">Ajouter un ingédiant</button>
             </div>
             <div class="pb-3">
                 <label class="form-label fw-bold" for="description">Description :</label>
@@ -36,17 +42,17 @@
             <div>
                 <p class="fw-bold">Type : </p>
                 <div class="pb-3">
-                    <label class="form-check-label" for="Vegetarian">Végétarien</label>
+                    <label class="form-check-label user-select-none" for="vegetarian">Végétarien</label>
                     <input class="form-check-input" type="checkbox" name="vegetarian" id="vegetarian">
                 </div>
                 <div class="pb-3">
-                    <label class="form-check-label" for="gluten_free">Sans gluten</label>
+                    <label class="form-check-label user-select-none" for="gluten_free">Sans gluten</label>
                     <input class="form-check-input" type="checkbox" name="gluten_free" id="gluten_free">
                 </div>
             </div>
-            <div class="fileInputGroup pb-3">
-                <label class="form-label fw-bold" for="image">Image :</label>
-                <input class="form-control " type="file" name="image" id="image">
+            <div class="mb-3">
+                <label for="image" class="form-label">Image :</label>
+                <input class="form-control input-padding" type="file" name="image" id="image">
                 @error('image')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -64,7 +70,7 @@
                 
             </div>
             <div>
-                <input type="submit" class="btn btn-primary" value="Ajouter">
+                <input type="submit" class="btn btn-success btn-rounded btn-press-sclae px-5 minw-235px" value="Ajouter">
             </div>
         </form>
     </main>

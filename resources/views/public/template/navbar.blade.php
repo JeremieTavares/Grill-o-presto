@@ -19,6 +19,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="{{route('menu')}}">Menu</a>
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white header_nav_item fs-5 btn-scale-press" href="{{route('faq.index')}}">Support</a>

@@ -3,7 +3,7 @@
 @section('content')
 
     @include('user.template.sub-navbar')
-    <main class="m-auto mt-5">
+    <main class="m-auto">
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             ?>

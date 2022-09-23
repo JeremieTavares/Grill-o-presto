@@ -1,8 +1,14 @@
 @extends('admin.template.base')
-@section('banner-title', 'Administrateur- Modification des repas')
+@section('banner-title', 'Administrateur- Gestion des repas')
 @section('title', 'Repas ajouter')
 @section('content')
-    <main class="adminRepasIndex">
+@if (Auth::user()->role->role === "Admin_2")
+@include('admin.template.sub-navbar-admin-2')
+@endif
+@if (Auth::user()->role->role === "Admin_3")
+@include('admin.template.sub-navbar-admin-3')
+@endif
+    <main class="adminRepasIndex m-auto mw-750px">
         <h1 class="text-center mt-3">Tous les repas</h1>
 
         @if (Session::has('deleteSuccess'))
@@ -11,9 +17,9 @@
 
         <div class="container d-flex flex-column align-items-center mb-5">
             <div class="nav_container mt-4 px-2 d-flex flex-column align-items-center">
-                <form action="{{route('admin.repas.show')}}" method="POST">
+                <form action="{{route('admin.repas.show')}}" method="POST" class="w-100">
                     @csrf
-                    <div id="divSearchEmail">
+                    <div>
                         <label for="meal" class="form-label">Rechercher un repas</label>
                         <select class="form-select" name="meal" id="meal">
                             <option value="">Repas</option>
@@ -24,15 +30,15 @@
                     </div>
                     <div class="d-flex justify-content-center mb-3">
                         <button type="submit"
-                            class="btn btn-info mt-5 btn-rounded px-5 btn-scale-press">Rechercher</button>
+                            class="btn btn-info mt-5 btn-rounded px-5 btn-scale-press minw-235px">Rechercher</button>
                     </div>
                 </form>
                 
-                <a class="btn btn-secondary btn-rounded pt-2 pb-2 ps-3 pe-3" href="{{route('admin.repas.showAll')}}">Afficher tout les repas</a>
+                <a class="btn btn-primary btn-rounded py-2 px-4 minw-235px" href="{{route('admin.repas.showAll')}}">Afficher tout les repas</a>
 
-                <hr class="w-100" />
-
-                <a class="btn btn-success btn-rounded pt-2 pb-2 ps-3 pe-3" href="{{route('admin.repas.create')}}">Ajouter un repas</a>
+                <hr class="w-25 mt-5" />
+                <h2 class="text-center fs-3 my-5">Créé un nouveau repas</h2>
+                <a class="btn btn-success btn-rounded py-2 px-4 minw-235px" href="{{route('admin.repas.create')}}">Ajouter un repas</a>
 
             </div>
         </div>

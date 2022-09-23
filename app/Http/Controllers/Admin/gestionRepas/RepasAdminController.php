@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\gestionRepas;
 
 use App\Http\Requests\MealRequest;
 use App\Models\Meal;
@@ -8,6 +8,7 @@ use App\Models\Allergen;
 use Illuminate\Http\Request;
 use App\Trait\UserStateManager;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class RepasAdminController extends Controller
 {

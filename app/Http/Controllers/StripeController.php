@@ -145,11 +145,6 @@ class StripeController extends Controller
             ]);
         }
 
-
-
-        // Get the id of the transaction
-        // $transaction->id
-
         if ($transaction->status === "succeeded") {
 
             $order = new Order;
@@ -191,8 +186,3 @@ class StripeController extends Controller
         }
     }
 }
-
-
-
-//'customer' =>  'cus_MSMFPr2kPILU55',
-//"source" => $request->stripeToken,
