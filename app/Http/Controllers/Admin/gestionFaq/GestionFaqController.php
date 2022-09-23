@@ -83,6 +83,9 @@ class GestionFaqController extends Controller
     {
         $validatedData = $request->validated();
         $request['user_id'] = Auth::user()->id;
+        if (empty($request['is_active'])) {
+            $request['is_active'] = 0;
+        }
         Faq::find($request->faq_id)->update($request->all());
         return back()->with('FaqCreated', "La question/réponse a été modifié");
     }
