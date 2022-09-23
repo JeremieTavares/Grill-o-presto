@@ -1,6 +1,8 @@
 @extends('admin.template.base')
 @section('title', 'Menu modification')
+@section('banner-title', 'Administrateur- Modification des menu')
 @section('content')
+
 @if (Auth::user()->role->role === "Admin_2")
 @include('admin.template.sub-navbar-admin-2')
 @endif
@@ -26,9 +28,11 @@
                     <label for="meals">Repas</label>
                     <select name="meals" id="meals" class="custom-select">
                         <option value="null">Repas</option>
-                        @foreach ($meals as $meal)
+                        @if (isset($meals))
+                            @foreach ($meals as $meal)
                             <option class="meal" value="{{ $meal->id }}">{{ $meal->name }}</option>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             @else

@@ -3,6 +3,7 @@ closedModalPopup();
 toggleSearchInputForAdmin();
 adminMenu();
 adminRepas();
+cart();
 
 function closedModalPopup() {
     const divAlertSuccessSession = document.getElementById('divAlertSucccessInfoChanged');
@@ -164,6 +165,7 @@ function adminMenu() {
             })
             divContainer.innerHTML = "";
             mealsSelectAdminItems.forEach($meal => {
+                $meal.classList.remove('displayNone');
                 if (menuTypeSelect.value == "Végétarien") {
                     if (!$meal.classList.contains("vegetarian")) {
                         console.log(menuTypeSelect.value);
@@ -175,9 +177,6 @@ function adminMenu() {
                         console.log(menuTypeSelect.value);
                         $meal.classList.add('displayNone');
                     }
-                }
-                else {
-                    $meal.classList.remove('displayNone');
                 }
             })
         });
@@ -205,7 +204,7 @@ function adminMenu() {
 
 
                 buttons = divContainer.querySelectorAll('button');
-                addEventOnMealDel();
+                addEventOnMealDel(buttons, maxMealBox, counter, nbRepasCounter);
             }
             else {
                 maxMealBox.classList.remove('displayNone');
@@ -227,7 +226,7 @@ function adminMenu() {
         let alreadyTaken = document.querySelector('.alreadyTaken');
         let nbRepasCounter = document.querySelectorAll('input[checked]').length;
 
-        addEventOnMealDel()
+        addEventOnMealDel(buttons, maxMealBox, counter, nbRepasCounter)
 
         console.log(nbRepasCounter);
 
@@ -254,7 +253,7 @@ function adminMenu() {
 
 
                 buttons = divContainer.querySelectorAll('button');
-                addEventOnMealDel();
+                addEventOnMealDel(buttons, maxMealBox, counter, nbRepasCounter);
             }
             else {
                 maxMealBox.classList.remove('displayNone');
@@ -262,22 +261,11 @@ function adminMenu() {
 
         });
 
-        function addEventOnMealDel() {
-            buttons.forEach(item => {
-                item.addEventListener('click', () => {
-                    item.parentElement.remove();
-                    document.querySelector(".checkBox_container ." + item.parentElement.id).removeAttribute('checked');
-                    maxMealBox.classList.add('displayNone');
-                    nbRepasCounter--;
-                    counter.innerHTML = nbRepasCounter + "/10";
-                })
-            });
-
-        }
+        
     }
 }
 
-function addEventOnMealDel() {
+function addEventOnMealDel(buttons, maxMealBox, counter, nbRepasCounter) {
     buttons.forEach(item => {
         item.addEventListener('click', () => {
             item.parentElement.remove();
@@ -287,6 +275,7 @@ function addEventOnMealDel() {
             counter.innerHTML = nbRepasCounter + "/10";
         })
     });
+
 }
 
 
@@ -341,4 +330,32 @@ function adminRepas() {
         
 
     }
+}
+
+//CART
+
+function cart() {
+    if(document.title == "Panier") {
+        let portionSelect = document.querySelector('#portion');
+        changePrice(portionSelect)
+        portionSelect.addEventListener('click', () => {
+            changePrice(portionSelect);
+        });
+    }
+}
+
+function changePrice(portionSelect) {
+    
+    let info = document.querySelector('.priceInfo');
+    let button = document.querySelector('.payButton');
+
+    let infos = info.querySelectorAll('.price');
+    let price;
+    let number = info.firstElementChild.innerHTML;
+    infos.forEach(item => {
+        if(item.firstElementChild.innerHTML == portionSelect.value) {
+            price = item.lastElementChild.innerHTML;
+        }
+    });
+    button.innerHTML = "Payer maintenant " + (price * number) + ",00$";
 }

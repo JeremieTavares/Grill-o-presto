@@ -128,21 +128,21 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 
 Route::prefix('admin/')->name('admin.')->group(function () {
 
-    Route::resource('client', GestionClientController::class)->middleware('Admin3');
-    Route::resource('admin', GestionAdminController::class)->middleware('Admin3');
+    Route::resource('client', GestionClientController::class);
+    Route::resource('admin', GestionAdminController::class);
 
 
-    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->middleware('Admin2')->name('repas.showAll');
-    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->middleware('Admin2')->name('repas.show');
-    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->middleware('Admin2')->name('repas.show.get');
+    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll');
+    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show');
+    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
 
-    Route::resource('repas', RepasAdminController::class)->except('show')->middleware('Admin2');
+    Route::resource('repas', RepasAdminController::class)->except('show');
     
-    Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
-    Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
+    Route::resource('faq', GestionFaqController::class);
+    Route::resource('ticket', GestionTicketController::class);
 
 
-    Route::controller(MenuAdminController::class)->middleware('Admin2')->group(function(){
+    Route::controller(MenuAdminController::class)->group(function(){
         Route::get('/menu/ajouter', 'create')->name('menu');
         Route::post('/menu/ajouter', 'store')->name('menu.store');
         Route::get('/menu/rechercher', 'research')->name('menu.research');

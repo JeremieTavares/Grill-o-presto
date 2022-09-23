@@ -1,4 +1,4 @@
-<footer class="text-center w-100">
+<footer class="text-center w-100 mt-5">
 
     <div class="text-center p-3">
         <div class="d-flex justify-content-center gap-3">

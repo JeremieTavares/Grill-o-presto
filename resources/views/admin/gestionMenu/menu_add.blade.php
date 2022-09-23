@@ -1,6 +1,8 @@
 @extends('admin.template.base')
+@section('banner-title', 'Administrateur- Ajout menu')
 @section('title', 'Menu ajout')
 @section('content')
+
     @if (Auth::user()->role->role === 'Admin_2')
         @include('admin.template.sub-navbar-admin-2')
     @endif
@@ -8,6 +10,7 @@
         @include('admin.template.sub-navbar-admin-3')
     @endif
     <main class="mw-750px menu_add_admin d-flex flex-column align-items-center m-auto">
+
         <h1>Ajouter un menu</h1>
         @if (Session::has('success'))
             <div class="alert alert-success">{{ Session::get('success') }}</div>

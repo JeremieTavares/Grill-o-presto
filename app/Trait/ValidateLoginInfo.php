@@ -150,6 +150,8 @@ trait ValidateLoginInfo
             return new JsonResponse([], 204);
         } elseif ($userInfos[0]->info_user_id <= 0) {
             return redirect()->route('finish.registeration', ['user' => $userInfos[0]->id]);
+        } elseif (session()->has('cart')) {
+            return redirect()->route('cart');
         } else {
             return redirect()->intended($this->redirectPath());
         }
