@@ -5,9 +5,9 @@
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('admin.client.index') }}">User</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('user.tickets.index', Auth::user()->id) }}">Menu</a></li>
+                href="{{ route('admin.menu.menu.research') }}">Menu</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('user.tickets.index', Auth::user()->id) }}">Repas</a></li>
+                href="{{ route('admin.repas.index') }}">Repas</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('user.orders.index', Auth::user()->id) }}">Order</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
