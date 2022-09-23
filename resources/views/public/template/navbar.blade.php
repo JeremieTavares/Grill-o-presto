@@ -30,19 +30,17 @@
                 <div class="d-flex gap-3 align-items-center flex-sm-column flex-lg-row">
                     <a href="{{ route('cart') }}" class="text-secondary"><i
                             class="fa-solid fa-cart-shopping fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
+
+
+
                     <?php if(Auth::user()){
-                        if ((Auth::user()->role->role == "Admin_1" ||
-                                Auth::user()->role->role == "Admin_2" ||
-                                Auth::user()->role->role == "Admin_3")
-                        ){
-                        ?>
+                        if ((Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
                     <a href="{{ route('admin.ticket.index', Auth::user()->id) }}" class="text-secondary"><i
                             class="fa-solid fa-user fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
-                    <?php }} else {?>
+                    <?php }else {?>
                     <a href="{{ route('user.edit.info', Auth::user()->id) }}" class="text-secondary"><i
                             class="fa-solid fa-user fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
-                    <?php
-                    } ?>
+                    <?php } ?>
                     <?php if(Auth::user()){ ?>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
