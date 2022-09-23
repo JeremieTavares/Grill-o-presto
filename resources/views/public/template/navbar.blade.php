@@ -40,7 +40,8 @@
                     <?php }else {?>
                     <a href="{{ route('user.edit.info', Auth::user()->id) }}" class="text-secondary"><i
                             class="fa-solid fa-user fs-5 me-3 color-primary nav_cart btn-scale-press"></i></a>
-                    <?php } ?>
+                    <?php }
+                        } ?>
                     <?php if(Auth::user()){ ?>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
