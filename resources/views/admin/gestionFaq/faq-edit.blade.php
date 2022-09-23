@@ -1,7 +1,12 @@
 @extends('admin.template.base')
 @section('banner-title', 'FAQ - Modification de la FAQ')
 @section('content')
-    @include('admin.template.sub-navbar-admin-3')
+@if (Auth::user()->role->role === "Admin_2")
+@include('admin.template.sub-navbar-admin-2')
+@endif
+@if (Auth::user()->role->role === "Admin_3")
+@include('admin.template.sub-navbar-admin-3')
+@endif
 
     <main class="m-auto">
         <div class="container mw-750px">

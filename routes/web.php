@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Auth\LoginController;
+use App\Http\Middleware\Admin3;
 use App\Http\Controllers\MenuAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Admin\gestionRepas\RepasAdminController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
+use App\Http\Middleware\Admin2;
 
 
 /*
@@ -123,27 +125,31 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 // ==========================================================================================================================================================
 
 
-//MIDDLLEEWARRRREEE
-
 Route::prefix('admin/')->name('admin.')->group(function () {
 
-    Route::resource('client', GestionClientController::class);
+    Route::resource('client', GestionClientController::class)->middleware('Admin3');
+    Route::resource('admin', GestionAdminController::class)->middleware('Admin3');
 
-    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->name('repas.showAll');
-    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->name('repas.show');
-    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->name('repas.show.get');
 
-    Route::resource('repas', RepasAdminController::class)->except('show');
-    Route::resource('admin', GestionAdminController::class);
-    Route::resource('faq', GestionFaqController::class);
-    Route::resource('ticket', GestionTicketController::class);
+    Route::get('repas/afficherTout/{type?}', [RepasAdminController::class, 'showAll'])->middleware('Admin2')->name('repas.showAll');
+    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->middleware('Admin2')->name('repas.show');
+    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->middleware('Admin2')->name('repas.show.get');
 
-    Route::get('/menu/ajouter', [MenuAdminController::class, 'create'])->name('menu');
-    Route::post('/menu/ajouter', [MenuAdminController::class, 'store'])->name('menu.store');
-    Route::get('/menu/rechercher', [MenuAdminController::class, 'research'])->name('menu.research');
-    Route::post('/menu/rechercher', [MenuAdminController::class, 'search'])->name('menu.search');
-    Route::get('/menu/edit/{id}', [MenuAdminController::class, 'edit'])->name('menu.edit');
-    Route::put('/menu/edit/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
-    // Route::post('/menu/modifier/{id}', [MenuAdminController::class, 'update'])->name('menu.update');
-    Route::delete('/menu/supprimer/{id}', [MenuAdminController::class, 'destroy'])->name('menu.destroy');
+    Route::resource('repas', RepasAdminController::class)->except('show')->middleware('Admin2');
+    
+    Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
+    Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
+
+
+    Route::controller(MenuAdminController::class)->middleware('Admin2')->group(function(){
+        Route::get('/menu/ajouter', 'create')->name('menu');
+        Route::post('/menu/ajouter', 'store')->name('menu.store');
+        Route::get('/menu/rechercher', 'research')->name('menu.research');
+        Route::post('/menu/rechercher', 'search')->name('menu.search');
+        Route::get('/menu/edit/{id}', 'edit')->name('menu.edit');
+        Route::put('/menu/edit/{id}', 'update')->name('menu.update');
+        Route::delete('/menu/supprimer/{id}', 'destroy')->name('menu.destroy');
+    });
+    
 });
+// ==========================================================================================================================================================
