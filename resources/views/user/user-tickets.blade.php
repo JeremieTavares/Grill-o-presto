@@ -33,7 +33,7 @@
                             <td class="border-0 p-2 p-md-3">{{ $ticket->ticket_status->status }}</td>
                             <td class="border-0 p-2 p-md-3">{{ $ticket->ticket_type->type }}</td>
                             <td class="d-sm-none d-md-block border-0 p-2 p-md-3">{{ $ticket['description'] }}</td>
-                            <td class="text-center border-0 p-2 p-md-3"><a
+                            <td class="text-center border-0 p-2 p-md-3 align-middle"><a
                                     href="{{ route('user.tickets.show', $ticket->id) }}"><i
                                         class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                             </tr>
