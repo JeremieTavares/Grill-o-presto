@@ -63,6 +63,7 @@
                         class="btn btn-primary btn-rounded btn-scale-press px-5">Envoyer un Ticket</a>
                 </div>
                 <?php }}?>
+                <div class="my-5"></div>
             </div>
         </div>
     </main>
