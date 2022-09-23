@@ -1,7 +1,7 @@
 <nav class="nav_container mt-5 px-2">
     <ul class="d-flex justify-content-center align-items-center">
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
-                href="{{ route('admin.menu.menu.research') }}">Menu</a></li>
+                href="{{ route('admin.menu.research') }}">Menu</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
                 href="{{ route('admin.repas.index') }}">Repas</a></li>
         <li class="d-flex align-items-center justify-content-center"><a class="bg-primary text-white"
