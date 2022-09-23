@@ -126,7 +126,11 @@
                         <div class="d-flex flex-column align-items-start text-center">
                             <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
                                 {{ $ticketMessages[0]->ticket->description }}</p>
-                            <span class="span-date-msg me-2">{{ $ticketMessages[0]->ticket->created_at }}</span>
+                            <div>
+                                <span class="span-date-msg">{{ $ticketMessages[0]->ticket->created_at }}</span>
+                                <span class="span-date-msg">-</span>
+                                <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
+                            </div>
                         </div>
 
 
@@ -148,7 +152,7 @@
                                     <p class="max-w-80 p-2 p-comments rounded-5 msg admin-bubble">
                                         {{ $response->response }}</p>
                                     <div>
-                                        <span class="span-date-msg ms-2">{{ $response->created_at }}</span>
+                                        <span class="span-date-msg">{{ $response->created_at }}</span>
                                         <span class="span-date-msg">-</span>
                                         <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
                                     </div>
