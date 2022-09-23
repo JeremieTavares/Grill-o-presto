@@ -1,6 +1,7 @@
-@include('public.template.head')
-@include('public.template.navbar')
-
+@extends('public.template.base')
+@section('banner_title_on', "displayNone")
+@section('title', 'Accueil')
+@section('content')
 <main class="home d-flex flex-column">
     <section class="wave_top_section w-100">
         <div class="over_wave_top bg-primary">
@@ -99,8 +100,8 @@
             <h2>Service de livraison sans frais dans un rayon de 50km.</h2>
             <h3>Êtes-vous admissibles ?</h3>
             <form class="d-flex flex-column" action="">
-                <label class="mb-2 w-100" for="adress">Votre adresse</label>
-                <input class="input w-100" type="text" name="adress" id="adress">
+                <input class="form-control" id="to_places" placeholder="Entrer votre addresse"/>
+                <input id="destination" name="destination" required="" type="hidden"/>
                 <button type="submit"
                     class="btn btn-primary w-100 mt-4 btn-rounded btn-scale-press">Rechercher</button>
             </form>
@@ -127,5 +128,4 @@
         </div>
     </section>
 </main>
-
-@include('public.template.footer')
+@endsection
