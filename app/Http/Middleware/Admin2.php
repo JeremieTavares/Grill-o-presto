@@ -18,9 +18,9 @@ class Admin2
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()) {
-            if (!(Auth::user()->role->role == "Admin_2") || (Auth::user()->role->role == "Admin_3"))
+            if (!((Auth::user()->role->role == "Admin_2") || (Auth::user()->role->role == "Admin_3")))
                 return redirect()->back();
-            return $next($request);;
+            return $next($request);
         } else {
             return redirect()->back();
         }
