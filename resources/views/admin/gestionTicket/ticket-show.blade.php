@@ -138,9 +138,11 @@
                                     <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
                                         {{ $response->response }}</p>
                                     <div>
-                                        <span class="span-date-msg me-2">{{ $response->created_at }}</span>
-                                        <span class="span-date-msg">-</span>
-                                        <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
+                                        <div>
+                                            <span class="span-date-msg">{{ $response->created_at }}</span>
+                                            <span class="span-date-msg">-</span>
+                                            <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
+                                        </div>
                                     </div>
                                 @else
                                     <div class="d-flex justify-content-start flex-column align-items-end text-center">
