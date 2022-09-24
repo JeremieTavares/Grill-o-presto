@@ -30,7 +30,7 @@ use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
 use App\Http\Controllers\Admin\gestionOrder\GestionOrderController;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
-
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,4 +155,11 @@ Route::prefix('admin/')->name('admin.')->group(function () {
     });
     
 });
+
+Route::get('ajoutImage', function() {
+    return view('admin.imageAjout');
+});
+
+
+Route::post('ajoutImage', [ImageController::class, 'store'])->middleware('Admin3')->name('ajoutImage.store');
 // ==========================================================================================================================================================
