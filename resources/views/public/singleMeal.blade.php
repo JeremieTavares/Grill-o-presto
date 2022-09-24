@@ -15,7 +15,7 @@
 
         <section class="mealSection fs-5">
             
-            <img class="w-100 mb-5" src="{{ $meal->image_path }}" alt="image">
+            <img class="w-100 mb-5" src="{{ asset('storage/'.$meal->image_path) }}" alt="image">
             <hr />
             <p><span class="fw-bold">Menu :</span> {{ $meal->menu->menu_type->type }}</p>
             <p><span class="fw-bold">Ingrédients :</span> </p>
