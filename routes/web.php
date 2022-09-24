@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\gestionFaq\GestionFaqController;
 use App\Http\Controllers\Admin\gestionMenu\MenuAdminController;
 use App\Http\Controllers\Admin\gestionRepas\RepasAdminController;
 use App\Http\Controllers\Admin\gestionAdmin\GestionAdminController;
+use App\Http\Controllers\Admin\gestionOrder\GestionOrderController;
 use App\Http\Controllers\Admin\gestionClient\GestionClientController;
 use App\Http\Controllers\Admin\gestionTicket\GestionTicketController;
 
@@ -140,6 +141,7 @@ Route::prefix('admin/')->name('admin.')->group(function () {
     
     Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
     Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
+    Route::resource('order', GestionOrderController::class)->middleware('Admin1');
 
 
     Route::controller(MenuAdminController::class)->middleware('Admin2')->group(function(){
