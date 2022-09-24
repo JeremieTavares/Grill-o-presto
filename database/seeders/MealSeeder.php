@@ -193,7 +193,7 @@ class MealSeeder extends Seeder
             'description' => "Qui savait que vous pouviez emballer autant de saveurs en si peu de temps ? ! Des haricots cannelini copieux et des saucisses de porc italiennes sont parfaitement équilibrés par des tomates fraîches et éclatantes et des bébés épinards. Le toast à l'ail est si bon que vous ne laisserez pas une goutte de soupe derrière vous!",
             'vegetarian' => 1,
             'gluten_free' => 0,
-            'image_path' => "image/21.webp"
+            'image_path' => "image/21.jpg"
         ]);
 
         Meal::create([
