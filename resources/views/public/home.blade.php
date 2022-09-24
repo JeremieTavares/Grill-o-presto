@@ -34,7 +34,7 @@
 
             @foreach ($meals as $meal)
                 <div class="meal_card">
-                    {{ asset('storage/'.$meal->image_path) }}
+                    <img src="{{ asset('storage'.$meal->image_path) }}" alt="image">
                     <p>{{ $meal->name }}</p>
                     <p>{{ $meal->menu->menu_type->type }}</p>
                 </div>
