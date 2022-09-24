@@ -37,7 +37,7 @@
                     @foreach ($meals as $meal)
                         <div class="cart_card">
                             <a href="{{ route('meal', ['repas' => $meal->id]) }}">
-                                <img src="{{ $meal->image_path }}" alt="image">
+                                <img src="{{ asset('storage/'.$meal->image_path) }}" alt="image">
                             </a>
                             <div class="text_container">
                                 <p>Nom : {{ $meal->name }}</p>
