@@ -42,7 +42,7 @@
                 </form>
                 <hr class="w-25 text-primary my-5 m-auto">    
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('admin.order.show.all') }}" type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press">Afficher toutes les commandes</a>
+                    <a href="{{ route('admin.order.show.all') }}" class="btn btn-info btn-rounded px-5 btn-scale-press">Afficher toutes les commandes</a>
                 </div>
             </div>
 

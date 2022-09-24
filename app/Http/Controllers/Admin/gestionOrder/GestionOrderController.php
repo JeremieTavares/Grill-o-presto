@@ -100,10 +100,20 @@ class GestionOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        dd($request);
-    }
+    // public function update(Request $request)
+    // {
+    //     $idStatus = [];
+    //     foreach ($request->status as $key => $value) {
+    //             $idExp = explode('-', $value);
+    //             $idStatue = $idExp[0];
+    //             array_push($idStatus, $idStatue);
+    //     }
+
+        
+
+
+
+    // }
 
     /**
      * Remove the specified resource from storage.

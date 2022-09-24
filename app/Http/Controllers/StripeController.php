@@ -151,7 +151,6 @@ class StripeController extends Controller
                 $order = new Order;
                 if (Auth::check()) {
                     $order->user_id = Auth::user()->id;
-                    /* $order->is_guest = 0; */
                 } else {
                     $order->user_id = NULL;
                 }
