@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             PortionSeeder::class,
             MenuSeeder::class,
             AllergenSeeder::class,
-            HistoryMealSeeder::class,
             RoleSeeder::class,
             InfoUserSeeder::class,
             UserSeeder::class,
@@ -31,7 +30,8 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             FaqThemeSeeder::class,
             FaqSeeder::class,
-            ChartPriceSeeder::class
+            ChartPriceSeeder::class,
+            MealSeeder::class
         ]);
     }
 }

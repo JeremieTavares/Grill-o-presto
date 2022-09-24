@@ -13,6 +13,7 @@
     <main class="admin_search_menu d-flex flex-column align-items-center justify-content-center m-auto">
 
         <h1>Rechercher un menu</h1>
+        <a class="btn btn-success mt-3" href="{{route('admin.menu')}}">Ajouter un menu</a>
 
         @if (Session::has('success'))
             <p class="alert alert-success">{{Session::get('success')}}</p>

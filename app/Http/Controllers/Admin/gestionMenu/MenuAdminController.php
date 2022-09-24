@@ -50,11 +50,10 @@ class MenuAdminController extends Controller
                 $hMeal->description = $meal->description;
                 $hMeal->vegetarian = $meal->vegetarian;
                 $hMeal->gluten_free = $meal->gluten_free;
-                $hMeal->spicy = $meal->spicy;
                 $hMeal->menu_id = Menu::where('start_date', $request['start_date'])->with('menu_type')->whereRelation('menu_type', ['type' => $request['menu_type']])->first('id')->id;
                 $hMeal->image_path = $meal->image_path;
                 $hMeal->save();
-                $hMeal->attach($meal->allergens);
+                $hMeal->allergens()->sync($meal->allergens);
             }
 
             return back()->with('success', 'Ajout du menu avec succès.');
@@ -174,7 +173,6 @@ class MenuAdminController extends Controller
                 $hMeal->description = $meal->description;
                 $hMeal->vegetarian = $meal->vegetarian;
                 $hMeal->gluten_free = $meal->gluten_free;
-                $hMeal->spicy = $meal->spicy;
                 $hMeal->menu_id = $id;
                 $hMeal->image_path = $meal->image_path;
                 $hMeal->save();

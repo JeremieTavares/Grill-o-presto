@@ -34,7 +34,7 @@
                     @foreach ($favMeals as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
                         <div class="meal_card">
-                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <img src="{{ asset('storage/'.$meal->image_path) }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
@@ -51,7 +51,7 @@
                     @foreach ($meals['classic'] as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
                         <div class="meal_card">
-                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <img src="{{ asset('storage/'.$meal->image_path) }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
@@ -67,7 +67,7 @@
                     @foreach ($meals['vegan'] as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
                         <div class="meal_card">
-                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <img src="{{ asset('storage/'.$meal->image_path) }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
@@ -83,7 +83,7 @@
                     @foreach ($meals['gluten_free'] as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
                         <div class="meal_card">
-                            <img src="{{ $meal->image_path }}" alt="repas_image">
+                            <img src="{{ asset('storage/'.$meal->image_path) }}" alt="repas_image">
                             <p>{{ $meal->name }}</p>
                             <p>{{ $meal->menu->menu_type->type }}</p>
                         </div>
