@@ -140,8 +140,14 @@ Route::prefix('admin/')->name('admin.')->group(function () {
     Route::resource('repas', RepasAdminController::class)->except('show')->middleware('Admin2');
     
     Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
+
     Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
+
+    Route::get('order/search', [GestionOrderController::class, "showOrderForSpecificUser"])->middleware('Admin1')->name('order.search');
+    Route::get('order/client/{id}', [GestionOrderController::class, "showUserForSpecificOrder"])->middleware('Admin1')->name('order.client.show');
+    Route::get('order/all', [GestionOrderController::class, "showAllOrders"])->middleware('Admin1')->name('order.show.all');
     Route::resource('order', GestionOrderController::class)->middleware('Admin1');
+
 
 
     Route::controller(MenuAdminController::class)->middleware('Admin2')->group(function(){
