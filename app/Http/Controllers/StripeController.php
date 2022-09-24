@@ -168,7 +168,7 @@ class StripeController extends Controller
                 $order->menu_id = HistoryMeal::where('id', session('cart')[0])->first('menu_id')->menu_id;
                 $order->price = 100;
                 $order->order_number = $transaction->id;
-                $order->order_status_id = OrderStatus::where('status', 'En attente')->first('id')->id;
+                $order->order_status_id = OrderStatus::where('status', 'Completé')->first('id')->id;
                 $order->portion_id = $request->portion;
                 $order->meals = json_encode(session('cart'));
 
