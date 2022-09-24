@@ -7,21 +7,21 @@
 
     .user-order-accordion {
 
-        &:hover{
+        &:hover {
             background-color: rgb(236, 236, 236);
         }
 
-        & p{
+        & p {
             margin-bottom: 0;
         }
 
-        &:nth-child(2){
+        &:nth-child(2) {
             border-radius: 10px 10px 0px 0px;
         }
-    
-        &:last-of-type  {
-                border-radius:  0px 0px 10px 10px;
-            }
+
+        &:last-of-type {
+            border-radius: 0px 0px 10px 10px;
+        }
 
         .accordion-button::after {
             margin: 0;
@@ -37,3 +37,9 @@
 
 }
 
+@media (max-width: 768px) {
+
+    .order_td {
+        max-width: 50px;
+    }
+}

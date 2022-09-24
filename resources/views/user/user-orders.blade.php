@@ -48,19 +48,19 @@
                         <thead class="ccc br-10px">
                             <tr>
                                 <th class="border-0 br-tl-10px p-2 p-md-3">Commande</th>
-                                <th class="border-0 d-sm-none d-md-block p-md-3"">Date</th>
-                                <th class="border-0 p-md-3"">Prix</th>
-                                <th class="border-0 p-md-3"">Statut</th>
-                                <th class="text-center border-0 p-md-3"">Aide</th>
-                                <th class="text-center border-0 br-tr-10px p-md-3"">Voir</th>
+                                <th class="border-0 d-sm-none d-md-block p-md-3">Date</th>
+                                <th class="border-0 p-md-3">Prix</th>
+                                <th class="border-0 p-md-3">Statut</th>
+                                <th class="text-center border-0 p-md-3">Aide</th>
+                                <th class="text-center border-0 br-tr-10px p-md-3">Voir</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             @foreach ($ordersArray as $order)
                                 <tr>
-                                    <td class="border-0 p-2 p-md-3">{{ $order->order_number }}</td>
-                                    <td class="border-0 p-2 p-md-3 d-sm-none d-md-block">{{ $order['date'] }}
+                                    <td class="border-0 p-2 p-md-3 order_td overflow-auto">{{ $order->order_number }}</td>
+                                    <td class="border-0 p-2 p-md-3 d-sm-none d-md-block">{{ $order->created_at }}
                                     </td>
                                     <td class="border-0 p-2 p-md-3 ">{{ $order->price }}</td>
                                     <td class="border-0 p-2 p-md-3 ">{{ $order->order_status->status }}</td>
