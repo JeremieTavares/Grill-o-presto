@@ -14,7 +14,10 @@
             @include('admin.template.sub-navbar-admin-3')
         @break
     @endswitch
-
+    <div class="text-center my-3">
+        <a href="{{ route('admin.order.index') }}" class="text-decoration-none"><i
+                class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+    </div>
     <main class="mb-auto">
         <h2 class="text-center fs-1 my-5">Commande à confirmer</h2>
         @if (Auth::check())
