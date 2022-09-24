@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             OrderStatusSeeder::class,
             OrderSeeder::class,
             FaqThemeSeeder::class,
-            FaqSeeder::class
+            FaqSeeder::class,
+            ChartPriceSeeder::class
         ]);
     }
 }
