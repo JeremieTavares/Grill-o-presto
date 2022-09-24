@@ -80,7 +80,7 @@
 
     .home_grid_card {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 5%;
 
     }
@@ -221,6 +221,13 @@
             &>div {
                 padding-left: 5rem;
             }
+        }
+
+        .home_grid_card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5%;
+    
         }
 
         .wave_middle_section {
