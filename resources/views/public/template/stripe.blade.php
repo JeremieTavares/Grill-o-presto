@@ -86,7 +86,7 @@
                     <input type="hidden" name="loggedUserId" value="{{ Auth::user()->id }}">
                 @endif
                 <?php
-                    if (!(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
+                    if (!(Auth::check()) || !(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
                 <div class="row mt-5">
                     <div class="col-xs-12 d-flex">
                         <button
