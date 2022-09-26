@@ -18,19 +18,19 @@ $card_border_radius: 25px;
     p {
         position: absolute;
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         z-index: 1;
     }
 
     p:first-of-type {
         width: 40%;
-        left: 1rem;
-        bottom: -.5rem;
+        left: 1.5rem;
+        bottom: -.2rem;
     }
 
     p:last-of-type {
-        right: 1rem;
-        bottom: -.5rem;
+        right: 1.5rem;
+        bottom: -.2rem;
     }
 
 
