@@ -42,7 +42,7 @@
                     @endforeach
                 </div>
 
-                <hr>
+
             @endif
         
             @if ($menu == 'all' || $menu == 'classic')
@@ -58,7 +58,6 @@
                     </a>
                     @endforeach
                 </div>
-                <hr>
             @endif
             
             @if ($menu == 'all' || $menu == 'vegetarian')
@@ -74,7 +73,7 @@
                     </a>
                     @endforeach
                 </div>
-                <hr>
+
             @endif
             
             @if ($menu == 'all' || $menu == 'gluten-free')
