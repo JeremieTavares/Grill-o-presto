@@ -28,7 +28,7 @@
         <img class="saladeImg col-sm-4" src="./image/salade_no_bg.png" alt="Salade Image">
     </section>
 
-    <section class="card_section w-100 p-5">
+    <section class="card_section w-100 p-sm-3 p-md-5">
         <h2 class="text-center mb-5">NOS FAVORIS DE LA SEMAINE </h2>
         <div class="home_grid_card">
 
