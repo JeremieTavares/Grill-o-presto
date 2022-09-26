@@ -33,13 +33,13 @@
         <div class="home_grid_card">
 
             @foreach ($meals as $meal)
-                <div class="meal_card">
-                    <a href="{{route('meal', ['repas' => $meal->id])}}">
+            <a href="{{route('meal', ['repas' => $meal->id])}}">
+                <div class="meal_card">                 
                         <img src="{{ asset('storage/'.$meal->image_path) }}" alt="image">
                         <p>{{ $meal->name }}</p>
-                        <p>{{ $meal->menu->menu_type->type }}</p>
-                    </a>
+                        <p>{{ $meal->menu->menu_type->type }}</p>                  
                 </div>
+            </a>
             @endforeach
 
         </div>
