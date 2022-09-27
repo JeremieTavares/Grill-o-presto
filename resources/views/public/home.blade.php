@@ -45,12 +45,12 @@
         </div>
         </div>
     </section>
-    <section class="engage">
-        <h2 class="text-center mb-5 mt-5">Chez Grillo-O-Prestro on s’engage à : </h2>
+    <section class="engage mx-5 mt-5">
+        <h2 class="text-center display-4 mb-5 mt-5 w-100">Chez Grillo-O-Prestro on s’engage à</h2>
         <div class="d-flex engage_container">
             <div class="d-flex flex-column">
                 <h3 class="text-center mb-4">Des produits de qualités</h3>
-                <div class="d-flex flex-column flex-xl-row align-items-center align-items-xl-start">
+                <div class="d-flex flex-column align-items-center m-auto">
                     <i class="fa-solid fa-carrot pe-3 mb-2 mt-2"></i>
                     <p>Du nouveau à chaque semaine : des produits d’épicerie de base et des repas préparés. Le tout
                         moins dispendieux qu’à l’épicerie et pour tous les goûts.</p>
@@ -58,7 +58,7 @@
             </div>
             <div class="d-flex flex-column">
                 <h3 class="text-center mb-4">Livraison rapide</h3>
-                <div class="d-flex flex-column flex-xl-row align-items-center align-items-xl-start">
+                <div class="d-flex flex-column align-items-center m-auto">
                     <i class="fa-solid fa-truck-fast pe-3 mb-2 mt-2"></i>
                     <p>Selon la région où vous vous situez, nous nous engageons à vous offrir une livraison rapide et
                         efficace pour satisfaire tous nos clients.</p>
@@ -66,7 +66,7 @@
             </div>
             <div class="d-flex flex-column">
                 <h3 class="text-center mb-4">Aucun frais de livraison</h3>
-                <div class="d-flex flex-column flex-xl-row align-items-center align-items-xl-start">
+                <div class="d-flex flex-column align-items-center m-auto">
                     <i class="fa-solid fa-hand-holding-dollar pe-3 mb-2 mt-2"></i>
                     <p>Il n’y a aucun frais de livraison en bas de 50km. Au dessus de 50km, des frais de livraison
                         seront facturés.</p>

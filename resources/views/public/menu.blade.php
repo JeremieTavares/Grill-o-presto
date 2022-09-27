@@ -18,7 +18,7 @@ if (isset($meals['classic'])) {
             <nav class="nav_container m-auto mt-5">
                 <ul class="d-flex justify-content-between align-items-center">
                     <li class="d-flex align-items-center justify-content-center"><a
-                            class="bg-primary text-white {{ $menu == 'all' ? 'nav_selected' : '' }}"
+                            class="bg-primary btn-scale-press text-white {{ $menu == 'all' ? 'nav_selected' : '' }}"
                             href="{{ route('menu', ['menu' => 'all']) }}">Tout les plats</a></li>
                     <li class="d-flex align-items-center justify-content-center"><a
                             class="bg-primary text-white {{ $menu == 'classic' ? 'nav_selected' : '' }}"

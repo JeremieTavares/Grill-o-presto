@@ -15,9 +15,9 @@
 
 
 
-                    <div class="d-flex justify-content-center position-relative">
-                        <div class="form-outline mb-4 col-sm-12 col-md-8">
-                            <input type="email" id="email_footer" class="form-control rounded-0"
+                    <div class="d-flex justify-content-center position-relative me-5">
+                        <div class="mb-4 col-sm-12 col-md-8">
+                            <input type="email" id="email_footer" class="form-control rounded-0 mw-650px"
                                 placeholder="Courriel" />
                         </div>
                         <div class="position-relative">
