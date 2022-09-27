@@ -178,7 +178,7 @@
     }
 
     .card_section {
-        margin-bottom: 15rem;   
+        margin-bottom: 15rem;
     }
 
     .offer_section {
@@ -232,7 +232,7 @@
             grid-template-columns: 1fr 1fr;
             grid-template-rows: min-content;
             gap: 5%;
-    
+
         }
 
         .wave_middle_section {
@@ -372,6 +372,16 @@
             z-index: 2;
         }
     }
+
+    .text_container {
+        ul{
+            margin-top: 3rem;
+            margin-right: auto;
+        }
+        .a_menu_home {
+            margin-top: 7rem !important;
+        }
+    }
 }
 
 
@@ -423,7 +433,6 @@
     }
 
 }
-
 
 @media (min-width: 1500px) {
     .topWave {

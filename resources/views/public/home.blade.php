@@ -118,13 +118,11 @@
             </div>
             <div class="text_container w-50">
                 <h2 class="mb-3">Nous offrons 3 types de menu complet differant chaque semaine</h2>
-                <ul class="p-0">
-                    <li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li>
-                    <li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i>
-                    </li>
-                    <li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i>
-                    </li>
-                    <a class="btn btn-primary btn-rounded mt-5 btn-scale-press" href="">Nos menus</a>
+                <ul class="p-0">                 
+                    <a href="{{ route('menu', "classic") }}" class="text-decoration-none"><li>Menu regulier <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li></a>
+                    <a href="{{ route('menu', "vegetarian") }}" class="text-decoration-none"><li>Menu Vegetarien <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li></a>
+                    <a href="{{ route('menu', "gluten-free") }}" class="text-decoration-none"><li>Menu sans-Gluten <i class="fa-solid fa-circle-arrow-right text-primary btn-scale-press"></i></li></a>
+                    <a class="btn btn-primary btn-rounded mt-5 btn-scale-press a_menu_home" href="{{ route('menu') }}">Nos menus</a>
                 </ul>
             </div>
         </div>
