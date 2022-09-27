@@ -12,10 +12,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-
-
-
-
         $meals = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->inRandomOrder()->take(4)->get();
 
         return view('./public/home', ['meals' => $meals]);
