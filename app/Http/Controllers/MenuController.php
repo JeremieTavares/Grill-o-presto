@@ -7,7 +7,6 @@ use App\Models\HistoryMeal;
 class MenuController extends Controller
 {
 
-
     public function index($menu = 'all')
     {
 
