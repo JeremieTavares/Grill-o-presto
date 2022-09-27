@@ -18,6 +18,7 @@
             <img class="w-100 mb-5" src="{{ asset('storage/'.$meal->image_path) }}" alt="image">
             <hr />
             <p><span class="fw-bold">Menu :</span> {{ $meal->menu->menu_type->type }}</p>
+            <p><span class="fw-bold">Description :</span> {{ $meal->description}}</p>
             <p><span class="fw-bold">Ingrédients :</span> </p>
             <ul>
                 @foreach ($meal->ingredients as $ingredient)
@@ -51,7 +52,7 @@
             @elseif (session()->exists('cart') && in_array($meal->id, session('cart')))
                 <div class="alert alert-danger text-center">Ce repas à déjà été ajouté</div>
             @elseif (session()->exists('menu') && session('menu') != $meal->menu->menu_type->type)
-                <div class="alert alert-danger text-center">Ce repas fait partie du menu <span class="fw-bold">{{ $meal->menu->menu_type->type }}</span> mais le menu selectionné est : <span class="fw-bold">{{ session('menu') }}</span>. <br />Vous pouvez changer le menu en supprimant tous les repas de votre panier et en sélectionnant un repas du menu voulu.</div>
+                <div class="alert alert-danger text-center">Ce repas fait partie du menu <span class="fw-bold">{{ $meal->menu->menu_type->type }}</span> <br> Mais le menu selectionné est : <span class="fw-bold">{{ session('menu') }}</span>. <br />Vous pouvez changer le menu en supprimant tous les repas de votre panier et en sélectionnant un repas du menu voulu.</div>
             @elseif (session()->missing('menu') || session('menu') == $meal->menu->menu_type->type)
                 <a class="btn btn-primary mt-5" href="{{ route('meal', ['repas' => $meal->id, 'addCart' => true]) }}">Ajouter au panier</a>
             @endif
