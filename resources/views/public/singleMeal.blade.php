@@ -68,7 +68,7 @@
                 <div class="d-flex flex-column align-items-start">
                     <div><a class="btn btn-primary mt-5 w-200px btn-rounded btn-scale-press"
                             href="{{ route('meal', ['repas' => $meal->id, 'addCart' => true]) }}">Ajouter au panier<i
-                                class="fa-sharp fa-solid fa-cart-shopping ms-2"></i></a></div>
+                                class="fa-sharp fa-solid fa-cart-shopping ms-2 icon-shopping-cart-meal"></i></a></div>
                     <div> <a class="btn btn-secondary mt-3 w-200px btn-rounded btn-scale-press"
                             href="{{ route('menu') }}">Retour au menu <i class="fa-solid fa-arrow-left ms-3"></i></a> </div>
                 </div>
