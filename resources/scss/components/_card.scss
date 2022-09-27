@@ -52,11 +52,13 @@ $card_border_radius: 25px;
 
 @media (min-width: 1360px) {
 
-    .meal_card {
-        border-radius: $card_border_radius;
-        position: relative;
-        min-width: 600px;
-        min-height: 400px;
-        // min-height: 25rem;
+    .home_grid_card{
+        .meal_card {
+            border-radius: $card_border_radius;
+            position: relative;
+            min-width: 600px;
+            min-height: 440px;
+            // min-height: 25rem;
+        }
     }
 }
