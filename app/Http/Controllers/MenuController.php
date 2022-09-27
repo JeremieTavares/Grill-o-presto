@@ -34,7 +34,6 @@ class MenuController extends Controller
         $meal->allergens = json_decode($meal->allergens);
 
         $this->removeMenuSession();
-
         $added = false;
         if ($addCart) {
             if (session()->missing('cart') || count(session('cart')) == 0) {
