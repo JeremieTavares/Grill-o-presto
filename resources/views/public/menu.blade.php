@@ -29,7 +29,7 @@
         </div>
         <section class="menu_section">
             @if ($menu == 'all')
-                <h2>Nos Favoris de la semaine</h2>
+                <h2 class="display-5">Nos Favoris de la semaine</h2>
                 <div class="card_container">
                     @foreach ($favMeals as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
@@ -46,7 +46,7 @@
             @endif
         
             @if ($menu == 'all' || $menu == 'classic')
-                <h2>Not plats réguliers</h2>
+                <h2 class="display-5 mt-5">Not plats réguliers</h2>
                 <div class="card_container">
                     @foreach ($meals['classic'] as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
@@ -61,7 +61,7 @@
             @endif
             
             @if ($menu == 'all' || $menu == 'vegetarian')
-                <h2>Not plats Végétariens</h2>
+                <h2 class="display-5 mt-5">Not plats Végétariens</h2>
                 <div class="card_container">
                     @foreach ($meals['vegan'] as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
@@ -77,7 +77,7 @@
             @endif
             
             @if ($menu == 'all' || $menu == 'gluten-free')
-                <h2>Not plats sans-gluten</h2>
+                <h2 class="display-5 mt-5">Not plats sans-gluten</h2>
                 <div class="card_container">
                     @foreach ($meals['gluten_free'] as $meal)
                     <a href="{{route('meal', ['repas' => $meal->id])}}">
