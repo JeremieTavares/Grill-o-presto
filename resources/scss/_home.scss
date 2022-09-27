@@ -81,7 +81,7 @@
     .home_grid_card {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 5%;
+        gap: 2%;
 
     }
 
@@ -178,7 +178,7 @@
     }
 
     .card_section {
-        margin-bottom: 15rem;
+        margin-bottom: 10rem;
     }
 
     .offer_section {
@@ -256,6 +256,7 @@
             padding: 0 5%;
             display: block;
             order: 2;
+            margin-bottom: 7rem;
 
             i {
                 font-size: 5rem;

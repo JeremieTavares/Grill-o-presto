@@ -68,7 +68,7 @@
                 <h3 class="text-center mb-4">Aucun frais de livraison</h3>
                 <div class="d-flex flex-column flex-xl-row align-items-center align-items-xl-start">
                     <i class="fa-solid fa-hand-holding-dollar pe-3 mb-2 mt-2"></i>
-                    <p>Il n’y a aucun frais de livraison en bas de 60km. Au dessus de 60km, des frais de livraison
+                    <p>Il n’y a aucun frais de livraison en bas de 50km. Au dessus de 50km, des frais de livraison
                         seront facturés.</p>
                 </div>
             </div>
