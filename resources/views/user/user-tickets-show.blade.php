@@ -74,8 +74,8 @@
                         <p class="text-white fw-bold w-50">Ticket: #{{ $ticketMessages[0]->ticket->ticket_number }}</p>
                     </div>
                     <div class="d-flex flex-column bg-ultra-light rounded-4 pt-5 pb-4 px-4 mb-4 h-100">
-                        <div class="d-flex flex-column align-items-end text-center">
-                            <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
+                        <div class="d-flex flex-column align-items-end text-start">
+                            <p class="max-w-80 p-3 mb-0 rounded-5 msg user-bubble">
                                 {{ $ticketMessages[0]->ticket->description }}</p>
                             <div>
                                 <span class="span-date-msg">{{ $ticketMessages[0]->ticket->created_at }}</span>
@@ -86,8 +86,8 @@
 
                         @foreach ($ticketMessages as $response)
                             @if ($response->user_id == $response->ticket->user_id)
-                                <div class="d-flex flex-column align-items-end text-center">
-                                    <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
+                                <div class="d-flex flex-column align-items-end text-start">
+                                    <p class="max-w-80 p-3 mb-0 rounded-5 msg user-bubble">
                                         {{ $response->response }}</p>
                                     <div>
                                         <span class="span-date-msg">{{ $response->created_at }}</span>
@@ -96,8 +96,8 @@
                                     </div>
                                 </div>
                             @else
-                                <div class="d-flex justify-content-start flex-column align-items-start text-center">
-                                    <p class="max-w-80 p-2 p-comments rounded-5 msg admin-bubble">
+                                <div class="d-flex justify-content-start flex-column align-items-start text-start">
+                                    <p class="max-w-80 p-3 p-comments rounded-5 msg admin-bubble">
                                         {{ $response->response }}</p>
                                     <div>
                                         <span class="span-date-msg ms-2">{{ $response->created_at }}</span>

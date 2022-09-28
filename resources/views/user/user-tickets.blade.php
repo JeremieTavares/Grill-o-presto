@@ -32,7 +32,8 @@
                             <td class="border-0 p-2 p-md-3 align-middle">{{ $ticket['date'] }}</td>
                             <td class="border-0 p-2 p-md-3 align-middle">{{ $ticket->ticket_status->status }}</td>
                             <td class="border-0 p-2 p-md-3 align-middle">{{ $ticket->ticket_type->type }}</td>
-                            <td class="d-sm-none d-md-block border-0 p-2 p-md-3 align-middle">{{ $ticket['description'] }}</td>
+                            <td class="d-sm-none d-md-block border-0 p-2 p-md-3 align-middle">{{ $ticket['description'] }}
+                            </td>
                             <td class="text-center border-0 p-2 p-md-3 align-middle"><a
                                     href="{{ route('user.tickets.show', $ticket->id) }}"><i
                                         class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
@@ -40,6 +41,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if ($ticketsArray instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                    <div class="mt-5 d-flex justify-content-center">
+                        {{ $ticketsArray->links('public.template.pagination') }}
+                    </div>
+                @endif
         </div>
 
         <hr class="w-25 text-primary my-5 m-auto">

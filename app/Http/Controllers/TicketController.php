@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Trait\RolesAvailable;
 use App\Http\Requests\TicketRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TicketController extends Controller
 {
@@ -27,7 +28,7 @@ class TicketController extends Controller
     {
         $authUserId = (object) User::GetLoggedUserInfo()->get('id');
 
-        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId[0]->id)->get();
+        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId[0]->id)->paginate(8);
 
         $ticketArray = [];
 
@@ -36,7 +37,8 @@ class TicketController extends Controller
             $allTicketsForLoggedUser[$i]['description'] = (string) substr($allTicketsForLoggedUser[$i]->description, 0, 60);
             array_push($ticketArray,  $allTicketsForLoggedUser[$i]);
         }
-        return (object) view('user.user-tickets', ['ticketsArray' => $ticketArray]);
+        
+        return (object) view('user.user-tickets', ['ticketsArray' => $allTicketsForLoggedUser]);
     }
 
     /**
