@@ -19,7 +19,7 @@ class GestionTicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::getAllTicketInfosAndRelationsForAdmin()->paginate(8);
+        $tickets = Ticket::getAllTicketInfosAndRelationsForAdmin()->orderBy('created_at', "desc")->paginate(8);
 
         $ticketArray = [];
 
