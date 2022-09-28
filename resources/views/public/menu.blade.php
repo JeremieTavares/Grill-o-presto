@@ -63,7 +63,7 @@ if (isset($meals['classic'])) {
             @endif
 
             @if ($menu == 'all' || $menu == 'classic')
-                <h2 class="display-5 mt-5">Nos plats réguliers</h2>
+                <h2 class="display-5">Nos plats réguliers</h2>
                 <div class="card_container">
                     @foreach ($meals['classic'] as $meal)
                         <a href="{{ route('meal', ['repas' => $meal->id]) }}">
@@ -78,7 +78,7 @@ if (isset($meals['classic'])) {
             @endif
 
             @if ($menu == 'all' || $menu == 'vegetarian')
-                <h2 class="display-5 mt-5">Nos plats Végétariens</h2>
+                <h2 class="display-5">Nos plats Végétariens</h2>
                 <div class="card_container">
                     @foreach ($meals['vegan'] as $meal)
                         <a href="{{ route('meal', ['repas' => $meal->id]) }}">
@@ -94,7 +94,7 @@ if (isset($meals['classic'])) {
             @endif
 
             @if ($menu == 'all' || $menu == 'gluten-free')
-                <h2 class="display-5 mt-5">Nos plats sans-gluten</h2>
+                <h2 class="display-5">Nos plats sans-gluten</h2>
                 <div class="card_container">
                     @foreach ($meals['gluten_free'] as $meal)
                         <a href="{{ route('meal', ['repas' => $meal->id]) }}">
