@@ -42,7 +42,7 @@
                                 <li>{{ $ingredient }}</li>
                             @endforeach
                         </ul>
-                        <p class="fw-bold mb-1">Allergènes :</p>
+                        <p class="fw-bold mb-1">Allergènes: </p>
                         <div class="d-flex flex-column gap-3 mb-4">
                             @foreach ($meal->allergens as $allergen)
                                 @if ($allergen->name == 'Noix')
