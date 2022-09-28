@@ -22,7 +22,7 @@ class GestionOrderController extends Controller
 
     public function showAllOrders()
     {
-        $orders = Order::with('order_status')->whereRelation('order_status', 'status', '=', 'En attente')->paginate(7);
+        $orders = Order::with('order_status')->whereRelation('order_status', 'status', '=', 'En attente')->paginate(8);
         $orderStatus = OrderStatus::where('id', '>', '0')->get();
         return view('admin.gestionOrder.order-index', ['ordersArray' => $orders, 'orderStatus' => $orderStatus]);
     }
@@ -36,11 +36,11 @@ class GestionOrderController extends Controller
     public function showOrderForSpecificUser(Request $request)
     {
         if (!(empty($request->order_number)))
-            $order = Order::with('order_status')->where('order_number', $request->order_number)->get();
+            $order = Order::with('order_status')->where('order_number', $request->order_number)->orderBy('created_at', 'desc')->paginate(8);
         elseif (!(empty($request->tel)))
-            $order = Order::with('order_status')->where('telephone', $request->tel)->get();
+            $order = Order::with('order_status')->where('telephone', $request->tel)->orderBy('created_at', 'desc')->paginate(8);
         elseif (!(empty($request->email)))
-            $order = Order::with('order_status')->where('email', $request->email)->get();
+            $order = Order::with('order_status')->where('email', $request->email)->orderBy('created_at', 'desc')->paginate(8);
         $orderStatus = OrderStatus::where('id', '>', '0')->get();
 
 
@@ -52,77 +52,48 @@ class GestionOrderController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request)
-    // {
-    //     $idStatus = [];
-    //     foreach ($request->status as $key => $value) {
-    //             $idExp = explode('-', $value);
-    //             $idStatue = $idExp[0];
-    //             array_push($idStatus, $idStatue);
-    //     }
-
-        
-
-
-
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function update(Request $request)
     {
-        //
+        $idOrder = [];
+        $status = [];
+        foreach ($request->status as $key => $value) {
+            $idExp = explode('-', $value);
+            array_push($idOrder, $idExp[0]);
+            array_push($status, $idExp[1]);
+        }
+
+        $orders = Order::whereIn('id', $idOrder)->get();
+        $orderStatusTemplate = new OrderStatus();
+
+        try {
+            for ($i = 0; $i < count($orders); $i++) {
+                switch ($status[$i]) {
+                    case 'En attente':
+                        $orders[$i]->order_status_id = $orderStatusTemplate->get_status_waiting();
+                        $orders[$i]->save();
+                        break;
+                    case 'Completé':
+                        $orders[$i]->order_status_id = $orderStatusTemplate->get_status_completed();
+                        $orders[$i]->save();
+                        break;
+                    case 'Annulé':
+                        $orders[$i]->order_status_id = $orderStatusTemplate->get_status_cancelled();
+                        $orders[$i]->save();
+                        break;
+                    case 'Erreur':
+                        $orders[$i]->order_status_id = $orderStatusTemplate->get_status_error();
+                        $orders[$i]->save();
+                        break;
+                };
+            }
+        } catch (\Exception $e) {
+            return back()->with('errorUpdate', "Un erreur s'est produite lors du changement");
+        }
+        return back()->with('successResponse', "Les commandes sont complétées");
     }
 }

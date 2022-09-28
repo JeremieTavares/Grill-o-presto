@@ -1,6 +1,7 @@
 creditCardAutoComplete()
 closedModalPopup();
 toggleSearchInputForAdmin();
+changeOrderRowColorWhenChangingState();
 adminMenu();
 adminRepas();
 cart();
@@ -363,3 +364,30 @@ function changePrice(portionSelect) {
 }
 
 
+function changeOrderRowColorWhenChangingState(){
+    let rowSelect = document.querySelectorAll(".tr_commande_select");
+    if(document.title == "Admin Orders") {
+    rowSelect.forEach(select => {
+        select.addEventListener('change', (e)=>{
+            $value = select.value.split('-');
+            switch ($value[1]) {
+                case "Annulé":
+                    e.target.parentElement.parentElement.classList.remove('greenRow', 'blueRow', 'redRow');
+                    e.target.parentElement.parentElement.classList.add('yellowRow');
+                    break;
+                case "Completé":
+                    e.target.parentElement.parentElement.classList.remove('yellowRow', 'blueRow', 'redRow');
+                    e.target.parentElement.parentElement.classList.add('greenRow');
+                    break;
+                case "En attente":
+                    e.target.parentElement.parentElement.classList.remove('greenRow', 'yellowRow', 'redRow');
+                    break;
+                case "Erreur":
+                    e.target.parentElement.parentElement.classList.remove('greenRow', 'blueRow', 'yellowRow');
+                    e.target.parentElement.parentElement.classList.add('redRow');
+                    break;
+            }      
+        })
+    });
+}
+}

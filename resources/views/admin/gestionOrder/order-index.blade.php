@@ -1,5 +1,6 @@
 @extends('admin.template.base')
 @section('banner-title', 'Administrateur - Historique commande')
+@section('title', 'Admin Orders')
 @section('content')
     @switch(Auth::user()->role->role)
         @case('Admin_1')
@@ -25,32 +26,18 @@
         @endif
         <div class="mw-1000px">
             @if (Session::has('successResponse'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                <div class="alert alert-success  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('successResponse') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
-            @elseif (Session::has('noPermission'))
-                <div class="alert alert-danger  d-flex justify-content-between align-items-center"
+            @elseif (Session::has('errorUpdate'))
+                <div class="alert alert-danger  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
-                    {{ Session::get('noPermission') }}
+                    {{ Session::get('errorUpdate') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
-                </div>
-            @elseif (Session::has('ticketClosed'))
-                <div class="alert alert-danger  d-flex justify-content-between align-items-center"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('ticketClosed') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
-                </div>
-            @elseif (Session::has('paymentSuccess'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
-                    id="divAlertSucccessInfoChanged">
-                    {{ Session::get('paymentSuccess') }}
-                    <button type="button" class="close btn btn-link text-decoration-none"
-                        id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @endif
             @if (isset($ordersArray[0]))
@@ -72,7 +59,7 @@
                             <tbody>
                                 {{-- {{ $order->order_status->status }} --}}
                                 @foreach ($ordersArray as $order)
-                                    <tr>
+                                    <tr class="tr_commande">
                                         <td class="border-0 p-2 p-md-3 order_td overflow-auto align-middle">
                                             {{ $order->order_number }}</td>
                                         <td class="border-0 p-2 p-md-4 d-sm-none d-md-block align-middle">
@@ -84,9 +71,9 @@
                                         </td>
                                         <td class="border-0 p-2 p-md-3 align-middle">{{ $order->price }}</td>
                                         <td class="border-0 p-2 p-md-3 align-middle">
-                                            <select name="status[]" id="" class="form-select">
+                                            <select name="status[]" id="" class="form-select tr_commande_select">
                                                 @foreach ($orderStatus as $status)
-                                                    <option value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
+                                                <option value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
                                                 @endforeach
                                             </select>
                                         </td>

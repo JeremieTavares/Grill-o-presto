@@ -30,7 +30,7 @@ class OrderSeeder extends Seeder
             'menu_id' => 1,
             'price' => '160',
             'order_number' => '3243242',
-            'order_status_id' => '2',
+            'order_status_id' => '1',
             'portion_id' => '2',
             'meals' => json_encode([
                 [
