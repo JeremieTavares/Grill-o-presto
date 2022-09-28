@@ -19,7 +19,7 @@
                 class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
     </div>
     <main class="mb-auto">
-        <h2 class="text-center fs-1 my-5">Commande à confirmer</h2>
+        <h1 class="text-center fs-1 my-5 fw-normal">Commande à confirmer</h1>
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             ?>
@@ -107,7 +107,7 @@
                 </div>
             @else
                 <div class="text-center mb-5">
-                    <h2 class="text-center">Aucune commandes pour ce compte</h2>
+                    <h2 class="text-center fs-1 my-5 fw-normal">Aucune commandes pour ce compte</h2>
                     <hr class="w-25 text-primary my-5 m-auto">
                 </div>
             @endif

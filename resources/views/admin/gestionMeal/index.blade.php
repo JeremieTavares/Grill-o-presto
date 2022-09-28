@@ -9,7 +9,7 @@
 @include('admin.template.sub-navbar-admin-3')
 @endif
     <main class="adminRepasIndex m-auto mw-750px">
-        <h1 class="text-center mt-3">Tous les repas</h1>
+        <h1 class="text-center fs-1 my-5 fw-normal">Tous les repas</h1>
 
         @if (Session::has('deleteSuccess'))
             <p class="alert alert-success">{{Session::get('deleteSuccess')}}</p>
@@ -37,7 +37,7 @@
                 <a class="btn btn-primary btn-rounded py-2 px-4 minw-235px" href="{{route('admin.repas.showAll')}}">Afficher tout les repas</a>
 
                 <hr class="w-25 mt-5" />
-                <h2 class="text-center fs-3 my-5">Créé un nouveau repas</h2>
+                <h1 class="text-center fs-1 my-5 fw-normal">Créé un nouveau repas</h1>
                 <a class="btn btn-success btn-rounded py-2 px-4 minw-235px" href="{{route('admin.repas.create')}}">Ajouter un repas</a>
 
             </div>

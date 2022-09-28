@@ -13,7 +13,7 @@
 
     <main class="m-auto">
         <div class="container mw-750px">
-            <h2 class="text-center fs-3 my-5">Choisissez la FAQ à modifier</h2>
+            <h1 class="text-center fs-1 my-5 fw-normal">Choisissez la FAQ à modifier</h1>
 
             <div class="text-center my-3">
                 <a href="{{ route('admin.faq.index') }}" class="text-decoration-none"><i

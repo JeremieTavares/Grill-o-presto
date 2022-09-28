@@ -13,7 +13,7 @@
 
     <main class="m-auto">
         <div class="container mw-750px">
-            <h2 class="text-center fs-3 my-5">Choisissez la question à modifier</h2>
+            <h2 class="text-center fs-1 my-5 fw-normal">Choisissez la question à modifier</h2>
 
 
             @if (Session::has('FaqCreated'))
@@ -38,11 +38,12 @@
                 </div>
             </form>
 
-            <hr class="w-25 text-primary my-5 m-auto">
+            <div class="d-flex w-25 m-auto my-5 align-items-center">
+                <hr class="col-4"><span class="col-4 text-center pb-1">Ou</span>
+                <hr class="col-4">
+            </div>
 
-           <h2 class="text-center fs-3">Ou préférez-vous :</h2>
-
-            <h2 class="text-center fs-3 my-4">Créer une nouvelle question</h2>
+            <h1 class="text-center fs-1 my-5 fw-normal">Créer une nouvelle question</h1>
 
             @if (Session::has('successInfosChanged'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
@@ -103,7 +104,7 @@
                     @enderror
                 </div>
                 <div class="d-flex justify-content-center mb-5">
-                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5">Ajouter</button>
+                    <button type="submit" class="btn btn-success btn-rounded px-5 btn-scale-press mt-5 w-200px">Ajouter</button>
                 </div>
             </form>
         </div>

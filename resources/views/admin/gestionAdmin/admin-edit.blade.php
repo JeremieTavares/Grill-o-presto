@@ -1,7 +1,11 @@
 @extends('admin.template.base')
 @section('banner-title', "Modification d'un administrateur")
 @section('content')
-    @include('admin.template.sub-navbar-admin-3')
+@switch(Auth::user()->role->role)
+        @case('Admin_3')
+            @include('admin.template.sub-navbar-admin-3')
+        @break
+    @endswitch
     <main class="m-auto">
         <div class="container mw-750px">
             <div class="text-center my-3">
@@ -16,7 +20,7 @@
                     id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
             </div>
         @endif
-            <h2 class="text-center fs-3 my-5">Choisissez l'administrateur à modifier</h2>
+            <h1 class="text-center fs-1 my-5 fw-normal">Choisissez l'administrateur à modifier</h1>
             <label for="selectAdmin">Sélectionnez un Administrateur</label>
 
             <form action="{{ route('admin.admin.edit', Auth::user()->id) }}" method="get">

@@ -9,7 +9,7 @@
         @include('admin.template.sub-navbar-admin-3')
     @endif
     <main class="adminRepasIndex m-auto p-3">
-        <h1 class="text-center mt-3">Tous les repas</h1>
+        <h1 class="text-center fs-1 my-5 fw-normal">Tous les repas</h1>
         <nav class="nav_container m-auto mt-5">
             <ul class="d-flex justify-content-between align-items-center">
                 <li class="d-flex align-items-center justify-content-center"><a

@@ -16,6 +16,7 @@
         @break
     @endswitch
     <main class="m-auto d-flex flex-column align-items-center mt-5">
+        <div><h1 class="text-center fs-1 mb-5 fw-normal">Ticket ouvert</h1></div>
         <div class="container mx-sm-3 mx-lg-0 mw-1000px ">
             @if ($ticketsArray != null)
                 <table class="table table-hover table-tickets">

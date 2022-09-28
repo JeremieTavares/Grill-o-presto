@@ -11,7 +11,7 @@
     <main class="singleMeal m-auto">
         <section class="topSection p-5">
 
-            <h3 class="text-center">{{ $meal->name }}</h3>
+            <h1 class="text-center fs-1 my-5 fw-normal">{{ $meal->name }}</h1>
         </section>
         
         {{-- @if ($added)

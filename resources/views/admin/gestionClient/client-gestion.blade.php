@@ -2,7 +2,11 @@
 @section('banner-title', 'Rechercher un client')
 @section('title', 'Client gestion')
 @section('content')
-
+@switch(Auth::user()->role->role)
+        @case('Admin_3')
+            @include('admin.template.sub-navbar-admin-3')
+        @break
+    @endswitch
     <div class="container">
         @if (Session::has('noUserFound'))
             <div class="alert alert-danger d-flex justify-content-between align-items-center w-100 mw-700px mt-5"
@@ -13,8 +17,8 @@
             </div>
         @endif
     </div>
-    @include('admin.template.sub-navbar-admin-3')
     <main class="m-auto">
+        <h1 class="text-center fs-1 my-5 fw-normal">Rechercher un membre</h1>
         <div class="container d-flex flex-column align-items-center mb-5">
             <div class="nav_container mt-4 px-2">
                 <ul class="d-flex justify-content-center align-items-center">

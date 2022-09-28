@@ -10,8 +10,7 @@
         @include('admin.template.sub-navbar-admin-3')
     @endif
     <main class="mw-750px menu_add_admin d-flex flex-column align-items-center m-auto">
-
-        <h1 class="mb-5">Ajouter un menu</h1>
+        <h1 class="text-center fs-1 my-5 fw-normal">Ajouter un menu</h1>
         <div class="text-center my-3">
             <a href="{{ route('admin.menu.search') }}" class="text-decoration-none"><i
                     class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>

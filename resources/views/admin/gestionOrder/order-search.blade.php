@@ -2,7 +2,19 @@
 @section('banner-title', 'Administrateur - Rechercher une commande')
 @section('title', 'Client gestion')
 @section('content')
+    @switch(Auth::user()->role->role)
+        @case('Admin_1')
+            @include('admin.template.sub-navbar-admin-1')
+        @break
 
+        @case('Admin_2')
+            @include('admin.template.sub-navbar-admin-2')
+        @break
+
+        @case('Admin_3')
+            @include('admin.template.sub-navbar-admin-3')
+        @break
+    @endswitch
     <div class="container">
         @if (Session::has('noOrderFound'))
             <div class="alert alert-danger d-flex justify-content-between align-items-center w-100 mw-700px mt-5"
@@ -13,10 +25,9 @@
             </div>
         @endif
     </div>
-    @include('admin.template.sub-navbar-admin-3')
-    <main class="m-auto">
+    <main class="mb-auto">
         <div class="container d-flex flex-column align-items-center mb-5">
-            <h2 class="text-center fs-1 my-5">Recherchez une commande</h2>
+            <h1 class="text-center fs-1 my-5 fw-normal">Recherchez une commande</h1>
             <div class="nav_container mt-4 px-2">
                 <ul class="d-flex justify-content-center align-items-center">
                     <li class="d-flex align-items-center justify-content-center"><a
@@ -40,9 +51,10 @@
                             class="btn btn-info mt-5 btn-rounded px-5 btn-scale-press">Rechercher</button>
                     </div>
                 </form>
-                <hr class="w-25 text-primary my-5 m-auto">    
+                <hr class="w-25 text-primary my-5 m-auto">
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('admin.order.show.all') }}" class="btn btn-info btn-rounded px-5 btn-scale-press">Afficher toutes les commandes</a>
+                    <a href="{{ route('admin.order.show.all') }}"
+                        class="btn btn-info btn-rounded px-5 btn-scale-press">Afficher toutes les commandes</a>
                 </div>
             </div>
 

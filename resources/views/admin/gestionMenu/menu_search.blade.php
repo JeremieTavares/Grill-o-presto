@@ -1,6 +1,5 @@
 @extends('admin.template.base')
 @section('banner-title', 'Administrateur- Recherche menu')
-
 @section('title', 'Menu rechercher')
 @section('content')
 
@@ -12,19 +11,19 @@
     @endif
     <main class="admin_search_menu d-flex flex-column align-items-center justify-content-center m-auto p-2">
 
-        <h1 class="mt-5">Ajouter un menu</h1>
+        <h1 class="text-center fs-1 my-5 fw-normal">Ajouter un menu</h1>
         <a class="btn btn-success btn-scale-press btn-rounded px-4 mt-3" href="{{ route('admin.menu') }}">Ajouter un menu</a>
 
-        <div class="d-flex w-50 m-auto my-5 align-items-center">
-            <hr class="col-5"><span class="col-2 text-center pb-1">Ou</span>
-            <hr class="col-5">
+        <div class="d-flex w-25 m-auto my-5 align-items-center">
+            <hr class="col-4"><span class="col-4 text-center pb-1">Ou</span>
+            <hr class="col-4">
         </div>
         @if (Session::has('success'))
             <p class="alert alert-success">{{ Session::get('success') }}</p>
         @elseif(Session::has('error'))
             <p class="alert alert-danger">{{ Session::get('error') }}</p>
         @endif
-        <h1>Rechercher un menu</h1>
+        <h1 class="text-center fs-1 my-5 fw-normal">Rechercher un menu</h1>
         <form class=" w-100 d-flex flex-column" action="{{ route('admin.menu.search') }}" method="POST">
             @csrf
             <div>
