@@ -36,7 +36,10 @@ class GestionOrderController extends Controller
 
     public function showOrderForSpecificUser(Request $request)
     {
-        if (!(empty($request->order_number)))
+
+        if (!(empty($request->email)) && !(empty($request->tel)))
+            $order = Order::with('order_status')->where([['email', $request->email], ['telephone', $request->tel]])->orderBy('created_at', 'desc')->paginate(8);
+        elseif (!(empty($request->order_number)))
             $order = Order::with('order_status')->where('order_number', $request->order_number)->orderBy('created_at', 'desc')->paginate(8);
         elseif (!(empty($request->tel)))
             $order = Order::with('order_status')->where('telephone', $request->tel)->orderBy('created_at', 'desc')->paginate(8);
@@ -104,8 +107,8 @@ class GestionOrderController extends Controller
 
         $meals = HistoryMeal::with('allergens')->whereIn('id', explode(",", str_replace(['[', ']'], '', $order->meals)))->get();
 
-        foreach($meals as $meal){
-            $meal->ingredients = (explode(",", str_replace(['[', ']', '"','"'], '', $meal->ingredients)));      
+        foreach ($meals as $meal) {
+            $meal->ingredients = (explode(",", str_replace(['[', ']', '"', '"'], '', $meal->ingredients)));
         }
 
         return view('admin.gestionOrder.order-unique-show', ['meals' => $meals, 'order' => $order]);
