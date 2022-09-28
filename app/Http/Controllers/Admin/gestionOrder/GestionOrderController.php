@@ -23,7 +23,7 @@ class GestionOrderController extends Controller
 
     public function showAllOrders()
     {
-        $orders = Order::with('order_status')->whereRelation('order_status', 'status', '=', 'En attente')->paginate(8);
+        $orders = Order::with('order_status')->whereRelation('order_status', 'status', '=', 'En attente')->orderBy('created_at', "desc")->paginate(8);
         $orderStatus = OrderStatus::where('id', '>', '0')->get();
         return view('admin.gestionOrder.order-index', ['ordersArray' => $orders, 'orderStatus' => $orderStatus]);
     }

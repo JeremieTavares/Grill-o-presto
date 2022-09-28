@@ -28,7 +28,7 @@ class TicketController extends Controller
     {
         $authUserId = (object) User::GetLoggedUserInfo()->get('id');
 
-        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId[0]->id)->paginate(8);
+        $allTicketsForLoggedUser = (object) Ticket::GetAllTicketInfosAndRelations($authUserId[0]->id)->orderBy('created_at', "desc")->paginate(8);
 
         $ticketArray = [];
 

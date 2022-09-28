@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         $authUserId = (object) User::GetLoggedUserInfo()->get('id');
 
-        $allOrdersForLoggedUser = (object) Order::with('portion')->where('user_id', $authUserId[0]->id)->get();
+        $allOrdersForLoggedUser = (object) Order::with('portion')->where('user_id', $authUserId[0]->id)->orderBy('created_at', "desc")->get();
 
         return (object) view('user.user-orders', ['ordersArray' => $allOrdersForLoggedUser]);
     }
