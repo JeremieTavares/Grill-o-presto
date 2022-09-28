@@ -22,7 +22,7 @@
             <section class="mealSection fs-5">
                 @foreach ($meals as $meal)
                     <div class="my-5 p-4 bg-light rounded-5">
-                        <img class="w-100 rounded-5 mb-5" src="{{ asset('storage/' . $meal->image_path) }}" alt="image">
+                        <img class="w-100 rounded-5 mb-5 meal_card_order" src="{{ asset('storage/' . $meal->image_path) }}" alt="image">
                         <span class="fw-bold">Type : </span>
                         @if ($meal->vegetarian || $meal->gluten_free)
                             @if ($meal->vegetarian)
