@@ -73,9 +73,9 @@
                     </div>
                     <div class="d-flex flex-column bg-ultra-light rounded-4 pt-5 pb-4 px-4 mb-4 h-100">
                         <div class="d-flex flex-column align-items-start text-center">
-                            <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
+                            <p class="max-w-80 p-2 mb-0 rounded-5 msg user-bubble">
                                 {{ $ticket[0]->description }}</p>
-                            <div>
+                            <div class="mb-3">
                                 <span class="span-date-msg">{{ $ticket[0]->created_at }}</span>
                                 <span class="span-date-msg">-</span>
                                 <span class="span-date-msg">{{ $ticket[0]->user->infoUser->prenom }}</span>
@@ -124,9 +124,9 @@
                     </div>
                     <div class="d-flex flex-column bg-ultra-light rounded-4 pt-5 pb-4 px-4 mb-4 h-100">
                         <div class="d-flex flex-column align-items-start text-center">
-                            <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
+                            <p class="max-w-80 p-2 mb-0 rounded-5 msg user-bubble">
                                 {{ $ticketMessages[0]->ticket->description }}</p>
-                            <div>
+                            <div class="mb-3">
                                 <span class="span-date-msg">{{ $ticketMessages[0]->ticket->created_at }}</span>
                                 <span class="span-date-msg">-</span>
                                 <span class="span-date-msg">{{ $ticket[0]->user->infoUser->prenom }}</span>
@@ -139,9 +139,9 @@
                         @foreach ($ticketMessages as $response)
                             @if ($response->user_id == $response->ticket->user_id)
                                 <div class="d-flex flex-column align-items-start text-center">
-                                    <p class="max-w-80 p-2 mb-2 rounded-5 msg user-bubble">
+                                    <p class="max-w-80 p-2 mb-0 rounded-5 msg user-bubble">
                                         {{ $response->response }}</p>
-                                    <div>
+                                    <div class="mb-3">
                                         <span class="span-date-msg">{{ $response->created_at }}</span>
                                         <span class="span-date-msg">-</span>
                                         <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
@@ -151,7 +151,7 @@
                                 <div class="d-flex justify-content-start flex-column align-items-end text-center">
                                     <p class="max-w-80 p-2 p-comments rounded-5 msg admin-bubble">
                                         {{ $response->response }}</p>
-                                    <div>
+                                    <div class="mb-3">
                                         <span class="span-date-msg">{{ $response->created_at }}</span>
                                         <span class="span-date-msg">-</span>
                                         <span class="span-date-msg">{{ $response->user->infoUser->prenom }}</span>
