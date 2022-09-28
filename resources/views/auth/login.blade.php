@@ -56,9 +56,9 @@
                 </div>
             </form>
 
-            <div class="d-flex w-75 m-auto mt-4 align-items-center">
-                <hr class="col-3"><span class="col-6 text-center pb-1">Où se connecter</span>
-                <hr class="col-3">
+            <div class="d-flex w-50 m-auto mt-5 justify-content-center">
+                <hr class="col-2"><span class="col-sm-8 col-md-3 text-center pb-1">Me connecter</span>
+                <hr class="col-2">
             </div>
 
             <div class="logo d-flex justify-content-center mt-4 gap-3">
