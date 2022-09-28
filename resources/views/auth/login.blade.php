@@ -50,7 +50,7 @@
                 @endif
 
                 <div class="d-flex justify-content-sm-center justify-content-md-start">
-                    <button type="submit" class="btn btn-primary w-50 mt-4 px-5 btn-rounded" id="btn-login">
+                    <button type="submit" class="btn btn-primary w-50 mt-4 px-5 btn-rounded btn-scale-press" id="btn-login">
                         {{ __('Se connecter') }}
                     </button>
                 </div>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="text-center mt-5">
-                <p>Pas de compte ? <a href="{{ route('register') }}" class="link-primary">M'enregistrer</a></p>
+                <p>Pas de compte ? <a href="{{ route('register') }}" class="link-primary text-decoration-none">M'enregistrer</a></p>
             </div>
         </div>
     </main>

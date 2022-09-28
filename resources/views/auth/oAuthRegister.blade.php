@@ -140,7 +140,7 @@
 
                 <div>
                     <button type="submit" class="btn btn-primary mt-5 mb-5"
-                        id="submit_oAuth_register px-5 btn-rounded">S'enregistrer</button>
+                        id="submit_oAuth_register px-5 btn-rounded btn-scale-press">S'enregistrer</button>
                 </div>
             </div>
         </form>

@@ -5,7 +5,7 @@
     <main class="faq">
 
         <div class="container">
-            <div class="container d-flex justify-content-center p-4 ">
+            <div class="container d-flex justify-content-center p-4 my-4">
                 <h2>Foire aux questions</h2>
             </div>
 
