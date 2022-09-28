@@ -43,7 +43,7 @@
             @endif
 
             @if (isset($ordersArray[0]))
-                <div class="mx-3">
+                <div class="mx-3 mt-5">
                     <table class="table table-hover table-striped table-tickets">
                         <thead class="ccc br-10px">
                             <tr>
