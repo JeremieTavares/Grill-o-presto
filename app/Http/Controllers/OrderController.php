@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\HistoryMeal;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -22,19 +23,6 @@ class OrderController extends Controller
 
         $allOrdersForLoggedUser = (object) Order::with('portion')->where('user_id', $authUserId[0]->id)->get();
 
-        // $orderArray = [];
-
-        // if (isset($allOrdersForLoggedUser[0])) {
-        //     for ($i = 0; $i < count($allOrdersForLoggedUser); $i++) {
-        //         $allOrdersForLoggedUser[$i]['date'] = (string) date('d-m-Y', strtotime($allOrdersForLoggedUser[$i]->created_at));
-
-        //         $mealsArray = json_decode($allOrdersForLoggedUser[$i]->meals, true);
-        //         $mealsObject =  Meal::createMealFromJson($mealsArray);
-        //         $allOrdersForLoggedUser[$i]->meals = $mealsObject;
-
-        //         array_push($orderArray,  $allOrdersForLoggedUser[$i]);
-        //     }
-        // }
         return (object) view('user.user-orders', ['ordersArray' => $allOrdersForLoggedUser]);
     }
 
@@ -65,10 +53,27 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
+
+    // $orderArray = [];
+
+    // for ($i = 0; $i < count($meals); $i++) {
+    //     $meals[$i]['date'] = (string) date('d-m-Y', strtotime($meals[$i]->created_at));
+
+    //     $mealsObject =  Meal::createMealFromJson($meals[$i]);
+    //     $meals[$i]->meals = $mealsObject;
+
+    //     array_push($orderArray,  $meals[$i]);
+    // }
     public function show(Order $order)
     {
-        // JE VAIS FAIRE CETTE VIEW LORSQUE ALL0o AURA FINI DE MERGE
-        return view('user.user-orders-show');
+
+        $meals = HistoryMeal::with('allergens')->whereIn('id', explode(",", str_replace(['[', ']'], '', $order->meals)))->get();
+
+        foreach($meals as $meal){
+            $meal->ingredients = (explode(",", str_replace(['[', ']', '"','"'], '', $meal->ingredients)));      
+        }
+
+        return view('user.user-orders-show', ['meals' => $meals, 'order' => $order]);
     }
 
     /**

@@ -15,7 +15,7 @@
         @break
     @endswitch
     <div class="text-center my-3">
-        <a href="{{ route('admin.order.index') }}" class="text-decoration-none"><i
+        <a href="{{ redirect()->getUrlGenerator()->previous() }}" class="text-decoration-none"><i
                 class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
     </div>
     <main class=" m-auto">

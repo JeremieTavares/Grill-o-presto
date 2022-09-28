@@ -18,6 +18,10 @@
 
     <main class="mb-auto">
         <h1 class="text-center fs-1 my-5 fw-normal">Commande à confirmer</h1>
+        <div class="text-center my-3">
+            <a href="{{ route('admin.order.index') }}" class="text-decoration-none"><i
+                    class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+        </div>
         @if (Auth::check())
             <?php $user = Auth::user()->id;
             ?>
@@ -73,12 +77,13 @@
                                         <td class="border-0 p-2 p-md-3 align-middle">
                                             <select name="status[]" id="" class="form-select tr_commande_select">
                                                 @foreach ($orderStatus as $status)
-                                                <option value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
+                                                    <option value="{{ $order->id }}-{{ $status->status }}">
+                                                        {{ $status->status }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td class="text-center border-0 p-2 p-md-3 align-middle"><a
-                                                href="{{ route('user.orders.show', $order->id) }}"><i
+                                                href="{{ route('admin.order.show', $order->id) }}"><i
                                                     class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                                     </tr>
                                 @endforeach

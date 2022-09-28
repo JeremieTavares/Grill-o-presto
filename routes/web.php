@@ -5,6 +5,7 @@ use Auth\LoginController;
 use App\Http\Middleware\Admin1;
 use App\Http\Middleware\Admin2;
 use App\Http\Middleware\Admin3;
+use App\Http\Middleware\Client;
 use App\Http\Controllers\MenuAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,34 +62,34 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT INFORMATIONS
-Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.edit.info');
-Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.update.info');
-Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.account.destroy');
+Route::get('user/account/informations/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.edit.info');
+Route::patch('user/account/informations/update/{id}', [UserController::class, 'update'])->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.update.info');
+Route::delete('user/account/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.account.destroy');
 // ==========================================================================================================================================================
 
 
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT ORDERS
-Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.orders.index');
-Route::get('user/account/orders/show/{id}', [OrderController::class, 'show'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.orders.show');
+Route::get('user/account/orders/index/{id}', [OrderController::class, 'index'])->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.orders.index');
+Route::get('user/account/orders/show/{order}', [OrderController::class, 'show'])->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.orders.show');
 // ==========================================================================================================================================================
 
 
 // ==========================================================================================================================================================
 // TICKETS / USER ACCOUNT TICKETS
-Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->middleware(['auth', 'validate-user-infos'])->name('user.tickets.index');
+Route::get('user/account/tickets/{id?}', [TicketController::class, 'index'])->middleware(['auth', 'client', 'validate-user-infos'])->name('user.tickets.index');
 Route::get('user/tickets/create/{id?}', [TicketController::class, 'create'])->name('user.tickets.create');
 Route::post('user/tickets/store/{id?}', [TicketController::class, 'store'])->middleware('prevent-back-history')->name('user.tickets.store');
-Route::get('user/account/tickets/show/{id?}', [TicketController::class, 'show'])->middleware(['auth', 'validate-user-infos',])->name('user.tickets.show');
-Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.patch');
+Route::get('user/account/tickets/show/{id?}', [TicketController::class, 'show'])->middleware(['auth', 'client', 'validate-user-infos',])->name('user.tickets.show');
+Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'update'])->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.patch');
 // ==========================================================================================================================================================
 
 
 
 // ==========================================================================================================================================================
 // MESSAGES / SINGLE ACTION CONTROLLER (INVOKE)
-Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.message.submit');
+Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.message.submit');
 // ==========================================================================================================================================================
 
 
@@ -129,28 +130,28 @@ Route::post('/getAuthUserCreditCard', [CreditcardController::class, 'getCreditCa
 
 Route::prefix('admin/')->name('admin.')->group(function () {
 
-    Route::resource('client', GestionClientController::class)->middleware('Admin3');
-    Route::resource('admin', GestionAdminController::class)->middleware('Admin3');
+    Route::resource('client', GestionClientController::class)->middleware('admin3');
+    Route::resource('admin', GestionAdminController::class)->middleware('admin3');
 
 
-    Route::get('repas/afficher/tout/{type?}', [RepasAdminController::class, 'showAll'])->middleware('Admin2')->name('repas.showAll');
-    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->middleware('Admin2')->name('repas.show');
-    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->middleware('Admin2')->name('repas.show.get');
+    Route::get('repas/afficher/tout/{type?}', [RepasAdminController::class, 'showAll'])->middleware('admin2')->name('repas.showAll');
+    Route::post('repas/afficher', [RepasAdminController::class, 'show'])->middleware('admin2')->name('repas.show');
+    Route::get('repas/afficher/{id}', [RepasAdminController::class, 'showGet'])->middleware('admin2')->name('repas.show.get');
 
-    Route::resource('repas', RepasAdminController::class)->except('show')->middleware('Admin2');
-    
-    Route::resource('faq', GestionFaqController::class)->middleware('Admin2');
+    Route::resource('repas', RepasAdminController::class)->except('show')->middleware('admin2');
 
-    Route::resource('ticket', GestionTicketController::class)->middleware('Admin1');
+    Route::resource('faq', GestionFaqController::class)->middleware('admin2');
 
-    Route::get('order/search', [GestionOrderController::class, "showOrderForSpecificUser"])->middleware('Admin1')->name('order.search');
-    Route::get('order/client/{id}', [GestionOrderController::class, "showUserForSpecificOrder"])->middleware('Admin1')->name('order.client.show');
-    Route::get('order/all', [GestionOrderController::class, "showAllOrders"])->middleware('Admin1')->name('order.show.all');
-    Route::resource('order', GestionOrderController::class)->middleware('Admin1');
+    Route::resource('ticket', GestionTicketController::class)->middleware('admin1');
+
+    Route::get('order/search', [GestionOrderController::class, "showOrderForSpecificUser"])->middleware('admin1')->name('order.search');
+    Route::get('order/client/{id}', [GestionOrderController::class, "showUserForSpecificOrder"])->middleware('admin1')->name('order.client.show');
+    Route::get('order/all', [GestionOrderController::class, "showAllOrders"])->middleware('admin1')->name('order.show.all');
+    Route::resource('order', GestionOrderController::class)->middleware('admin1');
 
 
 
-    Route::controller(MenuAdminController::class)->middleware('Admin2')->group(function(){
+    Route::controller(MenuAdminController::class)->middleware('admin2')->group(function () {
         Route::get('/menu/ajouter', 'create')->name('menu');
         Route::post('/menu/ajouter', 'store')->name('menu.store');
         Route::get('/menu/rechercher', 'research')->name('menu.research');
@@ -159,13 +160,12 @@ Route::prefix('admin/')->name('admin.')->group(function () {
         Route::put('/menu/edit/{id}', 'update')->name('menu.update');
         Route::delete('/menu/supprimer/{id}', 'destroy')->name('menu.destroy');
     });
-    
 });
 
-Route::get('ajoutImage', function() {
+Route::get('ajout/image', function () {
     return view('admin.imageAjout');
 });
 
 
-Route::post('ajoutImage', [ImageController::class, 'store'])->middleware('Admin3')->name('ajoutImage.store');
+Route::post('ajoutImage', [ImageController::class, 'store'])->middleware('admin3')->name('ajoutImage.store');
 // ==========================================================================================================================================================

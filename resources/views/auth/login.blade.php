@@ -22,7 +22,7 @@
                             class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required
                             autocomplete="email" autofocus>
                         @error('email')
-                            <span class="d-block invalid-feedback" role="alert">
+                            <span class="d-block invalid-feedback fs-6" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror

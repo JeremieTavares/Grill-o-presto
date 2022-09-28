@@ -13,28 +13,28 @@
 
         <div class="mw-1000px">
             @if (Session::has('successResponse'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                <div class="alert alert-success  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('successResponse') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
                 </div>
             @elseif (Session::has('noPermission'))
-                <div class="alert alert-danger  d-flex justify-content-between align-items-center"
+                <div class="alert alert-danger  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('noPermission') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
             @elseif (Session::has('ticketClosed'))
-                <div class="alert alert-danger  d-flex justify-content-between align-items-center"
+                <div class="alert alert-danger  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('ticketClosed') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
                         id="btnAlertSucccessInfoChanged"><span class="text-danger">X</span></button>
                 </div>
             @elseif (Session::has('paymentSuccess'))
-                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                <div class="alert alert-success  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
                     {{ Session::get('paymentSuccess') }}
                     <button type="button" class="close btn btn-link text-decoration-none"
@@ -68,7 +68,7 @@
                                             href="{{ route('user.tickets.create', $order->order_number) }}"><i
                                                 class="fa-solid fa-circle-exclamation"></i></a></td>
                                     <td class="text-center border-0 p-2 p-md-3"><a
-                                            href="{{ route('user.orders.show', $order->id) }}"><i
+                                            href="{{ route('user.orders.show', $order) }}"><i
                                                 class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                                 </tr>
                             @endforeach

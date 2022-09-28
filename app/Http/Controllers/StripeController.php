@@ -44,16 +44,6 @@ class StripeController extends Controller
             // FAIRE UN CUSTOM REQUEST WORKING NOW ITS NOT
             $validatedData = $request->validated();
 
-            // ***KEEPING FOR BACKUP***
-            // Find existing user
-            // $stripeCust =  $stripe->customers->search([
-            //     'query' => 'email:"\beauchampx@outlook.com"',
-            // ]);
-            // $stripUserObject =  $stripe->customers->retrieve(
-            //     $user->stripeToken
-            // );
-
-
 
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             $stripe = new \Stripe\StripeClient(
@@ -166,8 +156,8 @@ class StripeController extends Controller
                 $order->email = $request->email;
                 $order->menu_id = HistoryMeal::where('id', session('cart')[0])->first('menu_id')->menu_id;
                 $order->price = 100;
-                $order->order_number = $transaction->id;
-                $order->order_status_id = OrderStatus::where('status', 'Completé')->first('id')->id;
+                $order->order_number = strtoupper(substr($transaction->id, 3));
+                $order->order_status_id = OrderStatus::where('status', 'En attente')->first('id')->id;
                 $order->portion_id = $request->portion;
                 $order->meals = json_encode(session('cart'));
 

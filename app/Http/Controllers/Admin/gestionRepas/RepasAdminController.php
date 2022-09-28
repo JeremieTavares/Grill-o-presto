@@ -63,16 +63,6 @@ class RepasAdminController extends Controller
 
         $request->validated();
 
-        // $ingredientTable = [];
-
-        // foreach ($request->all() as $key => $value) {
-        //     if (explode('-', $key)[0] == 'ingredient') {
-        //         if($value) {
-        //             array_push($ingredientTable, $value);
-        //         } 
-        //     }
-        // }
-
         $allergens = [];
         foreach ($request->all() as $key => $value) {
             if (explode('-', $key)[0] == 'allergen') {

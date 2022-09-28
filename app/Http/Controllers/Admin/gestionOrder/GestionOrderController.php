@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\gestionOrder;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\HistoryMeal;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -95,5 +96,18 @@ class GestionOrderController extends Controller
             return back()->with('errorUpdate', "Un erreur s'est produite lors du changement");
         }
         return back()->with('successResponse', "Les commandes sont complétées");
+    }
+
+
+    public function show(Order $order)
+    {
+
+        $meals = HistoryMeal::with('allergens')->whereIn('id', explode(",", str_replace(['[', ']'], '', $order->meals)))->get();
+
+        foreach($meals as $meal){
+            $meal->ingredients = (explode(",", str_replace(['[', ']', '"','"'], '', $meal->ingredients)));      
+        }
+
+        return view('admin.gestionOrder.order-unique-show', ['meals' => $meals, 'order' => $order]);
     }
 }

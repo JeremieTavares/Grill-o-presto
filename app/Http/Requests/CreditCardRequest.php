@@ -31,7 +31,7 @@ class CreditCardRequest extends FormRequest
             'cvc' => ['required', 'regex:/^\d{3,4}$/'],
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
-            'appartement' => ['integer', 'gte:0'],
+            'appartement' => ['integer', 'nullable', 'gte:0'],
             'tel' => ['required', 'regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/'],
             'street' => ['required','regex:/^[A-zÀ-ú -]{2,50}$/', 'string'],
             'door' => ['required', 'integer'],

@@ -1,14 +1,24 @@
 @extends('public.template.base')
 @section('banner-title', 'Mon profil - Ma commande')
 @section('content')
+@switch(Auth::user()->role->role)
+        @case('Admin_1')
+            @include('admin.template.sub-navbar-admin-1')
+        @break
 
-    @include('user.template.sub-navbar')
+        @case('Admin_2')
+            @include('admin.template.sub-navbar-admin-2')
+        @break
 
+        @case('Admin_3')
+            @include('admin.template.sub-navbar-admin-3')
+        @break
+    @endswitch
     <main class="m-auto">
         <div class="mw-1000px px-3 m-auto">
             <section class="topSection">
                 <div class="text-center my-3">
-                    <a href="{{ route('user.orders.index', Auth::user()->id) }}" class="text-decoration-none"><i
+                    <a href="{{ redirect()->getUrlGenerator()->previous() }}" class="text-decoration-none"><i
                             class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
                 </div>
                 <div>

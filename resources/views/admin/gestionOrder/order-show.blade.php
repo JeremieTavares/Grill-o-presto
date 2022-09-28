@@ -94,7 +94,7 @@
                                             </select>
                                         </td>
                                         <td class="text-center border-0 p-2 p-md-3 align-middle"><a
-                                                href="{{ route('user.orders.show', $order->id) }}"><i
+                                                href="{{ route('admin.order.show', $order->id) }}"><i
                                                     class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
                                     </tr>
                                 @endforeach

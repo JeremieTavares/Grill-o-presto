@@ -34,7 +34,8 @@ h1 {
     font-weight: 700;
 }
 
-#btn-login, #submit_oAuth_register{
+#btn-login,
+#submit_oAuth_register {
     max-width: 15rem !important;
 }
 
@@ -47,10 +48,10 @@ h1 {
 }
 
 @mixin border-radius($arrondissement) {
-	-moz-border-radius: $arrondissement;
-	-webkit-border-radius: $arrondissement;
-	-ms-border-radius: $arrondissement;
-	border-radius: arrondissement;
+    -moz-border-radius: $arrondissement;
+    -webkit-border-radius: $arrondissement;
+    -ms-border-radius: $arrondissement;
+    border-radius: arrondissement;
 }
 
 h2 {
@@ -61,7 +62,7 @@ h2 {
     font-size: 16px;
 }
 
-.h2_oauth_register{
+.h2_oauth_register {
     font-size: 16px;
 }
 
@@ -112,7 +113,7 @@ footer {
         font-family: 'Inter', sans-serif;
         font-size: 2.5rem;
     }
-    
+
     h3 {
         font-family: 'Inter', sans-serif;
         font-size: 2rem;
@@ -122,7 +123,7 @@ footer {
         width: 75%;
     }
 
-    .h2_oauth_register{
+    .h2_oauth_register {
         font-size: 2rem;
     }
 }
@@ -136,6 +137,7 @@ footer {
 .br-tl-10px {
     border-radius: 10px 0 0 0;
 }
+
 .br-tr-10px {
     border-radius: 0 10px 0 0;
 }
@@ -143,4 +145,3 @@ footer {
 .minw-235px {
     min-width: 236px;
 }
-

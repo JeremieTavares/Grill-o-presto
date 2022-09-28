@@ -22,7 +22,6 @@ class MenuAdminController extends Controller
     public function store(Request $request)
     {
 
-
         if (!Menu::where('start_date', $request['start_date'])->with('menu_type')->whereRelation('menu_type', ['type' => $request['menu_type']])->exists()) {
             $menu = new Menu();
 

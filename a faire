@@ -4,3 +4,7 @@ ajouter le on input is-valid/invalide js
 map js calculateur de distance
 notification lors de msg
 show historique de commande (les repas, la view ou cest marque a faire jeremie) (admin et client)
+
+
+lorsquon ajoute un plat au panier, rajouter un go back to menu , sinn on doit faire 2x go back
+lorsquon ajoute un ingrediants ca supprime tt ceux deja mit
