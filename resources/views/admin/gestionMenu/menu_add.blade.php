@@ -11,7 +11,11 @@
     @endif
     <main class="mw-750px menu_add_admin d-flex flex-column align-items-center m-auto">
 
-        <h1>Ajouter un menu</h1>
+        <h1 class="mb-5">Ajouter un menu</h1>
+        <div class="text-center my-3">
+            <a href="{{ route('admin.menu.search') }}" class="text-decoration-none"><i
+                    class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+        </div>
         @if (Session::has('success'))
             <div class="alert alert-success">{{ Session::get('success') }}</div>
         @elseif(Session::has('menuAlreadyExists'))
@@ -21,7 +25,7 @@
             @csrf
             <div>
                 <label for="start_date" class="form-label">Choisir la date</label>
-                <select name="start_date" id="start_date" class="custom-select form-control">
+                <select name="start_date" id="start_date" class="form-select btn-rounded p-3">
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ date('Y-m-d', strtotime('next Monday + ' . 7 * $i . ' days')) }}">
                             {{ date('Y-m-d', strtotime('next Monday + ' . 7 * $i . ' days')) }}</option>
@@ -30,7 +34,7 @@
             </div>
             <div>
                 <label for="menu_type" class="form-label">Type de menu</label>
-                <select name="menu_type" id="menu_type" class="custom-select form-control">
+                <select name="menu_type" id="menu_type" class="form-select btn-rounded p-3">
                     @foreach ($menuType as $type)
                         <option value="{{ $type->type }}">{{ $type->type }}</option>
                     @endforeach
@@ -38,7 +42,7 @@
             </div>
             <div>
                 <label for="meals" class="form-label">Repas</label>
-                <select name="meals" id="meals" class="custom-select form-control">
+                <select name="meals" id="meals" class="form-select btn-rounded p-3">
                     <option value="null">Repas</option>
                     @foreach ($meals as $meal)
                         <option
@@ -68,7 +72,7 @@
                 </div>
             </div>
             <div class="d-flex m-auto">
-                <input class="btn btn-success btn-rounded px-5" type="submit" value="Ajouter le menu">
+                <input class="btn btn-success btn-rounded px-5 btn-scale-press" type="submit" value="Ajouter le menu">
             </div>
         </form>
 

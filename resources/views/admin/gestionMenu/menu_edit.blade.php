@@ -9,9 +9,13 @@
 @if (Auth::user()->role->role === "Admin_3")
 @include('admin.template.sub-navbar-admin-3')
 @endif
-    <main class="menu_edit_admin m-auto">
+    <main class="menu_edit_admin m-auto px-4 mt-5">
 
         <h1>Modification du menu</h1>
+        <div class="text-center my-3">
+            <a href="{{ route('admin.menu.search') }}" class="text-decoration-none"><i
+                    class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+        </div>
         @if (Session::has('success'))
             <p class="alert alert-success">{{ Session::get('success') }}</p>
         @elseif(Session::has('error'))
@@ -23,10 +27,10 @@
             class="d-flex flex-column align-items-center">
             @method('put')
             @csrf
-            @if (date($menu->start_date) > date('Y-m-d', strtotime('last Monday + 7 days')))
-                <div>
+            
+                <div class="w-100">
                     <label for="meals">Repas</label>
-                    <select name="meals" id="meals" class="custom-select">
+                    <select name="meals" id="meals" class="form-select btn-rounded p-3">
                         <option value="null">Repas</option>
                         @if (isset($meals))
                             @foreach ($meals as $meal)
@@ -35,10 +39,10 @@
                         @endif
                     </select>
                 </div>
-            @else
-                <p class="alert alert-danger">Ce menu est en cours ou est déjà passé, vous ne pouvez donc pas le changer.
+           
+                <p class="alert alert-danger text-center">ATTENTION <br>Ce menu est en cours ou est déjà passé.
                 </p>
-            @endif
+        
 
             <div class="checkBox_container mb-5">
                 @foreach ($meals as $meal)
@@ -69,25 +73,21 @@
                     @foreach ($mealId as $name => $id)
                         <div id="meal-{{ $id }}" class="adminMealDiv meal-{{ $id }}">
                             <p class="m-0">{{ $name }}</p>
-                            @if (date($menu->start_date) > date('Y-m-d', strtotime('last Monday + 7 days')))
+                            
                                 <button type="button"><i class="fa-sharp fa-solid fa-circle-xmark"></i></button>
-                            @endif
+                         
                         </div>
                     @endforeach
                 </div>
             </div>
-            @if (date($menu->start_date) > date('Y-m-d', strtotime('last Monday + 7 days')))
-                <input class="btn btn-warning m-auto mt-3" type="submit" value="Modifier le menu">
-            @endif
+            
+                <input class="btn btn-warning m-auto mt-3 btn-scale-press btn-rounded px-4 minw-235px mt-5" type="submit" value="Modifier le menu">  
         </form>
-        <hr />
         <form method="POST" action="{{ route('admin.menu.destroy', ['id' => $menu->id]) }}"
             class="d-flex justify-content-center">
             @method('delete')
-            @csrf
-            @if (date($menu->start_date) > date('Y-m-d', strtotime('last Monday + 7 days')))
-                <input class="btn btn-danger" type="submit" value="Supprimer le menu">
-            @endif
+            @csrf         
+                <input class="btn btn-primary btn-scale-press btn-rounded px-4 minw-235px mt-5" type="submit" value="Supprimer le menu">   
         </form>
     </main>
 @endsection

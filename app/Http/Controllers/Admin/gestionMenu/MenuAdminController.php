@@ -113,7 +113,7 @@ class MenuAdminController extends Controller
 
     public function edit($id) {
         $menu = Menu::with('history_meals')->with('menu_type')->find($id);
-        
+
         $menuMealName = [];
         foreach ($menu->history_meals as $value) {
             array_push($menuMealName, $value->name);
@@ -128,13 +128,11 @@ class MenuAdminController extends Controller
         else if($menu->menu_type->type == 'Végétarien') {
             $meals = Meal::where('vegetarian', true)->get();
         }
-        else if($menu->menu_type->type == 'Sans gluten') {
+        else if($menu->menu_type->type == 'Sans Gluten') {
             $meals = Meal::where('gluten_free', true)->get();
         }
-        
+
         return view('admin.gestionMenu.menu_edit', ['menu' => $menu, 'meals' => $meals, 'mealId' => $mealId]);
-
-
     }
 
     public function destroy($id) {

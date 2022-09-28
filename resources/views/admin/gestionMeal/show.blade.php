@@ -34,7 +34,7 @@
             @else
                 <p>Classique</p>
             @endif
-            
+            <p><span class="fw-bold">Description :</span>{{ $meal->description  }}</p>
             
             <p><span class="fw-bold">Ingrédients :</span> </p>
             <ul>
@@ -42,25 +42,31 @@
                     <li>{{ $ingredient }}</li>
                 @endforeach
             </ul>
-            <p class="fw-bold">Allergens :</p>
-            <ul class="allergenContainer">
+            <p class="fw-bold mb-1">Allergènes :</p>
+            <div class="d-flex flex-column gap-3 mb-4">
                 @foreach ($meal->allergens as $allergen)
-                    <li class="allergenItem">
-                        @if ($allergen->name == 'Noix')
-                            <i class="fa-duotone fa-peanuts"></i>
-                        @endif
-                        @if ($allergen->name == 'Lait')
-                            <i class="fa-solid fa-cow"></i>
-                        @endif
-                        @if ($allergen->name == 'Oeuf')
-                            <i class="fa-solid fa-egg"></i>
-                        @endif
-                        @if ($allergen->name == 'Crustacés')
-                            <i class="fa-solid fa-shrimp"></i>
-                        @endif
-                    </li>
+                    @if ($allergen->name == 'Noix')
+                        <div>
+                            <img src="{{ asset('image/peanuts.png') }}" alt="peanut-allergy" class="fa-peanuts-custom"></i><span> Arachides et noix</span>
+                        </div>
+                    @endif
+                    @if ($allergen->name == 'Lait')
+                        <div>
+                            <i class="fa-solid fa-cow"></i><span> Produits Laitiers</span>
+                        </div>
+                    @endif
+                    @if ($allergen->name == 'Oeuf')
+                        <div>
+                            <i class="fa-solid fa-egg"></i><span> Œufs</span>
+                        </div>
+                    @endif
+                    @if ($allergen->name == 'Crustacés')
+                        <div>
+                            <i class="fa-solid fa-shrimp"></i><span> Crustacés</span>
+                        </div>
+                    @endif
                 @endforeach
-            </ul>
+            </div>
            <form method="POST" action="{{route('admin.repas.destroy', ['repa' => $meal->id])}}">
                 @csrf
                 @method('delete')

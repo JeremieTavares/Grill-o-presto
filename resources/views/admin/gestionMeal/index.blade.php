@@ -21,7 +21,7 @@
                     @csrf
                     <div>
                         <label for="meal" class="form-label">Rechercher un repas</label>
-                        <select class="form-select" name="meal" id="meal">
+                        <select class="form-select p-3 btn-rounded" name="meal" id="meal">
                             <option value="">Repas</option>
                             @foreach ($meals as $meal)
                                 <option value="{{$meal->id}}">{{$meal->name}}</option>

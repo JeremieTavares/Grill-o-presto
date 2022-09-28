@@ -28,3 +28,13 @@
     padding: 6px 6px 6px 10px!important;
 
 }
+
+.th_repas_all:first-of-type{
+    border-radius: 15px 0 0 0;
+    padding-left: 35px !important;
+}
+
+.th_repas_all:last-of-type{
+    border-radius: 0 15px 0 0;
+    padding: 16px 16px 16px 0px;
+}

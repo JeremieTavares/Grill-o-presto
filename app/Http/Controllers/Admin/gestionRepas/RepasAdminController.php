@@ -18,13 +18,13 @@ class RepasAdminController extends Controller
     public function showAll($type = 'classique') {
         
         if($type == 'classique') {
-            $meals = Meal::all();
+            $meals = Meal::paginate(16);
         }
         elseif($type == 'vegetarien') {
-            $meals = Meal::where('vegetarian', true)->get();
+            $meals = Meal::where('vegetarian', true)->paginate(8);
         }
         elseif($type == 'sans_gluten') {
-            $meals = Meal::where('gluten_free', true)->get();
+            $meals = Meal::where('gluten_free', true)->paginate(8);
         }
 
         return view('admin.gestionMeal.showAll', ['meals' => $meals, 'type' => $type]);
