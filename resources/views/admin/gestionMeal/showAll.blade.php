@@ -1,5 +1,5 @@
 @extends('admin.template.base')
-@section('banner-title', 'Administrateur- Modification des repas')
+@section('banner-title', 'Administrateur - Tous les repas')
 @section('title', 'Afficher tout les repas')
 @section('content')
     @if (Auth::user()->role->role === 'Admin_2')

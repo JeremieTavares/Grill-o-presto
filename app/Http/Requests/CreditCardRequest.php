@@ -31,6 +31,7 @@ class CreditCardRequest extends FormRequest
             'cvc' => ['required', 'regex:/^\d{3,4}$/'],
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
+            'appartement' => ['integer', 'gte:0'],
             'tel' => ['required', 'regex:/^\d{3}[- ]?\d{3}[ -]?\d{4}$/'],
             'street' => ['required','regex:/^[A-zÀ-ú -]{2,50}$/', 'string'],
             'door' => ['required', 'integer'],
@@ -79,6 +80,8 @@ class CreditCardRequest extends FormRequest
             'town.string' => 'Votre ville doit être une chaine de caracteres',
             'town.max' => 'Votre ville doit être d\'une longueur de 255 caractères maximum',
             'town.regex' => 'La ville doit seulement contenir des lettres et -',
+            'appartement.integer' => "L'appartement doit seulement contenir des chiffres",
+            'appartement.gte' => "L'appartement doit etre superieur a 0",
         ];
     }
 }

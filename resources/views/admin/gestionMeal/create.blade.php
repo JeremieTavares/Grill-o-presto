@@ -1,5 +1,5 @@
 @extends('admin.template.base')
-@section('banner-title', 'Administrateur- Modification des repas')
+@section('banner-title', "Administrateur- Création d'un repas")
 @section('title', 'Repas ajouter')
 @section('content')
 @if (Auth::user()->role->role === "Admin_2")
@@ -9,7 +9,7 @@
 @include('admin.template.sub-navbar-admin-3')
 @endif
     <main class="mealAddAdmin mw-750px m-auto">
-        <h1 class="text-center fs-1 my-5">Ajouter un repas</h1>
+        <h1 class="text-center fs-1 my-5 fw-normal">Ajouter un repas</h1>
         <form action="{{route('admin.repas.store')}}" method="POST" class="pb-5" enctype="multipart/form-data">
             @csrf
             <div class="pb-3">

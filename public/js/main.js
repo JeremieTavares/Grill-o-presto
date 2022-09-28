@@ -23,7 +23,7 @@ function closedModalPopup() {
 // **** TO FIX LATER ***
 
 function creditCardAutoComplete() {
-    if (document.title == 'Commander') {
+    if (document.title == 'Panier') {
         const selectCard = document.getElementById('ccUser');
         const clientCardName = document.getElementById('clientCardName');
         const clientCardNumber = document.getElementById('clientCardNumber');

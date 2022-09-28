@@ -1,6 +1,6 @@
 @extends('public.template.base')
 @section('title', 'Panier')
-@section('banner-title', 'Commande')
+@section('banner-title', 'Commande - Mon panier')
 @section('content')
     <main class="cart m-auto">
         @if (Session::has('success'))
@@ -31,7 +31,6 @@
         
         <section class="cart_container">
             @if (session()->exists('cart') && count(session('cart')) > 0)
-            <h1>Mon panier</h1>
                 <h2 class="mb-5">Menu : {{ session('menu') }}</h2>
                 <div class="card_container">
 
@@ -48,26 +47,30 @@
                     @endforeach
                 </div>
             @else
-                <p class="mt-5 mb-5 text-center">Aucun repas n'a été selectionné</p>
+                <p class="mt-5 mb-5 text-center fs-3">Aucun repas n'a été selectionné</p>
             @endif
         </section>
-        <section class="w-100 login_container d-flex flex-column align-items-center">
+        <section class="w-100 login_container d-flex flex-column">
                 @guest
-                    <a class="btn btn-primary mt-5" href="{{ route('login') }}">Se connecter</a>
+                <h1 class="text-center fs-1 my-5 fw-normal">J'ai déjà un compte</h1>
+                    <a class="btn btn-primary mt-5 btn-scale-press btn-rounded w-200px" href="{{ route('login') }}">Se connecter</a>
+                    <div class="d-flex w-25 m-auto my-5 align-items-center">
+                        <hr class="col-4"><span class="col-4 text-center pb-1">Ou</span>
+                        <hr class="col-4">
+                    </div>
                 @endguest
                 
-                <hr class="w-75" />
                 @if (Auth::check())
-                    <h2>Information de commande</h2>
+                    <h1 class="text-start fs-1 my-5 fw-normal">Information de livraison</h1>
                 @else
-                    <h2>Rester invité</h2>
+                    <h1 class="text-center fs-1 mb-4 fw-normal">Guest checkout</h2>
                 @endif
                 
                 <form role="form" action="{{ route('stripe.post') }}" method="post" class="require-validation"
                     data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form">
                     @csrf
-                    <div class="top_div">
-                        <div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <label for="firstName">Prenom</label>
                             <input class="form-control @error('firstName') is-invalid @enderror"
                                 value="{{ (Auth::check() ? Auth::user()->infoUser->prenom : old('firstName')) }}" name="firstName" id="firstName" type="text">
@@ -76,7 +79,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="col-md-6">
                             <label for="lastName">Nom</label>
                             <input class="form-control @error('lastName') is-invalid @enderror"
                                 value="{{ (Auth::check() ? Auth::user()->infoUser->nom : old('lastName')) }}" name="lastName" id="lastName" type="text">
@@ -85,7 +88,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="col-md-6">
                             <label for="street">Rue</label>
                             <input class="form-control @error('street') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->rue : old('street')) }}"
                                 name="street" id="street" type="text">
@@ -94,7 +97,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="col-md-3">
                             <label for="appartement">Appartement</label>
                             <input class="form-control @error('door') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->appartement : old('appartement')) }}"
                                 name="appartement" id="appartement" type="text">
@@ -103,7 +106,7 @@
                             @enderror
                         </div>
 
-                        <div>
+                        <div class="col-md-3">
                             <label for="door">No de porte</label>
                             <input class="form-control @error('door') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->no_porte : old('door')) }}"
                                 name="door" id="door" type="text">
@@ -112,20 +115,21 @@
                             @enderror
                         </div>
 
-                        <div>
-                            <label for="zip">Code postal</label>
-                            <input class="form-control @error('zip') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->code_postal : old('zip')) }}"
-                                name="zip" id="zip" type="text">
-                            @error('zip')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
 
-                        <div>
+                        <div class="col-md-6">
                             <label for="town">Ville</label>
                             <input class="form-control @error('town') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->ville : old('town')) }}"
                                 name="town" id="town" type="text">
                             @error('town')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="zip">Code postal</label>
+                            <input class="form-control @error('zip') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->code_postal : old('zip')) }}"
+                                name="zip" id="zip" type="text">
+                            @error('zip')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -155,7 +159,7 @@
                             
                             <div class="mt-3 mb-5 portion_div">
                                 <label class="form-label" for="portion">Nombre de portions</label>
-                                <select class="form-select p-2" name="portion" id="portion">
+                                <select class="form-select btn-rounded ps-3 p-2" name="portion" id="portion">
                                     @foreach ($portions as $portion)
                                     <option value="{{$portion->id}}">{{$portion->portion}}</option>
                                     @endforeach

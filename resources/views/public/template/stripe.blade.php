@@ -6,14 +6,14 @@
 @csrf
 
 
-<h2 id="h2Paiement">Paiement</h2>
+<h1 id="h2Paiement" class="text-center fs-1 my-3 fw-normal">Paiement</h1>
 
 
-<div class="row">
+<div class="row mb-5">
 
     <div class="col-md-6 col-md-offset w-100">
         @isset($cc[0])
-            <select name="ccUser" id="ccUser" class="form-select">
+            <select name="ccUser" id="ccUser" class="form-select btn-rounded ps-3 my-3">
                 @for ($i = 0; $i < count($cc); $i++)
                     @if ($i == 0)
                         <option selected value="Choose a card">Chosissez une carte</option>
@@ -86,7 +86,7 @@
                     <input type="hidden" name="loggedUserId" value="{{ Auth::user()->id }}">
                 @endif
                 <?php
-                    if (!(Auth::check()) || !(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
+                    if (!(Auth::check()) || ((Auth::check()) && !(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3"))){?>
                 <div class="row mt-5">
                     <div class="col-xs-12 d-flex">
                         <button
