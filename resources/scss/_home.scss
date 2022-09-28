@@ -155,7 +155,7 @@
             width: 100%;
 
             input {
-                height: 2.5rem;
+                height: 3rem;
                 border-radius: 15px;
                 border: none;
                 box-shadow: none;
@@ -170,6 +170,7 @@
 
         img {
             width: 40vw;
+            max-width: 550px;
             position: absolute;
             top: -4rem;
             right: 0rem;
@@ -292,7 +293,7 @@
 
         .ship_range_section {
 
-            padding-left: 20%;
+            padding-left: 15%;
 
             &>div {
                 display: flex;
@@ -383,6 +384,10 @@
         .a_menu_home {
             margin-top: 7rem !important;
         }
+    }
+
+    .ship_range_section {
+        padding-left: 10% !important;
     }
 }
 

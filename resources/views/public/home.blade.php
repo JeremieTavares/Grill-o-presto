@@ -99,15 +99,15 @@
                 </path>
             </svg>
         </section>
-        <section class="ship_range_section d-flex flex-column flex-md-row align-items-center justify-content-center">
+        <section class="ship_range_section d-flex flex-column flex-md-row align-items-center justify-content-center py-md-3">
             <div class="w-100">
                 <h2>Service de livraison sans frais dans un rayon de 50km.</h2>
                 <h3>Êtes-vous admissibles ?</h3>
                 <form class="d-flex flex-column" action="">
-                    <input class="form-control" id="to_places" placeholder="Entrer votre addresse" />
+                    <input class="form-control mw-600px ms-0" id="to_places" placeholder="Entrer votre addresse" />
                     <input id="destination" name="destination" required="" type="hidden" />
                     <button type="submit"
-                        class="btn btn-primary w-100 mt-4 btn-rounded btn-scale-press">Rechercher</button>
+                        class="btn btn-primary w-100 mt-4 ms-0 btn-rounded btn-scale-press mw-300px">Rechercher</button>
                 </form>
             </div>
             <img class="ms-5" src="./image/girl_looking.png" alt="">
