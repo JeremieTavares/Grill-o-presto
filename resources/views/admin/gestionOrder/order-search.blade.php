@@ -60,5 +60,4 @@
 
         </div>
     </main>
-    {{-- @include('admin.gestionClient.template.modal-user-destroy') --}}
 @endsection

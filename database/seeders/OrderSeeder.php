@@ -28,8 +28,8 @@ class OrderSeeder extends Seeder
             'telephone' => '819-444-4444',
             'email' => 'client@hotmail.com',
             'menu_id' => 1,
-            'price' => '160',
-            'order_number' => '3243242',
+            'price' => '140',
+            'order_number' => '3LN4HKLQYEBJABCL0HP7DPBY',
             'order_status_id' => '1',
             'portion_id' => '2',
             // 'meals' => json_encode([
@@ -53,7 +53,7 @@ class OrderSeeder extends Seeder
             //         "image_path" => "./none"
             //     ]
             // ])
-            'meals' => json_encode([3, 5, 7])
+            'meals' => json_encode([21,22,24,25,29])
         ]);
     }
 }

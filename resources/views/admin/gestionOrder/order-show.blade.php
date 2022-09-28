@@ -108,8 +108,7 @@
                 </div>
             @else
                 <div class="text-center mb-5">
-                    <h2 class="text-center fs-1 my-5 fw-normal">Aucune commandes pour ce compte</h2>
-                    <hr class="w-25 text-primary my-5 m-auto">
+                    <h1 class="text-center fs-1 my-5 fw-normal">Aucune commandes à confirmer</h1>
                 </div>
             @endif
         </div>

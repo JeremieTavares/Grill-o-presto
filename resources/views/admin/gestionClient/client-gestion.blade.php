@@ -17,7 +17,7 @@
             </div>
         @endif
     </div>
-    <main class="m-auto">
+    <main class="mb-auto">
         <h1 class="text-center fs-1 my-5 fw-normal">Rechercher un membre</h1>
         <div class="container d-flex flex-column align-items-center mb-5">
             <div class="nav_container mt-4 px-2">
