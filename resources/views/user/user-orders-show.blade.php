@@ -23,20 +23,20 @@
                 @foreach ($meals as $meal)
                     <div class="my-5 p-4 bg-light rounded-5">
                         <img class="w-100 rounded-5 mb-5" src="{{ asset('storage/' . $meal->image_path) }}" alt="image">
-                        <p class="fw-bold">Type : </p>
+                        <span class="fw-bold">Type : </span>
                         @if ($meal->vegetarian || $meal->gluten_free)
                             @if ($meal->vegetarian)
-                                <p>Végétarien</p>
+                                <span>Végétarien</span>
                             @endif
                             @if ($meal->gluten_free)
-                                <p>Sans gluten</p>
+                                <span>Sans gluten</span>
                             @endif
                         @else
-                            <p>Classique</p>
+                            <span>Classique</span>
                         @endif
-                        <p><span class="fw-bold">Description :</span>{{ $meal->description }}</p>
+                        <p><span class="fw-bold">Description: </span>{{ $meal->description }}</p>
 
-                        <p><span class="fw-bold">Ingrédients :</span> </p>
+                        <p><span class="fw-bold">Ingrédients: </span> </p>
                         <ul>
                             @foreach ($meal->ingredients as $ingredient)
                                 <li>{{ $ingredient }}</li>
