@@ -2,19 +2,29 @@
 @section('banner-title', 'Menu : ' . $meal->menu->menu_type->type)
 @section('content')
     <main class="singleMeal">
-        <section class="topSection p-5">
+        <section class="topSection pt-5 px-5">
 
             <h1 class="text-center">{{ $meal->name }}</h1>
         </section>
 
-        @if ($added)
-            <div class="alert alert-success text-center m-3">
-                Vous avez bien ajoutez le repas au panier
-            </div>
-        @endif
-
         <section class="mealSection fs-5">
-
+            @if ($added)
+                <div class="alert alert-success text-center m-4 w-100">
+                    Vous avez bien ajoutez le repas au panier
+                </div>
+            @endif
+            <div class="text-center my-3">
+                @if ($meal->menu->menu_type->type == 'Classique')
+                    <a href="{{ route('menu', 'classic') }}" class="text-decoration-none"><i
+                            class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+                @elseif ($meal->menu->menu_type->type == 'Végétarien')
+                    <a href="{{ route('menu', 'vegetarian') }}" class="text-decoration-none"><i
+                            class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+                @elseif ($meal->menu->menu_type->type == 'Sans Gluten')
+                    <a href="{{ route('menu', 'gluten-free') }}" class="text-decoration-none"><i
+                            class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+                @endif
+            </div>
             <img class="w-100 mb-5" src="{{ asset('storage/' . $meal->image_path) }}" alt="image">
             <hr />
             <p><span class="fw-bold">Menu :</span> {{ $meal->menu->menu_type->type }}</p>
@@ -30,7 +40,8 @@
                 @foreach ($meal->allergens as $allergen)
                     @if ($allergen->name == 'Noix')
                         <div>
-                            <img src="{{ asset('image/peanuts.png') }}" alt="peanut-allergy" class="fa-peanuts-custom"></i><span> Arachides et noix</span>
+                            <img src="{{ asset('image/peanuts.png') }}" alt="peanut-allergy"
+                                class="fa-peanuts-custom"></i><span> Arachides et noix</span>
                         </div>
                     @endif
                     @if ($allergen->name == 'Lait')
@@ -70,7 +81,8 @@
                             href="{{ route('meal', ['repas' => $meal->id, 'addCart' => true]) }}">Ajouter au panier<i
                                 class="fa-sharp fa-solid fa-cart-shopping ms-2 icon-shopping-cart-meal"></i></a></div>
                     <div> <a class="btn btn-secondary mt-3 w-200px btn-rounded btn-scale-press"
-                            href="{{ route('menu') }}">Retour au menu <i class="fa-solid fa-arrow-left ms-3"></i></a> </div>
+                            href="{{ route('menu') }}">Retour au menu <i class="fa-solid fa-arrow-left ms-3"></i></a>
+                    </div>
                 </div>
             @else
                 <a class="btn btn-secondary mt-5" href="{{ route('menu') }}">Retour au menu</a>

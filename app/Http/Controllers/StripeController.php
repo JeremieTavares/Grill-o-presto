@@ -164,6 +164,7 @@ class StripeController extends Controller
                 $order->save();
 
                 session()->forget('cart');
+                session()->forget('menu');
 
                 if (Auth::check()) {
                     return to_route('user.orders.index', Auth::user()->id)->with('paymentSuccess', "Merci, Votre paiement est passée");
