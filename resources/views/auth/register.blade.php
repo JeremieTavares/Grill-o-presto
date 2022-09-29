@@ -121,7 +121,7 @@
 
                     <div class="col-md-6">
                         <label for="password" class="form-label ">Mot de passe*</label>
-                        <input type="password" name="password" id="password"
+                        <input autocomplete="new-password" type="password" name="password" id="password"
                             class="form-control @error('password') is-invalid @enderror"
                             placeholder="Entrer le mot de passe" />
                         @error('password')
@@ -129,9 +129,47 @@
                         @enderror
 
                         @if (!$errors->has('password'))
-                            <small class="text-secondary small_text_custom">Minimum 8 caractères, maximum 50 caractères, au
-                                moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial (@ $ !
-                                % * ? &)</small>
+                            <small class="small_text_custom text-danger" id="minCharCountPass">Minimum 8 caractères
+                                <img id="minCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="minCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="maxCharCountPass">Maximum 50 caractères
+                                <img id="maxCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="maxCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="majCharPass">Une lettre majuscule
+                                <img id="majCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="majCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="minCharPass">Une lettre minuscule
+                                <img id="minCharPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="minCharPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="numCharPass">Un chiffre
+                                <img id="smallNumCharInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="smallNumCharValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="speCharPass">Un caractère spécial (@ . , # $ ! % * ? &)
+                                <img id="smallSpeCharInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="smallSpeCharValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
                         @endif
                     </div>
 

@@ -7,7 +7,6 @@ function verifyUserInfoRegex() {
     const regexZipCode = /^[a-zA-Z]\d[a-zA-Z][ -]?\d[a-zA-Z]\d$/;
     const regexTel = /^\d{3}[- ]?\d{3}[ -]?\d{4}$/;
     const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const regexTicketDescription = /^[A-zÀ-ú \'@$,-.#0-9]{50,400}$/;
     const regexTicketMessage = /^[A-zÀ-ú \'@$,-.#0-9]{2,400}$/;
     const regexCardNumber = /^\d{4}[-]\d{4}[-]\d{4}[-]\d{3,4}$/;
@@ -16,7 +15,20 @@ function verifyUserInfoRegex() {
     const regexCardCVC = /^\d{3,4}$/;
 
 
-    if(document.title == "New ticket"){
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%\.\,#*?&])[A-Za-z\d@$#!\.\,%*?&]{8,}$/;
+
+    // Dynamic password regex
+    const regexPasswordMinCharCount = /^[\w\W]{8,50}$/;
+    const regexPasswordMaxCharCount = /^[\w\W0-9]{1,50}$/;
+    const regexPasswordMajChar = /[A-Z]{1,}/;
+    const regexPasswordMinChar = /[a-z]{1,}/;
+    const regexPasswordNumber = /[0-9]{1,}/;
+    const regexPasswordSpecialChar = /[@$!%.*?&]{1,}/;
+
+
+
+
+    if (document.title == "New ticket") {
         const description = document.getElementById('textareaNewTicket')
 
         description.addEventListener('input', () => {
@@ -30,8 +42,8 @@ function verifyUserInfoRegex() {
             }
         })
     }
-   
-    if(document.title == "Ticket messages"){
+
+    if (document.title == "Ticket messages") {
         const message = document.getElementById('responseMessageTicketTextarea')
 
         message.addEventListener('input', () => {
@@ -45,9 +57,9 @@ function verifyUserInfoRegex() {
             }
         })
     }
-   
 
-    if(document.title == "Panier"){
+
+    if (document.title == "Panier") {
         const name = document.getElementById('clientCardName')
         const cardNumber = document.getElementById('clientCardNumber')
         const cardMonth = document.getElementById('clientCardMonth')
@@ -284,13 +296,149 @@ function verifyUserInfoRegex() {
 
 
     if (document.title == "Register" ||
+        document.title == "Client infos" ||
         document.title == "Admin edit" ||
         document.title == "Admin index" ||
-        document.title == "Client infos" ||
-        document.title == "Client rechercher" ||
-        document.title == "Commande - Mon panier" ||
-        document.title == "Login") {
+        document.title == "Client rechercher") {
+        const password = document.getElementById('password')
+        const smallMinCharCount = document.getElementById('minCharCountPass')
+        const smallMaxCharCount = document.getElementById('maxCharCountPass')
+        const smallMajChar = document.getElementById('majCharPass')
+        const smallMinChar = document.getElementById('minCharPass')
+        const smallNumChar = document.getElementById('numCharPass')
+        const smallSpeChar = document.getElementById('speCharPass')
+
+        const minCharCountPassInvalidIcon = document.getElementById('minCharCountPassInvalidIcon')
+        const minCharCountPassValidIcon = document.getElementById('minCharCountPassValidIcon')
+        const maxCharCountPassValidIcon = document.getElementById('maxCharCountPassValidIcon')
+        const maxCharCountPassInvalidIcon = document.getElementById('maxCharCountPassInvalidIcon')
+        const majCharCountPassValidIcon = document.getElementById('majCharCountPassValidIcon')
+        const majCharCountPassInvalidIcon = document.getElementById('majCharCountPassInvalidIcon')
+        const minCharPassValidIcon = document.getElementById('minCharPassValidIcon')
+        const minCharPassInvalidIcon = document.getElementById('minCharPassInvalidIcon')
+        const smallNumCharInvalidIcon = document.getElementById('smallNumCharInvalidIcon')
+        const smallNumCharValidIcon = document.getElementById('smallNumCharValidIcon')
+        const smallSpeCharValidIcon = document.getElementById('smallSpeCharValidIcon')
+        const smallSpeCharInvalidIcon = document.getElementById('smallSpeCharInvalidIcon')
+
+        password.addEventListener('input', () => {
+            if (regexPasswordMinCharCount.test(password.value)) {
+                smallMinCharCount.classList.remove('text-danger')
+                smallMinCharCount.classList.add('text-success')
+                minCharCountPassValidIcon.classList.remove('d-none')
+                minCharCountPassInvalidIcon.classList.add('d-none')
+
+            }
+            else {
+                smallMinCharCount.classList.remove('text-success')
+                smallMinCharCount.classList.add('text-danger')
+                minCharCountPassValidIcon.classList.add('d-none')
+                minCharCountPassInvalidIcon.classList.remove('d-none')
+
+            }
+        })
 
 
+        password.addEventListener('input', () => {
+            if (regexPasswordMaxCharCount.test(password.value)) {
+                smallMaxCharCount.classList.remove('text-danger')
+                smallMaxCharCount.classList.add('text-success')
+                maxCharCountPassValidIcon.classList.remove('d-none')
+                maxCharCountPassInvalidIcon.classList.add('d-none')
+            }
+            else {
+                smallMaxCharCount.classList.add('text-danger')
+                smallMaxCharCount.classList.add('text-danger')
+                maxCharCountPassValidIcon.classList.add('d-none')
+                maxCharCountPassInvalidIcon.classList.remove('d-none')
+            }
+        })
+
+
+        password.addEventListener('input', () => {
+            if (regexPasswordMajChar.test(password.value)) {
+                smallMajChar.classList.remove('text-danger')
+                smallMajChar.classList.add('text-success')
+                majCharCountPassValidIcon.classList.remove('d-none')
+                majCharCountPassInvalidIcon.classList.add('d-none')
+            }
+            else {
+                smallMajChar.classList.add('text-danger')
+                smallMajChar.classList.add('text-danger')
+                majCharCountPassValidIcon.classList.add('d-none')
+                majCharCountPassInvalidIcon.classList.remove('d-none')
+            }
+        })
+
+
+        password.addEventListener('input', () => {
+            if (regexPasswordMinChar.test(password.value)) {
+                smallMinChar.classList.remove('text-danger')
+                smallMinChar.classList.add('text-success')
+                minCharPassValidIcon.classList.remove('d-none')
+                minCharPassInvalidIcon.classList.add('d-none')
+            }
+            else {
+                smallMinChar.classList.add('text-danger')
+                smallMinChar.classList.add('text-danger')
+                minCharPassValidIcon.classList.add('d-none')
+                minCharPassInvalidIcon.classList.remove('d-none')
+            }
+        })
+
+        password.addEventListener('input', () => {
+            if (regexPasswordNumber.test(password.value)) {
+                smallNumChar.classList.remove('text-danger')
+                smallNumChar.classList.add('text-success')
+                smallNumCharValidIcon.classList.remove('d-none')
+                smallNumCharInvalidIcon.classList.add('d-none')
+            }
+            else {
+                smallNumChar.classList.add('text-danger')
+                smallNumChar.classList.add('text-danger')
+                smallNumCharValidIcon.classList.add('d-none')
+                smallNumCharInvalidIcon.classList.remove('d-none')
+            }
+        })
+
+        password.addEventListener('input', () => {
+            if (regexPasswordSpecialChar.test(password.value)) {
+                smallSpeChar.classList.remove('text-danger')
+                smallSpeChar.classList.add('text-success')
+                smallSpeCharValidIcon.classList.remove('d-none')
+                smallSpeCharInvalidIcon.classList.add('d-none')
+            }
+            else {
+                smallSpeChar.classList.add('text-danger')
+                smallSpeChar.classList.add('text-danger')
+                smallSpeCharValidIcon.classList.add('d-none')
+                smallSpeCharInvalidIcon.classList.remove('d-none')
+            }
+        })
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

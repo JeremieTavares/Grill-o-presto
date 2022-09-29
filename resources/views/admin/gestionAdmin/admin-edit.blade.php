@@ -2,7 +2,7 @@
 @section('banner-title', "Modification d'un administrateur")
 @section('title', 'Admin edit')
 @section('content')
-@switch(Auth::user()->role->role)
+    @switch(Auth::user()->role->role)
         @case('Admin_3')
             @include('admin.template.sub-navbar-admin-3')
         @break
@@ -10,17 +10,18 @@
     <main class="m-auto">
         <div class="container mw-750px">
             <div class="text-center my-3">
-                <a href="{{ route('admin.admin.index') }}" class="text-decoration-none"><i class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
+                <a href="{{ route('admin.admin.index') }}" class="text-decoration-none"><i
+                        class="fa-solid fa-arrow-left-long me-2"></i>Retour en arrière</a>
             </div>
             @if (Session::has('clientAccountBlocked') || Session::has('clientAccountDeleted'))
-            <div class="alert alert-success  d-flex justify-content-between align-items-center"
-                id="divAlertSucccessInfoChanged">
-                {{ Session::get('clientAccountBlocked') }}
-                {{ Session::get('clientAccountDeleted') }}
-                <button type="button" class="close btn btn-link text-decoration-none"
-                    id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
-            </div>
-        @endif
+                <div class="alert alert-success  d-flex justify-content-between align-items-center"
+                    id="divAlertSucccessInfoChanged">
+                    {{ Session::get('clientAccountBlocked') }}
+                    {{ Session::get('clientAccountDeleted') }}
+                    <button type="button" class="close btn btn-link text-decoration-none"
+                        id="btnAlertSucccessInfoChanged"><span class="text-success">X</span></button>
+                </div>
+            @endif
             <h1 class="text-center fs-1 my-5 fw-normal">Choisissez l'administrateur à modifier</h1>
             <label for="selectAdmin">Sélectionnez un Administrateur</label>
 
@@ -38,8 +39,8 @@
                     <button type="submit" class="btn btn-info btn-rounded px-5 btn-scale-press mt-5">Rechercher</button>
                 </div>
             </form>
-            
-            <hr class="w-25 text-primary my-5 m-auto">           
+
+            <hr class="w-25 text-primary my-5 m-auto">
             <h2 class="text-center fs-3 my-5">Changer le rôle de l'administrateur</h2>
             @if (Session::has('successInfosChanged'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center"
@@ -205,6 +206,50 @@
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
+                        @if (!$errors->has('password'))
+                            <small class="small_text_custom text-danger" id="minCharCountPass">Minimum 8 caractères
+                                <img id="minCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="minCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="maxCharCountPass">Maximum 50 caractères
+                                <img id="maxCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="maxCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="majCharPass">Une lettre majuscule
+                                <img id="majCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="majCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="minCharPass">Une lettre minuscule
+                                <img id="minCharPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="minCharPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="numCharPass">Un chiffre
+                                <img id="smallNumCharInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="smallNumCharValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="speCharPass">Un caractère spécial (@ . , # $
+                                ! % * ? &)
+                                <img id="smallSpeCharInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="smallSpeCharValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                        @endif
                     </div>
 
                     <div class="col-md-6">

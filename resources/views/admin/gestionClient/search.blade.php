@@ -156,6 +156,49 @@
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
+                        @if (!$errors->has('password'))
+                            <small class="small_text_custom text-danger" id="minCharCountPass">Minimum 8 caractères
+                                <img id="minCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="minCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="maxCharCountPass">Maximum 50 caractères
+                                <img id="maxCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="maxCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="majCharPass">Une lettre majuscule
+                                <img id="majCharCountPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="majCharCountPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="minCharPass">Une lettre minuscule
+                                <img id="minCharPassInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="minCharPassValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="numCharPass">Un chiffre
+                                <img id="smallNumCharInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="smallNumCharValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                            <br>
+                            <small class="small_text_custom text-danger" id="speCharPass">Un caractère spécial (@ . , # $ ! % * ? &)
+                                <img id="smallSpeCharInvalidIcon" class="w12px"
+                                    src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
+                                <img id="smallSpeCharValidIcon" class="w12px d-none"
+                                    src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
+                            </small>
+                        @endif
                     </div>
 
                     <div class="col-md-6">
