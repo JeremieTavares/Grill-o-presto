@@ -71,72 +71,72 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="firstName">Prenom</label>
-                            <input class="form-control @error('firstName') is-invalid @enderror"
-                                value="{{ (Auth::check() ? Auth::user()->infoUser->prenom : old('firstName')) }}" name="firstName" id="firstName" type="text">
-                            @error('firstName')
+                            <label for="prenom">Prenom</label>
+                            <input class="form-control @error('prenom') is-invalid @enderror"
+                                value="{{ (Auth::check() ? Auth::user()->infoUser->prenom : old('prenom')) }}" name="prenom" id="prenom" type="text">
+                            @error('prenom')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="lastName">Nom</label>
-                            <input class="form-control @error('lastName') is-invalid @enderror"
-                                value="{{ (Auth::check() ? Auth::user()->infoUser->nom : old('lastName')) }}" name="lastName" id="lastName" type="text">
-                            @error('lastName')
+                            <label for="nom">Nom</label>
+                            <input class="form-control @error('nom') is-invalid @enderror"
+                                value="{{ (Auth::check() ? Auth::user()->infoUser->nom : old('nom')) }}" name="nom" id="nom" type="text">
+                            @error('nom')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="street">Rue</label>
-                            <input class="form-control @error('street') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->rue : old('street')) }}"
-                                name="street" id="street" type="text">
-                            @error('street')
+                            <label for="rue">Rue</label>
+                            <input class="form-control @error('rue') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->rue : old('rue')) }}"
+                                name="rue" id="rue" type="text">
+                            @error('rue')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-3">
                             <label for="appartement">Appartement</label>
-                            <input class="form-control @error('door') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->appartement : old('appartement')) }}"
+                            <input class="form-control @error('appartement') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->appartement : old('appartement')) }}"
                                 name="appartement" id="appartement" type="text">
-                            @error('door')
+                            @error('appartement')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-3">
-                            <label for="door">No de porte</label>
-                            <input class="form-control @error('door') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->no_porte : old('door')) }}"
-                                name="door" id="door" type="text">
-                            @error('door')
+                            <label for="noPorte">No de porte</label>
+                            <input class="form-control @error('noPorte') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->no_porte : old('noPorte')) }}"
+                                name="noPorte" id="noPorte" type="text">
+                            @error('noPorte')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
 
                         <div class="col-md-6">
-                            <label for="town">Ville</label>
-                            <input class="form-control @error('town') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->ville : old('town')) }}"
-                                name="town" id="town" type="text">
-                            @error('town')
+                            <label for="ville">Ville</label>
+                            <input class="form-control @error('ville') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->ville : old('ville')) }}"
+                                name="ville" id="ville" type="text">
+                            @error('ville')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="zip">Code postal</label>
-                            <input class="form-control @error('zip') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->code_postal : old('zip')) }}"
-                                name="zip" id="zip" type="text">
-                            @error('zip')
+                            <label for="zip_code">Code postal</label>
+                            <input class="form-control @error('zip_code') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->code_postal : old('zip_code')) }}"
+                                name="zip_code" id="zip_code" type="text">
+                            @error('zip_code')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                             <div>
                                 @guest
-                                    <label for="tel">Téléphone</label>
+                                    <label for="tel">Téléphone*</label>
                                 @endguest
                                 <input class="form-control @error('tel') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->infoUser->telephone : old('tel')) }}"
                                     name="tel" id="tel" type="{{(Auth::check() ? "hidden" : "tel")}}">
@@ -148,7 +148,7 @@
 
                             <div>
                                 @guest
-                                    <label for="email">Courriel</label>
+                                    <label for="email">Adresse courriel*</label>
                                 @endguest
                                 <input class="form-control @error('email') is-invalid @enderror" value="{{ (Auth::check() ? Auth::user()->email : old('email')) }}"
                                     name="email" id="email" type="{{(Auth::check() ? "hidden" : "email")}}">

@@ -2,6 +2,10 @@ afficher les commandes deja passe
 ajouter le on input is-valid/invalide js
 map js calculateur de distance
 notification lors de msg
+fix price tjrs 100$
+
+FAIRE TRUC A XAV pour mdp
+faire guest request
 
 lorsquon ajoute un plat au panier, rajouter un go back to menu , sinn on doit faire 2x go back
 lorsquon ajoute un ingrediants ca supprime tt ceux deja mit

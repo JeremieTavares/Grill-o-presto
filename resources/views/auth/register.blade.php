@@ -1,5 +1,6 @@
 @extends('public.template.base')
 @section('banner-title', 'Nouveau Client')
+@section('title', 'Register')
 @section('content')
     <main>
         <div class="container p-4">
@@ -126,6 +127,7 @@
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
+                        <small class="text-secondary small_text_custom">Minimum 8 caractères, maximum 50 caractères, au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial (@ $ ! % * ? &)</small>
                     </div>
 
                     <div class="col-md-6">

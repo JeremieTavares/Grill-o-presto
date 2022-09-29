@@ -145,13 +145,13 @@ class StripeController extends Controller
                     $order->user_id = NULL;
                 }
 
-                $order->prenom = $request->firstName;
-                $order->nom = $request->lastName;
-                $order->rue = $request->street;
-                $order->no_porte = $request->door;
+                $order->prenom = $request->prenom;
+                $order->nom = $request->nom;
+                $order->rue = $request->rue;
+                $order->no_porte = $request->noPorte;
                 $order->appartement = $request->appartement;
-                $order->code_postal = $request->zip;
-                $order->ville = $request->town;
+                $order->code_postal = $request->zip_code;
+                $order->ville = $request->ville;
                 $order->telephone = $request->tel;
                 $order->email = $request->email;
                 $order->menu_id = HistoryMeal::where('id', session('cart')[0])->first('menu_id')->menu_id;

@@ -13,6 +13,7 @@
 
     @vite(['resources/scss/import.scss',  'resources/js/app.js'])
     <script defer src="{{ asset('js/main.js') }}" ></script>
+    <script defer src="{{ asset('js/verification.js') }}"></script>
     <script src="https://kit.fontawesome.com/efba2f86ba.js" crossorigin="anonymous"></script>
   </head>
   <body>

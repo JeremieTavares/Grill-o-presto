@@ -1,9 +1,26 @@
 @extends('public.template.base')
 @section('banner-title', 'Support - Créé un nouveau ticket')
+@section('title', 'New ticket')
 @section('content')
 
     @if (Auth::check())
-        @include('user.template.sub-navbar')
+        @switch(Auth::user()->role->role)
+            @case('Admin_1')
+                @include('admin.template.sub-navbar-admin-1')
+            @break
+
+            @case('Admin_2')
+                @include('admin.template.sub-navbar-admin-2')
+            @break
+
+            @case('Admin_3')
+                @include('admin.template.sub-navbar-admin-3')
+            @break
+
+            @case('Client')
+                @include('user.template.sub-navbar')
+            @break
+        @endswitch
     @endif
     <main class="m-auto">
         @if (Auth::check())
@@ -69,15 +86,17 @@
                     @error('description')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
+                    <small class="small_text_custom">Votre description peut seulement contenir des: . , - @ # $ \' des chiffres et des lettres et un longueur minimum de 50 caracteres et maximum 400</small>
                 </div>
                 <?php
-                if(Auth::user()){
-                    if (!(Auth::user()->role->role == "Admin_1" || Auth::user()->role->role == "Admin_2" || Auth::user()->role->role == "Admin_3")){?>
+                    if (Auth::check() && Auth::user()->role->role == "Client") {?>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success btn-rounded btn-scale-press w-50 my-5">Envoyer</button>
+                </div><?php }elseif(!(Auth::check())){?>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-success btn-rounded btn-scale-press w-50 my-5">Envoyer</button>
                 </div>
-                <?php }}?>
-
+                <?php }?>
                 <div class="my-5"></div>
             </form>
         </div>

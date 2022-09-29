@@ -23,7 +23,7 @@
                     @method('DELETE')
                     <input type="hidden" name="client_id" value="{{ $user[0]->id }}">
                     <input type="hidden" name="blocked_at" value="true">
-                    <button type="submit" class="btn btn-primary btn-scale-press" id="btnCloseModalYes">Bloquer le
+                    <button type="submit" class="btn btn-primary btn-scale-press" id="btnCloseModalYess">Bloquer le
                         compte</button>
                 </form>
             </div>

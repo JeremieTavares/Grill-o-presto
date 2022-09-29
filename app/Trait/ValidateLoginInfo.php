@@ -54,7 +54,6 @@ trait ValidateLoginInfo
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
-
             return $this->sendLoginResponse($request);
         }
 
@@ -135,7 +134,7 @@ trait ValidateLoginInfo
             return $response;
         }
 
-        
+
         $userInfos = User::getLoggedUserInfo()->get();
 
         $response = $this->checkIfUserStateIsValid($userInfos[0], $request, "TraitValidateLoginInfo");

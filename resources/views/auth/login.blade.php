@@ -1,6 +1,6 @@
 @extends('public.template.base')
 @section('banner-title', 'Client existant')
-
+@section('title', 'Login')
 @section('content')
     <main class="m-auto">
 

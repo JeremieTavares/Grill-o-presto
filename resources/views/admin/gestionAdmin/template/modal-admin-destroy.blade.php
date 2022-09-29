@@ -23,7 +23,7 @@
                     @method('DELETE')
                     <input type="hidden" name="client_id" value="{{ $selectedAdmin->id }}">
                     <input type="hidden" name="soft_deleted" value="true">
-                    <button type="submit" class="btn btn-primary btn-scale-press" id="btnCloseModalYes">Supprimer le
+                    <button type="submit" class="btn btn-primary btn-scale-press" id="btnCloseModalYess">Supprimer le
                         compte</button>
                 </form>
             </div>

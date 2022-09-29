@@ -1,5 +1,6 @@
 @extends('admin.template.base')
 @section('banner-title', 'Administrateur - Gestion Ticket')
+@section('title', 'Ticket messages')
 @section('content')
     <?php
     $state = (int) $ticket_status;
@@ -94,6 +95,7 @@
                             @error('response')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            <small class="small_text_custom">Votre description peut seulement contenir des: . , - @ # $ \' des chiffres et des lettres et un longueur minimum de 2 caracteres et maximum 400</small>
                         </div>
                         <div class="d-flex justify-content-center">
 
@@ -175,6 +177,7 @@
                             @error('response')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            <small class="small_text_custom">Votre description peut seulement contenir des: . , - @ # $ \' des chiffres et des lettres et un longueur minimum de 2 caracteres et maximum 400</small>
                         </div>
                         <div class="d-flex justify-content-center">
 

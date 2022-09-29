@@ -18,6 +18,7 @@
 
     @vite(['resources/scss/import.scss', 'resources/js/app.js'])
     <script defer src="{{ asset('js/main.js') }}"></script>
+    <script defer src="{{ asset('js/verification.js') }}"></script>
 </head>
 
 <body class="">

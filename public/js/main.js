@@ -11,10 +11,8 @@ function closedModalPopup() {
     const btnCloseAlertSuccessSession = document.getElementById('btnAlertSucccessInfoChanged');
 
     if (btnCloseAlertSuccessSession) {
-        console.log(1)
         btnCloseAlertSuccessSession.addEventListener('click', () => {
             divAlertSuccessSession.remove();
-            console.log(2)
         })
     }
 }

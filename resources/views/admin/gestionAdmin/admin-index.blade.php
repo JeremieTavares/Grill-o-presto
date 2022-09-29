@@ -1,5 +1,6 @@
 @extends('admin.template.base')
 @section('banner-title', "Modification d'un administrateur")
+@section('title', 'Admin index')
 @section('content')
 @switch(Auth::user()->role->role)
         @case('Admin_3')
