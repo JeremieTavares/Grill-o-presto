@@ -50,8 +50,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/menu/{menu?}', [MenuController::class, 'index'])->name('menu');
 Route::get('/repas/{repas}/{addCart?}', [MenuController::class, 'single'])->name('meal');
 Route::get('/panier/{delete?}', [CartController::class, 'index'])->name('cart');
-Route::get('/checkout', [CartController::class, 'preCheckout'])->name('preCheckout.log');
-Route::post('/checkout', [CartController::class, 'preCheckoutGuest'])->name('preCheckout.guest');
 
 Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 

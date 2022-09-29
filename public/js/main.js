@@ -58,7 +58,7 @@ function creditCardAutoComplete() {
             });
             const jsondata = await result.json(ccNumber);
 
-            if (ccNumber > 1) {
+            if (parseInt(ccNumber) > 1) {
                 clientCardName.value = jsondata.name
                 clientCardNumber.value = jsondata.card_number
                 clientCardCVC.value = jsondata.cvc

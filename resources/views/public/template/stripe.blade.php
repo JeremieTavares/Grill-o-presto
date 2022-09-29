@@ -41,16 +41,17 @@
                         @enderror
                     </div>
                 </div>
-                <div class='form-row row'>
+                <div class='form-row row mb-2'>
                     <div class='col-xs-12 form-group required'>
                         <label class='control-label'>Numéro de carte</label>
-                        <input autocomplete='off' name="card_number"
+                        <input autocomplete='on' name="card_number"
                             class='form-control card-number @error('card_number') is-invalid @enderror' size='20'
-                            placeholder='1234-5678-9101-1121' id="clientCardNumber" type='text'>
+                            placeholder='0000-0000-0000-0000' id="clientCardNumber" type='text'>
                         @error('card_number')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <small class="text-secondary small_text_custom">Format: 0000-0000-0000-0000</small>
                 </div>
                 <div class='form-row row'>
 
@@ -74,7 +75,7 @@
                     </div>
                     <div class='col-xs-12 col-md-4 form-group cvc required'>
                         <label class='control-label'>CVC</label>
-                        <input autocomplete='off' class='form-control card-cvc  @error('cvc') is-invalid @enderror'
+                        <input autocomplete='on' class='form-control card-cvc  @error('cvc') is-invalid @enderror'
                             placeholder='ex. 311' id="clientCardCVC" name="cvc" size='4' type='text'>
                         @error('cvc')
                             <div class="text-danger">{{ $message }}</div>

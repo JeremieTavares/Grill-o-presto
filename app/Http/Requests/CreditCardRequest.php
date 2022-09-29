@@ -25,7 +25,7 @@ class CreditCardRequest extends FormRequest
     {
         return [
             'name' => 'required|regex:/^[A-zÀ-ú -]{2,75}$/',
-            'card_number' => ['required', 'integer', 'regex:/^\d{4}\d{4}\d{4}\d{4}$/'],
+            'card_number' => ['required','regex:/^\d{4}[-]\d{4}[-]\d{4}[-]\d{4}$/'],
             'month' => ['required', 'regex:/^0[1-9]|1[0-2]$/'],
             'year' => ['required', 'regex:/^202[2-9]$/'],
             'cvc' => ['required', 'regex:/^\d{3,4}$/'],
@@ -47,9 +47,8 @@ class CreditCardRequest extends FormRequest
         return [
             'name.required' => 'Le nom est requis',
             'name.regex' => 'Votre nom doit seulement contenir des lettres et -',
-            'card_numbert.regex' => 'Le numéro de carte de credit doit comporter 16 chiffres sans - ni . ni espace',
+            'card_numbert.regex' => 'Le numéro de carte de credit doit dans le format 0000-0000-0000-0000',
             'card_number.required' => 'Le numéro de carte de credit est requis',
-            'card_number.integer' => 'Le numéro de carte de credit doit etre des entiers',
             'month.required' => 'Le mois de la carte est requis',
             'month.regex' => 'Le mois doit se situer entre 01-12',
             'year.regex' => "L'année de la carte doit se situer entre 2022 et 2030",

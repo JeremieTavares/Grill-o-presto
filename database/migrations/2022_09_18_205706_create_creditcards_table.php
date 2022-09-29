@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('creditcards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('card_number');
+            $table->string('card_number');
             $table->integer('month');
             $table->integer('year');
             $table->integer('cvc');

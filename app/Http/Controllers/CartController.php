@@ -44,23 +44,4 @@ class CartController extends Controller
             session()->forget('menu');
         }
     }
-
-    public function preCheckoutGuest(GuestRequest $request)
-    {
-
-        $validatedData = $request->validated();
-
-        $inviteInformation = $request;
-
-        dd($inviteInformation);
-    }
-
-    public function preCheckout()
-    {
-
-        if (Auth::check()) {
-            dd(Auth::user());
-        } else
-            dd('user not conencted');
-    }
 }
