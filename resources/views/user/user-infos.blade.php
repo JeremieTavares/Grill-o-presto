@@ -133,20 +133,32 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="password" class="form-label ">Mot de passe*</label>
-                        <input type="password" name="password" id="password" value="{{ $user[0]->password }}"
-                            class="form-control @error('password') is-invalid @enderror"
+                    <div class="col-md-6 mt-5">
+                        <label for="activePassword" class="form-label ">Mot de passe actuel</label>
+                        <input type="password" name="activePassword" id="activePassword"
+                            class="form-control @error('activePassword') is-invalid @enderror"
                             placeholder="Entrer le mot de passe" />
+                        @error('activePassword')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="password" class="form-label ">Nouveau mot de passe*</label>
+                        <input type="password" name="password" id="password" value=""
+                            class="form-control @error('password') is-invalid @enderror"
+                            placeholder="Entrer le mot de passe" autocomplete="new-password" /> 
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-6">
-                        <label for="password_confirmation" class="form-label ">Confirmer le mot de passe*</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation"
-                            value="{{ $user[0]->password }}"
+                        <label for="password_confirmation" class="form-label ">Confirmer le nouveau mot de passe*</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation"                      
                             class="form-control @error('password_confirmation') is-invalid @enderror"
                             placeholder="Confirmer le mot de passe" />
                         @error('password_confirmation')

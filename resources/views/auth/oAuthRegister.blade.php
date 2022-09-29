@@ -1,5 +1,6 @@
 @extends('public.template.base')
 @section('banner-title', 'Informations supplémentaires')
+@section('title', 'Register')
 
 @section('content')
 <main class="m-auto">

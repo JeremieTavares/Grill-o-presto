@@ -127,7 +127,12 @@
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                        <small class="text-secondary small_text_custom">Minimum 8 caractères, maximum 50 caractères, au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial (@ $ ! % * ? &)</small>
+
+                        @if (!$errors->has('password'))
+                            <small class="text-secondary small_text_custom">Minimum 8 caractères, maximum 50 caractères, au
+                                moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial (@ $ !
+                                % * ? &)</small>
+                        @endif
                     </div>
 
                     <div class="col-md-6">
@@ -141,7 +146,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-5 mb-5 px-5 btn-rounded btn-scale-press">S'enregistrer</button>
+                <button type="submit"
+                    class="btn btn-primary mt-5 mb-5 px-5 btn-rounded btn-scale-press">S'enregistrer</button>
             </form>
             <section id="oAuthRegister">
                 <div class="d-flex w-50 m-auto mt-5 justify-content-center">
@@ -161,7 +167,8 @@
                 </div>
 
                 <div class="text-center mt-5">
-                    <p>Déjà un membre ? <a href="{{ route('login') }}" class="link-primary text-decoration-none">Me connecter</a></p>
+                    <p>Déjà un membre ? <a href="{{ route('login') }}" class="link-primary text-decoration-none">Me
+                            connecter</a></p>
                 </div>
             </section>
         </div>

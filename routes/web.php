@@ -56,7 +56,6 @@ Route::get('/plat', [HomeController::class, 'platSelectionne'])->name('plat');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
 
-
 // ==========================================================================================================================================================
 // ****METTRE EN RESOURCES PLUS TARD****
 // USER ACCOUNT INFORMATIONS

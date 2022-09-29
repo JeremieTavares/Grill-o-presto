@@ -116,8 +116,30 @@ class UserController extends Controller
         }
 
 
+
         $user->email = (string) $request->email;
-        $user->password = (string) Hash::make($request->password);
+
+
+        if (empty($request->activePassword) && !empty($request->password) && !empty($request->password_confirmation)) {
+            return redirect()->back()->withErrors(['password' => 'Vos devez entrer votre mot de passe actuel pour effectué un changement']);
+        }
+
+        if (!empty($request->activePassword) && (empty($request->password) || empty($request->password_confirmation))) {
+            return redirect()->back()->withErrors(['password' => 'Vous devez completez les champs requis pour effectué un changement']);
+        }
+        
+        if (!empty($request->activePassword)) {
+            if (password_verify($request->activePassword, $user->password)) {
+                if ($request->password === $request->password_confirmation) {
+                    $user->password = (string) Hash::make($request->password);
+                } else {
+                    return redirect()->back()->withErrors(['password' => 'La combinaisons de mot de passe ne correspond pas']);
+                }
+            } else {
+                return redirect()->back()->withErrors(['activePassword' => 'Votre mot de passe ne correspond pas']);
+            }
+        }
+
         $userInfo->prenom = (string) $request->prenom;
         $userInfo->nom = (string) $request->nom;
         $userInfo->rue = (string) $request->rue;
