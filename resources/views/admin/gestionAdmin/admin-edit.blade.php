@@ -206,7 +206,6 @@
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                        @if (!$errors->has('password'))
                             <small class="small_text_custom text-danger" id="minCharCountPass">Minimum 8 caractères
                                 <img id="minCharCountPassInvalidIcon" class="w12px"
                                     src="{{ asset('image/is-invalid.svg') }}" alt="is-invalid-icon">
@@ -249,7 +248,6 @@
                                 <img id="smallSpeCharValidIcon" class="w12px d-none"
                                     src="{{ asset('image/is-valid.svg') }}" alt="is-valid-icon">
                             </small>
-                        @endif
                     </div>
 
                     <div class="col-md-6">
