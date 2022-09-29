@@ -136,7 +136,6 @@ trait ValidateLoginInfo
 
 
         $userInfos = User::getLoggedUserInfo()->get();
-
         $response = $this->checkIfUserStateIsValid($userInfos[0], $request, "TraitValidateLoginInfo");
         if (isset($response['blockedTrue'])) {
             return to_route('login')->withErrors(['accountErrorstatus' => "Votre compte a suspendu le " . $userInfos[0]->blocked_at]);
@@ -151,6 +150,8 @@ trait ValidateLoginInfo
             return redirect()->route('finish.registeration', ['user' => $userInfos[0]->id]);
         } elseif (session()->has('cart')) {
             return redirect()->route('cart');
+        } elseif ($userInfos[0]->role->role == "Admin_1" || $userInfos[0]->role->role == "Admin_2" || $userInfos[0]->role->role == "Admin_3") {
+            return to_route('admin.ticket.index');
         } else {
             return redirect()->intended($this->redirectPath());
         }
