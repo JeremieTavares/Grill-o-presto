@@ -6,7 +6,12 @@
 @csrf
 
 
-<h1 id="h2Paiement" class="text-center fs-1 my-3 fw-normal">Paiement</h1>
+<h1 id="h2Paiement" class="text-start fs-1 my-3 fw-normal">Paiement
+    <img src="{{ asset('image/mastercard.svg') }}" alt="" class="w-32px">
+    <img src="{{ asset('image/visa.svg') }}" alt="" class="w-32px">
+    <img src="{{ asset('image/amex.svg') }}" alt="" class="w-32px">
+    <img src="{{ asset('image/discover.svg') }}" alt="" class="w-32px">
+</h1>
 
 
 <div class="row mb-5">
