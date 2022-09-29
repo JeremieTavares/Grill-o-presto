@@ -10,7 +10,7 @@ function verifyUserInfoRegex() {
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const regexTicketDescription = /^[A-zÀ-ú \'@$,-.#0-9]{50,400}$/;
     const regexTicketMessage = /^[A-zÀ-ú \'@$,-.#0-9]{2,400}$/;
-    const regexCardNumber = /^\d{4}[-]\d{4}[-]\d{4}[-]\d{4}$/;
+    const regexCardNumber = /^\d{4}[-]\d{4}[-]\d{4}[-]\d{3,4}$/;
     const regexCardMonth = /^0[1-9]|1[0-2]$/;
     const regexCardYear = /^202[2-9]$/;
     const regexCardCVC = /^\d{3,4}$/;

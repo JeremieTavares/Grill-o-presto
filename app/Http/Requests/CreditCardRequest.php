@@ -25,7 +25,7 @@ class CreditCardRequest extends FormRequest
     {
         return [
             'name' => 'required|regex:/^[A-zÀ-ú -]{2,75}$/',
-            'card_number' => ['required','regex:/^\d{4}[-]\d{4}[-]\d{4}[-]\d{4}$/'],
+            'card_number' => ['required','regex:/^\d{4}[-]\d{4}[-]\d{4}[-]\d{3,4}$/'],
             'month' => ['required', 'regex:/^0[1-9]|1[0-2]$/'],
             'year' => ['required', 'regex:/^202[2-9]$/'],
             'cvc' => ['required', 'regex:/^\d{3,4}$/'],

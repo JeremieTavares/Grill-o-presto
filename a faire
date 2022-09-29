@@ -6,3 +6,5 @@ FAIRE TRUC A XAV pour mdp
 
 ajouter logo carte de credit
 ajouter dans password verification le Hash::veirfy (check screen cell)
+
+add bin to let user know type of card

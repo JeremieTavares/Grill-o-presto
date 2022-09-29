@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
             FaqThemeSeeder::class,
             FaqSeeder::class,
             ChartPriceSeeder::class,
-            MealSeeder::class
+            MealSeeder::class,
+            CreditcardSeeder::class
         ]);
     }
 }
