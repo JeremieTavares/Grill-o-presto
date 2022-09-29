@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $userClient->id = 1;
         $userClient->info_user_id = 1;
         $userClient->email = 'client@hotmail.com';
-        $userClient->password = Hash::make('clientclient');
+        $userClient->password = Hash::make('Clientclient1@');
         $userClient->role_id = 1;
 
 
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         $userAdmin->id = 2;
         $userAdmin->info_user_id = 2;
         $userAdmin->email = 'admin@hotmail.com';
-        $userAdmin->password = Hash::make('adminadmin');
+        $userAdmin->password = Hash::make('Adminadmin1@');
         $userAdmin->role_id = 2;
 
 
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
         $userAdmin2->id = 5;
         $userAdmin2->info_user_id = 5;
         $userAdmin2->email = 'admin2@hotmail.com';
-        $userAdmin2->password = Hash::make('adminadmin');
+        $userAdmin2->password = Hash::make('Adminadmin2@');
         $userAdmin2->role_id = 3;
 
 
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
         $userAdmin3->id = 6;
         $userAdmin3->info_user_id = 6;
         $userAdmin3->email = 'admin3@hotmail.com';
-        $userAdmin3->password = Hash::make('adminadmin');
+        $userAdmin3->password = Hash::make('Adminadmin3@');
         $userAdmin3->role_id = 4;
 
 
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
         $userBlocked->info_user_id = 3;
         $userBlocked->email = 'blocked@blocked.com';
         $userBlocked->blocked_at = '2022-09-11 20:01:21';
-        $userBlocked->password = Hash::make('blockedblocked');
+        $userBlocked->password = Hash::make('Blockedblocked1@');
         $userBlocked->role_id = 1;
 
 
@@ -69,7 +69,7 @@ class UserSeeder extends Seeder
         $userDeleted->info_user_id = 4;
         $userDeleted->email = 'deleted@deleted.com';
         $userDeleted->soft_deleted = '2022-09-11 20:01:21';
-        $userDeleted->password = Hash::make('deleteddeleted');
+        $userDeleted->password = Hash::make('Deleteddeleted1@');
         $userDeleted->role_id = 1;
 
 
