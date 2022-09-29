@@ -6,6 +6,4 @@ fix price tjrs 100$
 FAIRE TRUC A XAV pour mdp
 
 faire mon mot de passe et confirmer mon mot de passe
-
-lorsquon ajoute un plat au panier, rajouter un go back to menu , sinn on doit faire 2x go back
-lorsquon ajoute un ingrediants ca supprime tt ceux deja mit
+faire redirection quand le user est log et il est admin

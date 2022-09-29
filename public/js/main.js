@@ -260,7 +260,7 @@ function adminMenu() {
 
         });
 
-        
+
     }
 }
 
@@ -307,26 +307,23 @@ function toggleSearchInputForAdmin() {
 // ======================================================================
 
 function adminRepas() {
-    if(document.title == 'Repas ajouter') {
+    if (document.title == 'Repas ajouter') {
         let ingredientContainer = document.querySelector('.mealAddAdmin .ingredient_container');
         let ingredientButton = document.querySelector('.mealAddAdmin .ingrediants > button');
 
-        console.log(ingredientContainer.querySelectorAll('div'));
-
 
         ingredientButton.addEventListener('click', () => {
-            ingredientContainer.innerHTML += '<div class="ingredient_item d-flex mb-2"><input class="form-control" type="text" name="ingredient[]" id="ingredient-'+ ingredientContainer.querySelectorAll('div').length +'" /><button type="button" class="btn btn-primary ms-2 deleteButton">Supprimer</button></div>'
+            ingredientContainer.insertAdjacentHTML("beforeend", '<div class="ingredient_item d-flex mb-2"><input class="form-control" type="text" name="ingredient[]" id="ingredient-' + ingredientContainer.querySelectorAll('div').length + '" /><button type="button" class="btn btn-primary ms-2 deleteButton">Supprimer</button></div>');
             ingredientContainer.querySelectorAll('.ingredient_item').forEach((item, key) => {
-                console.log(item)
-                if(key>0)
-                item.querySelector('.deleteButton').addEventListener('click', () => {
-                    item.remove();
-                });
+                if (key > 0)
+                    item.querySelector('.deleteButton').addEventListener('click', () => {
+                        item.remove();
+                    });
             });
-            
+
         });
 
-        
+
 
     }
 }
@@ -334,7 +331,7 @@ function adminRepas() {
 //CART
 
 function cart() {
-    if(document.title == "Panier") {
+    if (document.title == "Panier") {
         let portionSelect = document.querySelector('#portion');
         changePrice(portionSelect)
         portionSelect.addEventListener('click', () => {
@@ -344,7 +341,7 @@ function cart() {
 }
 
 function changePrice(portionSelect) {
-    
+
     let info = document.querySelector('.priceInfo');
     let button = document.querySelector('.payButton');
 
@@ -352,40 +349,40 @@ function changePrice(portionSelect) {
     let price;
     let number = info.firstElementChild.innerHTML;
     infos.forEach(item => {
-        if(item.firstElementChild.innerHTML == portionSelect.value) {
+        if (item.firstElementChild.innerHTML == portionSelect.value) {
             price = item.lastElementChild.innerHTML;
         }
     });
-    
-    if(price && number)
+
+    if (price && number)
         button.innerHTML = "Payer maintenant " + (price * number) + ",00$";
 }
 
 
-function changeOrderRowColorWhenChangingState(){
+function changeOrderRowColorWhenChangingState() {
     let rowSelect = document.querySelectorAll(".tr_commande_select");
-    if(document.title == "Admin Orders") {
-    rowSelect.forEach(select => {
-        select.addEventListener('change', (e)=>{
-            $value = select.value.split('-');
-            switch ($value[1]) {
-                case "Annulé":
-                    e.target.parentElement.parentElement.classList.remove('greenRow', 'blueRow', 'redRow');
-                    e.target.parentElement.parentElement.classList.add('yellowRow');
-                    break;
-                case "Completé":
-                    e.target.parentElement.parentElement.classList.remove('yellowRow', 'blueRow', 'redRow');
-                    e.target.parentElement.parentElement.classList.add('greenRow');
-                    break;
-                case "En attente":
-                    e.target.parentElement.parentElement.classList.remove('greenRow', 'yellowRow', 'redRow');
-                    break;
-                case "Erreur":
-                    e.target.parentElement.parentElement.classList.remove('greenRow', 'blueRow', 'yellowRow');
-                    e.target.parentElement.parentElement.classList.add('redRow');
-                    break;
-            }      
-        })
-    });
-}
+    if (document.title == "Admin Orders") {
+        rowSelect.forEach(select => {
+            select.addEventListener('change', (e) => {
+                $value = select.value.split('-');
+                switch ($value[1]) {
+                    case "Annulé":
+                        e.target.parentElement.parentElement.classList.remove('greenRow', 'blueRow', 'redRow');
+                        e.target.parentElement.parentElement.classList.add('yellowRow');
+                        break;
+                    case "Completé":
+                        e.target.parentElement.parentElement.classList.remove('yellowRow', 'blueRow', 'redRow');
+                        e.target.parentElement.parentElement.classList.add('greenRow');
+                        break;
+                    case "En attente":
+                        e.target.parentElement.parentElement.classList.remove('greenRow', 'yellowRow', 'redRow');
+                        break;
+                    case "Erreur":
+                        e.target.parentElement.parentElement.classList.remove('greenRow', 'blueRow', 'yellowRow');
+                        e.target.parentElement.parentElement.classList.add('redRow');
+                        break;
+                }
+            })
+        });
+    }
 }
