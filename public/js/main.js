@@ -334,7 +334,7 @@ function cart() {
     if (document.title == "Panier") {
         let portionSelect = document.querySelector('#portion');
         changePrice(portionSelect)
-        portionSelect.addEventListener('click', () => {
+        portionSelect.addEventListener('change', () => {
             changePrice(portionSelect);
         });
     }

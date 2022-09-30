@@ -28,7 +28,6 @@
                     id="btnAlertSucccessInfoChanged"><span class="text-secondary">X</span></button>
             </div>
         @endif
-        
         <section class="cart_container">
             @if (session()->exists('cart') && count(session('cart')) > 0)
                 <h2 class="mb-5">Menu : {{ session('menu') }}</h2>
@@ -41,6 +40,7 @@
                             </a>
                             <div class="text_container">
                                 <p>Nom : {{ $meal->name }}</p>
+                                <p>Prix : {{ $priceInfo[0]->price }}$ <small>(prix pour 1 personne)</small></p>
                                 <a href="{{ route('cart', ['delete' => $meal->id]) }}">Supprimer de la commande</a>
                             </div>
                         </div>
@@ -156,12 +156,12 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>  
-                            
+                            <h2 class="text-center fs-2 my-5 fw-normal">Choisir les portions des plats</h2>
                             <div class="mt-3 mb-5 portion_div">
                                 <label class="form-label" for="portion">Nombre de portions</label>
                                 <select class="form-select btn-rounded ps-3 p-2" name="portion" id="portion">
                                     @foreach ($portions as $portion)
-                                    <option value="{{$portion->id}}">{{$portion->portion}}</option>
+                                    <option value="{{$portion->id}}">{{$portion->portion}} personnes</option>
                                     @endforeach
                                 </select>
                             </div>
