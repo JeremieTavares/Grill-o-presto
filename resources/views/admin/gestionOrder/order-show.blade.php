@@ -89,7 +89,8 @@
                                         <td class="border-0 p-2 p-md-3 align-middle">
                                             <select name="status[]" id="" class="form-select tr_commande_select">
                                                 @foreach ($orderStatus as $status)
-                                                <option value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
+                                                
+                                                <option @if($order->order_status->status == $status) selected @endif value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
