@@ -16,64 +16,64 @@ class TicketSeeder extends Seeder
     public function run()
     {
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '432151',
+            'order_number' => '4324234',
             'ticket_type_id' => 2,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '332651',
+            'order_number' => '24234323',
             'ticket_type_id' => 3,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '435651',
+            'order_number' => '1144434',
             'ticket_type_id' => 4,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '432343',
+            'order_number' => '7754354',
             'ticket_type_id' => 1,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '523424',
+            'order_number' => '123333',
             'ticket_type_id' => 3,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '676132',
+            'order_number' => '5234333',
             'ticket_type_id' => 2,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '132333',
+            'order_number' => '2433442',
             'ticket_type_id' => 1,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
             'user_id' => 1
         ]);
         Ticket::create([
-            'ticket_number' => '432651',
-            'order_number' => '969478',
+            'ticket_number' => '687834',
+            'order_number' => '765765',
             'ticket_type_id' => 3,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
@@ -81,7 +81,7 @@ class TicketSeeder extends Seeder
         ]);
         Ticket::create([
             'ticket_number' => '432651',
-            'order_number' => '969478',
+            'order_number' => '535664',
             'ticket_type_id' => 4,
             'ticket_status_id' => 1,
             'description' => "Salut, je n'ai toujours pas recu ma commande. J'etais supposer la recevoir mardi. Merci",
