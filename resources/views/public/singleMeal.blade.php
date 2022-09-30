@@ -26,7 +26,7 @@
                 @endif
             </div>
             <img class="w-100 mb-5" src="{{ asset('storage/' . $meal->image_path) }}" alt="image">
-            <hr />
+
             <p><span class="fw-bold">Menu :</span> {{ $meal->menu->menu_type->type }}</p>
             <p><span class="fw-bold">Description :</span> {{ $meal->description }}</p>
             <p><span class="fw-bold">Ingrédients :</span> </p>
