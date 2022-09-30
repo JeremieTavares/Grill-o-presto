@@ -150,7 +150,7 @@
 
                     <div class="col-md-6">
                         <label for="password" class="form-label ">Mot de passe*</label>
-                        <input type="password" name="password" id="password" value="{{ $user[0]->password }}"
+                        <input type="password" name="password" id="password" autocomplete="new-password"
                             class="form-control @error('password') is-invalid @enderror"
                             placeholder="Entrer le mot de passe" />
                         @error('password')
@@ -161,7 +161,7 @@
                     <div class="col-md-6">
                         <label for="password_confirmation" class="form-label">Confirmer le mot de passe*</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
-                            value="{{ $user[0]->password }}"
+                            autocomplete="off"
                             class="form-control @error('password_confirmation') is-invalid @enderror"
                             placeholder="Confirmer le mot de passe" />
                         @error('password_confirmation')

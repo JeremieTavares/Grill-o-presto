@@ -28,6 +28,7 @@
             <?php $user = ''; ?>
         @endif
         <div class="mw-1000px">
+            
             @if (Session::has('successResponse'))
                 <div class="alert alert-success  d-flex justify-content-between align-items-center mx-3"
                     id="divAlertSucccessInfoChanged">
@@ -75,7 +76,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($ordersArray as $order)
-                                    <tr class="tr_commande">
+                                
+                                    <tr class="tr_commande @if($order->order_status->status === "Completé") greenRow @elseif($order->order_status->status == "Erreur") redRow @elseif($order->order_status->status == "Annulé") yellowRow @endif">
                                         <td class="border-0 p-2 p-md-3 order_td overflow-auto align-middle">
                                             {{ $order->order_number }}</td>
                                         <td class="border-0 p-2 p-md-4 d-sm-none d-md-block align-middle">
@@ -87,10 +89,9 @@
                                         </td>
                                         <td class="border-0 p-2 p-md-3 align-middle">{{ $order->price }}</td>
                                         <td class="border-0 p-2 p-md-3 align-middle">
-                                            <select name="status[]" id="" class="form-select tr_commande_select">
-                                                @foreach ($orderStatus as $status)
-                                                
-                                                <option @if($order->order_status->status == $status) selected @endif value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
+                                            <select name="status[]" id="" class="form-select tr_commande_select">                                             
+                                                @foreach ($orderStatus as $status)                                               
+                                                <option @if($order->order_status->status === $status->status) selected @elseif($order->order_status->status == $status->status) selected @elseif($order->order_status->status == $status->status) selected @elseif($order->order_status->status == $status->status) selected @endif value="{{ $order->id }}-{{$status->status}}">{{ $status->status }}</option>
                                                 @endforeach
                                             </select>
                                         </td>

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\InfoUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserInfoRequest;
 
 class GestionClientController extends Controller
@@ -74,7 +75,8 @@ class GestionClientController extends Controller
         }
 
         $user->email = (string) $request->email;
-        $user->password = (string) $request->password;
+        if (!$request->password == NULL)
+            $user->password = Hash::make($request->password);
         $user->blocked_at = isset($request->blocked_at) ? NULL : $user->blocked_at;
         $user->soft_deleted = isset($request->soft_deleted) ? NULL : $user->soft_deleted;
         $userInfo->prenom = (string) $request->prenom;
@@ -86,6 +88,8 @@ class GestionClientController extends Controller
         $userInfo->ville = (string) $request->ville;
         $userInfo->telephone = (string) $request->tel;
         $user->save();
+
+
         $userInfo->save();
 
         if (isset($request->blocked_at))

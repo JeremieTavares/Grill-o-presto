@@ -119,7 +119,7 @@
                     <img src="./image/girl_choosing.png" alt="">
                 </div>
                 <div class="text_container w-50">
-                    <h2 class="mb-3">Nous offrons 3 types de menu complet differant chaque semaine</h2>
+                    <h2 class="mb-3">Nous offrons 3 types de menu complet different chaque semaine</h2>
                     <ul class="p-0">
                         <a href="{{ route('menu', 'classic') }}" class="text-decoration-none">
                             <li class="text-secondary">Menu regulier <i

@@ -9,7 +9,7 @@
 
         <section class="mealSection fs-5">
             @if ($added)
-                <div class="alert alert-success text-center m-4 w-100">
+                <div class="alert alert-success text-center fs-6 w-100">
                     Vous avez bien ajoutez le repas au panier
                 </div>
             @endif
@@ -66,12 +66,12 @@
 
 
             @if (session()->exists('cart') && count(session('cart')) >= 5)
-                <div class="alert alert-danger text-center">Vous avez atteint le nombre maximum de repas dans une commande
+                <div class="alert alert-danger text-center fs-6">Vous avez atteint le nombre maximum de repas dans une commande
                 </div>
             @elseif (session()->exists('cart') && in_array($meal->id, session('cart')))
-                <div class="alert alert-danger text-center">Ce repas à déjà été ajouté</div>
+                <div class="alert alert-danger text-center fs-6">Ce repas à déjà été ajouté</div>
             @elseif (session()->exists('menu') && session('menu') != $meal->menu->menu_type->type)
-                <div class="alert alert-danger text-center">Ce repas fait partie du menu <span
+                <div class="alert alert-danger text-center fs-6">Ce repas fait partie du menu <span
                         class="fw-bold">{{ $meal->menu->menu_type->type }}</span> <br> Mais le menu selectionné est : <span
                         class="fw-bold">{{ session('menu') }}</span>. <br />Vous pouvez changer le menu en supprimant tous
                     les repas de votre panier et en sélectionnant un repas du menu voulu.</div>

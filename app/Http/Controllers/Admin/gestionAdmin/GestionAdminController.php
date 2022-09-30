@@ -135,7 +135,8 @@ class GestionAdminController extends Controller
 
         $admin->email = (string) $request->email;
         $admin->role_id = (int) $role->id;
-        $admin->password = (string) Hash::make($request->password);
+        if (!$request->password == NULL)
+            $admin->password = (string) Hash::make($request->password);
         $adminInfo->prenom = (string) $request->prenom;
         $adminInfo->nom = (string) $request->nom;
         $adminInfo->rue = (string) $request->rue;
@@ -160,7 +161,7 @@ class GestionAdminController extends Controller
      */
     public function destroy(Request $request)
     {
-       
+
         $admin = (object) User::GetLoggedUserInfo()->first();
         $client = User::where('id', $request->client_id)->first();
         $role = new Role;

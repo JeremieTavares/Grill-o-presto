@@ -176,7 +176,7 @@
                         <label for="email" class="form-label">Adresse courriel*</label>
                         <input type="email" name="email" id="email"
                             class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
-                            required autocomplete="email" autofocus>
+                            required autocomplete="new-email" autofocus>
                         @error('email')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -196,7 +196,7 @@
                         <label for="password" class="form-label ">Mot de passe*</label>
                         <input type="password" name="password" id="password"
                             class="form-control @error('password') is-invalid @enderror"
-                            placeholder="Entrer le mot de passe" />
+                            placeholder="Entrer le mot de passe" autocomplete="new-password"/>
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
