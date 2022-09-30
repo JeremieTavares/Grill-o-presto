@@ -13,5 +13,6 @@ yarn-error.log
 /.idea
 .env
 /.vscode
+.DS_STORE
 !storage/app/image/
 
