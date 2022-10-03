@@ -362,6 +362,15 @@
             z-index: 2;
         }
     }
+
+    
+    .saladeImg {
+        position: absolute;
+        width: 50%;
+        max-width: 675px;
+        bottom: -6% !important;
+        right: 2%;
+    }
 }
 
 @media (min-width: 1000px) {
@@ -388,6 +397,15 @@
 
     .ship_range_section {
         padding-left: 10% !important;
+    }
+
+
+    .saladeImg {
+        position: absolute;
+        width: 50%;
+        max-width: 675px;
+        bottom: -1% !important;
+        right: 2%;
     }
 }
 
@@ -441,10 +459,37 @@
 
 }
 
-@media (min-width: 1500px) {
+
+
+
+.icon-shopping-cart-meal {
+    font-size: 18px !important;
+}
+
+
+
+@media (min-width: 1175px) {
+
+
+    // .saladeImg {
+    //     position: absolute;
+    //     width: 50vw !important;
+    //     max-width: 675px;
+    //     bottom: -11% !important;
+    //     right: 2%;
+    // }
+
     .topWave {
         position: relative;
         top: -100px;
+    }
+}
+
+
+@media (min-width: 1500px) {
+    .topWave {
+        position: relative;
+        top: -200px;
     }
 
     .menu-home-link-div {
@@ -462,10 +507,4 @@
 
 .topWave {
     transform: translateY(-2px) !important;
-}
-
-
-
-.icon-shopping-cart-meal {
-    font-size: 18px !important;
 }
