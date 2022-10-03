@@ -8,7 +8,7 @@
                 <div class="flex-md-column justify-content-between w-100">
                     <h1 class="mb-5 main-title">GRILL-O-PRESTO</h1>
 
-                    <p class="mb-sm-5 mb-md-1">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour
+                    <p class="mb-sm-5 mb-md-1 zindex-10">Des mets savoureux préparé par les gens d'ici pour les gens d'ici !<br /> Plats pour
                         tous, végétariens et sans glutens.</p>
                         <p class="mb-5 d-sm-none d-md-block zindex-10">Du nouveau à chaque semaine, des produits d'épicerie de qualité, <br> des repas préparés et des boîtes-repas emballantes. <br> Le tout au même prix qu'à l'épicerie</p>
                     <div class="menu-home-link-div zindex-10">
