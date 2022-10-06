@@ -51,11 +51,8 @@ class StripeController extends Controller
             );
 
             if (Auth::check()) {
-
-
                 $user = User::getLoggedUserInfo()->first();
-
-
+                
                 // If the existing user have an StipeToken , it means it already exist
                 // Then we connect that token to the actual stripe transaction (Stripe server side)
                 if ($user->stripeToken > 1) {

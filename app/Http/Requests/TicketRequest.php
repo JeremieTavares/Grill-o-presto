@@ -25,7 +25,7 @@ class TicketRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email', 'max:255'],
-            'order_number' => ['required', 'integer', 'gt:0', 'digits_between:1,12'],
+            'order_number' => ['nullable', 'string', 'exists:App\Models\Order,order_number'],
             'ticket_type_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\TicketType,id'],
             'description' => ['required', 'regex:/^[A-zÀ-ú \'@!$,-.#0-9]{50,400}$/']
         ];
@@ -39,10 +39,8 @@ class TicketRequest extends FormRequest
             'email.string' => 'Votre email doit etre une chaine de caracteres',
             'email.email' => 'Votre email doit etre du format email standard',
             'email.max' => 'Votre email doit etre d\'une longueur de 255 carateres maximum',
-            'order_number.required' => 'Votre numéro de commande est requis',
-            'order_number.integer' => 'Votre numéro de commande doit seulement contenir des chiffre',
-            'order_number.gt' => 'Votre numéro de commande doit etre supérieur a zéro',
-            'order_number.digits_between' => 'Votre numéro de commande doit contenir maximum 12 chiffres',
+            'order_number.exists' => "Votre numéro de commande n'existe pas",
+            'order_number.string' => 'Votre numéro de commande doit etre une chaine de caracteres',
             'ticket_type_id.required' => 'Le type de ticket est requis',
             'ticket_type_id.integer' => 'Le type de ticket doit etre un entier',
             'ticket_type_id.gt' => 'Le type de ticket doit etre un entier supérieur a 0',
