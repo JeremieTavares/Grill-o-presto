@@ -40,6 +40,14 @@ class StripeController extends Controller
     public function stripePost(CreditCardRequest $request)
     {
 
+        // ******************************************************
+        // TO BE ADDED, DB TRANSACTION , TRY CATCH, ROLLBACK
+        // PESSIMISTIC LOCKING
+        // CHANGE THE WAY THE CARD IS UPDATED/ADDED
+        // ENCRYPT THE CREDIT CARD INFO AND REMOVE THE STORE FOR CVC
+        // ******************************************************
+
+        
         if (session()->exists('cart') && count(session()->all('cart')) > 0) {
             // FAIRE UN CUSTOM REQUEST WORKING NOW ITS NOT
             $validatedData = $request->validated();
