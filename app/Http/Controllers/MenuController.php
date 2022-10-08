@@ -13,22 +13,22 @@ class MenuController extends Controller
         $meals = [];
 
         if ($menu == 'all' || $menu == 'classic')
-            $meals += ["classic" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Classique')->get()];
+            $meals += ["classic" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>=', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Classique')->get()];
 
         if ($menu == 'all' || $menu == 'vegetarian')
-            $meals += ["vegan" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Végétarien')->get()];
+            $meals += ["vegan" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>=', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Végétarien')->get()];
 
         if ($menu == 'all' || $menu == 'gluten-free')
-            $meals += ["gluten_free" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Sans Gluten')->get()];
+            $meals += ["gluten_free" => HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>=', date('Y-m-d')]])->whereRelation('menu.menu_type', 'type', 'Sans Gluten')->get()];
 
-        $favMeals = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->inRandomOrder()->take(4)->get();
+        $favMeals = HistoryMeal::with('menu.menu_type')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>=', date('Y-m-d')]])->inRandomOrder()->take(4)->get();
 
         return view('public.menu', ['meals' => $meals, 'favMeals' => $favMeals, 'menu' => $menu]);
     }
 
     public function single($meal_id, $addCart = false)
     {
-        $meal = HistoryMeal::with('menu.menu_type')->with('allergens')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>', date('Y-m-d')]])->find($meal_id);
+        $meal = HistoryMeal::with('menu.menu_type')->with('allergens')->whereRelation('menu', [['start_date', '<=', date('Y-m-d')], ['end_date', '>=', date('Y-m-d')]])->find($meal_id);
 
         $meal->ingredients = json_decode($meal->ingredients);
         $meal->allergens = json_decode($meal->allergens);
