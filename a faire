@@ -2,14 +2,6 @@ afficher les commandes deja passe
 map js calculateur de distance
 notification lors de msg
 
-FAIRE TRUC A XAV pour mdp
-
 ajouter dans password verification le Hash::veirfy (check screen cell)
 
-<!-- add bin to let user know type of card -->
-
-
-
- <small class="text-secondary small_text_custom">Minimum 8 caractères, maximum 50 caractères, au
-                                moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial (@ $ !
-                                % * ? &)</small>
+fix historymeal seeder pr allergens
