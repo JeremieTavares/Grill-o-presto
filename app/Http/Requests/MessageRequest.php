@@ -27,7 +27,7 @@ class MessageRequest extends FormRequest
         return [
             'ticket_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\Ticket,id'],
             'user_id' => ['required', 'integer', 'gt:0', 'exists:App\Models\User,id'],
-            'response' => ['required', 'regex:/^[A-zÀ-ú \'@!$,-.#0-9]{2,400}$/']
+            'response' => ['required', "regex:/^[A-zÀ-ú :'@!$,\.#0-9]{2,400}$/"]
         ];
     }
 
