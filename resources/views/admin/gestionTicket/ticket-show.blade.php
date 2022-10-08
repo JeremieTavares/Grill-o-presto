@@ -86,7 +86,7 @@
                 </div>
 
                 @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
-                    <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
+                    <form action="{{ route('admin.tickets.message.submit') }}" method="POST">
                         @csrf
                         <div>
                             <label for="responseMessageTicketTextarea">Répondre:</label>
@@ -168,7 +168,7 @@
 
 
                 @if (!($state == $ticket_closed || $state == $ticket_expired || $state == $ticket_not_resolved))
-                    <form action="{{ route('user.tickets.message.submit', $user) }}" method="POST">
+                    <form action="{{ route('admin.tickets.message.submit') }}" method="POST">
                         @csrf
                         <div>
                             <label for="responseMessageTicketTextarea">Répondre:</label>

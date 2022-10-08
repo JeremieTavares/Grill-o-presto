@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use App\Models\Ticket;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,12 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('ticket_message_notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('response')->nullable();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->string('user_role')->nullable();
             $table->foreignIdFor(Ticket::class)->constrained()->cascadeOnDelete();
+            $table->integer('user_old_count')->default(0)->nullable();
+            $table->integer('user_new_count')->default(0)->nullable();
+            $table->integer('admin_old_count')->default(0)->nullable();
+            $table->integer('admin_new_count')->default(0)->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        //
     }
 };

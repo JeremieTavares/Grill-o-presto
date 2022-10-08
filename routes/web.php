@@ -87,6 +87,7 @@ Route::patch('user/account/tickets/close/{id?}', [TicketController::class, 'upda
 // ==========================================================================================================================================================
 // MESSAGES / SINGLE ACTION CONTROLLER (INVOKE)
 Route::post('user/account/tickets/message/submit/{id}', MessageController::class)->middleware(['auth', 'client', 'validate-user-infos', 'prevent-back-history'])->name('user.tickets.message.submit');
+Route::post('admin/tickets/message/submit', MessageController::class)->middleware(['auth', 'admin1', 'prevent-back-history'])->name('admin.tickets.message.submit');
 // ==========================================================================================================================================================
 
 
