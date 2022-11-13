@@ -46,7 +46,7 @@ class GestionTicketController extends Controller
         $expired = (int) $states->get_expired_status();
         $not_resolved = (int) $states->get_not_resolved_status();
         $ticketMessages = (object) Message::GetAllMessagesFromATicket($id)->get();
-        $ticket = Ticket::where('id', $id)->get();
+        $ticket = Ticket::where('id', $id)->get(); // switch for FIND
         return (object) view(
             'admin.gestionTicket.ticket-show',
             [
@@ -73,7 +73,7 @@ class GestionTicketController extends Controller
 
         $authUser = (object) User::GetLoggedUserInfo()->first();
         $userTemplate = new Role;
-        $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->first();
+        $ticket = (object) Ticket::where('id', (int)$request->ticket_id)->first(); // switch for find
         $states = (object) new TicketStatus();
         $opened = (int) $states->get_opened_status();
         $closed = (int) $states->get_closed_status();
